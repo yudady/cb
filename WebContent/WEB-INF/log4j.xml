@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p:]	%m \t\t\t[%c]%n" />
+		</layout>
+	</appender>
+	
+	<!-- Application Loggers -->
+	<logger name="org.charitybuzz">
+		<level value="debug" />
+	</logger>
+	<logger name="com.charitybuzz.scheduler">
+		<level value="debug" />
+	</logger>
+	
+	<!-- dwr -->
+	<logger name="org.directwebremoting.spring.DwrHandlerMapping">
+		<level value="info" />
+	</logger>
+	<logger name="org.directwebremoting.dwrp.DefaultConverterManager">
+		<level value="info" />
+	</logger>
+	<logger name="org.directwebremoting.impl.DefaultCreatorManager">
+		<level value="info" />
+	</logger>
+	<logger name="org.directwebremoting.impl.DefaultContainer">
+		<level value="info" />
+	</logger>
+	<logger name="org.directwebremoting.spring.SpringContainer">
+		<level value="info" />
+	</logger>
+	
+	
+	
+	<!-- apache title -->
+	<logger name="org.apache.commons.digester">
+		<level value="info" />
+	</logger>
+	
+	
+	
+	<!-- springframework -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>	
+	<logger name="org.springframework.security">
+		<level value="info" />
+	</logger>	
+	<logger name="org.springframework.aop">
+		<level value="info" />
+	</logger>	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	<logger name="org.springframework.jdbc">
+		<level value="info" />
+	</logger>
+
+
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>

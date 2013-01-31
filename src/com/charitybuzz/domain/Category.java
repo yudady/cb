@@ -33,8 +33,18 @@ public class Category {
 	 */
 	private int subCategoriesItemsCount;
 
-	//==========================
-	
+	// ==========================
+
+	public Category() {
+	}
+
+	public Category(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	// ==========================
+
 	public Long getId() {
 		return id;
 	}
@@ -66,6 +76,8 @@ public class Category {
 	public void setSubCategoriesItemsCount(int subCategoriesItemsCount) {
 		this.subCategoriesItemsCount = subCategoriesItemsCount;
 	}
+
+	// ==========================
 
 	@Override
 	public String toString() {

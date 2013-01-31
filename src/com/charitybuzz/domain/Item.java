@@ -74,6 +74,7 @@ public class Item {
 	 * 最後修改時間
 	 */
 	private Date updatedDate;
+
 	// =======關聯資料===以下內容沒有資料庫column==========
 
 	/**
@@ -97,6 +98,29 @@ public class Item {
 	 * 到結標日差多少時間
 	 */
 	private Long difDay;
+
+	// ====================================================
+
+	public Item() {
+	}
+
+	public Item(Long id, String title, Double currentBid, Date startDate,
+			Date closeDate, Double estimatedValue, Double incrementPrice,
+			int status, String lotDetails, String legalTerms, String shipping,
+			Long winningBidderId) {
+		this.id = id;
+		this.title = title;
+		this.currentBid = currentBid;
+		this.startDate = startDate;
+		this.closeDate = closeDate;
+		this.estimatedValue = estimatedValue;
+		this.incrementPrice = incrementPrice;
+		this.status = status;
+		this.lotDetails = lotDetails;
+		this.legalTerms = legalTerms;
+		this.shipping = shipping;
+		this.winningBidderId = winningBidderId;
+	}
 
 	// ====================================================
 

@@ -41,8 +41,20 @@ public class SubCategory {
 	 */
 	private int itemsCount;
 
-	//==========================
-	
+	// ==========================
+
+	public SubCategory() {
+	}
+
+	public SubCategory(Long id, Long categoryId, String name, String descript) {
+		this.id = id;
+		this.categoryId = categoryId;
+		this.name = name;
+		this.descript = descript;
+	}
+
+	// ==========================
+
 	public Long getId() {
 		return id;
 	}
@@ -80,6 +92,7 @@ public class SubCategory {
 	}
 
 	public void setItems(List<Item> items) {
+		this.setItemsCount(items.size());
 		this.items = items;
 	}
 
@@ -87,7 +100,7 @@ public class SubCategory {
 		return itemsCount;
 	}
 
-	public void setItemsCount(int itemsCount) {
+	void setItemsCount(int itemsCount) {
 		this.itemsCount = itemsCount;
 	}
 

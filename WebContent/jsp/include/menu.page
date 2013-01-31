@@ -1,3 +1,16 @@
-	<div id="menu">
-		menu
-	</div>
+<div id="menu">
+<ul id="sidebar">
+	<c:forEach items="${categories}" var="category">
+		<li><a href='<c:url value="/categories/${category.id}" />'>${category.name}(??????)</a>
+			<c:if test="${not empty category.subCategories}">
+				<ul>
+					<c:forEach items="${category.subCategories}" var="subCategory">
+						<li><a
+							href='<c:url value="/categories/${category.id}/subcategories/${subCategory.id}" />'>${subCategory.name}(${subCategory.itemsCount})</a></li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</li>
+	</c:forEach>
+</ul>
+</div>

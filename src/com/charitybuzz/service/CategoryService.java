@@ -3,10 +3,7 @@ package com.charitybuzz.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.charitybuzz.domain.Category;
-@Service
 public class CategoryService {
 
 	public List<Category> findAll() {

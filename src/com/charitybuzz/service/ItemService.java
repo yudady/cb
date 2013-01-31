@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.charitybuzz.domain.Item;
-@Service
 public class ItemService {
 
 	public List<Item> findBySubCategoryId(Long id) {

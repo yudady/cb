@@ -23,7 +23,7 @@
 	<!-- Mapping for Spring MVC -->
 	<servlet-mapping>
 		<servlet-name>dispatcherServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	<!-- Mapping for DWR -->
 	<servlet-mapping>
@@ -31,6 +31,13 @@
 		<url-pattern>/dwr/*</url-pattern>
 	</servlet-mapping>
 
+
+
+
+	<!-- Index -->
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
 	<error-page>
 		<error-code>404</error-code>
 		<location>/code404.html</location>

@@ -2,6 +2,8 @@ package com.charitybuzz.service;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,6 +18,11 @@ public class SidebarService {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private JdbcTemplate jdbcTemplate;
+	private DataSource dataSource;
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
 	/**
 	 * 第一級目錄
@@ -48,7 +55,8 @@ public class SidebarService {
 
 	public List<Category> getSidebar() {
 
-		System.out.println(jdbcTemplate.toString());
+		System.out.println("[LOG]" + jdbcTemplate.toString());
+		System.out.println("[LOG]" + dataSource.toString());
 
 		List<Category> categories = categoryService.findAll();
 

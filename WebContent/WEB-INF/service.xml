@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:task="http://www.springframework.org/schema/task"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
@@ -11,18 +9,19 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-	
 
-	
-	
+
+
+
 	<bean id="categoryService" class="com.charitybuzz.service.CategoryService" />
 	<bean id="itemService" class="com.charitybuzz.service.ItemService" />
-	<bean id="sidebarService" class="com.charitybuzz.service.SidebarService" >
-		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
-		<property name="categoryService" ref="categoryService"></property>
-		<property name="subCategoryService" ref="subCategoryService"></property>
-		<property name="itemService" ref="itemService"></property>
+	<bean id="sidebarService" class="com.charitybuzz.service.SidebarService">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="categoryService" ref="categoryService" />
+		<property name="subCategoryService" ref="subCategoryService" />
+		<property name="itemService" ref="itemService" />
 	</bean>
 	<bean id="subCategoryService" class="com.charitybuzz.service.SubCategoryService" />
-	
+
 </beans>

@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,11 +28,11 @@ public class IndexController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView index(ModelMap model) {
-		log.debug("[LOG]log IndexController.index");
+	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("index");
 		
 		List<Category> categories = sidebarService.getSidebar();
+		log.debug("[LOG]log IndexController.index" + categories);
 		mav.addObject("categories", categories);
 		
 		

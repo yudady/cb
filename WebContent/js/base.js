@@ -1,0 +1,8 @@
+;(function(){
+	$.log('base js');
+})();
+
+
+
+
+

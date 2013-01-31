@@ -37,7 +37,7 @@ ul {
 	height: 67px;
 }
 
-#header #login {
+#login {
 	width: 300px;
 	position: relative;
 	top: -70px;
@@ -55,4 +55,13 @@ ul {
 	clear: both;
 	height: 200px;
 	background-color: green;
+}
+
+
+#sidebar {
+	margin: 0px 10px ;
+	background-color: red;
+}
+#sidebar .ui-menu {
+	width: 220px;
 }

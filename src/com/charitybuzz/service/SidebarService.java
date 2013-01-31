@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.charitybuzz.domain.Category;
@@ -18,7 +19,8 @@ public class SidebarService {
 	
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
+	@Resource
+	private JdbcTemplate jdbcTemplate;
 	/**
 	 * 第一級目錄
 	 */
@@ -38,6 +40,9 @@ public class SidebarService {
 	
 	public List<Category> getSidebar() {
 
+		JdbcTemplate js = null;
+		
+		
 		List<Category> categories = categoryService.findAll();
 
 		for (int i = 0; i < categories.size(); i++) {

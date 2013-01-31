@@ -1,46 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
-		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-		http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/tx 
-        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-		http://www.springframework.org/schema/task   
-    	http://www.springframework.org/schema/task/spring-task-3.0.xsd
-		http://www.springframework.org/schema/context 
-		http://www.springframework.org/schema/context/spring-context-3.0.xsd
-		http://www.directwebremoting.org/schema/spring-dwr
-   	 	http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
-    	http://www.springframework.org/schema/security 
-    	http://www.springframework.org/schema/security/spring-security-3.1.xsd
-		">
-
+	xsi:schemaLocation="http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	
 
+
+	<!-- 定義易受環境影響的變量 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<!-- 標准配置 -->
+				<value>/WEB-INF/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 連線池 -->
+	<!-- 數據源配置, 使用應用中的DBCP數據庫連接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<!-- Connection Info -->
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- Connection Pooling Info -->
+		<property name="maxActive" value="2" />
+		<property name="maxIdle" value="2" />
+		<property name="defaultAutoCommit" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="minEvictableIdleTimeMillis" value="3600000" />
+	</bean>
+
+	
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 	
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
 	<context:component-scan base-package="com.charitybuzz" />
-	
-
-	
-	
 	<mvc:annotation-driven/>
-	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	
-	
-	
 	
 	<!-- 視圖解析	開始 -->
 	<bean id="contentNegotiatingViewResolver"

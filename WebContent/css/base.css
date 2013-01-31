@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 12px;
+	text-align: left;
+	width: 988px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+#header {
+	height: 200px;
+	margin-bottom: 20px;
+	background-color: red;
+}
+
+#menu {
+	width: 200px;
+	height: 500px;
+	float: left;
+	background-color: yellow;
+}
+
+#footer {
+	clear: both;
+	height: 200px;
+	background-color: green;
+}

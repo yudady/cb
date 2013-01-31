@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+#page {
+	width: 750px;
+	height: 500px;
+	float: right;
+	background-color: gray;
+	margin-bottom: 20px;
+}
+
+#liveAuctions {
+	width: 600px;
+	height: 500px;
+	float: left;
+	background-color: pink;
+	margin-bottom: 20px;
+}
+
+#itemsClosing {
+	width: 350px;
+	height: 500px;
+	float: right;
+	background-color: yellow;
+}

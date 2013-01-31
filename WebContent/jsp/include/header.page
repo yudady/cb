@@ -9,6 +9,31 @@
 <title>cb</title>
 </head>
 <body>
-	<div id="header">
-		header
-	</div>
+<div id="header">
+<div class="logo">
+	<a href='<c:url value="/"/>'>
+		<img src='<c:url value="/pic/site/logo-high-res-retina.png"/>' />
+	</a>
+</div>
+<div id="login">
+	<span>Login with email and Password</span>
+	<form id="loginForm" action="<c:url value='/login' />"
+		method='POST'>
+		<table>
+			<tr>
+				<td>email:</td>
+				<td><input type='text' name='email' ></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type='passWord' name='passWord' /></td>
+			</tr>
+			<tr>
+				<td><input name="submit" type="submit"
+					value="submit" /></td>
+				<td><input name="reset" type="reset" /></td>
+			</tr>
+		</table>
+	</form>
+</div>
+</div>

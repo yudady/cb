@@ -18,9 +18,30 @@ ul {
 }
 
 #header {
-	height: 200px;
-	margin-bottom: 20px;
-	background-color: red;
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+#header .logo {
+	width: 500px;
+}
+
+#header .logo a {
+	display: block;
+	width: 500px;
+}
+
+#header .logo a img {
+	display: block;
+	width: 500px;
+	height: 67px;
+}
+
+#header #login {
+	width: 300px;
+	position: relative;
+	top: -70px;
+	left: 650px;
 }
 
 #menu {

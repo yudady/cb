@@ -1,9 +1,5 @@
 package com.charitybuzz.service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -83,24 +79,24 @@ public class SidebarService {
 		}
 
 		
-		for(int i = 0 ; i < 10000 ; i ++){
-			
-			try {
-				Connection conn = dataSource.getConnection();
-				String sql = "select id,title from item ";
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ResultSet rs = ps.executeQuery();
-				while (rs.next()) {
-					log.debug("[LOG]" + rs.getLong("id") + rs.getString("title"));
-				}
-				rs.close();
-				ps.close();
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+//		for(int i = 0 ; i < 10000 ; i ++){
+//			
+//			try {
+//				Connection conn = dataSource.getConnection();
+//				String sql = "select id,title from item ";
+//				PreparedStatement ps = conn.prepareStatement(sql);
+//				ResultSet rs = ps.executeQuery();
+//				while (rs.next()) {
+//					log.debug("[LOG]" + rs.getLong("id") + rs.getString("title"));
+//				}
+//				rs.close();
+//				ps.close();
+//				conn.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 		
 		
 

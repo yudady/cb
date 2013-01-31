@@ -5,6 +5,15 @@
 	id="WebApp_ID" version="2.5">
 	<display-name>cb</display-name>
 
+	<filter>
+		<filter-name>SystemContextFilter</filter-name>
+		<filter-class>com.charitybuzz.common.filter.SystemContextFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SystemContextFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

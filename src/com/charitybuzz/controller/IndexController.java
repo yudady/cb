@@ -33,8 +33,6 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView("index");
 		
 		List<Category> categories = sidebarService.getSidebar();
-		log.debug("[LOG]log IndexController.index" + categories);
-		session.setAttribute("categories", categories);
 		mav.addObject("categories", categories);
 		
 		

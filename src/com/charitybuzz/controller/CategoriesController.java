@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.domain.Category;
 import com.charitybuzz.domain.Item;
+import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 
@@ -22,7 +24,9 @@ import com.charitybuzz.service.PictureService;
 public class CategoriesController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
+	
+	@Resource
+	private SidebarService sidebarService;
 	/**
 	 * 全部商品
 	 */
@@ -43,19 +47,14 @@ public class CategoriesController {
 	 */
 	@RequestMapping(value = "/{id}/index", method = RequestMethod.GET)
 	public ModelAndView fir(@PathVariable Long id) {
-		log.debug("[LOG][id]=" + id);
-		log.debug("[LOG][id]=" + id);
-		log.debug("[LOG][id]=" + id);
-		log.debug("[LOG][id]=" + id);
-		log.debug("[LOG][id]=" + id);
-		log.debug("[LOG][id]=" + id);
 		ModelAndView mav = new ModelAndView("items");
-		
+		List<Category> categories = sidebarService.getSidebar();
+		mav.addObject("categories", categories);
 		/**
 		 * 全部商品
 		 */
 		List<Item> items = itemService.findByCategoryId(id);
-
+		mav.addObject("items", items);
 //		for (Item item : items) {
 //
 //			Long itemId = item.getId();

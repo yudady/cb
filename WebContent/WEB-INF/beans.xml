@@ -39,6 +39,7 @@
 
 	<!-- other service -->
 	<bean id="sidebarService" class="com.charitybuzz.operate.SidebarService">
+		<property name="categoeySubCategoryItemChange" value="true" />
 		<property name="categoryService" ref="categoryService" />
 		<property name="subCategoryService" ref="subCategoryService" />
 		<property name="itemService" ref="itemService" />

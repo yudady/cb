@@ -12,10 +12,24 @@ import com.charitybuzz.service.CategoryService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.SubCategoryService;
 
+/**
+ * 如果商品或目錄有變動，需要把change改為true
+ * 
+ * @author Administrator
+ * 
+ */
 public class SidebarService {
 
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+	/**
+	 * 目錄是否有改變 true 有變 false沒變
+	 */
+	private boolean categoeySubCategoryItemChange;
+
+
+	private List<Category> categories;
 
 	/**
 	 * 第一級目錄
@@ -42,17 +56,37 @@ public class SidebarService {
 		this.itemService = itemService;
 	}
 
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+
+	public boolean isCategoeySubCategoryItemChange() {
+		return categoeySubCategoryItemChange;
+	}
+
+	public void setCategoeySubCategoryItemChange(
+			boolean categoeySubCategoryItemChange) {
+		this.categoeySubCategoryItemChange = categoeySubCategoryItemChange;
+	}
+
 	public List<Category> getSidebar() {
 
-		List<Category> categories = categoryService.findAll();
+		if (!isCategoeySubCategoryItemChange()) {
+			return categories;
+		}
+		log.info("[LOG]categoeySubCategoryItemChange="
+				+ categoeySubCategoryItemChange);
+		
+		
+		List<Category> cas = categoryService.findAll();
 
-		for (int i = 0; i < categories.size(); i++) {
-			Category category = categories.get(i);
+		for (int i = 0; i < cas.size(); i++) {
+			Category category = cas.get(i);
 			Long categoryId = category.getId();
-			
+
 			List<Item> items = itemService.findByCategoryId(categoryId);
 			category.setSubCategoriesItemsCount(items.size());
-			
 
 			List<SubCategory> subCategories = subCategoryService
 					.findByCategoryId(categoryId);
@@ -68,8 +102,11 @@ public class SidebarService {
 			category.setSubCategories(subCategories);
 
 		}
-
-		return categories;
+		/**
+		 * 更新完畢
+		 */
+		this.categories = cas;
+		this.setCategoeySubCategoryItemChange(false);
+		return this.categories;
 	}
-
 }

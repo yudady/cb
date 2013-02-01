@@ -1,6 +1,7 @@
 package com.charitybuzz.common.filter;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.Filter;
@@ -23,6 +24,8 @@ public class SystemContextFilter implements Filter {
 			FilterChain chan) throws IOException, ServletException {
 
 		try {
+			//req.getAttribute("user");
+			
 			
 			chan.doFilter(req, res);
 			
@@ -32,6 +35,8 @@ public class SystemContextFilter implements Filter {
 			
 			if (ConnectionUtil.isConnectionInThreadLocal()) {
 				try {
+					Connection conn = ConnectionUtil.getWriteConnection();
+					conn.close();
 					ConnectionUtil.removeWriteConnection();
 				} catch (SQLException e) {
 					e.printStackTrace();

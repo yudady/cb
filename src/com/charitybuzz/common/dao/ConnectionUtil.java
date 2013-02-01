@@ -7,42 +7,49 @@ import javax.sql.DataSource;
 
 public class ConnectionUtil {
 
-	private static ThreadLocal<Connection> connections = new ThreadLocal<Connection>();
+	private static ThreadLocal<ConnectiionWrap> writeConnectiionWrap = new ThreadLocal<ConnectiionWrap>();
 
 	private static DataSource dataSource;
 
 	private ConnectionUtil() {
 	}
 
-	@SuppressWarnings("static-access")
-	protected void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
+	public void setDataSource(DataSource dataSource) {
+		ConnectionUtil.dataSource = dataSource;
 	}
 
 	public synchronized static Connection getWriteConnection()
 			throws SQLException {
-		Connection conn = connections.get();
-		if (conn == null) {
-			conn = dataSource.getConnection() ;
-			conn.setAutoCommit(false); //transaction block start
-			connections.set(conn);
+		ConnectiionWrap cw = writeConnectiionWrap.get();
+		if (cw == null) {
+			cw = new ConnectiionWrap(dataSource.getConnection()); ;
+			writeConnectiionWrap.set(cw);
 		}
-		return connections.get();
+		return writeConnectiionWrap.get().getConnection();
 	}
 
 	public static boolean isConnectionInThreadLocal() {
-		Connection conn = connections.get();
-		if (conn == null) {
+		
+		ConnectiionWrap cw = writeConnectiionWrap.get();
+		if (cw == null) {
 			return false;
 		}
 		return true;
 	}
 
 	public static void removeWriteConnection() throws SQLException {
-		connections.remove();
+		if(!writeConnectiionWrap.get().isRead()){
+			writeConnectiionWrap.remove();
+		}
 	}
 	public static void commitWriteConnection() throws SQLException {
-		connections.get().commit();
+		writeConnectiionWrap.get().getConnection().commit();
 	}
+	
+	public synchronized static Connection getReadConnection()
+			throws SQLException {
+		return dataSource.getConnection();
+	}
+
 
 }

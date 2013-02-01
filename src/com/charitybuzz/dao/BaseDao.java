@@ -1,27 +1,18 @@
 package com.charitybuzz.dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
 import com.charitybuzz.common.dao.ConnectionUtil;
 
 public class BaseDao {
 
-	private static DataSource dataSource;
+	private ConnectionUtil connectionUtil;
 
-	@SuppressWarnings("static-access")
-	protected void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
+	public void setConnectionUtil(ConnectionUtil connectionUtil) {
+		this.connectionUtil = connectionUtil;
 	}
+	
+	
+	
+	
 
-	public Connection getReadConnection() throws SQLException {
-		return dataSource.getConnection();
-	}
-
-	public Connection getWriteConnection() throws SQLException {
-		return ConnectionUtil.getWriteConnection();
-	}
 
 }

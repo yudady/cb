@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.domain.Category;
-import com.charitybuzz.service.SidebarService;
+import com.charitybuzz.operate.SidebarService;
 
 
 @Controller

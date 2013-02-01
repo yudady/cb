@@ -13,15 +13,53 @@
 
 
 
+	<bean id="connectionUtil" class="com.charitybuzz.common.dao.ConnectionUtil" >
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<bean id="categoryService" class="com.charitybuzz.service.CategoryService" />
 	<bean id="itemService" class="com.charitybuzz.service.ItemService" />
-	<bean id="sidebarService" class="com.charitybuzz.service.SidebarService">
+	<bean id="subCategoryService" class="com.charitybuzz.service.SubCategoryService" />
+
+
+
+
+
+
+
+
+
+
+
+	<bean id="baseDao" class="com.charitybuzz.dao.BaseDao" >
+		<property name="connectionUtil" ref="connectionUtil" />
+	</bean>
+
+
+
+
+
+
+
+
+
+	<bean id="sidebarService" class="com.charitybuzz.operate.SidebarService">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="categoryService" ref="categoryService" />
 		<property name="subCategoryService" ref="subCategoryService" />
 		<property name="itemService" ref="itemService" />
 	</bean>
-	<bean id="subCategoryService" class="com.charitybuzz.service.SubCategoryService" />
-
 </beans>

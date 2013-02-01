@@ -1,4 +1,4 @@
-package com.charitybuzz.service;
+package com.charitybuzz.operate;
 
 import java.util.List;
 
@@ -11,6 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.charitybuzz.domain.Category;
 import com.charitybuzz.domain.Item;
 import com.charitybuzz.domain.SubCategory;
+import com.charitybuzz.service.CategoryService;
+import com.charitybuzz.service.ItemService;
+import com.charitybuzz.service.SubCategoryService;
 
 public class SidebarService {
 

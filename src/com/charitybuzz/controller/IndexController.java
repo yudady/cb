@@ -3,6 +3,7 @@ package com.charitybuzz.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +29,12 @@ public class IndexController {
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView index() {
+	public ModelAndView index(HttpSession session) {
 		ModelAndView mav = new ModelAndView("index");
 		
 		List<Category> categories = sidebarService.getSidebar();
 		log.debug("[LOG]log IndexController.index" + categories);
+		session.setAttribute("categories", categories);
 		mav.addObject("categories", categories);
 		
 		

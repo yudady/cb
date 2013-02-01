@@ -145,9 +145,28 @@ INSERT INTO subcategory_item VALUES (seq_subcategory_item.nextval, '10', '1');
 commit;
 
 -------------------------------------
+DROP TABLE picture ;
+commit;
+CREATE TABLE picture (
+id NUMBER(10)  NOT NULL PRIMARY KEY,
+itemId NUMBER(10)  NOT NULL ,
+priority NUMBER(10)  NOT NULL ,
+photoPath NVARCHAR2(200) NOT NULL ,
+createdDate DATE NOT NULL 
+)
+;
+commit;
+COMMENT ON COLUMN picture.id IS '圖片id，自動編號';
+COMMENT ON COLUMN picture.itemId IS '商品id';
+COMMENT ON COLUMN picture.priority IS '圖片顯示的優先權';
+COMMENT ON COLUMN picture.photoPath IS '圖片路徑';
+COMMENT ON COLUMN picture.createdDate IS '建立時間';
+commit;
+drop sequence seq_picture;
+create sequence seq_picture;
+commit;
 
-
-
+-------------------------------------
 
 
 
@@ -184,68 +203,10 @@ COMMENT ON COLUMN bidlog.bidtime IS '時間';
 create sequence seq_bidlog;
 
 
-CREATE TABLE picture (
-id NUMBER NOT NULL PRIMARY KEY,
-itemId NUMBER NOT NULL ,
-mark NVARCHAR2(20) NULL ,
-location NVARCHAR2(200) NOT NULL 
-)
-;
-COMMENT ON COLUMN picture.id IS '圖片id';
-COMMENT ON COLUMN picture.itemId IS '商品id';
-COMMENT ON COLUMN picture.mark IS '圖片順序';
-COMMENT ON COLUMN picture.location IS '圖片路徑';
-
-
-
-INSERT INTO picture VALUES ('1', '1', '1', 'https://s3.amazonaws.com/images.charitybuzz.com/images/85732/detail.jpeg?1358201435');
-INSERT INTO picture VALUES ('2', '3', '1', 'https://s3.amazonaws.com/images.charitybuzz.com/images/85765/thumb.JPG?1358266420');
-INSERT INTO picture VALUES ('3', '3', '1', 'https://s3.amazonaws.com/images.charitybuzz.com/images/85766/thumb.png?1358266521');
-INSERT INTO picture VALUES ('4', '3', '1', 'https://s3.amazonaws.com/images.charitybuzz.com/images/85767/thumb.jpg?1358266569');
-INSERT INTO picture VALUES ('5', '3', '1', 'https://s3.amazonaws.com/images.charitybuzz.com/images/85768/thumb.JPG?1358266626');
-INSERT INTO picture VALUES ('6', '2', '1', 'https://s3.amazonaws.com/images.charitybuzz.com/images/85937/detail.jpg?1358456488');
 
 
 
 
---==============================================
-CREATE TABLE auctionRule (
-id NUMBER(10) NOT NULL PRIMARY KEY,
-name NVARCHAR2(2000) NULL ,
-maxBidDesc NVARCHAR2(2000) NULL ,
-maxBidIncrementDesc NVARCHAR2(2000) NULL 
-)
-;
-COMMENT ON COLUMN auctionRule.id IS '規則id';
-COMMENT ON COLUMN auctionRule.name IS '描述';
-COMMENT ON COLUMN auctionRule.maxBidDesc IS '描述';
-COMMENT ON COLUMN auctionRule.maxBidIncrementDesc IS '描述';
-drop sequence seq_auctionRule;
-create sequence seq_auctionRule;
-INSERT INTO auctionRule VALUES (seq_auctionrule.nextval, 'name','maxBidDesc','maxBidIncrementDesc');
---==============================================
-CREATE TABLE auctionRuleDetail (
-id NUMBER(10) NOT NULL PRIMARY KEY,
-auctionRuleId NUMBER(10) NOT NULL ,
-amountValue NUMBER(10) NOT NULL ,
-incrementValue NUMBER(10) NOT NULL
-)
-;
-COMMENT ON COLUMN auctionRuleDetail.id IS '規則明細id';
-COMMENT ON COLUMN auctionRuleDetail.auctionRuleId IS '規則id';
-COMMENT ON COLUMN auctionRuleDetail.amountValue IS '最大值';
-COMMENT ON COLUMN auctionRuleDetail.incrementValue IS '增加值';
-drop sequence seq_auctionRuleDetail;
-create sequence seq_auctionRuleDetail;
-INSERT INTO auctionRuleDetail VALUES (seq_auctionRuleDetail.nextval, 2 , 250 , 25);
-INSERT INTO auctionRuleDetail VALUES (seq_auctionRuleDetail.nextval, 2 , 500 , 50);
-INSERT INTO auctionRuleDetail VALUES (seq_auctionRuleDetail.nextval, 2 , 1000 , 100);
-INSERT INTO auctionRuleDetail VALUES (seq_auctionRuleDetail.nextval, 2 , 5000 , 250);
-INSERT INTO auctionRuleDetail VALUES (seq_auctionRuleDetail.nextval, 2 , 10000 , 500);
-INSERT INTO auctionRuleDetail VALUES (seq_auctionRuleDetail.nextval, 2 , 25000 , 1000);
-INSERT INTO auctionRuleDetail VALUES (seq_auctionRuleDetail.nextval, 2 , 50000 , 2500);
-INSERT INTO auctionRuleDetail VALUES (seq_auctionRuleDetail.nextval, 2 , 10000000 , 5000);
---==============================================
 
 CREATE TABLE bidder (
 id NUMBER(10) NOT NULL PRIMARY KEY,

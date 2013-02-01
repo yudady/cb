@@ -49,6 +49,10 @@ public class SidebarService {
 		for (int i = 0; i < categories.size(); i++) {
 			Category category = categories.get(i);
 			Long categoryId = category.getId();
+			
+			List<Item> items = itemService.findByCategoryId(categoryId);
+			category.setSubCategoriesItemsCount(items.size());
+			
 
 			List<SubCategory> subCategories = subCategoryService
 					.findByCategoryId(categoryId);

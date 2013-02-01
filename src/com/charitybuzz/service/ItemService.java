@@ -16,4 +16,13 @@ public class ItemService {
 		return itemDao.findBySubCategoryId(id);
 	}
 
+	/**
+	 * 找出categoryId的全部商品
+	 * @param categoryId
+	 * @return
+	 */
+	public List<Item> findByCategoryId(Long categoryId) {
+		return itemDao.findByCategoryId(categoryId);
+	}
+
 }

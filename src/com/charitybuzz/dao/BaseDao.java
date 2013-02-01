@@ -8,13 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.charitybuzz.common.dao.ConnectionUtil;
+import com.charitybuzz.common.dao.QueryList;
 
 public abstract class BaseDao<T> {
 
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(BaseDao.class);
 
-	public List<T> findAll(String sql, ResultSetImpl<T> rs) {
+	public List<T> findAll(String sql, QueryList<T> rs) {
 		Connection conn = null;
 		try {
 			conn = ConnectionUtil.getReadConnection();

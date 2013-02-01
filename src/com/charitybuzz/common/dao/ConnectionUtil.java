@@ -45,7 +45,11 @@ public class ConnectionUtil {
 	public static void commitWriteConnection() throws SQLException {
 		writeConnectiionWrap.get().getConnection().commit();
 	}
-	
+	/**
+	 * 需要自己關閉
+	 * @return
+	 * @throws SQLException
+	 */
 	public synchronized static Connection getReadConnection()
 			throws SQLException {
 		return dataSource.getConnection();

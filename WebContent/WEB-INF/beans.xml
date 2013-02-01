@@ -43,9 +43,7 @@
 
 
 
-	<bean id="baseDao" class="com.charitybuzz.dao.BaseDao" >
-		<property name="connectionUtil" ref="connectionUtil" />
-	</bean>
+	<bean id="itemDao" class="com.charitybuzz.dao.ItemDao" />
 
 
 
@@ -56,8 +54,7 @@
 
 
 	<bean id="sidebarService" class="com.charitybuzz.operate.SidebarService">
-		<property name="jdbcTemplate" ref="jdbcTemplate" />
-		<property name="dataSource" ref="dataSource" />
+		<property name="itemDao" ref="itemDao" />
 		<property name="categoryService" ref="categoryService" />
 		<property name="subCategoryService" ref="subCategoryService" />
 		<property name="itemService" ref="itemService" />

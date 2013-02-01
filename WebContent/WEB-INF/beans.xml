@@ -12,49 +12,28 @@
 
 
 
-
-	<bean id="connectionUtil" class="com.charitybuzz.common.dao.ConnectionUtil" >
+	<!-- util -->
+	<bean id="connectionUtil" class="com.charitybuzz.common.dao.ConnectionUtil">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<bean id="categoryService" class="com.charitybuzz.service.CategoryService" />
-	<bean id="itemService" class="com.charitybuzz.service.ItemService" >
+	<!------------------------------------------------------------------------->
+
+	<!-- base service -->
+	<bean id="categoryService" class="com.charitybuzz.service.CategoryService">
+		<property name="categoryDao" ref="categoryDao" />
+	</bean>
+	<bean id="itemService" class="com.charitybuzz.service.ItemService">
 		<property name="itemDao" ref="itemDao" />
 	</bean>
 	<bean id="subCategoryService" class="com.charitybuzz.service.SubCategoryService" />
+	<!------------------------------------------------------------------------->
 
-
-
-
-
-
-
-
-
-
-
+	<!-- Dao -->
 	<bean id="itemDao" class="com.charitybuzz.dao.ItemDao" />
+	<bean id="categoryDao" class="com.charitybuzz.dao.CategoryDao" />
+	<!------------------------------------------------------------------------->
 
-
-
-
-
-
-
-
-
+	<!-- other service -->
 	<bean id="sidebarService" class="com.charitybuzz.operate.SidebarService">
 		<property name="categoryService" ref="categoryService" />
 		<property name="subCategoryService" ref="subCategoryService" />

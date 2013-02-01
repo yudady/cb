@@ -1,21 +1,24 @@
 package com.charitybuzz.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.charitybuzz.dao.SubCategoryDao;
 import com.charitybuzz.domain.SubCategory;
 public class SubCategoryService {
 
-	public List<SubCategory> findItensByCategoryId(Long categoryId) {
-		List<SubCategory> subCategories = new ArrayList<SubCategory>();
-		if(categoryId == 1L){
-			subCategories.add(new SubCategory(1L, 1L, "----subCategories1", "subCategories1"));
-			subCategories.add(new SubCategory(2L, 1L, "----subCategories1", "subCategories1"));
-			subCategories.add(new SubCategory(3L, 1L, "----subCategories1", "subCategories1"));
-			subCategories.add(new SubCategory(4L, 1L, "----subCategories1", "subCategories1"));
-			subCategories.add(new SubCategory(5L, 1L, "----subCategories1", "subCategories1"));
-		}
-		return subCategories;
+	private SubCategoryDao subCategoryDao;
+	
+	public void setSubCategoryDao(SubCategoryDao subCategoryDao) {
+		this.subCategoryDao = subCategoryDao;
+	}
+
+	/**
+	 * 用一級目錄id
+	 * 找出全部二級目錄的商品
+	 * @return
+	 */
+	public List<SubCategory> findByCategoryId(Long categoryId) {
+		return subCategoryDao.findByCategoryId(categoryId);
 	}
 
 }

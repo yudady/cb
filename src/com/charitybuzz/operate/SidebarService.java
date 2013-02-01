@@ -49,11 +49,12 @@ public class SidebarService {
 		for (int i = 0; i < categories.size(); i++) {
 			Category category = categories.get(i);
 			Long categoryId = category.getId();
+
+			List<SubCategory> subCategories = subCategoryService
+					.findByCategoryId(categoryId);
 			/**
 			 * 第二級目錄
 			 */
-			List<SubCategory> subCategories = subCategoryService
-					.findItensByCategoryId(categoryId);
 			for (int j = 0; j < subCategories.size(); j++) {
 				SubCategory subs = subCategories.get(j);
 				List<Item> subsItems = itemService.findBySubCategoryId(subs

@@ -13,6 +13,10 @@ public class CategoryService {
 		this.categoryDao = categoryDao;
 	}
 
+	/**
+	 * 找出全部一級目錄
+	 * @return
+	 */
 	public List<Category> findAll() {
 		return categoryDao.findAll();
 	}

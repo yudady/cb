@@ -15,7 +15,7 @@ public abstract class BaseDao<T> {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(BaseDao.class);
 
-	public List<T> findAll(String sql, QueryList<T> rs) {
+	protected List<T> findAll(String sql, QueryList<T> rs) {
 		Connection conn = null;
 		try {
 			conn = ConnectionUtil.getReadConnection();

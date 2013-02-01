@@ -5,7 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.charitybuzz.dao.ItemDao;
 import com.charitybuzz.domain.Category;
 import com.charitybuzz.domain.Item;
 import com.charitybuzz.domain.SubCategory;
@@ -17,12 +16,6 @@ public class SidebarService {
 
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
-	private ItemDao itemDao;
-
-	public void setItemDao(ItemDao itemDao) {
-		this.itemDao = itemDao;
-	}
 
 	/**
 	 * 第一級目錄
@@ -69,12 +62,6 @@ public class SidebarService {
 			}
 			category.setSubCategories(subCategories);
 
-		}
-
-		List<Item> items = itemDao.findAll();
-		log.debug("[LOG]" + items.size());
-		for (Item it : items) {
-			log.debug("[LOG]" + it);
 		}
 
 		return categories;

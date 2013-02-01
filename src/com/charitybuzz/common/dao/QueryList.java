@@ -22,13 +22,15 @@ public abstract class QueryList<T> {
 	public void init(Connection conn, String sql) throws SQLException {
 		this.conn = conn;
 		this.sql = sql;
-		this.ps = conn.prepareStatement(sql);
-		this.rs = ps.executeQuery();
-		this.datas = this.doResultSet();
+		ps = conn.prepareStatement(sql);
+		this.doPreparedStatement();
+		rs = ps.executeQuery();
+		datas = this.doResultSet();
 		rs.close();
 		ps.close();
 	}
 
+	public abstract void doPreparedStatement() throws SQLException;
 	public abstract List<T> doResultSet() throws SQLException;
 
 }

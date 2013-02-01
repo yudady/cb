@@ -30,7 +30,9 @@
 	
 	
 	<bean id="categoryService" class="com.charitybuzz.service.CategoryService" />
-	<bean id="itemService" class="com.charitybuzz.service.ItemService" />
+	<bean id="itemService" class="com.charitybuzz.service.ItemService" >
+		<property name="itemDao" ref="itemDao" />
+	</bean>
 	<bean id="subCategoryService" class="com.charitybuzz.service.SubCategoryService" />
 
 
@@ -54,7 +56,6 @@
 
 
 	<bean id="sidebarService" class="com.charitybuzz.operate.SidebarService">
-		<property name="itemDao" ref="itemDao" />
 		<property name="categoryService" ref="categoryService" />
 		<property name="subCategoryService" ref="subCategoryService" />
 		<property name="itemService" ref="itemService" />

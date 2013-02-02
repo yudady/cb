@@ -4,23 +4,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.domain.Watching;
 
 public class WatchingDao extends BaseDao<Watching> {
-
-	/** logger. */
-	protected Logger log = LoggerFactory.getLogger(this.getClass());
 
 	public List<Watching> findWatchingByitemId(final Long itemId) {
 		String sql = "select * from Watching where itemId = ? order by priority";
 		return this.findList(sql, new QueryList<Watching>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				ps.setLong(1, itemId);
+				preparedStatement.setLong(1, itemId);
 			}
 
 			@Override

@@ -1,14 +1,11 @@
 package com.charitybuzz.common.dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class QueryObject<T> {
+public abstract class QueryObject<T> extends JdbcTool<T> {
 
-	protected Connection conn;
-	protected PreparedStatement ps;
 	protected ResultSet rs;
 	protected T datas;
 
@@ -18,18 +15,14 @@ public abstract class QueryObject<T> {
 
 	protected String sql;
 
-	public void init(Connection conn, String sql) throws SQLException {
-		this.conn = conn;
-		this.sql = sql;
-		ps = conn.prepareStatement(sql);
-		this.doPreparedStatement();
-		rs = ps.executeQuery();
+	@Override
+	void start(Connection conn, String sql) throws SQLException {
+		rs = preparedStatement.executeQuery();
 		datas = this.doResultSet();
 		rs.close();
-		ps.close();
+		preparedStatement.close();
 	}
 
-	public abstract void doPreparedStatement() throws SQLException;
 	public abstract T doResultSet() throws SQLException;
 
 }

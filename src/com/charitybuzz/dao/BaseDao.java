@@ -14,7 +14,7 @@ import com.charitybuzz.common.dao.QueryObject;
 public abstract class BaseDao<T> {
 
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(BaseDao.class);
+	protected Logger log = LoggerFactory.getLogger(BaseDao.class);
 
 	protected List<T> findList(String sql, QueryList<T> queryList) {
 		Connection conn = null;

@@ -1,20 +1,19 @@
 package com.charitybuzz.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.charitybuzz.common.dao.ConnectionUtil;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.domain.Item;
 
 public class ItemDao extends BaseDao<Item> {
 
-	/** logger. */
-	protected Logger log = LoggerFactory.getLogger(this.getClass());
 
 	public List<Item> findAll() {
 		String sql = "select * from item ";
@@ -26,8 +25,6 @@ public class ItemDao extends BaseDao<Item> {
 			@Override
 			public List<Item> doResultSet() throws SQLException {
 
-				log.debug("[LOG][doResultSet]");
-
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
 					Item it = new Item(rs.getLong("id"), rs.getString("title"),
@@ -44,7 +41,6 @@ public class ItemDao extends BaseDao<Item> {
 									.getDate("updatedDate"));
 					itemList.add(it);
 				}
-				log.debug("[LOG][itemList.size()]" + itemList.size());
 				return itemList;
 			}
 
@@ -56,13 +52,11 @@ public class ItemDao extends BaseDao<Item> {
 		return this.findList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.ps.setLong(1, id);
+				this.preparedStatement.setLong(1, id);
 			}
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				log.debug("[LOG][doResultSet]");
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
@@ -80,7 +74,6 @@ public class ItemDao extends BaseDao<Item> {
 									.getDate("updatedDate"));
 					itemList.add(it);
 				}
-				log.debug("[LOG][itemList.size()]" + itemList.size());
 				return itemList;
 			}
 
@@ -98,13 +91,11 @@ public class ItemDao extends BaseDao<Item> {
 		return this.findList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.ps.setLong(1, categoryId);
+				this.preparedStatement.setLong(1, categoryId);
 			}
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				log.debug("[LOG][doResultSet]");
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
@@ -122,7 +113,6 @@ public class ItemDao extends BaseDao<Item> {
 									.getDate("updatedDate"));
 					itemList.add(it);
 				}
-				log.debug("[LOG][itemList.size()]" + itemList.size());
 				return itemList;
 			}
 
@@ -134,12 +124,11 @@ public class ItemDao extends BaseDao<Item> {
 		return this.findObject(sql, new QueryObject<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.ps.setLong(1, itemId);
+				preparedStatement.setLong(1, itemId);
 			}
 
 			@Override
 			public Item doResultSet() throws SQLException {
-				log.debug("[LOG][doResultSet]");
 				Item it = null;
 				if (rs.next()) {
 					it = new Item(rs.getLong("id"), rs.getString("title"), rs
@@ -159,6 +148,67 @@ public class ItemDao extends BaseDao<Item> {
 			}
 
 		});
+	}
+
+	public List<Item> findEndBiddingByLotclose(final Date date) {
+		String sql = "SELECT A.* FROM item A WHERE status = 1 and (a.closeDate - ? ) <= 0";
+		return this.findList(sql, new QueryList<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setDate(1, new java.sql.Date(date.getTime()));
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+	}
+
+	public boolean closingBidding(Long id) {
+		String sql = "update from item set status='0' where status='1' and id=?";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		boolean seccess = false;
+		try {
+			conn = ConnectionUtil.getWriteConnection();
+			ps.setLong(1, id);
+			ps = conn.prepareStatement(sql);
+			seccess = ps.execute(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}finally{
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return seccess;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.charitybuzz.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.charitybuzz.dao.ItemDao;
@@ -27,6 +28,14 @@ public class ItemService {
 
 	public Item findById(Long itemId) {
 		return itemDao.findById(itemId);
+	}
+
+	public List<Item> findEndBiddingByLotclose() {
+		return itemDao.findEndBiddingByLotclose(new Date());
+	}
+
+	public boolean closingBidding(Long id) {
+		return itemDao.closingBidding(id);
 	}
 
 }

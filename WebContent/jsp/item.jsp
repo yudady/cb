@@ -34,16 +34,75 @@
 </div>
 <div id="bidding">
 	<div id="biddingIitem">
-		biddingIitem
+		<h2>${item.title}</h2>
+		<div>
+			<a href='<c:url value="/" />'><i><span>Home</span></i></a> » <a
+				href='#" />'>麵包屑</a>
+		</div>
+
+		<div>
+			<div>
+				Current Bid: <span id="currentPrice">${item.currentBid}</span> <span>
+					( <a href='<c:url value="/item/${item.id}/bidlog" />'>${item.bidTimes}</a>
+					)
+				</span>
+			</div>
+			<div id="placedBy">
+				placed by: <b>jaimervelasco</b>
+			</div>
+			<div>
+				Estimated Value: <b> ${item.estimatedValue} </b>
+			</div>
+		</div>
+		<div>
+			<span>??? days left to bid</span>
+		</div>
+		<div>
+			<span>${item.closeDate}<input id="biddingIitemWhat" type="button" value="?" /></span>
+		</div>
+		<div>
+			<input id="biddingBidNowValue" type="text" />
+			<input id="biddingBidNowBtn" type="button" value="Bid Now" />
+		</div>
+		<div>
+			<span>you must bid at least ${item.incrementPrice}
+				<input id="biddingIncrementPriceBtn" type="button" value="?" />
+			</span>
+		</div>
+
+
 	</div>
 	<div id="biddingProceedsBenefit">
-		biddingProceedsBenefit
+ Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
+ 這裡是一個超連結，連到其他商品網站
 	</div>
 	<div id="biddingWatchQuestion">
-		biddingWatchQuestion
+		<div id="biddingWatchThisItem">
+			Ask a Question 
+		</div>
+		<div id="biddingAskQuestion">
+			Ask a Question 
+		</div>
 	</div>
 	<div id="biddingMoreDetails">
-		biddingMoreDetails
+		<a href="#">More Details</a>
+		<dl>
+			<dt>Lot Number:</dt>
+			<dd>${item.id}</dd>
+			<dt>Estimated Value:</dt>
+			<dd>${item.estimatedValue}</dd>
+			<dt>Open Date</dt>
+			<dd>${item.startDate}</dd>
+			<dt>Close Date:</dt>
+			<dd>${item.closeDate}</dd>
+		</dl>
+	</div>
+	<div>
+		Share this item:
+	</div>
+	<div>
+		 tweet
+		 fasebook
 	</div>
 </div>
 <%@ include file="/jsp/include/footer.txt" %>

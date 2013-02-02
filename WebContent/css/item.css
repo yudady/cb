@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+div {
+	background-color: white;
+}
+
 #item {
 	width: 330px;
 	float: left;
@@ -29,24 +33,40 @@
 }
 
 #biddingIitem {
-	height: 100px;
 	margin-bottom: 10px;
-	background-color: yellow;
 }
 
 #biddingProceedsBenefit {
 	height: 100px;
 	margin-bottom: 10px;
-	background-color: gray;
 }
 
 #biddingWatchQuestion {
-	height: 300px;
+	line-height: 50px;
+	font-size: 16px;
+	color: red;
+	height: 50px;
+	text-align: center;
+}
+
+#biddingWatchThisItem {
+	cursor: pointer;
+	width: 140px;
+	float: left;
+}
+
+#biddingAskQuestion {
+	cursor: pointer;
+	width: 140px;
+	float: right;
 	margin-bottom: 10px;
-	background-color: blue;
 }
 
 #biddingMoreDetails {
-	height: 200px;
-	background-color: purple;
+	clear: both;
+	padding: 10px;
+}
+
+#biddingMoreDetails dl {
+	display: none;
 }

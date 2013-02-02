@@ -20,7 +20,7 @@
 		<property name="locations">
 			<list>
 				<!-- 標准配置 -->
-				<value>/WEB-INF/jdbc.properties</value>
+				<value>classpath:jdbc.properties</value>
 			</list>
 		</property>
 	</bean>

@@ -33,6 +33,17 @@
 	</div>
 </div>
 <div id="bidding">
-	bidding
+	<div id="biddingIitem">
+		biddingIitem
+	</div>
+	<div id="biddingProceedsBenefit">
+		biddingProceedsBenefit
+	</div>
+	<div id="biddingWatchQuestion">
+		biddingWatchQuestion
+	</div>
+	<div id="biddingMoreDetails">
+		biddingMoreDetails
+	</div>
 </div>
 <%@ include file="/jsp/include/footer.txt" %>

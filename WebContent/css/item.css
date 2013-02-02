@@ -13,6 +13,7 @@
 	width: 330px;
 	height: 250px;
 }
+
 #item .itemSmallPic img {
 	width: 75px;
 	height: 50px;
@@ -24,5 +25,28 @@
 	float: left;
 	padding: 20px;
 	margin-left: 20px;
-	background-color: pink;
+	background-color: #CCC;
+}
+
+#biddingIitem {
+	height: 100px;
+	margin-bottom: 10px;
+	background-color: yellow;
+}
+
+#biddingProceedsBenefit {
+	height: 100px;
+	margin-bottom: 10px;
+	background-color: gray;
+}
+
+#biddingWatchQuestion {
+	height: 300px;
+	margin-bottom: 10px;
+	background-color: blue;
+}
+
+#biddingMoreDetails {
+	height: 200px;
+	background-color: purple;
 }

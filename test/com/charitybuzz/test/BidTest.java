@@ -1,4 +1,4 @@
-package com.charitybuzz.controller;
+package com.charitybuzz.test;
 
 
 import java.util.Arrays;

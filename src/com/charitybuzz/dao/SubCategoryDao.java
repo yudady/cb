@@ -11,7 +11,7 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 
 	public List<SubCategory> findAll() {
 		String sql = "select * from SubCategory ";
-		return this.findList(sql, new QueryList<SubCategory>() {
+		return this.queryList(sql, new QueryList<SubCategory>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 			}
@@ -33,7 +33,7 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 
 	public List<SubCategory> findByCategoryId(final Long categoryId) {
 		String sql = "select * from SubCategory where categoryId = ?";
-		return this.findList(sql, new QueryList<SubCategory>() {
+		return this.queryList(sql, new QueryList<SubCategory>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				preparedStatement.setLong(1, categoryId);

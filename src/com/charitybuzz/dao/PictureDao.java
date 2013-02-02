@@ -11,7 +11,7 @@ public class PictureDao extends BaseDao<Picture> {
 
 	public List<Picture> findPictureByitemId(final Long itemId) {
 		String sql = "select * from Picture where itemId = ? order by priority";
-		return this.findList(sql, new QueryList<Picture>() {
+		return this.queryList(sql, new QueryList<Picture>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				preparedStatement.setLong(1, itemId);

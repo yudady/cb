@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public abstract class JdbcTool<T> {
+public abstract class JdbcObject<T> {
 
 	private Connection connection;
 	protected PreparedStatement preparedStatement;
@@ -39,10 +39,12 @@ public abstract class JdbcTool<T> {
 		this.setSql(sql);
 		this.setPreparedStatement(conn.prepareStatement(sql));
 		this.doPreparedStatement();
-		start(conn, sql);
+		resultSet(conn, sql);
+		preparedStatement.close();
 	}
 	
-	abstract void start(Connection conn, String sql) throws SQLException;
+	void resultSet(Connection conn, String sql) throws SQLException {
+	}
 	public abstract void doPreparedStatement() throws SQLException;
 
 }

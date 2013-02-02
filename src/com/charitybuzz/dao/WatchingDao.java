@@ -11,7 +11,7 @@ public class WatchingDao extends BaseDao<Watching> {
 
 	public List<Watching> findWatchingByitemId(final Long itemId) {
 		String sql = "select * from Watching where itemId = ? order by priority";
-		return this.findList(sql, new QueryList<Watching>() {
+		return this.queryList(sql, new QueryList<Watching>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				preparedStatement.setLong(1, itemId);

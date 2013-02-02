@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.charitybuzz.common.dao.ConnectionUtil;
+import com.charitybuzz.common.dao.InsertOrUpdate;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
 
@@ -16,7 +17,7 @@ public abstract class BaseDao<T> {
 	/** logger. */
 	protected Logger log = LoggerFactory.getLogger(BaseDao.class);
 
-	protected List<T> findList(String sql, QueryList<T> queryList) {
+	protected List<T> queryList(String sql, QueryList<T> queryList) {
 		Connection conn = null;
 		try {
 			conn = ConnectionUtil.getReadConnection();
@@ -34,7 +35,13 @@ public abstract class BaseDao<T> {
 
 		return queryList.getDatas();
 	}
-	protected T findObject(String sql, QueryObject<T> queryObject) {
+	/**
+	 * 
+	 * @param sql
+	 * @param queryObject
+	 * @return
+	 */
+	protected T queryObject(String sql, QueryObject<T> queryObject) {
 		Connection conn = null;
 		try {
 			conn = ConnectionUtil.getReadConnection();
@@ -51,6 +58,23 @@ public abstract class BaseDao<T> {
 		}
 		
 		return queryObject.getDatas();
+	}
+	
+	
+	protected boolean insertOrUpdate(String sql, InsertOrUpdate<T> insertOrUpdate) {
+		Connection conn = null;
+		try {
+			conn = ConnectionUtil.getWriteConnection();
+			insertOrUpdate.init(conn, sql);
+		} catch (SQLException e) {
+			log.error("write fail", e);
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				log.error("rollback fail", e1);
+			}
+		}
+		return insertOrUpdate.isSeccuss();
 	}
 
 }

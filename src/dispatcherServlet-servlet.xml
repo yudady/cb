@@ -20,6 +20,19 @@
 	<context:component-scan base-package="com.charitybuzz" />
 	<mvc:annotation-driven/>
 
+
+	<!-- spring 3.0 定時調度器-->
+	<task:annotation-driven />
+	<bean id="schedulerItem" class="com.charitybuzz.scheduler.SchedulerItem" ></bean>
+	<task:scheduled-tasks>
+	<!-- 
+		<task:scheduled ref="schedulerItem" method="sayTenSec" cron="*/10 * * * * ?" />
+		<task:scheduled ref="schedulerItem" method="endBidding" cron="0 */1 * * * ?" />
+	 -->
+		<task:scheduled ref="schedulerItem" method="endBidding" cron="*/5 * * * * ?" />
+	</task:scheduled-tasks>
+
+
 	
 	<!-- 視圖解析	開始 -->
 	<bean id="contentNegotiatingViewResolver"

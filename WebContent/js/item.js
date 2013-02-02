@@ -1,10 +1,16 @@
 ;$(function() {
 	$.log("item");
+
+	$("#biddingBidNowBtn").click(function(){
+		alert("biddingBidNowBtn");
+	});
+	
+	
+	
+	
+	
+	//以下是頁面資訊=============================================
 	$("#itemTabs").tabs();
-	
-	
-	
-	
 	$("#biddingIitemWhat").click(function(){
 		alert("This is the time the auction will end, but \"Popcorn Bidding\" could add 10 minutes to the closing time. If a bid is placed within 10 minutes of the closing time, the auction will extend by 10 minutes. This allows competing bidders a chance to stay in the race.");
 	});

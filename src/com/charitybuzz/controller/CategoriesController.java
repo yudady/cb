@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.domain.Bidlog;
 import com.charitybuzz.domain.Category;
 import com.charitybuzz.domain.Item;
 import com.charitybuzz.domain.Picture;
 import com.charitybuzz.operate.SidebarService;
+import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 
@@ -37,6 +39,10 @@ public class CategoriesController {
 	 */
 	@Resource
 	private PictureService pictureService;
+	
+	
+	@Resource
+	private BidlogService bidlogService;
 
 	/**
 	 * categories/2
@@ -59,7 +65,16 @@ public class CategoriesController {
 		for (Item item : items) {
 
 			Long itemId = item.getId();
-			List<Picture> pictures = pictureService.findPictureByitemId(itemId);
+			
+			
+			
+			//bidTimes
+			
+			List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
+			item.setBidTimes(bidlogs.size());
+			
+			
+			List<Picture> pictures = pictureService.findByItemId(itemId);
 			item.setPictures(pictures);
 		}
 
@@ -82,7 +97,7 @@ public class CategoriesController {
 		for (Item item : items) {
 
 			Long itemId = item.getId();
-			List<Picture> pictures = pictureService.findPictureByitemId(itemId);
+			List<Picture> pictures = pictureService.findByItemId(itemId);
 			item.setPictures(pictures);
 		}
 

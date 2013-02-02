@@ -82,10 +82,6 @@ public class Item {
 	 */
 	private int bidTimes;
 	/**
-	 * 有多個2級目錄
-	 */
-	private List<SubCategory> catalogItems;
-	/**
 	 * 歷史紀錄
 	 */
 	private List<Bidlog> bidlogs;
@@ -248,13 +244,6 @@ public class Item {
 		this.bidTimes = bidTimes;
 	}
 
-	public List<SubCategory> getCatalogItems() {
-		return catalogItems;
-	}
-
-	public void setCatalogItems(List<SubCategory> catalogItems) {
-		this.catalogItems = catalogItems;
-	}
 
 	public List<Bidlog> getBidlogs() {
 		return bidlogs;

@@ -27,9 +27,9 @@ public class BidderDao extends BaseDao<Bidder> {
 			public List<Bidder> doResultSet() throws SQLException {
 				List<Bidder> BidderList = new ArrayList<Bidder>();
 				while (rs.next()) {
-					Bidder Bidder = new Bidder();
+					Bidder bidder = new Bidder();
 
-					BidderList.add(Bidder);
+					BidderList.add(bidder);
 				}
 				return BidderList;
 			}

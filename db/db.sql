@@ -168,39 +168,43 @@ commit;
 
 -------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+DROP TABLE bidlog ;
+commit;
 CREATE TABLE bidlog (
 id NUMBER(10) PRIMARY KEY NOT NULL,
 bidderId NUMBER(10) NOT NULL ,
 itemId NUMBER(10) NOT NULL ,
-amount NUMBER(10) NOT NULL ,
+price NUMBER(10) NOT NULL ,
 bidtime DATE NOT NULL 
 )
 ;
 COMMENT ON COLUMN bidlog.id IS 'bid歷史紀錄id';
-COMMENT ON COLUMN bidlog.BidderId IS '競標者id';
+COMMENT ON COLUMN bidlog.bidderId IS '競標者id';
 COMMENT ON COLUMN bidlog.itemId IS '商品id';
-COMMENT ON COLUMN bidlog.amount IS '價格';
-COMMENT ON COLUMN bidlog.bidtime IS '時間';
+COMMENT ON COLUMN bidlog.price IS '價格';
+COMMENT ON COLUMN bidlog.bidtime IS '競價時間';
+commit;
+drop sequence seq_bidlog;
 create sequence seq_bidlog;
+commit;
+--seq_bidlog.nextval
+-------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

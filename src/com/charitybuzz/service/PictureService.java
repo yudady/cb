@@ -13,7 +13,7 @@ public class PictureService {
 		this.pictureDao = pictureDao;
 	}
 
-	public List<Picture> findPictureByitemId(Long itemId) {
+	public List<Picture> findByItemId(Long itemId) {
 		return pictureDao.findPictureByitemId(itemId);
 	}
 

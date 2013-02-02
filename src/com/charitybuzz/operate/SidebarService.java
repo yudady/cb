@@ -71,7 +71,7 @@ public class SidebarService {
 	}
 
 	public List<Category> getSidebar() {
-
+		// TODO  fix  拉出去做緩存
 		if (!isCategoeySubCategoryItemChange()) {
 			return categories;
 		}

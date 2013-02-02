@@ -20,7 +20,7 @@
 				</tr>
 				<tr>
 					<th>Number of Bids:</th>
-					<td>????</td>
+					<td>${item.bidTimes}</td>
 				</tr>
 				<tr>
 					<th>Minimum Next Bid:</th>
@@ -38,7 +38,7 @@
 					<th>Lot Closes:</th>
 					<td>${item.closeDate}</td>
 				</tr>
-			</table> <a class="itemsDetailBidNow" href="#"><span>Bid now</span></a>
+			</table> <a href="#"><span>Bid now</span></a>
 		</span>
 	</div>
 </c:forEach>

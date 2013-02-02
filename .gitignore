@@ -1,2 +1,3 @@
 /WebContent/WEB-INF/classes
 /db/*.bak
+/src/rebel.xml

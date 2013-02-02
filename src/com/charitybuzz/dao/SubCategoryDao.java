@@ -8,7 +8,11 @@ import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.domain.SubCategory;
 
 public class SubCategoryDao extends BaseDao<SubCategory> {
-
+	/**
+	 * find all
+	 * 
+	 * @return
+	 */
 	public List<SubCategory> findAll() {
 		String sql = "select * from SubCategory ";
 		return this.queryList(sql, new QueryList<SubCategory>() {
@@ -31,6 +35,12 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 		});
 	}
 
+	/**
+	 * categoryId find list
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
 	public List<SubCategory> findByCategoryId(final Long categoryId) {
 		String sql = "select * from SubCategory where categoryId = ?";
 		return this.queryList(sql, new QueryList<SubCategory>() {

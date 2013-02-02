@@ -5,10 +5,11 @@ import java.util.List;
 
 import com.charitybuzz.dao.ItemDao;
 import com.charitybuzz.domain.Item;
+
 public class ItemService {
 
 	private ItemDao itemDao;
-	
+
 	public void setItemDao(ItemDao itemDao) {
 		this.itemDao = itemDao;
 	}
@@ -19,6 +20,7 @@ public class ItemService {
 
 	/**
 	 * 找出categoryId的全部商品
+	 * 
 	 * @param categoryId
 	 * @return
 	 */
@@ -26,16 +28,32 @@ public class ItemService {
 		return itemDao.findByCategoryId(categoryId);
 	}
 
+	/**
+	 * pk find object
+	 * 
+	 * @param itemId
+	 * @return
+	 */
 	public Item findById(Long itemId) {
 		return itemDao.findById(itemId);
 	}
 
-	public List<Item> findEndBiddingByLotclose() {
-		return itemDao.findEndBiddingByLotclose(new Date());
+	/**
+	 * 當前時間為結算日
+	 * 
+	 * @return
+	 */
+	public List<Item> findEndBiddingByCloseDate() {
+		return itemDao.findByCloseDateLessTargetDate(new Date());
 	}
 
-	public boolean closingBidding(Long id) {
-		return itemDao.closingBidding(id);
+	/**
+	 * 把商品更新為結標
+	 * @param id
+	 * @return
+	 */
+	public boolean updateClosingBidding(Long id) {
+		return itemDao.updateClosingBidding(id);
 	}
 
 }

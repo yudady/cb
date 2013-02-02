@@ -11,7 +11,11 @@ import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.domain.Item;
 
 public class ItemDao extends BaseDao<Item> {
-
+	/**
+	 * find all
+	 * 
+	 * @return
+	 */
 	public List<Item> findAll() {
 		String sql = "select * from item ";
 		return this.queryList(sql, new QueryList<Item>() {
@@ -44,12 +48,18 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
-	public List<Item> findBySubCategoryId(final Long id) {
+	/**
+	 * subCategoryId find list
+	 * 
+	 * @param subCategoryId
+	 * @return
+	 */
+	public List<Item> findBySubCategoryId(final Long subCategoryId) {
 		String sql = "SELECT b.id as id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
 		return this.queryList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.preparedStatement.setLong(1, id);
+				this.preparedStatement.setLong(1, subCategoryId);
 			}
 
 			@Override
@@ -116,6 +126,12 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
+	/**
+	 * find by id
+	 * 
+	 * @param itemId
+	 * @return
+	 */
 	public Item findById(final Long itemId) {
 		String sql = "select * from item where id = ? ";
 		return this.queryObject(sql, new QueryObject<Item>() {
@@ -147,8 +163,18 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
-	public List<Item> findEndBiddingByLotclose(final Date date) {
-		String sql = "SELECT A.* FROM item A WHERE status = 1 and (a.closeDate - ? ) <= 0";
+	/**
+	 * <pre>
+	 * 找出 closeDate - targetDate 小於0
+	 * status = 1 (1.拍賣中)
+	 * </pre>
+	 * 
+	 * @param date
+	 *            結算時間
+	 * @return
+	 */
+	public List<Item> findByCloseDateLessTargetDate(final Date date) {
+		String sql = "SELECT a.* FROM item a WHERE a.status = 1 and (a.closeDate - ? ) <= 0";
 		return this.queryList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -181,15 +207,21 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
-	public boolean closingBidding(final Long id) {
+	/**
+	 * 把商品更新為結標
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean updateClosingBidding(final Long id) {
 		String sql = "update item  set status='0' where status='1' and id=?";
-		return this.insertOrUpdate(sql, new InsertOrUpdate<Item>(){
+		return this.insertOrUpdate(sql, new InsertOrUpdate<Item>() {
 
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, id);
 			}
-			
+
 		});
 	}
 

@@ -13,6 +13,12 @@ public class PictureService {
 		this.pictureDao = pictureDao;
 	}
 
+	
+	/**
+	 * 用商品id，找出商品的圖片
+	 * @param itemId
+	 * @return
+	 */
 	public List<Picture> findByItemId(Long itemId) {
 		return pictureDao.findPictureByitemId(itemId);
 	}

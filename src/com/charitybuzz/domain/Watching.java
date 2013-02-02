@@ -1,6 +1,5 @@
 package com.charitybuzz.domain;
 
-
 /**
  * 關注
  * 
@@ -14,12 +13,17 @@ public class Watching {
 	private Long bidderId;
 
 	private Long itemId;
-	
-	//===========================
-	//是否結標
-	
-	
-	
+
+	// ===========================
+
+	public Watching() {
+	}
+
+	public Watching(Long id, Long bidderId, Long itemId) {
+		this.id = id;
+		this.bidderId = bidderId;
+		this.itemId = itemId;
+	}
 
 	public Long getId() {
 		return id;

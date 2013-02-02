@@ -8,7 +8,12 @@ import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.domain.Bidlog;
 
 public class BidlogDao extends BaseDao<Bidlog> {
-
+	/**
+	 * itemId find list
+	 * 
+	 * @param itemId
+	 * @return
+	 */
 	public List<Bidlog> findBidlogByitemId(final Long itemId) {
 		String sql = "select * from Bidlog where itemId = ? order by bidTime";
 		return this.queryList(sql, new QueryList<Bidlog>() {

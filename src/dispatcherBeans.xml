@@ -11,6 +11,19 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
+	<!-- spring 3.0 定時調度器-->
+	<task:annotation-driven />
+	<bean id="schedulerItem" class="com.charitybuzz.scheduler.SchedulerItem" >
+		<property name="openScheduler" value="true" />
+		<property name="itemService" ref="itemService" />
+		<property name="bidderService" ref="bidderService" />
+	</bean>
+	<task:scheduled-tasks>
+	<!-- 
+		<task:scheduled ref="schedulerItem" method="endBidding" cron="*/5 * * * * ?" />
+	 -->
+		<task:scheduled ref="schedulerItem" method="endBidding" cron="0 */1 * * * ?" />
+	</task:scheduled-tasks>
 
 	<!-- util -->
 	<bean id="connectionUtil" class="com.charitybuzz.common.dao.ConnectionUtil">

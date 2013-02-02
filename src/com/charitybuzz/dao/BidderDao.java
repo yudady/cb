@@ -1,31 +1,37 @@
 package com.charitybuzz.dao;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.charitybuzz.common.dao.QueryList;
+import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.domain.Bidder;
 
 public class BidderDao extends BaseDao<Bidder> {
-
-	public List<Bidder> findBidderByitemId(final Long itemId) {
-		String sql = "select * from Bidder where itemId = ? order by priority";
-		return this.queryList(sql, new QueryList<Bidder>() {
+	/**
+	 * id find object
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Bidder findById(final Long id) {
+		String sql = "select * from Bidder where id = ? ";
+		return this.queryObject(sql, new QueryObject<Bidder>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				preparedStatement.setLong(1, itemId);
+				preparedStatement.setLong(1, id);
 			}
 
 			@Override
-			public List<Bidder> doResultSet() throws SQLException {
-				List<Bidder> BidderList = new ArrayList<Bidder>();
-				while (rs.next()) {
-					Bidder bidder = new Bidder();
-
-					BidderList.add(bidder);
+			public Bidder doResultSet() throws SQLException {
+				Bidder it = null;
+				if (rs.next()) {
+					it = new Bidder(rs.getLong("id"),
+							rs.getString("firstName"),
+							rs.getString("lastName"), rs
+									.getString("screenName"), rs
+									.getString("passWord"), rs
+									.getString("email"));
 				}
-				return BidderList;
+				return it;
 			}
 
 		});

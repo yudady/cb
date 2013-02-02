@@ -8,7 +8,12 @@ import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.domain.Picture;
 
 public class PictureDao extends BaseDao<Picture> {
-
+	/**
+	 * itemId find list
+	 * 
+	 * @param itemId
+	 * @return
+	 */
 	public List<Picture> findPictureByitemId(final Long itemId) {
 		String sql = "select * from Picture where itemId = ? order by priority";
 		return this.queryList(sql, new QueryList<Picture>() {

@@ -1,6 +1,7 @@
 package com.charitybuzz.service;
 
 import com.charitybuzz.dao.WatchingDao;
+import com.charitybuzz.domain.Watching;
 
 public class WatchingService {
 
@@ -10,14 +11,19 @@ public class WatchingService {
 		this.watchingDao = watchingDao;
 	}
 
-	public boolean isWatch(Long id, Long itemId) {
-		// TODO Auto-generated method stub
+	/**
+	 * 競標者是否關注此商品
+	 * 
+	 * @param id
+	 * @param itemId
+	 * @return
+	 */
+	public boolean isWatch(Long bidderId, Long itemId) {
+		Watching ws = watchingDao.findByBidderIdItemId(bidderId,itemId);
+		if(ws != null){
+			return true;
+		}
 		return false;
 	}
-
-
-
-
-
 
 }

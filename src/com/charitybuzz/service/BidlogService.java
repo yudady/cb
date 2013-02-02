@@ -13,12 +13,14 @@ public class BidlogService {
 		this.bidlogDao = bidlogDao;
 	}
 
+	/**
+	 * 用商品id，找出商品投標的歷史紀錄
+	 * 
+	 * @param itemId
+	 * @return
+	 */
 	public List<Bidlog> findByItemId(Long itemId) {
 		return bidlogDao.findBidlogByitemId(itemId);
 	}
-
-
-
-
 
 }

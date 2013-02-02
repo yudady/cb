@@ -8,7 +8,11 @@ import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.domain.Category;
 
 public class CategoryDao extends BaseDao<Category> {
-
+	/**
+	 * fina all
+	 * 
+	 * @return
+	 */
 	public List<Category> findAll() {
 		String sql = "select * from category ";
 		return this.queryList(sql, new QueryList<Category>() {

@@ -21,6 +21,19 @@ public class Bidder {
 	private String passWord;
 	private String email;
 
+	public Bidder() {
+	}
+
+	public Bidder(Long id, String firstName, String lastName,
+			String screenName, String passWord, String email) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.screenName = screenName;
+		this.passWord = passWord;
+		this.email = email;
+	}
+
 	public Long getId() {
 		return id;
 	}

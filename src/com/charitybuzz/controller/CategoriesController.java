@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +24,7 @@ import com.charitybuzz.service.PictureService;
 public class CategoriesController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Resource
 	private SidebarService sidebarService;
 	/**
@@ -47,7 +46,8 @@ public class CategoriesController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/index", method = RequestMethod.GET)
-	public ModelAndView fir(@PathVariable Long id) {
+	public ModelAndView category(@PathVariable Long id) {
+
 		ModelAndView mav = new ModelAndView("items");
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
@@ -63,39 +63,30 @@ public class CategoriesController {
 			item.setPictures(pictures);
 		}
 
-		log.debug(items.toString());
 		return mav;
 	}
 
-	/**
-	 * categories/2/subcategories/14
-	 * 
-	 * @param categoryId
-	 * @param subcategoryId
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/{categoryId}/subcategories/{subcategoryId}", method = RequestMethod.GET)
-	public String sec(@PathVariable Long categoryId,
-			@PathVariable Long subcategoryId, Model model) {
-		log.debug("[categories][id]=" + categoryId);
+	@RequestMapping(value = "/{id}/subcategories/{subcategoryId}/index", method = RequestMethod.GET)
+	public ModelAndView subCategory(@PathVariable Long subcategoryId) {
 
+		log.debug("[LOG][subcategoryId]" + subcategoryId);
+
+		ModelAndView mav = new ModelAndView("items");
+		List<Category> categories = sidebarService.getSidebar();
+		mav.addObject("categories", categories);
 		/**
 		 * 全部商品
 		 */
 		List<Item> items = itemService.findBySubCategoryId(subcategoryId);
+		mav.addObject("items", items);
+		for (Item item : items) {
 
-//		for (Item item : items) {
-//
-//			Long itemId = item.getId();
-//			List<Picture> pictures = pictureService.findPictureByitemId(itemId);
-//			item.setPictures(pictures);
-//			log.debug("[pic]" + item.getMainPictureLocation());
-//		}
-		model.addAttribute("items", items);
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findPictureByitemId(itemId);
+			item.setPictures(pictures);
+		}
 
-		log.debug(items.toString());
-		return "items";
+		return mav;
 	}
 
 }

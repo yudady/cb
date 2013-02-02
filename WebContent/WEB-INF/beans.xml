@@ -30,12 +30,16 @@
 	<bean id="pictureService" class="com.charitybuzz.service.PictureService">
 		<property name="pictureDao" ref="pictureDao" />
 	</bean>
+	<bean id="bidderService" class="com.charitybuzz.service.BidderService">
+		<property name="bidderDao" ref="bidderDao" />
+	</bean>
 
 	<!-- Dao -->
 	<bean id="itemDao" class="com.charitybuzz.dao.ItemDao" />
 	<bean id="categoryDao" class="com.charitybuzz.dao.CategoryDao" />
 	<bean id="subCategoryDao" class="com.charitybuzz.dao.SubCategoryDao" />
 	<bean id="pictureDao" class="com.charitybuzz.dao.PictureDao" />
+	<bean id="bidderDao" class="com.charitybuzz.dao.BidderDao" />
 
 	<!-- other service -->
 	<bean id="sidebarService" class="com.charitybuzz.operate.SidebarService">

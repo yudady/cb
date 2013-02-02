@@ -25,7 +25,12 @@ public class JdbcTest {
 	@Test
 	public void item01() {
 		log.debug("[LOG]itemDao" + itemDao);
+	}
 
+	@Test
+	public void item02() {
+		boolean b = itemDao.closingBidding(10L);
+		log.debug("[LOG]" + b);
 	}
 
 }

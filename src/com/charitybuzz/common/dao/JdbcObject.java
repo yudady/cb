@@ -39,7 +39,7 @@ public abstract class JdbcObject<T> {
 		this.setSql(sql);
 		this.setPreparedStatement(conn.prepareStatement(sql));
 		this.doPreparedStatement();
-		resultSet(conn, sql);
+		this.resultSet(conn, sql);
 		preparedStatement.close();
 	}
 	

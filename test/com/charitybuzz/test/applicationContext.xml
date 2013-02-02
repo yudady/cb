@@ -38,7 +38,7 @@
 		<!-- Connection Pooling Info -->
 		<property name="maxActive" value="2" />
 		<property name="maxIdle" value="2" />
-		<property name="defaultAutoCommit" value="true" />
+		<property name="defaultAutoCommit" value="false" />
 		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
 		<property name="minEvictableIdleTimeMillis" value="3600000" />
 	</bean>

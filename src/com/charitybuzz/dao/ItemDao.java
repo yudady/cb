@@ -182,12 +182,12 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public boolean closingBidding(final Long id) {
-		String sql = "update from item set status='0' where status='1' and id=?";
+		String sql = "update item  set status='0' where status='1' and id=?";
 		return this.insertOrUpdate(sql, new InsertOrUpdate<Item>(){
 
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.getPreparedStatement().setLong(0, id);
+				this.preparedStatement.setLong(1, id);
 			}
 			
 		});

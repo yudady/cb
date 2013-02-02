@@ -121,8 +121,28 @@ public class Item {
 		this.shipping = shipping;
 		this.winningBidderId = winningBidderId;
 	}
+	public Item(Long id, String title, Double currentBid, Date startDate,
+			Date closeDate, Double estimatedValue, Double incrementPrice,
+			int status, String lotDetails, String legalTerms, String shipping,
+			Long winningBidderId, Date createdDate, Date updatedDate) {
+		this.id = id;
+		this.title = title;
+		this.currentBid = currentBid;
+		this.startDate = startDate;
+		this.closeDate = closeDate;
+		this.estimatedValue = estimatedValue;
+		this.incrementPrice = incrementPrice;
+		this.status = status;
+		this.lotDetails = lotDetails;
+		this.legalTerms = legalTerms;
+		this.shipping = shipping;
+		this.winningBidderId = winningBidderId;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+	}
 
 	// ====================================================
+
 
 	public Long getId() {
 		return id;

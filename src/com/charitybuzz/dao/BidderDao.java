@@ -17,7 +17,7 @@ public class BidderDao extends BaseDao<Bidder> {
 
 	public List<Bidder> findBidderByitemId(final Long itemId) {
 		String sql = "select * from Bidder where itemId = ? order by priority";
-		return this.findAll(sql, new QueryList<Bidder>() {
+		return this.findList(sql, new QueryList<Bidder>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				ps.setLong(1, itemId);

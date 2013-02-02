@@ -17,7 +17,7 @@ public class CategoryDao extends BaseDao<Category> {
 
 	public List<Category> findAll() {
 		String sql = "select * from category ";
-		return this.findAll(sql, new QueryList<Category>() {
+		return this.findList(sql, new QueryList<Category>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 			}

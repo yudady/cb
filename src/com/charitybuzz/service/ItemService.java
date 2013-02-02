@@ -25,4 +25,8 @@ public class ItemService {
 		return itemDao.findByCategoryId(categoryId);
 	}
 
+	public Item findById(Long itemId) {
+		return itemDao.findById(itemId);
+	}
+
 }

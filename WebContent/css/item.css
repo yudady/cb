@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+#item {
+	width: 330px;
+	float: left;
+	padding: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	background-color: #CCC;
+}
+
+#item .itemLargePic img {
+	width: 330px;
+	height: 250px;
+}
+#item .itemSmallPic img {
+	width: 75px;
+	height: 50px;
+	padding: 2px;
+}
+
+#bidding {
+	width: 300px;
+	float: left;
+	padding: 20px;
+	margin-left: 20px;
+	background-color: pink;
+}

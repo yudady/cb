@@ -1,6 +1,6 @@
-;(function(){
+;$(function() {
 	$.log('base js');
-})();
+});
 
 
 

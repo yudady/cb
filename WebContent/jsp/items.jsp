@@ -7,12 +7,12 @@
 <c:forEach items="${items}" var="item">
 	<div class="item">
 		<span class="pic"> 
-			<a href='<c:url value="/item/${item.id}" />'>
+			<a href='<c:url value="/item/${item.id}/index.do" />'>
 				<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 			</a>
 		</span> 
 		<span class="detail"> 
-			<a href='<c:url value="/item/${item.id}" />'>${item.title}</a>
+			<a href='<c:url value="/item/${item.id}/index.do" />'>${item.title}</a>
 			<table>
 				<tr>
 					<th>Current Bid:</th>
@@ -43,9 +43,3 @@
 	</div>
 </c:forEach>
 <%@ include file="/jsp/include/footer.txt" %>
-	
-
-
-
-
-

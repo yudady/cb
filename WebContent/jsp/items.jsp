@@ -7,8 +7,8 @@
 <c:forEach items="${items}" var="item">
 	<div class="item">
 		<span class="pic"> 
-			<a href='<c:url value="/item/${item.id}" />'> 
-				<img src='<c:url value="/pic/upload/item/1-1.jpeg" />' />
+			<a href='<c:url value="/item/${item.id}" />'>
+				<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 			</a>
 		</span> 
 		<span class="detail"> 
@@ -16,7 +16,7 @@
 			<table>
 				<tr>
 					<th>Current Bid:</th>
-					<td>${item.currentBid}1</td>
+					<td>${item.currentBid}</td>
 				</tr>
 				<tr>
 					<th>Number of Bids:</th>

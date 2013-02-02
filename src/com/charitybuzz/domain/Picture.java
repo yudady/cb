@@ -35,6 +35,20 @@ public class Picture {
 
 	// ================================
 
+	public Picture() {
+	}
+
+	public Picture(Long id, Long itemId, String priority, String photoPath,
+			Date createdDate) {
+		this.id = id;
+		this.itemId = itemId;
+		this.priority = priority;
+		this.photoPath = photoPath;
+		this.createdDate = createdDate;
+	}
+
+	// ================================
+
 	public Long getId() {
 		return id;
 	}

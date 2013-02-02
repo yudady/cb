@@ -93,6 +93,10 @@ public class Item {
 	 * 圖片
 	 */
 	private List<Picture> pictures;
+	/**
+	 * 主要圖片路徑
+	 */
+	private String mainPicturePath;
 
 	/**
 	 * 到結標日差多少時間
@@ -265,7 +269,18 @@ public class Item {
 	}
 
 	public void setPictures(List<Picture> pictures) {
+		if(pictures.size() > 0){
+			this.setMainPicturePath(pictures.get(0).getPhotoPath());
+		}
 		this.pictures = pictures;
+	}
+
+	public String getMainPicturePath() {
+		return mainPicturePath;
+	}
+
+	public void setMainPicturePath(String mainPicturePath) {
+		this.mainPicturePath = mainPicturePath;
 	}
 
 	public Long getDifDay() {

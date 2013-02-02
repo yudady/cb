@@ -15,24 +15,27 @@ public class PictureDao extends BaseDao<Picture> {
 	/** logger. */
 	protected Logger log = LoggerFactory.getLogger(this.getClass());
 
-	public List<Picture> findAll() {
-		String sql = "select * from Picture ";
+	public List<Picture> findPictureByitemId(final Long itemId) {
+		String sql = "select * from Picture where itemId = ? order by priority";
 		return this.findAll(sql, new QueryList<Picture>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
+				ps.setLong(1, itemId);
 			}
 
 			@Override
 			public List<Picture> doResultSet() throws SQLException {
 				List<Picture> pictureList = new ArrayList<Picture>();
 				while (rs.next()) {
-					Picture it = new Picture();
-					pictureList.add(it);
+					Picture picture = new Picture(rs.getLong("id"), rs
+							.getLong("itemId"), rs.getString("priority"), rs
+							.getString("photoPath"), rs.getDate("createdDate"));
+
+					pictureList.add(picture);
 				}
 				return pictureList;
 			}
 
 		});
 	}
-
 }

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.domain.Category;
 import com.charitybuzz.domain.Item;
+import com.charitybuzz.domain.Picture;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
@@ -55,13 +56,12 @@ public class CategoriesController {
 		 */
 		List<Item> items = itemService.findByCategoryId(id);
 		mav.addObject("items", items);
-//		for (Item item : items) {
-//
-//			Long itemId = item.getId();
-//			List<Picture> pictures = pictureService.findPictureByitemId(itemId);
-//			item.setPictures(pictures);
-//			log.debug("[pic]" + item.getMainPictureLocation());
-//		}
+		for (Item item : items) {
+
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findPictureByitemId(itemId);
+			item.setPictures(pictures);
+		}
 
 		log.debug(items.toString());
 		return mav;

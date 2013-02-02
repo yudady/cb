@@ -13,13 +13,9 @@ public class PictureService {
 		this.pictureDao = pictureDao;
 	}
 
-	/**
-	 * 找出全部一級目錄
-	 * 
-	 * @return
-	 */
-	public List<Picture> findAll() {
-		return pictureDao.findAll();
+	public List<Picture> findPictureByitemId(Long itemId) {
+		return pictureDao.findPictureByitemId(itemId);
 	}
+
 
 }

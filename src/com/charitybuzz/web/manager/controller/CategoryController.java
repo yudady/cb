@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.common.session.SessionObject;
+import com.charitybuzz.web.manager.form.CategoryForm;
 
 @Controller
 @RequestMapping(value = "/manager/category")
@@ -14,7 +15,7 @@ import com.charitybuzz.common.session.SessionObject;
 public class CategoryController {
 
 	@RequestMapping(value = "/list")
-	public ModelAndView categoryList(
+	public ModelAndView categoryList(CategoryForm form,
 			@ModelAttribute("sessionObject") SessionObject sessionObject) {
 		ModelAndView mav = new ModelAndView("manager/manager/list");
 		return mav;

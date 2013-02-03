@@ -14,7 +14,7 @@
 	<!-- spring 3.0 定時調度器-->
 	<task:annotation-driven />
 	<bean id="schedulerItem" class="com.charitybuzz.scheduler.SchedulerItem" >
-		<property name="openScheduler" value="true" />
+		<property name="openScheduler" value="false" />
 		<property name="itemService" ref="itemService" />
 		<property name="bidderService" ref="bidderService" />
 	</bean>

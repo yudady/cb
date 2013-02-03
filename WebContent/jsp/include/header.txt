@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -7,6 +6,40 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-1.9.0.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-1.10.0.custom.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
+<script type="text/javascript">
+
+	/**
+	 * cb 命名空間
+	 */
+	var cb = function(){
+		
+		function baseUrl(path){
+			path = path || "";
+			return "" + '<c:url value="/"/>' + path;
+		}
+		
+
+		function dialog(message) {
+			var setting = message || "dialog need text message";
+				
+			$("#dialog").html("<br/><br/><br/><div>" + setting + "</div><br/>").dialog({
+				buttons : {
+					"OK" : function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+			$(".ui-dialog-titlebar").hide();
+		}
+
+		//=============		
+		return {
+			getSafeUrl : function(path) {
+				return baseUrl(path);
+			}
+		};
+	}();
+</script>
 <script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/smoothness/jquery-ui-1.10.0.custom.min.css"/>'/>
@@ -19,24 +52,32 @@
 	</a>
 </div>
 <div id="login">
-	<span>Login with email and Password</span>
-	<form id="loginForm" action="<c:url value='/login' />"
-		method='POST'>
-		<table>
-			<tr>
-				<td>email:</td>
-				<td><input type='text' name='email' ></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type='passWord' name='passWord' /></td>
-			</tr>
-			<tr>
-				<td><input name="submit" type="submit"
-					value="submit" /></td>
-				<td><input name="reset" type="reset" /></td>
-			</tr>
-		</table>
-	</form>
+<c:choose>
+    <c:when test="${empty sessionObject}">
+		<span>Login with email and Password</span>
+		<form id="loginForm" action="<c:url value='/login.do' />" method='post'>
+			<table>
+				<tr>
+					<td>email:</td>
+					<td><input type='text' name='email' ></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td>
+						<input type='passWord' name='passWord' />
+						<input type='hidden' name='url' id='url' value=""/>
+					</td>
+				</tr>
+				<tr>
+					<td><input id="loginFormBtn" type="button" value="login" /></td>
+					<td><input name="reset" type="reset" /></td>
+				</tr>
+			</table>
+		</form>
+    </c:when>
+    <c:otherwise>
+        <h1>${sessionObject.email}</h1>
+    </c:otherwise>
+</c:choose>
 </div>
 </div>

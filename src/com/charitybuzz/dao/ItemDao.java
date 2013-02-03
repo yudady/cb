@@ -9,7 +9,7 @@ import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.InsertOrUpdate;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
-import com.charitybuzz.domain.Item;
+import com.charitybuzz.dto.Item;
 
 public class ItemDao extends BaseDao<Item> {
 	/**

@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.charitybuzz.dao.ItemDao;
-import com.charitybuzz.domain.Item;
+import com.charitybuzz.dto.Item;
 
 public class ItemService {
 

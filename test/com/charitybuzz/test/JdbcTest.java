@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.charitybuzz.dao.BidderDao;
 import com.charitybuzz.dao.ItemDao;
-import com.charitybuzz.domain.Bidder;
+import com.charitybuzz.dto.Bidder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -33,8 +33,7 @@ public class JdbcTest {
 
 	@Test
 	public void item02() {
-		boolean b = itemDao.updateClosingBidding(10L);
-		log.debug("[LOG]" + b);
+		itemDao.updateClosingBidding(10L);
 	}
 
 	@Test

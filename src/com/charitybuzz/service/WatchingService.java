@@ -1,7 +1,7 @@
 package com.charitybuzz.service;
 
 import com.charitybuzz.dao.WatchingDao;
-import com.charitybuzz.domain.Watching;
+import com.charitybuzz.dto.Watching;
 
 public class WatchingService {
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.QueryList;
-import com.charitybuzz.domain.Bidlog;
+import com.charitybuzz.dto.Bidlog;
 
 public class BidlogDao extends BaseDao<Bidlog> {
 	/**

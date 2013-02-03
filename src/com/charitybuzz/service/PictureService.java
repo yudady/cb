@@ -3,7 +3,7 @@ package com.charitybuzz.service;
 import java.util.List;
 
 import com.charitybuzz.dao.PictureDao;
-import com.charitybuzz.domain.Picture;
+import com.charitybuzz.dto.Picture;
 
 public class PictureService {
 

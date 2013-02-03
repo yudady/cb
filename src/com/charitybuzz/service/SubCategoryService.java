@@ -3,7 +3,7 @@ package com.charitybuzz.service;
 import java.util.List;
 
 import com.charitybuzz.dao.SubCategoryDao;
-import com.charitybuzz.domain.SubCategory;
+import com.charitybuzz.dto.SubCategory;
 public class SubCategoryService {
 
 	private SubCategoryDao subCategoryDao;

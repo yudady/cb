@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.QueryList;
-import com.charitybuzz.domain.Picture;
+import com.charitybuzz.dto.Picture;
 
 public class PictureDao extends BaseDao<Picture> {
 	/**

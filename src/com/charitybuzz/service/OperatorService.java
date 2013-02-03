@@ -1,7 +1,7 @@
 package com.charitybuzz.service;
 
 import com.charitybuzz.dao.OperatorDao;
-import com.charitybuzz.domain.Operator;
+import com.charitybuzz.dto.Operator;
 
 public class OperatorService {
 

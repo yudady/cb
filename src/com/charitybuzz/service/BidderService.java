@@ -1,7 +1,7 @@
 package com.charitybuzz.service;
 
 import com.charitybuzz.dao.BidderDao;
-import com.charitybuzz.domain.Bidder;
+import com.charitybuzz.dto.Bidder;
 
 public class BidderService {
 

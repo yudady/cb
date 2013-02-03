@@ -3,7 +3,7 @@ package com.charitybuzz.service;
 import java.util.List;
 
 import com.charitybuzz.dao.CategoryDao;
-import com.charitybuzz.domain.Category;
+import com.charitybuzz.dto.Category;
 
 public class CategoryService {
 

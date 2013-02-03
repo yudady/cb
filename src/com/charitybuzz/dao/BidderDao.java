@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.QueryObject;
-import com.charitybuzz.domain.Bidder;
+import com.charitybuzz.dto.Bidder;
 
 public class BidderDao extends BaseDao<Bidder> {
 	/**

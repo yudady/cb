@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.common.session.SessionObject;
-import com.charitybuzz.domain.Category;
+import com.charitybuzz.dto.Category;
 import com.charitybuzz.service.CategoryService;
 import com.charitybuzz.web.manager.form.CategoryForm;
 

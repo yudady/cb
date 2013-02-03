@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.QueryObject;
-import com.charitybuzz.domain.Watching;
+import com.charitybuzz.dto.Watching;
 
 public class WatchingDao extends BaseDao<Watching> {
 	/**

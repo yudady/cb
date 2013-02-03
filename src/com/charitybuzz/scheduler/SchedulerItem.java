@@ -5,8 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.charitybuzz.domain.Bidder;
-import com.charitybuzz.domain.Item;
+import com.charitybuzz.dto.Bidder;
+import com.charitybuzz.dto.Item;
 import com.charitybuzz.service.BidderService;
 import com.charitybuzz.service.ItemService;
 

@@ -1,4 +1,4 @@
-package com.charitybuzz.domain;
+package com.charitybuzz.dto;
 
 /**
  * 關注

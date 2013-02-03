@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.QueryObject;
-import com.charitybuzz.domain.Operator;
+import com.charitybuzz.dto.Operator;
 
 public class OperatorDao extends BaseDao<Operator> {
 	/**

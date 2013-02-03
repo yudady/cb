@@ -1,4 +1,4 @@
-package com.charitybuzz.domain;
+package com.charitybuzz.dto;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;

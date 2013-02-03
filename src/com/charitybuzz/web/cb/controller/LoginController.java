@@ -18,9 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.charitybuzz.common.session.SessionObject;
-import com.charitybuzz.domain.Bidder;
-import com.charitybuzz.domain.Category;
-import com.charitybuzz.domain.Operator;
+import com.charitybuzz.dto.Bidder;
+import com.charitybuzz.dto.Category;
+import com.charitybuzz.dto.Operator;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.BidderService;
 import com.charitybuzz.service.OperatorService;

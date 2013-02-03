@@ -8,7 +8,7 @@ import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.InsertOrUpdate;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
-import com.charitybuzz.domain.Category;
+import com.charitybuzz.dto.Category;
 
 public class CategoryDao extends BaseDao<Category> {
 	/**

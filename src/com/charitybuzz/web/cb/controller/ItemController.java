@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.domain.Bidlog;
-import com.charitybuzz.domain.Category;
-import com.charitybuzz.domain.Item;
-import com.charitybuzz.domain.Picture;
+import com.charitybuzz.dto.Bidlog;
+import com.charitybuzz.dto.Category;
+import com.charitybuzz.dto.Item;
+import com.charitybuzz.dto.Picture;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;

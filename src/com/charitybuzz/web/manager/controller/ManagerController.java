@@ -1,4 +1,4 @@
-package com.charitybuzz.controller.manager;
+package com.charitybuzz.web.manager.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

@@ -1,4 +1,4 @@
-package com.charitybuzz.controller.form;
+package com.charitybuzz.web.form;
 
 public class LoginForm {
 

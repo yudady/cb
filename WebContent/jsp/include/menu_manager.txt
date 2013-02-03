@@ -3,19 +3,20 @@
 <div id="menu">
 <script type="text/javascript" src='<c:url value="/js/include/sidebar.js"/>'></script>
 <ul id="sidebar">
-		<li><a href='#'>1111111111</a>
-				<ul>
-						<li><a href='#'>111-11111</a></li>
-						<li><a href='#'>111-22222</a></li>
-						<li><a href='#'>111-33333</a></li>
-				</ul>
-		</li>
-		<li><a href='#'>222222222</a>
-				<ul>
-						<li><a href='#'>2222-11111</a></li>
-						<li><a href='#'>2222-22222</a></li>
-						<li><a href='#'>2222-33333</a></li>
-				</ul>
-		</li>
+	<li><a href='<c:url value="/manager/category/list.do" />'>Category List</a></li>
+	<li><a href='#'>1111111111</a>
+		<ul>
+			<li><a href='#'>111-11111</a></li>
+			<li><a href='#'>111-22222</a></li>
+			<li><a href='#'>111-33333</a></li>
+		</ul>
+	</li>
+	<li><a href='#'>222222222</a>
+		<ul>
+			<li><a href='#'>2222-11111</a></li>
+			<li><a href='#'>2222-22222</a></li>
+			<li><a href='#'>2222-33333</a></li>
+		</ul>
+	</li>
 </ul>
 </div>

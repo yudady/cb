@@ -17,8 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.charitybuzz.common.session.SessionObject;
 import com.charitybuzz.domain.Bidder;
 import com.charitybuzz.domain.Category;
+import com.charitybuzz.domain.Operator;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.BidderService;
+import com.charitybuzz.service.OperatorService;
 
 @Controller
 @RequestMapping("/login")
@@ -29,9 +31,11 @@ public class LoginController {
 
 	@Resource
 	private SidebarService sidebarService;
-	
+
 	@Resource
 	private BidderService bidderService;
+	@Resource
+	private OperatorService operatorService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView page() {
@@ -43,7 +47,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	public ModelAndView loginForm(HttpServletRequest request,
-			HttpSession session,RedirectAttributes redirectAttributes) {
+			HttpSession session, RedirectAttributes redirectAttributes) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -56,7 +60,18 @@ public class LoginController {
 
 		Bidder bidder = bidderService.findByEmail(email);
 		if (bidder == null) {
-			redirectAttributes.addFlashAttribute("errorMsg", "password error");
+			// 是否manager Login
+			Operator operator = operatorService.findByName(email);
+			if (operator != null) {
+				if ((operator.getPassWord()).equals(passWord)) {
+					session.setAttribute("sessionObject", new SessionObject(
+							true, email));
+					mav.setViewName("redirect:" + url);
+					return mav;
+				}
+			}
+
+			redirectAttributes.addFlashAttribute("errorMsg", "email error");
 			redirectAttributes.addFlashAttribute("url", url);
 			mav.setViewName("redirect:" + "/login.do");
 		} else if (!(bidder.getPassWord()).equals(passWord)) {
@@ -64,7 +79,8 @@ public class LoginController {
 			redirectAttributes.addFlashAttribute("url", url);
 			mav.setViewName("redirect:" + "/login.do");
 		} else {
-			session.setAttribute("sessionObject", new SessionObject(email));
+			session.setAttribute("sessionObject", new SessionObject(false,
+					email));
 			mav.setViewName("redirect:" + url);
 		}
 		return mav;

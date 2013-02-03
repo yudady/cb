@@ -9,6 +9,15 @@ public class Operator {
 	private String name;
 	private String passWord;
 
+	public Operator() {
+	}
+
+	public Operator(Long id, String name, String passWord) {
+		this.id = id;
+		this.name = name;
+		this.passWord = passWord;
+	}
+
 	public Long getId() {
 		return id;
 	}

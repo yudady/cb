@@ -78,7 +78,7 @@
     <c:otherwise>
         <h1>${sessionObject.email}</h1>
 		<c:if test="${sessionObject.manager}">
-			<div><a href='<c:url value="/manager"/>' >後台</a></div>
+			<div><a href='<c:url value="/manager.do"/>' >後台</a></div>
 		</c:if>
 		<form id="loginOutForm" action="<c:url value='/login/loginOut.do' />" method='post'>
 			<input type='hidden' name='url' id='url' value=""/>

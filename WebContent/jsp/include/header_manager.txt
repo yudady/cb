@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery-1.9.0.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-1.10.0.custom.min.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/base_manager.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/smoothness/jquery-ui-1.10.0.custom.min.css"/>'/>
+</head>
+<body>
+<div id="header">
+<div class="logo">
+	<a href='<c:url value="/"/>'>
+		<img src='<c:url value="/pic/site/logo-high-res-retina.png"/>' />
+	</a>
+</div>
+</div>

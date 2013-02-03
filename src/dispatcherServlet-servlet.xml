@@ -15,7 +15,7 @@
 
 	<!-- Activates various annotations to be detected in bean classes -->
 	<context:annotation-config />
-	<context:component-scan base-package="com.charitybuzz" />
+	<context:component-scan base-package="com.charitybuzz.web" />
 	<mvc:annotation-driven/>
 
 

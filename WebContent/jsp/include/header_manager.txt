@@ -8,6 +8,40 @@
 <script type="text/javascript" src='<c:url value="/js/base_manager.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/smoothness/jquery-ui-1.10.0.custom.min.css"/>'/>
+<script type="text/javascript">
+
+	/**
+	 * cb 命名空間
+	 */
+	var cb = function(){
+		
+		function baseUrl(path){
+			path = path || "";
+			return "" + '<c:url value="/"/>' + path;
+		}
+		
+
+		function dialog(message) {
+			var setting = message || "dialog need text message";
+				
+			$("#dialog").html("<br/><br/><br/><div>" + setting + "</div><br/>").dialog({
+				buttons : {
+					"OK" : function() {
+						$(this).dialog("close");
+					}
+				}
+			});
+			$(".ui-dialog-titlebar").hide();
+		}
+
+		//=============		
+		return {
+			getSafeUrl : function(path) {
+				return baseUrl(path);
+			}
+		};
+	}();
+</script>
 </head>
 <body>
 <div id="header">

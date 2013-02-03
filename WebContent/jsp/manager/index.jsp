@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/jsp/include/header_manager.txt" %>
 <%@ include file="/jsp/include/menu_manager.txt" %>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/manager.css"/>'/>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
 <div id="content">
 manager
 

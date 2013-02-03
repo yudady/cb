@@ -52,8 +52,8 @@ public class ItemService {
 	 * @param id
 	 * @return
 	 */
-	public boolean updateClosingBidding(Long id) {
-		return itemDao.updateClosingBidding(id);
+	public void updateClosingBidding(Long id) {
+		itemDao.updateClosingBidding(id);
 	}
 
 }

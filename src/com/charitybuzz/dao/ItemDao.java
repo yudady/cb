@@ -213,9 +213,10 @@ public class ItemDao extends BaseDao<Item> {
 	 * @param id
 	 * @return
 	 */
-	public boolean updateClosingBidding(final Long id) {
+	public void updateClosingBidding(final Long id) {
 		String sql = "update item  set status='0' where status='1' and id=?";
-		return this.insertOrUpdate(sql, new InsertOrUpdate<Item>() {
+
+		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
 
 			@Override
 			public void doPreparedStatement() throws SQLException {

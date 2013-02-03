@@ -61,7 +61,7 @@ public abstract class BaseDao<T> {
 	}
 	
 	
-	protected boolean insertOrUpdate(String sql, InsertOrUpdate<T> insertOrUpdate) {
+	protected void insertUpdateDelete(String sql, InsertOrUpdate<T> insertOrUpdate) {
 		Connection conn = null;
 		try {
 			conn = ConnectionUtil.getWriteConnection();
@@ -74,7 +74,6 @@ public abstract class BaseDao<T> {
 				log.error("rollback fail", e1);
 			}
 		}
-		return insertOrUpdate.isSeccuss();
 	}
 
 }

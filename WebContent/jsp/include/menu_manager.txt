@@ -3,6 +3,7 @@
 <div id="menu">
 <script type="text/javascript" src='<c:url value="/js/include/sidebar.js"/>'></script>
 <ul id="sidebar">
+	<li><a href='<c:url value="/manager/index.do" />'>index</a></li>
 	<li><a href='<c:url value="/manager/category/list.do" />'>Category List</a></li>
 	<li><a href='#'>1111111111</a>
 		<ul>

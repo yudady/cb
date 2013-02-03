@@ -14,10 +14,10 @@ import com.charitybuzz.common.session.SessionObject;
 @SessionAttributes({ "sessionObject" })
 public class ManagerController {
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView index(
 			@ModelAttribute("sessionObject") SessionObject sessionObject) {
-		ModelAndView mav = new ModelAndView("manager/manager");
+		ModelAndView mav = new ModelAndView("manager/index");
 		return mav;
 
 	}

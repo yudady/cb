@@ -9,12 +9,14 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.charitybuzz.common.session.SessionObject;
+import com.charitybuzz.controller.form.LoginForm;
 import com.charitybuzz.domain.Bidder;
 import com.charitybuzz.domain.Category;
 import com.charitybuzz.domain.Operator;
@@ -46,17 +48,18 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
-	public ModelAndView loginForm(HttpServletRequest request,
+	public ModelAndView loginForm(LoginForm form, BindingResult result,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 
 		ModelAndView mav = new ModelAndView();
+		if (result.hasErrors()) {
+			mav.setViewName("redirect:" + "/login.do");
+			return mav;
+		}
 
-		String email = request.getParameter("email");
-		String passWord = request.getParameter("passWord");
-		String url = request.getParameter("url");
-		log.debug("[LOG]email" + email);
-		log.debug("[LOG]passWord" + passWord);
-		log.debug("[LOG]url" + url);
+		String email = form.getEmail();
+		String passWord = form.getPassWord();
+		String url = form.getUrl();
 
 		Bidder bidder = bidderService.findByEmail(email);
 		if (bidder == null) {

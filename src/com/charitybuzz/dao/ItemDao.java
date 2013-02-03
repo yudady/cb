@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.InsertOrUpdate;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;

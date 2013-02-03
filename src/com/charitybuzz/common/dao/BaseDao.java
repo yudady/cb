@@ -1,4 +1,4 @@
-package com.charitybuzz.dao;
+package com.charitybuzz.common.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,10 +7,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.charitybuzz.common.dao.ConnectionUtil;
-import com.charitybuzz.common.dao.InsertOrUpdate;
-import com.charitybuzz.common.dao.QueryList;
-import com.charitybuzz.common.dao.QueryObject;
 
 public abstract class BaseDao<T> {
 

@@ -2,6 +2,7 @@ package com.charitybuzz.dao;
 
 import java.sql.SQLException;
 
+import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.domain.Bidder;
 

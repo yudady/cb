@@ -4,7 +4,7 @@
 <%@ include file="/jsp/include/header.txt" %>
 <%@ include file="/jsp/include/menu.txt" %>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/index.css"/>'/>
-<div id="page">counter</div>
+<div id="content">counter</div>
 <div id="liveAuctions">liveAuctions</div>
 <div id="itemsClosing">itemsClosing</div>
 <%@ include file="/jsp/include/footer.txt" %>

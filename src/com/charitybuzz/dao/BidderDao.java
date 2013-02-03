@@ -36,4 +36,29 @@ public class BidderDao extends BaseDao<Bidder> {
 
 		});
 	}
+
+	public Bidder findByEmail(final String email) {
+		String sql = "select * from Bidder where email = ? ";
+		return this.queryObject(sql, new QueryObject<Bidder>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				preparedStatement.setString(1, email);
+			}
+
+			@Override
+			public Bidder doResultSet() throws SQLException {
+				Bidder it = null;
+				if (rs.next()) {
+					it = new Bidder(rs.getLong("id"),
+							rs.getString("firstName"),
+							rs.getString("lastName"), rs
+									.getString("screenName"), rs
+									.getString("passWord"), rs
+									.getString("email"));
+				}
+				return it;
+			}
+
+		});
+	}
 }

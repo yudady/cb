@@ -21,4 +21,8 @@ public class BidderService {
 		return bidderDao.findById(id);
 	}
 
+	public Bidder findByEmail(String email) {
+		return bidderDao.findByEmail(email);
+	}
+
 }

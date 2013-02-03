@@ -1,6 +1,7 @@
 package com.charitybuzz.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.charitybuzz.common.session.SessionObject;
 import com.charitybuzz.controller.form.LoginForm;
@@ -40,10 +42,16 @@ public class LoginController {
 	private OperatorService operatorService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView page() {
+	public ModelAndView page(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("login");
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
+
+		Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
+		if (map != null) {
+			log.debug("[LOG][redirect]" + map);
+		}
+
 		return mav;
 	}
 
@@ -74,12 +82,12 @@ public class LoginController {
 				}
 			}
 
-			redirectAttributes.addFlashAttribute("errorMsg", "email error");
-			redirectAttributes.addFlashAttribute("url", url);
+			redirectAttributes.addFlashAttribute("errorMsg", "email error")
+					.addFlashAttribute("url", url);
 			mav.setViewName("redirect:" + "/login.do");
 		} else if (!(bidder.getPassWord()).equals(passWord)) {
-			redirectAttributes.addFlashAttribute("errorMsg", "password error");
-			redirectAttributes.addFlashAttribute("url", url);
+			redirectAttributes.addFlashAttribute("errorMsg", "password error")
+					.addFlashAttribute("url", url);
 			mav.setViewName("redirect:" + "/login.do");
 		} else {
 			session.setAttribute("sessionObject", new SessionObject(false,

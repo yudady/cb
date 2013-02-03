@@ -1,4 +1,4 @@
-package com.charitybuzz.web.controller;
+package com.charitybuzz.web.cb.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ import com.charitybuzz.domain.Operator;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.BidderService;
 import com.charitybuzz.service.OperatorService;
-import com.charitybuzz.web.form.LoginForm;
+import com.charitybuzz.web.cb.form.LoginForm;
 
 @Controller
 @RequestMapping("/login")

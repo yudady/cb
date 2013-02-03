@@ -1,4 +1,4 @@
-package com.charitybuzz.web.form;
+package com.charitybuzz.web.cb.form;
 
 public class LoginForm {
 

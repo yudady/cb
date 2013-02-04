@@ -18,8 +18,7 @@ ul {
 }
 
 #header {
-	height: 100px;
-	margin-bottom: 10px;
+	height: 80px;
 }
 
 #header .logo {
@@ -44,16 +43,11 @@ ul {
 	left: 650px;
 }
 
-#menu {
-	width: 230px;
-	float: left;
-}
+
 #nav {
 	font-size:16px;
 	width: 500px;
 	margin-left: 10px;
-    position:relative;
-    top:20px;
 }
 #nav ul {
 	color:green;
@@ -75,7 +69,7 @@ ul {
 	font-size:16px;
 	width: 400px;
     position:relative;
-    top:-10px;
+    top:-30px;
   	left:530px; 
 }
 #social ul {
@@ -94,6 +88,12 @@ ul {
 #social ul li a:hover {
 	color:#f60;
 }
+
+#menu {
+	width: 230px;
+	float: left;
+}
+
 #footer {
 	clear: both;
 	height: 200px;

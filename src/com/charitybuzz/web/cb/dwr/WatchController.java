@@ -1,4 +1,4 @@
-package com.charitybuzz.web.dwr;
+package com.charitybuzz.web.cb.dwr;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;

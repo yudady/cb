@@ -19,7 +19,15 @@
 	<mvc:annotation-driven/>
 
 
-
+	<!-- 沒有SessionObject 導去login -->
+	<bean id="handlerExceptionResolver"
+	    class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	    <property name="exceptionMappings">
+	        <props>
+	            <prop key="org.springframework.web.HttpSessionRequiredException">redirect:/login.do</prop>
+	        </props>
+	    </property>
+	</bean>
 
 	
 	<!-- 視圖解析	開始 -->

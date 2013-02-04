@@ -190,28 +190,8 @@ commit;
 --seq_bidlog.nextval
 -------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+DROP TABLE bidder ;
+commit;
 CREATE TABLE bidder (
 id NUMBER(10) NOT NULL PRIMARY KEY,
 firstName NVARCHAR2(20) NULL ,
@@ -222,6 +202,7 @@ email NVARCHAR2(20) NOT NULL ,
 promoCode NVARCHAR2(20) NULL 
 )
 ;
+commit;
 COMMENT ON COLUMN bidder.id IS '投標者id';
 COMMENT ON COLUMN bidder.firstName IS 'firstName';
 COMMENT ON COLUMN bidder.lastName IS 'lastName';
@@ -230,12 +211,18 @@ COMMENT ON COLUMN bidder.passWord IS 'passWord';
 COMMENT ON COLUMN bidder.email IS 'email';
 COMMENT ON COLUMN bidder.promoCode IS 'promoCode';
 
+commit;
+drop sequence seq_bidder;
 create sequence seq_bidder;
+commit;
+
 
 INSERT INTO bidder VALUES ('1', 'lin', 'tommy', 'yudady', '123456', 'yu_dady@yahoo.com.tw', '123456');
 INSERT INTO bidder VALUES ('2', 'lin', 'kevin', 'kevin', '123456', 'kevin@yahoo.com.tw', '123456');
 
 
+DROP TABLE operator ;
+commit;
 CREATE TABLE operator (
 id NUMBER(10) NOT NULL PRIMARY KEY,
 name NVARCHAR2(20) NOT NULL,
@@ -245,7 +232,13 @@ passWord NVARCHAR2(20) NOT NULL
 COMMENT ON COLUMN operator.id IS '後台管理者帳號id';
 INSERT INTO operator VALUES ('1','111','111');
 
+commit;
+drop sequence seq_operator;
+create sequence seq_operator;
+commit;
 
+
+DROP TABLE watching ;
 CREATE TABLE watching (
 id NUMBER(10) NOT NULL PRIMARY KEY,
 bidderId NUMBER(10) NOT NULL ,
@@ -256,8 +249,10 @@ COMMENT ON COLUMN watching.id IS '關注id';
 COMMENT ON COLUMN watching.bidderId IS '投標者id';
 COMMENT ON COLUMN watching.itemId IS '商品Id';
 
-
-Create Sequence Seq_watching;
+commit;
+drop sequence seq_watching;
+create sequence seq_watching;
+commit;
 --Seq_watching.NEXTVAL
 
 commit;

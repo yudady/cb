@@ -20,10 +20,8 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.charitybuzz.common.session.SessionObject;
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.dto.Category;
-import com.charitybuzz.dto.Operator;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.BidderService;
-import com.charitybuzz.service.OperatorService;
 import com.charitybuzz.web.cb.form.LoginForm;
 
 @Controller
@@ -38,8 +36,7 @@ public class LoginController {
 
 	@Resource
 	private BidderService bidderService;
-	@Resource
-	private OperatorService operatorService;
+
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView page(HttpServletRequest request) {
@@ -71,17 +68,6 @@ public class LoginController {
 
 		Bidder bidder = bidderService.findByEmail(email);
 		if (bidder == null) {
-			// 是否manager Login
-			Operator operator = operatorService.findByName(email);
-			if (operator != null) {
-				if ((operator.getPassWord()).equals(passWord)) {
-					session.setAttribute("sessionObject", new SessionObject(
-							true, email));
-					mav.setViewName("redirect:" + url);
-					return mav;
-				}
-			}
-
 			redirectAttributes.addFlashAttribute("errorMsg", "email error")
 					.addFlashAttribute("url", url);
 			mav.setViewName("redirect:" + "/login.do");

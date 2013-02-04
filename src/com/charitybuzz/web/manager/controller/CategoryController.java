@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.HttpSessionRequiredException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -114,12 +116,13 @@ public class CategoryController {
 		if (result.hasErrors()) {
 		}
 
-		categoryService.update(new Category(form.getId(),form.getName()));
+		categoryService.update(new Category(form.getId(), form.getName()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
 		return mav;
 	}
+
 	@RequestMapping(value = "{categoryId}/delete", method = RequestMethod.GET)
 	public ModelAndView categoryDelete(
 			@ModelAttribute("sessionObject") SessionObject sessionObject,
@@ -127,12 +130,16 @@ public class CategoryController {
 			BindingResult result) {
 		if (result.hasErrors()) {
 		}
-		
+
 		categoryService.delete(categoryId);
-		
+
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
 		return mav;
 	}
 
+	@ExceptionHandler({ HttpSessionRequiredException.class})
+	public ModelAndView noSessionObject(Exception ex) {
+		return new ModelAndView("redirect:/manager/login.do");
+	}
 }

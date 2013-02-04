@@ -57,23 +57,19 @@ public class ItemService {
 	}
 
 	public List<Item> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return itemDao.findAll();
 	}
 
 	public void insert(Item item) {
-		// TODO Auto-generated method stub
-		
+		itemDao.insert(item);
 	}
 
 	public void update(Item item) {
-		// TODO Auto-generated method stub
-		
+		itemDao.update(item);
 	}
 
 	public void delete(Long itemId) {
-		// TODO Auto-generated method stub
-		
+		itemDao.delete(itemId);
 	}
 
 }

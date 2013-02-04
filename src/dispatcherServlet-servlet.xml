@@ -19,6 +19,31 @@
 	<mvc:annotation-driven/>
 
 
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+	<dwr:annotation-config id="dwr" />  
+	<dwr:url-mapping />
+    <!-- 定義dwr -->  
+    <dwr:controller id="dwrController" debug="true">  
+        <dwr:config-param name="allowScriptTagRemoting" value="true" />  
+        <dwr:config-param name="crossDomainSessionSecurity" value="false" />  
+    </dwr:controller>  
+	<dwr:configuration />
+
+	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+	<!-- Application Message Bundle -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/messages/messages" />
+		<property name="cacheSeconds" value="0" />
+	</bean>
+
+
+
+
+
+
+
 	
 	<!-- 視圖解析	開始 -->
 	<bean id="contentNegotiatingViewResolver"

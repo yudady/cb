@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.web.manager.form.CategoryForm;
@@ -108,7 +107,7 @@ public class SubCategoryManager {
 		if (result.hasErrors()) {
 		}
 
-		subCategoryService.update(new Category(form.getId(), form.getName()));
+		subCategoryService.update(new SubCategory());
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");

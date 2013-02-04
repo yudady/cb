@@ -128,6 +128,84 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	/**
+	 * subItemId find list
+	 * 
+	 * @param subItemId
+	 * @return
+	 */
+	public List<Item> findBySubItemId(final Long subItemId) {
+		String sql = "SELECT b.id as id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subItemId = ? AND b.id = a.itemid ";
+		return this.queryList(sql, new QueryList<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, subItemId);
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+	}
+
+	/**
+	 * 找出categoryId的全部商品
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
+	public List<Item> findByItemId(final Long categoryId) {
+		String sql = "SELECT x.* FROM ITEM x WHERE x.id in(SELECT d.itemid FROM subcategory_item d WHERE d.subcategoryid IN (SELECT A.ID FROM subcategory A where a.categoryid = ?)) ";
+		return this.queryList(sql, new QueryList<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, categoryId);
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+	}
+
+	/**
 	 * find by id
 	 * 
 	 * @param itemId
@@ -225,6 +303,71 @@ public class ItemDao extends BaseDao<Item> {
 			}
 
 		});
+	}
+
+	public void insert(final Item item) {
+		String sql = "insert into item (id,title,currentbid,startdate,closedate," +
+				"estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping," +
+				"winningbidderid,createddate,updateddate) values (seq_item.nextval," +
+				"?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
+		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setString(1, item.getTitle());
+				this.preparedStatement.setDouble(2, item.getCurrentBid());
+				this.preparedStatement.setDate(3, new java.sql.Date(item.getStartDate().getTime()));
+				this.preparedStatement.setDate(4, new java.sql.Date(item.getCloseDate().getTime()));
+				this.preparedStatement.setDouble(5, item.getEstimatedValue());
+				this.preparedStatement.setDouble(6, item.getIncrementPrice());
+				this.preparedStatement.setInt(7, item.getStatus());
+				this.preparedStatement.setString(8, item.getLotDetails());
+				this.preparedStatement.setString(9, item.getLegalTerms());
+				this.preparedStatement.setString(10, item.getShipping());
+				this.preparedStatement.setLong(11, item.getWinningBidderId());
+			}
+
+		});
+
+	}
+
+	public void update(final Item item) {
+		String sql = "update item set title = ? ,currentBid = ? ,startDate = ? ," +
+				" closeDate = ? , estimatedValue = ? , incrementPrice = ? ," +
+				" status = ? , lotDetails = ? , legalTerms = ? , " +
+				" shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ?";
+		
+		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setString(1, item.getTitle());
+				this.preparedStatement.setDouble(2, item.getCurrentBid());
+				this.preparedStatement.setDate(3, new java.sql.Date(item.getStartDate().getTime()));
+				this.preparedStatement.setDate(4, new java.sql.Date(item.getCloseDate().getTime()));
+				this.preparedStatement.setDouble(5, item.getEstimatedValue());
+				this.preparedStatement.setDouble(6, item.getIncrementPrice());
+				this.preparedStatement.setInt(7, item.getStatus());
+				this.preparedStatement.setString(8, item.getLotDetails());
+				this.preparedStatement.setString(9, item.getLegalTerms());
+				this.preparedStatement.setString(10, item.getShipping());
+				this.preparedStatement.setLong(11, item.getWinningBidderId());
+				this.preparedStatement.setLong(12, item.getId());
+			}
+
+		});
+
+	}
+
+	public void delete(final Long itemId) {
+		String sql = "delete from item where id = ?";
+
+		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, itemId);
+			}
+
+		});
+
 	}
 
 }

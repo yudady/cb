@@ -31,4 +31,12 @@ public class WatchingDao extends BaseDao<Watching> {
 
 		});
 	}
+
+	public void insert(Long bidderId, Long itemId) {
+		// TODO Auto-generated method stub
+	}
+
+	public void deleteByBidderIdItemId(Long bidderId, Long itemId) {
+		// TODO Auto-generated method stub
+	}
 }

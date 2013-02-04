@@ -3,7 +3,6 @@ package com.charitybuzz.service;
 import java.util.List;
 
 import com.charitybuzz.dao.SubCategoryDao;
-import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.SubCategory;
 
 public class SubCategoryService {
@@ -24,27 +23,25 @@ public class SubCategoryService {
 	}
 
 	public List<SubCategory> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return subCategoryDao.findAll();
 	}
 
 	public void insert(SubCategory subCategory) {
-		// TODO Auto-generated method stub
+		subCategoryDao.insert(subCategory);
 
 	}
 
-	public SubCategory findById(Long categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+	public SubCategory findById(Long subCategoryId) {
+		return subCategoryDao.findById(subCategoryId);
 	}
 
-	public void update(Category category) {
-		// TODO Auto-generated method stub
+	public void update(SubCategory subCategory) {
+		subCategoryDao.update(subCategory);
 
 	}
 
-	public void delete(Long categoryId) {
-		// TODO Auto-generated method stub
+	public void delete(Long subCategoryId) {
+		subCategoryDao.delete(subCategoryId);
 
 	}
 

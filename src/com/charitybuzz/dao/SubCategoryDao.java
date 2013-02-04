@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.charitybuzz.common.dao.BaseDao;
+import com.charitybuzz.common.dao.InsertOrUpdate;
 import com.charitybuzz.common.dao.QueryList;
+import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.dto.SubCategory;
 
 public class SubCategoryDao extends BaseDao<SubCategory> {
@@ -65,6 +67,66 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 			}
 
 		});
+	}
+
+	public SubCategory findById(final Long subCategoryId) {
+		String sql = "select * from SubCategory where id = ? ";
+		return this.queryObject(sql, new QueryObject<SubCategory>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				preparedStatement.setLong(1, subCategoryId);
+			}
+
+			@Override
+			public SubCategory doResultSet() throws SQLException {
+				SubCategory it = null;
+				if (rs.next()) {
+					it = new SubCategory();
+				}
+				return it;
+			}
+
+		});
+	}
+
+	public void insert(final SubCategory subCategory) {
+		String sql = "insert into subCategory (id,categoryId,name,descript) values (seq_subcategory.nextval,?,?,?)";
+		this.insertUpdateDelete(sql, new InsertOrUpdate<SubCategory>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, subCategory.getCategoryId());
+				this.preparedStatement.setString(2, subCategory.getName());
+				this.preparedStatement.setString(3, subCategory.getDescript());
+			}
+
+		});
+
+	}
+
+	public void update(final SubCategory subCategory) {
+		String sql = "update subCategory set name=? where id = ?";
+
+		this.insertUpdateDelete(sql, new InsertOrUpdate<SubCategory>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(2, subCategory.getId());
+			}
+
+		});
+
+	}
+
+	public void delete(final Long subCategoryId) {
+		String sql = "delete from subCategory where id = ?";
+
+		this.insertUpdateDelete(sql, new InsertOrUpdate<SubCategory>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, subCategoryId);
+			}
+
+		});
+
 	}
 
 }

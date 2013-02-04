@@ -11,6 +11,14 @@ public class WatchingService {
 		this.watchingDao = watchingDao;
 	}
 
+	public void addBidderWaching(Long bidderId, Long itemId) {
+		 watchingDao.insert(bidderId,itemId);
+	}
+
+	public void delBidderWaching(Long bidderId, Long itemId) {
+		 watchingDao.deleteByBidderIdItemId(bidderId, itemId);
+	}
+
 	/**
 	 * 競標者是否關注此商品
 	 * 
@@ -19,8 +27,8 @@ public class WatchingService {
 	 * @return
 	 */
 	public boolean isWatch(Long bidderId, Long itemId) {
-		Watching ws = watchingDao.findByBidderIdItemId(bidderId,itemId);
-		if(ws != null){
+		Watching ws = watchingDao.findByBidderIdItemId(bidderId, itemId);
+		if (ws != null) {
 			return true;
 		}
 		return false;

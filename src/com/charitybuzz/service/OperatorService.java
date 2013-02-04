@@ -28,23 +28,19 @@ public class OperatorService {
 	}
 
 	public List<Operator> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return operatorDao.findAll();
 	}
 
 	public void insert(Operator operator) {
-		// TODO Auto-generated method stub
-		
+		operatorDao.insert(operator);
 	}
 
 	public void update(Operator operator) {
-		// TODO Auto-generated method stub
-		
+		operatorDao.update(operator);
 	}
 
 	public void delete(Long operatorId) {
-		// TODO Auto-generated method stub
-		
+		operatorDao.delete(operatorId);
 	}
 
 }

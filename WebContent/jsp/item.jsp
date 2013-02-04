@@ -6,6 +6,9 @@
 <%@ include file="/jsp/include/menu.txt" %>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/item.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/item.js"/>'></script>
+<script type='text/javascript' src='<c:url value="/dwr/engine.js"/>'></script>
+<script type='text/javascript' src='<c:url value="/dwr/util.js"/>'></script>
+<script type='text/javascript' src='<c:url value="/dwr/interface/watch.js"/>'></script>
 <div id="item">
 	<div class="itemLargePic">
 		<div>${item.difDay} day</div>

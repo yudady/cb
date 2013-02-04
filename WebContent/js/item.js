@@ -8,9 +8,20 @@
 	$("#biddingWatchQuestion").click(function(){
 		//判斷是否login
 		
-		
-		
-		watch.item( "1" , "2" , {
+		if(! $("#loginOutFormBtn").is(":visible")){
+			window.location.href = cb.getSafeUrl("login.do");
+			return;
+		}
+		var itemId = $("#loginOutFormItemId").val();
+		var watchStatus = "";
+		if ($("#watchingItem").prop("checked")){
+			watchStatus = "0";
+			$("#watchingItem").prop("checked", false);
+		}else{
+			$("#watchingItem").prop("checked", true);
+			watchStatus = "1";
+		}
+		watch.item( itemId , watchStatus , {
 			callback : function(data){
 				$.log(data);
 			},

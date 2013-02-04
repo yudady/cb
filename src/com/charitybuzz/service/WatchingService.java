@@ -26,12 +26,8 @@ public class WatchingService {
 	 * @param itemId
 	 * @return
 	 */
-	public boolean isWatch(Long bidderId, Long itemId) {
-		Watching ws = watchingDao.findByBidderIdItemId(bidderId, itemId);
-		if (ws != null) {
-			return true;
-		}
-		return false;
+	public Watching isWatch(Long bidderId, Long itemId) {
+		return watchingDao.findByBidderIdItemId(bidderId, itemId);
 	}
 
 }

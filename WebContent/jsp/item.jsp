@@ -81,6 +81,7 @@
 	</div>
 	<div id="biddingWatchQuestion">
 		<div id="biddingWatchThisItem">
+			<input type="checkbox" id="watchingItem" name="watchingItem" ${item.watch} />
 			 Watch This Item
 		</div>
 		<div id="biddingAskQuestion">

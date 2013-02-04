@@ -53,7 +53,7 @@
 </div>
 <div id="login">
 <c:choose>
-    <c:when test="${empty sessionObject}">
+    <c:when test="${empty bidder}">
 		<span>Login with email and Password</span>
 		<form id="loginForm" action="<c:url value='/login/form.do' />" method='post'>
 			<table>
@@ -76,8 +76,10 @@
 		</form>
     </c:when>
     <c:otherwise>
-        <h1>${sessionObject.email}</h1>
+        <h1>${bidder.email}</h1>
 		<form id="loginOutForm" action="<c:url value='/login/loginOut.do' />" method='post'>
+			<input type='hidden' id='loginOutFormEmail' value="${bidder.email}" />
+			<input type='hidden' id='loginOutFormItemId' value="${item.id}" />
 			<input type='hidden' name='url' id='url' value=""/>
 			<input id="loginOutFormBtn" type="button" value="login out" />
 		</form>

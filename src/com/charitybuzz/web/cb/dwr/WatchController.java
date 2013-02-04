@@ -9,12 +9,17 @@ import org.directwebremoting.annotations.RemoteProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.HttpSessionRequiredException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.service.WatchingService;
 
 @Controller
 @RemoteProxy(name = "watch")
+@SessionAttributes({ "bidder" })
 public class WatchController {
 
 	/** logger. */
@@ -25,23 +30,23 @@ public class WatchController {
 
 	@RemoteMethod
 	public String item(Long itemId, String watchStatus) {
-		log.debug("[LOG]WatchController");
 		HttpSession session = WebContextFactory.get().getSession();
-		Bidder bidder = null;
-		System.out.println("[LOG]"+itemId);
-		System.out.println("[LOG]"+watchStatus);
-//		log.debug("[watch][itemId]=" + itemId + "[watchStatus]=" + watchStatus
-//				+ "[bidder]=" + bidder);
-//		
-//		
-//		if ("1".equals(watchStatus)) {
-//			watchingService.addBidderWaching(bidder.getId(), itemId);
-//		} else {
-//			watchingService.delBidderWaching(bidder.getId(), itemId);
-//		}
-//		return "watch itemId=" + itemId + " bidderId=" + bidder.getId()
-//				+ " watchStatus=" + watchStatus;
-		return "111111111111111";
+		Bidder bidder = (Bidder) session.getAttribute("bidder");
+
+		log.debug("[LOG][watch][itemId]=" + itemId + "[watchStatus]=" + watchStatus
+				+ "[bidder]=" + bidder);
+
+		if ("1".equals(watchStatus)) {
+			watchingService.addBidderWaching(bidder.getId(), itemId);
+		} else {
+			watchingService.delBidderWaching(bidder.getId(), itemId);
+		}
+		return "watch itemId=" + itemId + " bidderId=" + bidder.getId()
+				+ " watchStatus=" + watchStatus;
 	}
 
+	@ExceptionHandler({ HttpSessionRequiredException.class })
+	public ModelAndView noSessionObject(Exception ex) {
+		return new ModelAndView("redirect:/index.do");
+	}
 }

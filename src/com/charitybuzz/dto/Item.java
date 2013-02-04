@@ -98,6 +98,8 @@ public class Item {
 	 * 到結標日差多少時間
 	 */
 	private Long difDay;
+	
+	private String watch;
 
 	// ====================================================
 
@@ -298,6 +300,14 @@ public class Item {
 
 	public void setDifDay(Long difDay) {
 		this.difDay = difDay;
+	}
+
+	public String getWatch() {
+		return watch;
+	}
+
+	public void setWatch(String watch) {
+		this.watch = watch;
 	}
 
 	@Override

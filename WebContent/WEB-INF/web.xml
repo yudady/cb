@@ -13,6 +13,14 @@
 		<filter-name>SystemContextFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SystemContextFilter</filter-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</filter-mapping>
+
+
+
+
 
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>

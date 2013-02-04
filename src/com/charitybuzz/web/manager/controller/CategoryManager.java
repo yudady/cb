@@ -8,21 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.common.session.SessionObject;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.service.CategoryService;
 import com.charitybuzz.web.manager.form.CategoryForm;
 
 @Controller
 @RequestMapping(value = "/manager/category")
-@SessionAttributes({ "sessionObject" })
+@SessionAttributes({ "operator" })
 public class CategoryManager {
 
 	/**
@@ -39,8 +37,7 @@ public class CategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
-	public ModelAndView categoryList(CategoryForm form,
-			@ModelAttribute("sessionObject") SessionObject sessionObject) {
+	public ModelAndView categoryList(CategoryForm form) {
 		ModelAndView mav = new ModelAndView("manager/category/list");
 		List<Category> categories = categoryService.findAll();
 		mav.addObject("categories", categories);
@@ -54,8 +51,7 @@ public class CategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView categoryAddPage(
-			@ModelAttribute("sessionObject") SessionObject sessionObject) {
+	public ModelAndView categoryAddPage() {
 		ModelAndView mav = new ModelAndView("manager/category/add");
 		return mav;
 	}
@@ -69,9 +65,7 @@ public class CategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView categoryAdd(
-			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			CategoryForm form, BindingResult result) {
+	public ModelAndView categoryAdd(CategoryForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
 		}
@@ -91,9 +85,7 @@ public class CategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "{categoryId}/update", method = RequestMethod.GET)
-	public ModelAndView categoryUpdatePage(
-			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long categoryId) {
+	public ModelAndView categoryUpdatePage(@PathVariable Long categoryId) {
 		ModelAndView mav = new ModelAndView("manager/category/update");
 
 		Category category = categoryService.findById(categoryId);
@@ -109,10 +101,8 @@ public class CategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "{categoryId}/update", method = RequestMethod.POST)
-	public ModelAndView categoryUpdate(
-			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long categoryId, CategoryForm form,
-			BindingResult result) {
+	public ModelAndView categoryUpdate(@PathVariable Long categoryId,
+			CategoryForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
 
@@ -124,10 +114,8 @@ public class CategoryManager {
 	}
 
 	@RequestMapping(value = "{categoryId}/delete", method = RequestMethod.GET)
-	public ModelAndView categoryDelete(
-			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long categoryId, CategoryForm form,
-			BindingResult result) {
+	public ModelAndView categoryDelete(@PathVariable Long categoryId,
+			CategoryForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
 
@@ -138,7 +126,7 @@ public class CategoryManager {
 		return mav;
 	}
 
-	@ExceptionHandler({ HttpSessionRequiredException.class})
+	@ExceptionHandler({ HttpSessionRequiredException.class })
 	public ModelAndView noSessionObject(Exception ex) {
 		return new ModelAndView("redirect:/manager/index.do");
 	}

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.charitybuzz.common.session.SessionObject;
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.operate.SidebarService;
@@ -76,8 +75,7 @@ public class LoginController {
 					.addFlashAttribute("url", url);
 			mav.setViewName("redirect:" + "/login.do");
 		} else {
-			session.setAttribute("sessionObject", new SessionObject(false,
-					email));
+			session.setAttribute("bidder", bidder);
 			mav.setViewName("redirect:" + url);
 		}
 		return mav;
@@ -89,7 +87,7 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView();
 		String url = request.getParameter("url");
 		log.debug("[LOG]url" + url);
-		session.removeAttribute("sessionObject");
+		session.removeAttribute("bidder");
 		mav.setViewName("redirect:" + url);
 		return mav;
 

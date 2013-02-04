@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.common.session.SessionObject;
 import com.charitybuzz.dto.Operator;
 import com.charitybuzz.service.OperatorService;
 import com.charitybuzz.web.manager.form.LoginForm;
@@ -53,8 +52,7 @@ public class IndexManager {
 		Operator operator = operatorService.findByName(form.getName());
 		if (operator != null) {
 			if ((operator.getPassWord()).equals(form.getPassWord())) {
-				session.setAttribute("sessionObject", new SessionObject(
-						true, form.getName()));
+				session.setAttribute("operator", operator);
 				return new ModelAndView("redirect:/manager/index.do");
 			}
 		}

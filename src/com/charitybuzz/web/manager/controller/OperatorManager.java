@@ -8,21 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.common.session.SessionObject;
 import com.charitybuzz.dto.Operator;
 import com.charitybuzz.service.OperatorService;
 import com.charitybuzz.web.manager.form.OperatorForm;
 
 @Controller
 @RequestMapping(value = "/manager/operator")
-@SessionAttributes({ "sessionObject" })
+@SessionAttributes({ "operator" })
 public class OperatorManager {
 
 	/**
@@ -39,8 +37,7 @@ public class OperatorManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
-	public ModelAndView operatorList(OperatorForm form,
-			@ModelAttribute("sessionObject") SessionObject sessionObject) {
+	public ModelAndView operatorList(OperatorForm form) {
 		ModelAndView mav = new ModelAndView("manager/operator/list");
 		List<Operator> categories = operatorService.findAll();
 		mav.addObject("categories", categories);
@@ -54,8 +51,7 @@ public class OperatorManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView operatorAddPage(
-			@ModelAttribute("sessionObject") SessionObject sessionObject) {
+	public ModelAndView operatorAddPage() {
 		ModelAndView mav = new ModelAndView("manager/operator/add");
 		return mav;
 	}
@@ -69,9 +65,7 @@ public class OperatorManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView operatorAdd(
-			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			OperatorForm form, BindingResult result) {
+	public ModelAndView operatorAdd(OperatorForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
 		}
@@ -91,9 +85,7 @@ public class OperatorManager {
 	 * @return
 	 */
 	@RequestMapping(value = "{operatorId}/update", method = RequestMethod.GET)
-	public ModelAndView operatorUpdatePage(
-			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long operatorId) {
+	public ModelAndView operatorUpdatePage(@PathVariable Long operatorId) {
 		ModelAndView mav = new ModelAndView("manager/operator/update");
 
 		Operator operator = operatorService.findById(operatorId);
@@ -109,10 +101,8 @@ public class OperatorManager {
 	 * @return
 	 */
 	@RequestMapping(value = "{operatorId}/update", method = RequestMethod.POST)
-	public ModelAndView operatorUpdate(
-			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long operatorId, OperatorForm form,
-			BindingResult result) {
+	public ModelAndView operatorUpdate(@PathVariable Long operatorId,
+			OperatorForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
 
@@ -124,10 +114,8 @@ public class OperatorManager {
 	}
 
 	@RequestMapping(value = "{operatorId}/delete", method = RequestMethod.GET)
-	public ModelAndView operatorDelete(
-			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long operatorId, OperatorForm form,
-			BindingResult result) {
+	public ModelAndView operatorDelete(@PathVariable Long operatorId,
+			OperatorForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
 
@@ -138,7 +126,7 @@ public class OperatorManager {
 		return mav;
 	}
 
-	@ExceptionHandler({ HttpSessionRequiredException.class})
+	@ExceptionHandler({ HttpSessionRequiredException.class })
 	public ModelAndView noSessionObject(Exception ex) {
 		return new ModelAndView("redirect:/manager/index.do");
 	}

@@ -3,6 +3,7 @@ package com.charitybuzz.dao;
 import java.sql.SQLException;
 
 import com.charitybuzz.common.dao.BaseDao;
+import com.charitybuzz.common.dao.InsertOrUpdate;
 import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.dto.Watching;
 
@@ -32,11 +33,29 @@ public class WatchingDao extends BaseDao<Watching> {
 		});
 	}
 
-	public void insert(Long bidderId, Long itemId) {
-		// TODO Auto-generated method stub
+	public void insert(final Long bidderId, final Long itemId) {
+		System.out.println("[LOG]insert");
+		String sql = "insert into watching (id,bidderId,itemId) values (seq_watching.nextval,?,?)";
+		this.insertUpdateDelete(sql, new InsertOrUpdate<Watching>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, bidderId);
+				this.preparedStatement.setLong(2, itemId);
+			}
+
+		});
 	}
 
-	public void deleteByBidderIdItemId(Long bidderId, Long itemId) {
-		// TODO Auto-generated method stub
+	public void deleteByBidderIdItemId(final Long bidderId, final Long itemId) {
+		System.out.println("[LOG]delete");
+		String sql = "delete from watching where bidderId = ? and itemId = ? ";
+		this.insertUpdateDelete(sql, new InsertOrUpdate<Watching>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, bidderId);
+				this.preparedStatement.setLong(2, itemId);
+			}
+
+		});
 	}
 }

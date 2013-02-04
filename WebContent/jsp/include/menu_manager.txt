@@ -5,6 +5,9 @@
 <ul id="sidebar">
 	<li><a href='<c:url value="/manager/index.do" />'>index</a></li>
 	<li><a href='<c:url value="/manager/category/list.do" />'>Category List</a></li>
+	<li><a href='<c:url value="/manager/subcategory/list.do" />'>SubCategory List</a></li>
+	<li><a href='<c:url value="/manager/item/list.do" />'>Item List</a></li>
+	<li><a href='<c:url value="/manager/operator/list.do" />'>Operator List</a></li>
 	<li><a href='#'>1111111111</a>
 		<ul>
 			<li><a href='#'>111-11111</a></li>

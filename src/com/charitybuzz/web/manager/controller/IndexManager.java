@@ -15,7 +15,7 @@ import com.charitybuzz.web.manager.form.LoginForm;
 
 @Controller
 @RequestMapping(value = "/manager")
-public class ManagerController {
+public class IndexManager {
 
 	@Resource
 	private OperatorService operatorService;

@@ -16,20 +16,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.common.session.SessionObject;
-import com.charitybuzz.dto.Category;
-import com.charitybuzz.service.CategoryService;
-import com.charitybuzz.web.manager.form.CategoryForm;
+import com.charitybuzz.dto.Operator;
+import com.charitybuzz.service.OperatorService;
+import com.charitybuzz.web.manager.form.OperatorForm;
 
 @Controller
-@RequestMapping(value = "/manager/category")
+@RequestMapping(value = "/manager/operator")
 @SessionAttributes({ "sessionObject" })
-public class CategoryController {
+public class OperatorManager {
 
 	/**
-	 * 第一級目錄
+	 * 商品
 	 */
 	@Resource
-	private CategoryService categoryService;
+	private OperatorService operatorService;
 
 	/**
 	 * 拿到列表
@@ -39,10 +39,10 @@ public class CategoryController {
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
-	public ModelAndView categoryList(CategoryForm form,
+	public ModelAndView operatorList(OperatorForm form,
 			@ModelAttribute("sessionObject") SessionObject sessionObject) {
-		ModelAndView mav = new ModelAndView("manager/category/list");
-		List<Category> categories = categoryService.findAll();
+		ModelAndView mav = new ModelAndView("manager/operator/list");
+		List<Operator> categories = operatorService.findAll();
 		mav.addObject("categories", categories);
 		return mav;
 	}
@@ -54,9 +54,9 @@ public class CategoryController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView categoryAddPage(
+	public ModelAndView operatorAddPage(
 			@ModelAttribute("sessionObject") SessionObject sessionObject) {
-		ModelAndView mav = new ModelAndView("manager/category/add");
+		ModelAndView mav = new ModelAndView("manager/operator/add");
 		return mav;
 	}
 
@@ -69,17 +69,17 @@ public class CategoryController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView categoryAdd(
+	public ModelAndView operatorAdd(
 			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			CategoryForm form, BindingResult result) {
+			OperatorForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
 		}
 
-		categoryService.insert(new Category(form.getName()));
+		operatorService.insert(new Operator());
 
 		ModelAndView mav = new ModelAndView(
-				"redirect:/manager/category/list.do");
+				"redirect:/manager/operator/list.do");
 		return mav;
 	}
 
@@ -87,17 +87,17 @@ public class CategoryController {
 	 * 拿到update page
 	 * 
 	 * @param sessionObject
-	 * @param categoryId
+	 * @param operatorId
 	 * @return
 	 */
-	@RequestMapping(value = "{categoryId}/update", method = RequestMethod.GET)
-	public ModelAndView categoryUpdatePage(
+	@RequestMapping(value = "{operatorId}/update", method = RequestMethod.GET)
+	public ModelAndView operatorUpdatePage(
 			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long categoryId) {
-		ModelAndView mav = new ModelAndView("manager/category/update");
+			@PathVariable Long operatorId) {
+		ModelAndView mav = new ModelAndView("manager/operator/update");
 
-		Category category = categoryService.findById(categoryId);
-		mav.addObject("category", category);
+		Operator operator = operatorService.findById(operatorId);
+		mav.addObject("operator", operator);
 		return mav;
 	}
 
@@ -105,36 +105,36 @@ public class CategoryController {
 	 * update
 	 * 
 	 * @param sessionObject
-	 * @param categoryId
+	 * @param operatorId
 	 * @return
 	 */
-	@RequestMapping(value = "{categoryId}/update", method = RequestMethod.POST)
-	public ModelAndView categoryUpdate(
+	@RequestMapping(value = "{operatorId}/update", method = RequestMethod.POST)
+	public ModelAndView operatorUpdate(
 			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long categoryId, CategoryForm form,
+			@PathVariable Long operatorId, OperatorForm form,
 			BindingResult result) {
 		if (result.hasErrors()) {
 		}
 
-		categoryService.update(new Category(form.getId(), form.getName()));
+		operatorService.update(new Operator());
 
 		ModelAndView mav = new ModelAndView(
-				"redirect:/manager/category/list.do");
+				"redirect:/manager/operator/list.do");
 		return mav;
 	}
 
-	@RequestMapping(value = "{categoryId}/delete", method = RequestMethod.GET)
-	public ModelAndView categoryDelete(
+	@RequestMapping(value = "{operatorId}/delete", method = RequestMethod.GET)
+	public ModelAndView operatorDelete(
 			@ModelAttribute("sessionObject") SessionObject sessionObject,
-			@PathVariable Long categoryId, CategoryForm form,
+			@PathVariable Long operatorId, OperatorForm form,
 			BindingResult result) {
 		if (result.hasErrors()) {
 		}
 
-		categoryService.delete(categoryId);
+		operatorService.delete(operatorId);
 
 		ModelAndView mav = new ModelAndView(
-				"redirect:/manager/category/list.do");
+				"redirect:/manager/operator/list.do");
 		return mav;
 	}
 

@@ -5,7 +5,20 @@
 		alert("biddingBidNowBtn");
 	});
 	
-	
+	$("#biddingWatchQuestion").click(function(){
+		//判斷是否login
+		
+		
+		
+		watch.item( "1" , "2" , {
+			callback : function(data){
+				$.log(data);
+			},
+			errorHandler : function(){
+				charitybuzz.openAlertDialog("We can't add those values!");
+			}
+		});
+	});
 	
 	
 	

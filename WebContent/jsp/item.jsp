@@ -81,7 +81,7 @@
 	</div>
 	<div id="biddingWatchQuestion">
 		<div id="biddingWatchThisItem">
-			Ask a Question 
+			 Watch This Item
 		</div>
 		<div id="biddingAskQuestion">
 			Ask a Question 

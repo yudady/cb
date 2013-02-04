@@ -28,7 +28,8 @@ public class WatchController {
 		log.debug("[LOG]WatchController");
 		HttpSession session = WebContextFactory.get().getSession();
 		Bidder bidder = null;
-		
+		System.out.println("[LOG]"+itemId);
+		System.out.println("[LOG]"+watchStatus);
 //		log.debug("[watch][itemId]=" + itemId + "[watchStatus]=" + watchStatus
 //				+ "[bidder]=" + bidder);
 //		
@@ -38,8 +39,9 @@ public class WatchController {
 //		} else {
 //			watchingService.delBidderWaching(bidder.getId(), itemId);
 //		}
-		return "watch itemId=" + itemId + " bidderId=" + bidder.getId()
-				+ " watchStatus=" + watchStatus;
+//		return "watch itemId=" + itemId + " bidderId=" + bidder.getId()
+//				+ " watchStatus=" + watchStatus;
+		return "111111111111111";
 	}
 
 }

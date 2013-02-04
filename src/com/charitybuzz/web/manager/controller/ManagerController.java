@@ -36,7 +36,7 @@ public class ManagerController {
 	 */
 	@RequestMapping(value = "/login_success")
 	public String loginSuccess() {
-		return "manager/login_success";
+		return "manager/index";
 		
 	}
 	/**
@@ -55,7 +55,7 @@ public class ManagerController {
 			if ((operator.getPassWord()).equals(form.getPassWord())) {
 				session.setAttribute("sessionObject", new SessionObject(
 						true, form.getName()));
-				return new ModelAndView("redirect:/manager/login_success.do");
+				return new ModelAndView("redirect:/manager/index.do");
 			}
 		}
 		return mav;

@@ -140,6 +140,6 @@ public class CategoryController {
 
 	@ExceptionHandler({ HttpSessionRequiredException.class})
 	public ModelAndView noSessionObject(Exception ex) {
-		return new ModelAndView("redirect:/manager/login.do");
+		return new ModelAndView("redirect:/manager/index.do");
 	}
 }

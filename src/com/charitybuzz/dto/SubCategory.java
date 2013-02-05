@@ -41,6 +41,8 @@ public class SubCategory {
 	 */
 	private int itemsCount;
 
+	private String itemCheckedMark;
+	
 	// ==========================
 
 	public SubCategory() {
@@ -102,6 +104,14 @@ public class SubCategory {
 
 	void setItemsCount(int itemsCount) {
 		this.itemsCount = itemsCount;
+	}
+
+	public String getItemCheckedMark() {
+		return itemCheckedMark;
+	}
+
+	public void setItemCheckedMark(String itemCheckedMark) {
+		this.itemCheckedMark = itemCheckedMark;
 	}
 
 	@Override

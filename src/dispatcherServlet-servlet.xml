@@ -38,12 +38,6 @@
 		<property name="cacheSeconds" value="0" />
 	</bean>
 
-
-
-
-
-
-
 	
 	<!-- 視圖解析	開始 -->
 	<bean id="contentNegotiatingViewResolver"

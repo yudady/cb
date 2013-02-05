@@ -134,4 +134,29 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 
 	}
 
+	public List<SubCategory> findByItemd(final Long itemId) {
+		String sql = " SELECT * FROM subcategory WHERE ID IN (SELECT subcategoryid FROM subcategory_item where itemid = ?) ";
+		return this.queryList(sql, new QueryList<SubCategory>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				preparedStatement.setLong(1, itemId);
+			}
+
+			@Override
+			public List<SubCategory> doResultSet() throws SQLException {
+				List<SubCategory> subCategoryList = new ArrayList<SubCategory>();
+				while (rs.next()) {
+					SubCategory it = new SubCategory();
+					it.setId(rs.getLong("id"));
+					it.setCategoryId(rs.getLong("categoryId"));
+					it.setName(rs.getString("name"));
+					it.setDescript(rs.getString("descript"));
+					subCategoryList.add(it);
+				}
+				return subCategoryList;
+			}
+
+		});
+	}
+
 }

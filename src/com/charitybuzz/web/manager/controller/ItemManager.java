@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpSessionRequiredException;
@@ -15,19 +17,29 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.dto.Item;
+import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.ItemService;
+import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.web.manager.form.ItemForm;
 
 @Controller
 @RequestMapping(value = "/manager/item")
-@SessionAttributes({ "operator" })
+@SessionAttributes(value ={ "operator" })
 public class ItemManager {
+
+	/** logger. */
+	private Logger log = LoggerFactory.getLogger(SubCategoryManager.class);
 
 	/**
 	 * 商品
 	 */
 	@Resource
 	private ItemService itemService;
+	/**
+	 * 第二級目錄
+	 */
+	@Resource
+	private SubCategoryService subCategoryService;
 
 	/**
 	 * 拿到列表
@@ -86,9 +98,21 @@ public class ItemManager {
 	@RequestMapping(value = "{itemId}/update", method = RequestMethod.GET)
 	public ModelAndView itemUpdatePage(@PathVariable Long itemId) {
 		ModelAndView mav = new ModelAndView("manager/item/update");
-
+		List<SubCategory> subCategories = subCategoryService.findAll();
+		mav.addObject("subCategories", subCategories);
 		Item item = itemService.findById(itemId);
 		mav.addObject("item", item);
+
+		List<SubCategory> subCas = subCategoryService.findByItemd(itemId);
+		for (SubCategory subCategory : subCategories) {
+
+			for (SubCategory subCa : subCas) {
+				if (subCategory.getId() == subCa.getId()) {
+					subCategory.setItemCheckedMark("checked");
+				}
+			}
+		}
+
 		return mav;
 	}
 
@@ -100,12 +124,13 @@ public class ItemManager {
 	 * @return
 	 */
 	@RequestMapping(value = "{itemId}/update", method = RequestMethod.POST)
-	public ModelAndView itemUpdate(@PathVariable Long itemId, ItemForm form,
-			BindingResult result) {
+	public ModelAndView itemUpdate(ItemForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
-
-		itemService.update(new Item());
+		log.debug("[LOG]ItemForm=" + form.getTitle());
+		log.debug("[LOG]ItemForm=" + form.getSubCategoryIds());
+//TODO
+		// itemService.update(new Item());
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;

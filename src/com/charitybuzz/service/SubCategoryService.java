@@ -45,4 +45,14 @@ public class SubCategoryService {
 
 	}
 
+	
+	/**
+	 * 用商品id找出此商品在哪些SubCategory中
+	 * @param itemId
+	 * @return
+	 */
+	public List<SubCategory> findByItemd(Long itemId) {
+		return subCategoryDao.findByItemd(itemId);
+	}
+
 }

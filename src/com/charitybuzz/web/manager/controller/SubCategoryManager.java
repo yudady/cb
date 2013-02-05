@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.dto.Category;
+import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.CategoryService;
+import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.web.manager.form.SubCategoryForm;
 
@@ -40,6 +42,12 @@ public class SubCategoryManager {
 	 */
 	@Resource
 	private SubCategoryService subCategoryService;
+	
+	/**
+	 * 全部商品
+	 */
+	@Resource
+	private ItemService itemService;
 
 	/**
 	 * 拿到列表
@@ -53,6 +61,20 @@ public class SubCategoryManager {
 		ModelAndView mav = new ModelAndView("manager/subcategory/list");
 		List<SubCategory> subCategories = subCategoryService.findAll();
 		mav.addObject("subCategories", subCategories);
+		
+		/**
+		 * 第二級目錄
+		 */
+		for (int j = 0; j < subCategories.size(); j++) {
+			SubCategory subs = subCategories.get(j);
+			List<Item> items = itemService.findBySubCategoryId(subs
+					.getId());
+			subs.setItems(items);
+		}
+		
+		
+		
+		
 		return mav;
 	}
 

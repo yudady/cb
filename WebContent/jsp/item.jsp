@@ -64,8 +64,11 @@
 			<span>${item.closeDate}<input id="biddingIitemWhat" type="button" value="?" /></span>
 		</div>
 		<div>
-			<input id="biddingBidNowValue" type="text" />
-			<input id="biddingBidNowBtn" type="button" value="Bid Now" />
+			<form id="biddingBidForm" action='<c:url value="/bid/${item.id}/index.do" />'>
+				<input id="biddingBidUrl" name="biddingBidUrl" type="hidden" />
+				<input id="biddingBidNowPrice" name="biddingBidNowPrice" type="text" />
+				<input id="biddingBidNowBtn" name="biddingBidNowBtn" type="button" value="Bid Now" />
+			</form>
 		</div>
 		<div>
 			<span>you must bid at least ${item.incrementPrice}

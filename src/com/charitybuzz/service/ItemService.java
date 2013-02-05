@@ -49,6 +49,7 @@ public class ItemService {
 
 	/**
 	 * 把商品更新為結標
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -71,5 +72,6 @@ public class ItemService {
 	public void delete(Long itemId) {
 		itemDao.delete(itemId);
 	}
+
 
 }

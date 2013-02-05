@@ -23,4 +23,9 @@ public class BidlogService {
 		return bidlogDao.findBidlogByitemId(itemId);
 	}
 
+	public void insert(Bidlog bidlog) {
+		bidlogDao.insert(bidlog);
+		
+	}
+
 }

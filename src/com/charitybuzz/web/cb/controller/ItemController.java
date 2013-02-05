@@ -29,7 +29,7 @@ import com.charitybuzz.service.WatchingService;
 @RequestMapping("/item")
 public class ItemController {
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private Logger log = LoggerFactory.getLogger(ItemController.class);
 
 	@Resource
 	private SidebarService sidebarService;

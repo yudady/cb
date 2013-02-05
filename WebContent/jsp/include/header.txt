@@ -36,6 +36,15 @@
 		return {
 			getSafeUrl : function(path) {
 				return baseUrl(path);
+			},
+			openAlertDialog : function(message) {
+				return dialog(message);
+			},
+			isBidderLogin : function() {
+				if(! $("#loginOutFormBtn").is(":visible")){
+					return false;
+				}
+				return true;
 			}
 		};
 	}();

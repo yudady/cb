@@ -34,6 +34,23 @@ public class Bidlog {
 	 */
 	private Date bidTime;
 
+	public Bidlog() {
+	}
+
+	public Bidlog(Long bidderId, Long itemId, Double price) {
+		this.bidderId = bidderId;
+		this.itemId = itemId;
+		this.price = price;
+	}
+	public Bidlog(Long id, Long bidderId, Long itemId, Double price,
+			Date bidTime) {
+		this.id = id;
+		this.bidderId = bidderId;
+		this.itemId = itemId;
+		this.price = price;
+		this.bidTime = bidTime;
+	}
+
 	public Long getId() {
 		return id;
 	}

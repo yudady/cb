@@ -306,17 +306,19 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public void insert(final Item item) {
-		String sql = "insert into item (id,title,currentbid,startdate,closedate," +
-				"estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping," +
-				"winningbidderid,createddate,updateddate) values (seq_item.nextval," +
-				"?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
+		String sql = "insert into item (id,title,currentbid,startdate,closedate,"
+				+ "estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,"
+				+ "winningbidderid,createddate,updateddate) values (seq_item.nextval,"
+				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
 		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, item.getTitle());
 				this.preparedStatement.setDouble(2, item.getCurrentBid());
-				this.preparedStatement.setDate(3, new java.sql.Date(item.getStartDate().getTime()));
-				this.preparedStatement.setDate(4, new java.sql.Date(item.getCloseDate().getTime()));
+				this.preparedStatement.setDate(3, new java.sql.Date(item
+						.getStartDate().getTime()));
+				this.preparedStatement.setDate(4, new java.sql.Date(item
+						.getCloseDate().getTime()));
 				this.preparedStatement.setDouble(5, item.getEstimatedValue());
 				this.preparedStatement.setDouble(6, item.getIncrementPrice());
 				this.preparedStatement.setInt(7, item.getStatus());
@@ -331,18 +333,20 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public void update(final Item item) {
-		String sql = "update item set title = ? ,currentBid = ? ,startDate = ? ," +
-				" closeDate = ? , estimatedValue = ? , incrementPrice = ? ," +
-				" status = ? , lotDetails = ? , legalTerms = ? , " +
-				" shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ?";
-		
+		String sql = "update item set title = ? ,currentBid = ? ,startDate = ? ,"
+				+ " closeDate = ? , estimatedValue = ? , incrementPrice = ? ,"
+				+ " status = ? , lotDetails = ? , legalTerms = ? , "
+				+ " shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ?";
+
 		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, item.getTitle());
 				this.preparedStatement.setDouble(2, item.getCurrentBid());
-				this.preparedStatement.setDate(3, new java.sql.Date(item.getStartDate().getTime()));
-				this.preparedStatement.setDate(4, new java.sql.Date(item.getCloseDate().getTime()));
+				this.preparedStatement.setDate(3, new java.sql.Date(item
+						.getStartDate().getTime()));
+				this.preparedStatement.setDate(4, new java.sql.Date(item
+						.getCloseDate().getTime()));
 				this.preparedStatement.setDouble(5, item.getEstimatedValue());
 				this.preparedStatement.setDouble(6, item.getIncrementPrice());
 				this.preparedStatement.setInt(7, item.getStatus());

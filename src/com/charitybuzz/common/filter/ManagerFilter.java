@@ -11,16 +11,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.charitybuzz.dto.Operator;
 
 public class ManagerFilter implements Filter {
 
-	/** logger. */
-	private Logger log = LoggerFactory.getLogger(ManagerFilter.class);
-	
 	@Override
 	public void destroy() {
 	}
@@ -28,22 +22,23 @@ public class ManagerFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res,
 			FilterChain chan) throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest)req;
+		HttpServletRequest request = (HttpServletRequest) req;
 		String indexUrl = request.getServletPath();
-		log.debug("[LOG]"+indexUrl);
-		
-		Operator operator = (Operator)request.getSession().getAttribute("operator");
-		if("/manager/index.do".equals(indexUrl)){
+
+		Operator operator = (Operator) request.getSession().getAttribute(
+				"operator");
+		if ("/manager/index.do".equals(indexUrl)) {
 			chan.doFilter(req, res);
-		}else if(operator == null){
-			log.debug("[LOG]redirect"+indexUrl);
-			//redirect
-			HttpServletResponse response = (HttpServletResponse)res;
-			response.sendRedirect(request.getContextPath()+"/manager/index.do");
-		}else{
+		} else if (operator == null) {
+			// redirect
+			HttpServletResponse response = (HttpServletResponse) res;
+			response.sendRedirect(request.getContextPath()
+					+ "/manager/index.do");
+		} else {
+			//have session 
 			chan.doFilter(req, res);
 		}
-		
+
 	}
 
 	@Override

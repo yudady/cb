@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ include file="/jsp/include/header_manager.txt"%>
 <%@ include file="/jsp/include/menu_manager.txt"%>
 <link type="text/css" rel="stylesheet"
@@ -29,7 +30,11 @@
 				<td><a
 					href='<c:url value="/manager/category/${category.id}/update.do"/>'>update</a></td>
 				<td>
-				<td><a href='<c:url value="/manager/category/${category.id}/delete.do"/>'>delete</a></td>
+				<td>
+					<c:if test="${fn:length(category.subCategories) == 0}">
+						<a href='<c:url value="/manager/category/${category.id}/delete.do"/>'>delete</a>
+					</c:if>				
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

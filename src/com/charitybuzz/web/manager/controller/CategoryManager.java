@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.dto.Category;
+import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.CategoryService;
+import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.web.manager.form.CategoryForm;
 
 @Controller
@@ -28,7 +30,11 @@ public class CategoryManager {
 	 */
 	@Resource
 	private CategoryService categoryService;
-
+	/**
+	 * 第二級目錄
+	 */
+	@Resource
+	private SubCategoryService subCategoryService;
 	/**
 	 * 拿到列表
 	 * 
@@ -41,6 +47,15 @@ public class CategoryManager {
 		ModelAndView mav = new ModelAndView("manager/category/list");
 		List<Category> categories = categoryService.findAll();
 		mav.addObject("categories", categories);
+		
+
+		for (int i = 0; i < categories.size(); i++) {
+			Category category = categories.get(i);
+			Long categoryId = category.getId();
+			List<SubCategory> subCategories = subCategoryService
+					.findByCategoryId(categoryId);
+			category.setSubCategories(subCategories);
+		}
 		return mav;
 	}
 
@@ -119,6 +134,8 @@ public class CategoryManager {
 		if (result.hasErrors()) {
 		}
 
+		//先確認是否有subcategory
+		
 		categoryService.delete(categoryId);
 
 		ModelAndView mav = new ModelAndView(

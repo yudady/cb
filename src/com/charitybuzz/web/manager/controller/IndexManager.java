@@ -30,15 +30,6 @@ public class IndexManager {
 
 	}
 	/**
-	 * 登入成功頁面
-	 * @return
-	 */
-	@RequestMapping(value = "/login_success")
-	public String loginSuccess() {
-		return "manager/index";
-		
-	}
-	/**
 	 * 是否登入成功
 	 * 成功 add sessionObject
 	 * @param form
@@ -53,7 +44,6 @@ public class IndexManager {
 		if (operator != null) {
 			if ((operator.getPassWord()).equals(form.getPassWord())) {
 				session.setAttribute("operator", operator);
-				return new ModelAndView("redirect:/manager/index.do");
 			}
 		}
 		return mav;

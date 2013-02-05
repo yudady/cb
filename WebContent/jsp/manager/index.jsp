@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/jsp/include/header_manager.txt" %>
 <c:choose>
-	<c:when test="${empty sessionObject}">
+	<c:when test="${empty operator}">
 		<link type="text/css" rel="stylesheet" href='<c:url value="/css/manager.css"/>'/>
 	</c:when>
 	<c:otherwise>
@@ -13,7 +13,7 @@
 </c:choose>
 <div id="content">
 <c:choose>
-	<c:when test="${empty sessionObject}">
+	<c:when test="${empty operator}">
 		<form method='post'>
 			<table>
 				<tr>

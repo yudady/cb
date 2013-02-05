@@ -39,8 +39,8 @@ public class ItemManager {
 	@RequestMapping(value = "/list")
 	public ModelAndView itemList(ItemForm form) {
 		ModelAndView mav = new ModelAndView("manager/item/list");
-		List<Item> categories = itemService.findAll();
-		mav.addObject("categories", categories);
+		List<Item> items = itemService.findAll();
+		mav.addObject("items", items);
 		return mav;
 	}
 

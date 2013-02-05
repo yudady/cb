@@ -8,8 +8,8 @@
 update
 
 <form method="post">
-	<input type="text" name="id" value="${category.id}"/>
-	<input type="text" name="name" value="${category.name}"/>
+	<input type="text" name="id" value="${item.id}"/>
+	<input type="text" name="name" value="${item.name}"/>
 	<input type="reset" name="reset" "/>
 	<input type="submit" name="submit" "/>
 </form>

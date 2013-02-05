@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpSessionRequiredException;
@@ -14,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.SubCategory;
+import com.charitybuzz.service.CategoryService;
 import com.charitybuzz.service.SubCategoryService;
-import com.charitybuzz.web.manager.form.CategoryForm;
 import com.charitybuzz.web.manager.form.SubCategoryForm;
 
 @Controller
@@ -24,6 +27,14 @@ import com.charitybuzz.web.manager.form.SubCategoryForm;
 @SessionAttributes({ "sessionObject" })
 public class SubCategoryManager {
 
+	/** logger. */
+	private Logger log = LoggerFactory.getLogger(SubCategoryManager.class);
+
+	/**
+	 * 第一級目錄
+	 */
+	@Resource
+	private CategoryService categoryService;
 	/**
 	 * 第二級目錄
 	 */
@@ -54,6 +65,8 @@ public class SubCategoryManager {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView subCategoryAddPage() {
 		ModelAndView mav = new ModelAndView("manager/subcategory/add");
+		List<Category> categories = categoryService.findAll();
+		mav.addObject("categories", categories);
 		return mav;
 	}
 
@@ -66,12 +79,14 @@ public class SubCategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView subCategoryAdd(SubCategoryForm form, BindingResult result) {
+	public ModelAndView subCategoryAdd(SubCategoryForm form,
+			BindingResult result) {
 
 		if (result.hasErrors()) {
 		}
 
-		subCategoryService.insert(new SubCategory());
+		subCategoryService.insert(new SubCategory(form.getSubCaId(), form
+				.getCategoryId(), form.getName(), form.getDescript()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");
@@ -86,11 +101,12 @@ public class SubCategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "{subCategoryId}/update", method = RequestMethod.GET)
-	public ModelAndView categoryUpdatePage(@PathVariable Long subCategoryId) {
-		ModelAndView mav = new ModelAndView("manager/category/update");
-
+	public ModelAndView subCategoryUpdatePage(@PathVariable Long subCategoryId) {
+		ModelAndView mav = new ModelAndView("manager/subcategory/update");
+		List<Category> categories = categoryService.findAll();
+		mav.addObject("categories", categories);
 		SubCategory subCategory = subCategoryService.findById(subCategoryId);
-		mav.addObject("category", subCategory);
+		mav.addObject("subCategory", subCategory);
 		return mav;
 	}
 
@@ -102,12 +118,14 @@ public class SubCategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "{subCategoryId}/update", method = RequestMethod.POST)
-	public ModelAndView categoryUpdate(@PathVariable Long subCategoryId,
-			CategoryForm form, BindingResult result) {
+	public ModelAndView categoryUpdate(SubCategoryForm form,
+			BindingResult result) {
 		if (result.hasErrors()) {
 		}
 
-		subCategoryService.update(new SubCategory());
+		SubCategory sc = new SubCategory(form.getSubCaId(),
+				form.getCategoryId(), form.getName(), form.getDescript());
+		subCategoryService.update(sc);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");
@@ -116,7 +134,7 @@ public class SubCategoryManager {
 
 	@RequestMapping(value = "{subCategoryId}/delete", method = RequestMethod.GET)
 	public ModelAndView categoryDelete(@PathVariable Long subCategoryId,
-			CategoryForm form, BindingResult result) {
+			SubCategoryForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
 

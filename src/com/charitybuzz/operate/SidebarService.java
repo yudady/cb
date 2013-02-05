@@ -26,7 +26,7 @@ public class SidebarService {
 	/**
 	 * 目錄是否有改變 true 有變 false沒變
 	 */
-	private boolean categoeySubCategoryItemChange;
+	private static boolean categoeySubCategoryItemChange;
 
 
 	private List<Category> categories;
@@ -61,22 +61,22 @@ public class SidebarService {
 	}
 
 
-	public boolean isCategoeySubCategoryItemChange() {
+	public static boolean isCategoeySubCategoryItemChange() {
 		return categoeySubCategoryItemChange;
 	}
 
-	public void setCategoeySubCategoryItemChange(
+	public static void setCategoeySubCategoryItemChange(
 			boolean categoeySubCategoryItemChange) {
-		this.categoeySubCategoryItemChange = categoeySubCategoryItemChange;
+		SidebarService.categoeySubCategoryItemChange = categoeySubCategoryItemChange;
 	}
 
 	public List<Category> getSidebar() {
 		// TODO  fix  拉出去做緩存
-		if (!isCategoeySubCategoryItemChange()) {
-			return categories;
-		}
-		log.info("[LOG]categoeySubCategoryItemChange="
-				+ categoeySubCategoryItemChange);
+//		if (!isCategoeySubCategoryItemChange()) {
+//			return categories;
+//		}
+//		log.info("[LOG]categoeySubCategoryItemChange="
+//				+ categoeySubCategoryItemChange);
 		
 		
 		List<Category> cas = categoryService.findAll();
@@ -106,7 +106,7 @@ public class SidebarService {
 		 * 更新完畢
 		 */
 		this.categories = cas;
-		this.setCategoeySubCategoryItemChange(false);
+		SidebarService.setCategoeySubCategoryItemChange(false);
 		return this.categories;
 	}
 }

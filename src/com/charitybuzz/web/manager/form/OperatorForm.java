@@ -11,13 +11,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 public class OperatorForm {
 
-	/**
-	 * 第一級目錄id
-	 */
 	private Long id;
-	/**
-	 * 第一級目錄名稱分類種類
-	 */
 	private String name;
 
 	public Long getId() {

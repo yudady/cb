@@ -7,10 +7,10 @@
 <div id="content">
 add
 <form method="post">
-	<input type="text" name="id" value="${category.id}"/>
-	<input type="text" name="name" value="${category.name}"/>
-	<input type="reset" name="reset" "/>
-	<input type="submit" name="submit" "/>
+	<input type="hidden" name="id" value="${item.id}"/><br/>
+	title<input type="text" name="name" value="${item.title}"/><br/>
+	<input type="reset" name="reset" "/><br/>
+	<input type="submit" name="submit" "/><br/>
 </form>
 </div>
 <%@ include file="/jsp/include/footer_manager.txt" %>

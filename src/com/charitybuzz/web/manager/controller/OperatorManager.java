@@ -39,8 +39,8 @@ public class OperatorManager {
 	@RequestMapping(value = "/list")
 	public ModelAndView operatorList(OperatorForm form) {
 		ModelAndView mav = new ModelAndView("manager/operator/list");
-		List<Operator> categories = operatorService.findAll();
-		mav.addObject("categories", categories);
+		List<Operator> operators = operatorService.findAll();
+		mav.addObject("operators", operators);
 		return mav;
 	}
 

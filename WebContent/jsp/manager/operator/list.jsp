@@ -12,7 +12,7 @@
 </script>
 <div id="content">
 	<div>
-		<a href='<c:url value="/manager/category/add.do"/>'><input
+		<a href='<c:url value="/manager/operator/add.do"/>'><input
 			type="button" id="add" value="add"></a>
 	</div>
 	<table>
@@ -22,14 +22,14 @@
 			<th>update</th>
 			<th>delete</th>
 		</tr>
-		<c:forEach items="${categories}" var="category">
+		<c:forEach items="${operators}" var="operator">
 			<tr>
-				<td>${category.id}</td>
-				<td>${category.name}</td>
+				<td>${operator.id}</td>
+				<td>${operator.name}</td>
 				<td><a
-					href='<c:url value="/manager/category/${category.id}/update.do"/>'>update</a></td>
+					href='<c:url value="/manager/operator/${operator.id}/update.do"/>'>update</a></td>
 				<td>
-				<td><a href='<c:url value="/manager/category/${category.id}/delete.do"/>'>delete</a></td>
+				<td><a href='<c:url value="/manager/operator/${operator.id}/delete.do"/>'>delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

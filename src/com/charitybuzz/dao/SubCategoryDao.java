@@ -81,7 +81,9 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 			public SubCategory doResultSet() throws SQLException {
 				SubCategory it = null;
 				if (rs.next()) {
-					it = new SubCategory();
+					it = new SubCategory(rs.getLong("id"), rs
+							.getLong("categoryId"), rs.getString("name"), rs
+							.getString("descript"));
 				}
 				return it;
 			}
@@ -104,12 +106,15 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 	}
 
 	public void update(final SubCategory subCategory) {
-		String sql = "update subCategory set name=? where id = ?";
+		String sql = "update subCategory set categoryId=? ,name=?,descript=? where id = ?";
 
 		this.insertUpdateDelete(sql, new InsertOrUpdate<SubCategory>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.preparedStatement.setLong(2, subCategory.getId());
+				this.preparedStatement.setLong(1, subCategory.getCategoryId());
+				this.preparedStatement.setString(2, subCategory.getName());
+				this.preparedStatement.setString(3, subCategory.getDescript());
+				this.preparedStatement.setLong(4, subCategory.getId());
 			}
 
 		});

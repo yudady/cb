@@ -23,6 +23,7 @@
 			var setting = message || "dialog need text message";
 				
 			$("#dialog").html("<br/><br/><br/><div>" + setting + "</div><br/>").dialog({
+				modal: true,
 				buttons : {
 					"OK" : function() {
 						$(this).dialog("close");

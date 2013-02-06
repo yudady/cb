@@ -26,6 +26,7 @@ import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.SubCategoryService;
+import com.charitybuzz.service.SubcategoryItemService;
 import com.charitybuzz.web.manager.form.ItemForm;
 
 @Controller
@@ -46,6 +47,8 @@ public class ItemManager {
 	 */
 	@Resource
 	private SubCategoryService subCategoryService;
+	@Resource
+	private SubcategoryItemService subcategoryItemService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -78,6 +81,8 @@ public class ItemManager {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView itemAddPage() {
 		ModelAndView mav = new ModelAndView("manager/item/add");
+		List<SubCategory> subCategories = subCategoryService.findAll();
+		mav.addObject("subCategories", subCategories);
 		return mav;
 	}
 
@@ -107,7 +112,11 @@ public class ItemManager {
 						.getStatus(), form.getLotDetails(), form
 						.getLegalTerms(), form.getShipping(), form
 						.getWinningBidderId()));
-
+		
+		
+		
+		
+		
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
 	}
@@ -164,6 +173,9 @@ public class ItemManager {
 						.getStatus(), form.getLotDetails(), form
 						.getLegalTerms(), form.getShipping(), form
 						.getWinningBidderId()));
+		
+		
+		subcategoryItemService.update(form.getItemIdForm(),form.getSubCategoryIds());
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;

@@ -55,6 +55,9 @@
 	<bean id="operatorService" class="com.charitybuzz.service.OperatorService">
 		<property name="operatorDao" ref="operatorDao" />
 	</bean>
+	<bean id="subcategoryItemService" class="com.charitybuzz.service.SubcategoryItemService">
+		<property name="subcategoryItemDao" ref="subcategoryItemDao" />
+	</bean>
 
 	<!-- Dao -->
 	<bean id="itemDao" class="com.charitybuzz.dao.ItemDao" />
@@ -65,6 +68,7 @@
 	<bean id="bidlogDao" class="com.charitybuzz.dao.BidlogDao" />
 	<bean id="watchingDao" class="com.charitybuzz.dao.WatchingDao" />
 	<bean id="operatorDao" class="com.charitybuzz.dao.OperatorDao" />
+	<bean id="subcategoryItemDao" class="com.charitybuzz.dao.SubcategoryItemDao" />
 
 	<!-- other service -->
 	<bean id="sidebarService" class="com.charitybuzz.operate.SidebarService">

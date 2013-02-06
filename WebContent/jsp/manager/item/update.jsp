@@ -4,11 +4,15 @@
 <%@ include file="/jsp/include/header_manager.txt" %>
 <%@ include file="/jsp/include/menu_manager.txt" %>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
+<%--
+<script type="text/javascript" src='<c:url value="/js//jquery/jwysiwyg/jquery.wysiwyg.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jwysiwyg/jquery.wysiwyg.css"/>'/>
+ --%>
+<script type="text/javascript" src='<c:url value="/js/jquery/CLEditor1_3_0/jquery.cleditor.min.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/CLEditor1_3_0/jquery.cleditor.css"/>'/>
 <style type="text/css">
 #content dl {
 	color: green;
-	height: 30px;
-	line-height: 30px;
 	text-align: left;
 }
 
@@ -26,6 +30,15 @@
 clear: both;
 }
 </style>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.cleditor').cleditor({
+			width:        700, // width not including margins, borders or padding
+	        height:       150 // height not including margins, borders or padding});
+		});
+	});
+</script>
 <div id="content">
 <form method="post">
 	<input type="hidden" name="itemIdForm" value="${item.id}"/>
@@ -44,32 +57,22 @@ clear: both;
 		<li>估計價值<input type="text" name="estimatedValue" value="${item.estimatedValue}"/></li>
 		<li>下次最小標價<input type="text" name="incrementPrice" value="${item.incrementPrice}"/></li>
 		<li>0.結標 1.拍賣中<input type="text" name="status" value="${item.incrementPrice}"/></li>
-		<li>LOTDETAILS訊息<input type="text" name="lotDetails" value="${item.lotDetails}"/></li>
-		<li>LOTDETAILS訊息<input type="text" name="legalTerms" value="${item.legalTerms}"/></li>
-		<li>SHIPPING訊息<input type="text" name="shipping" value="${item.shipping}"/></li>
+		<li>LOTDETAILS訊息
+			<textarea class="cleditor" name="lotDetails" id="lotDetails">${item.lotDetails}</textarea>
+		</li>
+		<li>LOTDETAILS訊息
+			<textarea class="cleditor" name="legalTerms" id="legalTerms">${item.legalTerms}</textarea>
+		</li>
+		<li>SHIPPING訊息
+			<textarea class="cleditor" name="shipping" id="shipping">${item.shipping}</textarea>
+		</li>
 		<li>當前贏家id<input type="text" name="winningBidderId" value="${item.winningBidderId}"/></li>
 		<li></li>
 		<li></li>
 	</ul>
-	
 	<input type="reset" name="reset" "/>
 	<input type="submit" name="submit" "/>
-	
-<hr/>	
-<script type="text/javascript" src='<c:url value="/js//jquery/jwysiwyg/jquery.wysiwyg.js"/>'></script>
-<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jwysiwyg/jquery.wysiwyg.css"/>'/>
-
-    <script type="text/javascript">
-      $(document).ready(function() {
-    	  $('#wysiwyg').wysiwyg();
-      });
-    </script>
-    <textarea name="wysiwyg" id="wysiwyg" rows="5" cols="47"></textarea>
-	
-	
-	
-	
-	
+<hr style="clear: both;"/>	
 </form>
 </div>
 <%@ include file="/jsp/include/footer_manager.txt" %>

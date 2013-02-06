@@ -106,7 +106,7 @@ public class ItemManager {
 			}
 		}
 		log.debug("[LOG]ItemForm=" + form);
-		itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
+		Long itemId = itemService.insert(new Item(form.getTitle(), form
 				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
 				form.getEstimatedValue(), form.getIncrementPrice(), form
 						.getStatus(), form.getLotDetails(), form
@@ -114,7 +114,7 @@ public class ItemManager {
 						.getWinningBidderId()));
 		
 		
-		
+		subcategoryItemService.insert(itemId,form.getSubCategoryIds());
 		
 		
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");

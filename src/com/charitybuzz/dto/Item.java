@@ -98,7 +98,7 @@ public class Item {
 	 * 到結標日差多少時間
 	 */
 	private Long difDay;
-	
+
 	private String watch;
 
 	// ====================================================
@@ -123,6 +123,26 @@ public class Item {
 		this.shipping = shipping;
 		this.winningBidderId = winningBidderId;
 	}
+
+
+
+	public Item(String title, Double currentBid, Date startDate,
+			Date closeDate, Double estimatedValue, Double incrementPrice,
+			int status, String lotDetails, String legalTerms, String shipping,
+			Long winningBidderId) {
+		this.title = title;
+		this.currentBid = currentBid;
+		this.startDate = startDate;
+		this.closeDate = closeDate;
+		this.estimatedValue = estimatedValue;
+		this.incrementPrice = incrementPrice;
+		this.status = status;
+		this.lotDetails = lotDetails;
+		this.legalTerms = legalTerms;
+		this.shipping = shipping;
+		this.winningBidderId = winningBidderId;
+	}
+
 	public Item(Long id, String title, Double currentBid, Date startDate,
 			Date closeDate, Double estimatedValue, Double incrementPrice,
 			int status, String lotDetails, String legalTerms, String shipping,
@@ -144,7 +164,6 @@ public class Item {
 	}
 
 	// ====================================================
-
 
 	public Long getId() {
 		return id;
@@ -266,7 +285,6 @@ public class Item {
 		this.bidTimes = bidTimes;
 	}
 
-
 	public List<Bidlog> getBidlogs() {
 		return bidlogs;
 	}
@@ -280,7 +298,7 @@ public class Item {
 	}
 
 	public void setPictures(List<Picture> pictures) {
-		if(pictures.size() > 0){
+		if (pictures.size() > 0) {
 			this.setMainPicturePath(pictures.get(0).getPhotoPath());
 		}
 		this.pictures = pictures;

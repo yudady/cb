@@ -3,6 +3,7 @@ package com.charitybuzz.service;
 import java.util.Date;
 import java.util.List;
 
+import com.charitybuzz.dao.DualDao;
 import com.charitybuzz.dao.ItemDao;
 import com.charitybuzz.dto.Item;
 
@@ -10,8 +11,14 @@ public class ItemService {
 
 	private ItemDao itemDao;
 
+	private DualDao dualDao;
+
 	public void setItemDao(ItemDao itemDao) {
 		this.itemDao = itemDao;
+	}
+
+	public void setDualDao(DualDao dualDao) {
+		this.dualDao = dualDao;
 	}
 
 	public List<Item> findBySubCategoryId(Long id) {
@@ -61,8 +68,12 @@ public class ItemService {
 		return itemDao.findAll();
 	}
 
-	public void insert(Item item) {
+	public Long insert(Item item) {
+
+		Long itemId = dualDao.getNextPk("seq_item.nextval");
+		item.setId(itemId);
 		itemDao.insert(item);
+		return itemId;
 	}
 
 	public void update(Item item) {
@@ -72,6 +83,5 @@ public class ItemService {
 	public void delete(Long itemId) {
 		itemDao.delete(itemId);
 	}
-
 
 }

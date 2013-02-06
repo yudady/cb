@@ -12,14 +12,19 @@ public class SubcategoryItemService {
 		this.subcategoryItemDao = subcategoryItemDao;
 	}
 
-	public void update(Long itemId, List<Long> subCategoryIds) {
-		subcategoryItemDao.deleteByItemId(itemId);
-		for(Long subCategoryId : subCategoryIds){
-			subcategoryItemDao.insert(itemId,subCategoryId);
+	public void insert(Long itemId, List<Long> subCategoryIds) {
+		for (Long subCategoryId : subCategoryIds) {
+			subcategoryItemDao.insert(itemId, subCategoryId);
 		}
 	}
 
+	public void update(Long itemId, List<Long> subCategoryIds) {
+		this.delete(itemId);
+		this.insert(itemId, subCategoryIds);
+	}
 
-
+	public void delete(Long itemId) {
+		subcategoryItemDao.deleteByItemId(itemId);
+	}
 
 }

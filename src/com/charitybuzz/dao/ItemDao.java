@@ -12,6 +12,7 @@ import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.dto.Item;
 
 public class ItemDao extends BaseDao<Item> {
+
 	/**
 	 * find all
 	 * 
@@ -306,26 +307,28 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public void insert(final Item item) {
+
 		String sql = "insert into item (id,title,currentbid,startdate,closedate,"
 				+ "estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,"
-				+ "winningbidderid,createddate,updateddate) values (seq_item.nextval,"
+				+ "winningbidderid,createddate,updateddate) values (?,"
 				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
 		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.preparedStatement.setString(1, item.getTitle());
-				this.preparedStatement.setDouble(2, item.getCurrentBid());
-				this.preparedStatement.setDate(3, new java.sql.Date(item
-						.getStartDate().getTime()));
+				this.preparedStatement.setLong(1, item.getId());
+				this.preparedStatement.setString(2, item.getTitle());
+				this.preparedStatement.setDouble(3, item.getCurrentBid());
 				this.preparedStatement.setDate(4, new java.sql.Date(item
+						.getStartDate().getTime()));
+				this.preparedStatement.setDate(5, new java.sql.Date(item
 						.getCloseDate().getTime()));
-				this.preparedStatement.setDouble(5, item.getEstimatedValue());
-				this.preparedStatement.setDouble(6, item.getIncrementPrice());
-				this.preparedStatement.setInt(7, item.getStatus());
-				this.preparedStatement.setString(8, item.getLotDetails());
-				this.preparedStatement.setString(9, item.getLegalTerms());
-				this.preparedStatement.setString(10, item.getShipping());
-				this.preparedStatement.setLong(11, item.getWinningBidderId());
+				this.preparedStatement.setDouble(6, item.getEstimatedValue());
+				this.preparedStatement.setDouble(7, item.getIncrementPrice());
+				this.preparedStatement.setInt(8, item.getStatus());
+				this.preparedStatement.setString(9, item.getLotDetails());
+				this.preparedStatement.setString(10, item.getLegalTerms());
+				this.preparedStatement.setString(11, item.getShipping());
+				this.preparedStatement.setLong(12, item.getWinningBidderId());
 			}
 
 		});

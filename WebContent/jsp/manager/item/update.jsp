@@ -4,10 +4,6 @@
 <%@ include file="/jsp/include/header_manager.txt" %>
 <%@ include file="/jsp/include/menu_manager.txt" %>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
-<%--
-<script type="text/javascript" src='<c:url value="/js//jquery/jwysiwyg/jquery.wysiwyg.js"/>'></script>
-<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jwysiwyg/jquery.wysiwyg.css"/>'/>
- --%>
 <script type="text/javascript" src='<c:url value="/js/jquery/CLEditor1_3_0/jquery.cleditor.min.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/CLEditor1_3_0/jquery.cleditor.css"/>'/>
 <style type="text/css">
@@ -52,11 +48,11 @@ clear: both;
 	<ul>
 		<li>商品訊息<input type="text" name="title" value="${item.title}"/></li>
 		<li>當前標價<input type="text" name="currentBid" value="${item.currentBid}"/></li>
-		<li>商品 開始日期<input type="text" name="startDate" value="${item.startDate}"/></li>
-		<li>商品結束日期<input type="text" name="closeDate" value="${item.closeDate}"/></li>
+		<li>商品 開始日期<input class="datepicker" type="text" name="startDate" value="${item.startDate}"/></li>
+		<li>商品結束日期<input class="datepicker" type="text" name="closeDate" value="${item.closeDate}"/></li>
 		<li>估計價值<input type="text" name="estimatedValue" value="${item.estimatedValue}"/></li>
 		<li>下次最小標價<input type="text" name="incrementPrice" value="${item.incrementPrice}"/></li>
-		<li>0.結標 1.拍賣中<input type="text" name="status" value="${item.incrementPrice}"/></li>
+		<li>0.結標 1.拍賣中<input type="text" name="status" value="${item.status}"/></li>
 		<li>LOTDETAILS訊息
 			<textarea class="cleditor" name="lotDetails" id="lotDetails">${item.lotDetails}</textarea>
 		</li>
@@ -72,7 +68,6 @@ clear: both;
 	</ul>
 	<input type="reset" name="reset" "/>
 	<input type="submit" name="submit" "/>
-<hr style="clear: both;"/>	
 </form>
 </div>
 <%@ include file="/jsp/include/footer_manager.txt" %>

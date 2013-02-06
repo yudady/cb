@@ -4,7 +4,11 @@
 <%@ include file="/jsp/include/header_login.txt" %>
 <%@ include file="/jsp/include/menu.txt" %>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/login.css"/>'/>
-<script type="text/javascript" src='<c:url value="/js/login.js"/>'></script>
+<script type="text/javascript">
+$("#loginPageBtn").click(function(){
+	$("#loginPage").submit();
+});
+</script>
 <div id="content">
 	<h1>${errorMsg}<h1>
 	<br/>

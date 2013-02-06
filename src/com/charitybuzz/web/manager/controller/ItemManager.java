@@ -1,15 +1,21 @@
 package com.charitybuzz.web.manager.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpSessionRequiredException;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +30,7 @@ import com.charitybuzz.web.manager.form.ItemForm;
 
 @Controller
 @RequestMapping(value = "/manager/item")
-@SessionAttributes(value ={ "operator" })
+@SessionAttributes(value = { "operator" })
 public class ItemManager {
 
 	/** logger. */
@@ -40,6 +46,13 @@ public class ItemManager {
 	 */
 	@Resource
 	private SubCategoryService subCategoryService;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat, true));
+	}
 
 	/**
 	 * 拿到列表
@@ -80,9 +93,20 @@ public class ItemManager {
 	public ModelAndView itemAdd(ItemForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
-		}
+			// TODO fix error msg
+			List<ObjectError> errors = result.getAllErrors();
+			for (ObjectError error : errors) {
 
-		itemService.insert(new Item());
+				log.error("result.hasErrors" + error);
+			}
+		}
+		log.debug("[LOG]ItemForm=" + form);
+		itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
+				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
+				form.getEstimatedValue(), form.getIncrementPrice(), form
+						.getStatus(), form.getLotDetails(), form
+						.getLegalTerms(), form.getShipping(), form
+						.getWinningBidderId()));
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
@@ -126,24 +150,28 @@ public class ItemManager {
 	@RequestMapping(value = "{itemId}/update", method = RequestMethod.POST)
 	public ModelAndView itemUpdate(ItemForm form, BindingResult result) {
 		if (result.hasErrors()) {
+			// TODO fix error msg
+			List<ObjectError> errors = result.getAllErrors();
+			for (ObjectError error : errors) {
+
+				log.error("result.hasErrors" + error);
+			}
 		}
-		log.debug("[LOG]ItemForm=" + form.getTitle());
-		log.debug("[LOG]ItemForm=" + form.getSubCategoryIds());
-//TODO
-		// itemService.update(new Item());
+		log.debug("[LOG]ItemForm=" + form);
+		itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
+				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
+				form.getEstimatedValue(), form.getIncrementPrice(), form
+						.getStatus(), form.getLotDetails(), form
+						.getLegalTerms(), form.getShipping(), form
+						.getWinningBidderId()));
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
 	}
 
 	@RequestMapping(value = "{itemId}/delete", method = RequestMethod.GET)
-	public ModelAndView itemDelete(@PathVariable Long itemId, ItemForm form,
-			BindingResult result) {
-		if (result.hasErrors()) {
-		}
-
+	public ModelAndView itemDelete(@PathVariable Long itemId) {
 		itemService.delete(itemId);
-
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
 	}

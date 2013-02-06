@@ -34,6 +34,7 @@ public class ManagerFilter implements Filter {
 			HttpServletResponse response = (HttpServletResponse) res;
 			response.sendRedirect(request.getContextPath()
 					+ "/manager/index.do");
+			return;
 		} else {
 			//have session 
 			chan.doFilter(req, res);

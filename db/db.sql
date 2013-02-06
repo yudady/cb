@@ -236,7 +236,7 @@ commit;
 drop sequence seq_operator;
 create sequence seq_operator;
 commit;
-
+--seq_operator.nextval
 
 DROP TABLE watching ;
 CREATE TABLE watching (

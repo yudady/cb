@@ -5,10 +5,10 @@
 <%@ include file="/jsp/include/menu_manager.txt" %>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
 <div id="content">
-add
 <form method="post">
-	<input type="hidden" name="id" value="${operator.id}"/><br/>
+	<input type="hidden" name="operatorId" value="${operator.id}"/><br/>
 	name<input type="text" name="name" value="${operator.name}"/><br/>
+	passWord<input type="text" name="passWord" value="${operator.passWord}"/><br/>
 	<input type="reset" name="reset" "/><br/>
 	<input type="submit" name="submit" "/><br/>
 </form>

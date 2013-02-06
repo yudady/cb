@@ -4,22 +4,23 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * 第一級目錄
  * 
  * @author Administrator
  * 
  */
 public class OperatorForm {
 
-	private Long id;
-	private String name;
+	private Long operatorId;
 
-	public Long getId() {
-		return id;
+	private String name;
+	private String passWord;
+
+	public Long getOperatorId() {
+		return operatorId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setOperatorId(Long operatorId) {
+		this.operatorId = operatorId;
 	}
 
 	public String getName() {
@@ -28,6 +29,14 @@ public class OperatorForm {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
 
 	@Override

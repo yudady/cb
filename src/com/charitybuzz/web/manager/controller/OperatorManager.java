@@ -70,7 +70,7 @@ public class OperatorManager {
 		if (result.hasErrors()) {
 		}
 
-		operatorService.insert(new Operator());
+		operatorService.insert(new Operator(form.getOperatorId(), form.getName(), form.getPassWord()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/operator/list.do");
@@ -88,8 +88,8 @@ public class OperatorManager {
 	public ModelAndView operatorUpdatePage(@PathVariable Long operatorId) {
 		ModelAndView mav = new ModelAndView("manager/operator/update");
 
-		Operator operator = operatorService.findById(operatorId);
-		mav.addObject("operator", operator);
+		Operator operatorObj = operatorService.findById(operatorId);
+		mav.addObject("operatorObj", operatorObj);
 		return mav;
 	}
 
@@ -105,8 +105,7 @@ public class OperatorManager {
 			OperatorForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
-
-		operatorService.update(new Operator());
+		operatorService.update(new Operator(form.getOperatorId(), form.getName(), form.getPassWord()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/operator/list.do");

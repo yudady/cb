@@ -8,12 +8,12 @@
 update
 
 <form method="post">
-	<input type="text" name="id" value="${operator.id}"/>
-	<input type="text" name="name" value="${operator.name}"/>
-	<input type="reset" name="reset" "/>
-	<input type="submit" name="submit" "/>
+	<input type="hidden" name="operatorId" value="${operatorObj.id}"/><br/>
+	name<input type="text" name="name" value="${operatorObj.name}"/><br/>
+	passWord<input type="text" name="passWord" value="${operatorObj.passWord}"/><br/>
+	<input type="reset" name="reset" "/><br/>
+	<input type="submit" name="submit" "/><br/>
 </form>
-
 
 </div>
 <%@ include file="/jsp/include/footer_manager.txt" %>

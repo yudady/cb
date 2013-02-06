@@ -101,8 +101,9 @@ public class OperatorDao extends BaseDao<Operator> {
 		this.insertUpdateDelete(sql, new InsertOrUpdate<Operator>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.preparedStatement.setLong(1, operator.getId());
+				this.preparedStatement.setString(1, operator.getName());
 				this.preparedStatement.setString(2, operator.getPassWord());
+				this.preparedStatement.setLong(3, operator.getId());
 			}
 
 		});

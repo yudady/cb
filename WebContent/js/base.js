@@ -1,6 +1,6 @@
 ;$(function() {
 	$.log('base js');
-	$("img").lazyload( { effect : "slideDown" } );
+	$("img.lazy").lazyload( { effect : "slideDown" } );
 	
 	
 	

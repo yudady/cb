@@ -50,7 +50,7 @@
 }
 
 #itemsClosing #tabs4 span {
-	font-size: 9px;
+	font-size: 8px;
 	text-align: center;
 }
 </style>
@@ -100,13 +100,13 @@
 	<hr />
 </div>
 <div id="itemsClosing">
-	<img alt="" src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
+	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
 	<div id="tabs4">
 	     <ul>
-	         <li><a href='<c:url value="/jsp/indexTabs/closeNext4Tab.jsp"/>'><span>Closing Next</span></a></li>
-	         <li><a href='<c:url value="/jsp/indexTabs/hotDeals4Tab.jsp"/>'><span>Deals</span></a></li>
-	         <li><a href='<c:url value="/jsp/indexTabs/popular4Tab.jsp"/>'><span>Most Popular</span></a></li>
-	         <li><a href='<c:url value="/jsp/indexTabs/recentAdd4Tab.jsp"/>'><span>Recently Added</span></a></li>
+	         <li><a href='<c:url value="/index/closingNext.do"/>'><span>Closing Next</span></a></li>
+	         <li><a href='<c:url value="/index/hotDeals.do"/>'><span>Deals</span></a></li>
+	         <li><a href='<c:url value="/index/popular.do"/>'><span>Most Popular</span></a></li>
+	         <li><a href='<c:url value="/index/recentAdd.do"/>'><span>Recently Added</span></a></li>
 	     </ul>
 	</div>
 </div>

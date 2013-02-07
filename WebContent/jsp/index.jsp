@@ -6,9 +6,7 @@
 <style type="text/css">
 #content {
 	width: 750px;
-	height: 500px;
 	float: right;
-	background-color: gray;
 	margin-bottom: 20px;
 }
 
@@ -18,21 +16,24 @@
 	background-color: pink;
 	margin-bottom: 20px;
 }
-#liveAuctions hr{
+
+#liveAuctions hr {
 	clear: both;
 }
-#liveAuctions .item{
-	height:120px;
+
+#liveAuctions .item {
+	height: 120px;
 	padding: 20px;
 }
 
 #liveAuctions .item img {
-	float:left;
+	float: left;
 	width: 159px;
 	height: 116px;
 	margin-right: 20px;
 }
-#liveAuctions .item dl a{
+
+#liveAuctions .item dl a {
 	margin-top: 20px;
 	margin-left: 20px;
 }
@@ -48,17 +49,10 @@
 	margin: 10px;
 }
 
-
 #itemsClosing #tabs4 span {
 	font-size: 9px;
 	text-align: center;
 }
-
-
-
-
-
-
 </style>
 <script type="text/javascript">
 ;$(function() {
@@ -73,14 +67,16 @@
 	});
 });
 </script>
-<div id="content">counter</div>
+<div id="content">
+<iframe src='<c:url value="/jsp/indexTop.jsp"/>' width="750" height="550" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" align="center"></iframe>
+</div>
 <div id="liveAuctions">
 	<h1>Current Auctions</h1>
 	
 	
 	<hr />
 	<div class="item">
-		<img alt="" src='<c:url value="/pic/upload/item/3331_feature.jpg"/>'>
+		<img class="lazy" data-original='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
 		<dl>
 			<dt>Boot Campaign Online Auction</dt>
 			<dd>Feb 4 to Feb 26</dd>
@@ -91,7 +87,7 @@
 	
 	<hr />
 	<div class="item">
-		<img alt="" src='<c:url value="/pic/upload/item/3331_feature.jpg"/>'>
+		<img class="lazy" data-original='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
 		<dl>
 			<dt>Boot Campaign Online Auction</dt>
 			<dd>Feb 4 to Feb 26</dd>

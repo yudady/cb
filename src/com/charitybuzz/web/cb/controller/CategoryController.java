@@ -23,9 +23,9 @@ import com.charitybuzz.service.PictureService;
 
 @Controller
 @RequestMapping("/categories")
-public class CategoriesController {
+public class CategoryController {
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(CategoriesController.class);
+	private Logger log = LoggerFactory.getLogger(CategoryController.class);
 
 	@Resource
 	private SidebarService sidebarService;

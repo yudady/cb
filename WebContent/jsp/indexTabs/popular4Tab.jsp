@@ -10,26 +10,9 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.lazyload.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/tabs.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
-<style type="text/css">
-.item img {
-	width: 85px;
-	height: 60px;
-	float: left;
-}
-.item div {
-	padding:20px;
-	float: left;
-}
-.item hr {
-	clear: both;
-}
-</style>
-<script type="text/javascript">
-;$(function() {
-	
-});
-</script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/tabs.css"/>'/>
 </head>
 <body>
 	<c:forEach	items="${items}" var="item" end="4">
@@ -38,7 +21,7 @@
 			<div>
 				<h3>${item.title}</h3>
 				<p>
-					<strong>Bid:</strong>${item.currentBid}&nbsp;(${{item.bidTimes})&nbsp;
+					<strong>Bid:</strong>${item.currentBid}&nbsp;(&nbsp;${item.bidTimes}&nbsp;)&nbsp;
 				</p>
 				<p>
 					<strong>Time Left:</strong>${item.closeDate}
@@ -47,5 +30,7 @@
 			<hr />
 		</div>
 	</c:forEach>
+	<span><a class="tabUrl" class="cssButton" href='<c:url value="/items/3/index.do"/>'>view all</a></span>
+	<span id="rss">RSS</span>
 </body>
 </html>

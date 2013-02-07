@@ -10,26 +10,9 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.lazyload.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/tabs.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
-<style type="text/css">
-.item img {
-	width: 85px;
-	height: 60px;
-	float: left;
-}
-.item div {
-	padding:20px;
-	float: left;
-}
-.item hr {
-	clear: both;
-}
-</style>
-<script type="text/javascript">
-;$(function() {
-	
-});
-</script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/tabs.css"/>'/>
 </head>
 <body>
 	<c:forEach	items="${items}" var="item" end="4">
@@ -50,5 +33,7 @@
 			<hr />
 		</div>
 	</c:forEach>
+	<span><a class="tabUrl" class="cssButton" href='<c:url value="/items/2/index.do"/>'>view all</a></span>
+	<span id="rss">RSS</span>
 </body>
 </html>

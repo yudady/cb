@@ -40,7 +40,6 @@
 
 #itemsClosing {
 	width: 370px;
-	height: 500px;
 	float: right;
 	background-color: gray;
 }
@@ -81,7 +80,7 @@
 			<dt>Boot Campaign Online Auction</dt>
 			<dd>Feb 4 to Feb 26</dd>
 			<dd>Time Left: 19 days, 17 hrs, 6 mins </dd>
-			<dd><a class="cssButton btnViewItems" href="/auctions/bootcampaign/catalog_items">view items</a></dd>
+			<dd><a class="cssButton">view items</a></dd>
 		</dl>
 	</div>
 	
@@ -92,7 +91,7 @@
 			<dt>Boot Campaign Online Auction</dt>
 			<dd>Feb 4 to Feb 26</dd>
 			<dd>Time Left: 19 days, 17 hrs, 6 mins </dd>
-			<dd><a class="cssButton btnViewItems" href="/auctions/bootcampaign/catalog_items">view items</a></dd>
+			<dd><a class="cssButton">view items</a></dd>
 		</dl>
 	</div>
 	

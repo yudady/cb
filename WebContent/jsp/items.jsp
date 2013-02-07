@@ -3,7 +3,39 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/jsp/include/header.txt" %>
 <%@ include file="/jsp/include/menu.txt" %>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/items.css"/>'/>
+<style type="text/css">
+
+.item {
+	width: 680px;
+	height: 200px;
+	float: right;
+	padding: 30px; 
+	margin-bottom : 20px;
+	background-color: #CCC;
+}
+.pic {
+	float:left;
+	width: 250px;
+	height: 200px;
+}
+.pic img{
+	width: 250px;
+	height: 200px;
+}
+.detail {
+	float:right;
+	width: 360px;
+	height: 160px;
+	padding:20px;
+}
+.detail a {
+	font-size: 18px;
+	color:red;
+}
+</style>
+<script type="text/javascript">
+
+</script>
 <c:forEach items="${items}" var="item">
 	<div class="item">
 		<span class="pic"> 

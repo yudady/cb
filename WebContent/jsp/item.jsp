@@ -4,10 +4,61 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/jsp/include/header.txt" %>
 <%@ include file="/jsp/include/menu.txt" %>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/item.css"/>'/>
 <script type='text/javascript' src='<c:url value="/dwr/engine.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/dwr/util.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/dwr/interface/watch.js"/>'></script>
+<style type="text/css">
+div {
+	background-color: white;
+}
+
+#item {
+	width: 330px;
+	float: left;
+	padding: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	background-color: #CCC;
+}
+
+#item .itemLargePic img {
+	width: 330px;
+	height: 250px;
+}
+
+#item .itemSmallPic img {
+	width: 75px;
+	height: 50px;
+	padding: 2px;
+}
+
+#bidding {
+	width: 300px;
+	float: left;
+	padding: 20px;
+	margin-left: 20px;
+	background-color: #CCC;
+}
+
+#biddingIitem {
+	margin-bottom: 10px;
+}
+
+#biddingProceedsBenefit {
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+#biddingWatchQuestion {
+	line-height: 50px;
+	font-size: 16px;
+	color: red;
+	height: 50px;
+	text-align: center;
+	background-color: #CCC;
+}
+
+</style>
 <script type="text/javascript">
 $(function() {
 	

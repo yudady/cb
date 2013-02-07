@@ -3,7 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/jsp/include/header_login.txt" %>
 <%@ include file="/jsp/include/menu.txt" %>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/login.css"/>'/>
+<style type="text/css">
+#content {
+	width: 750px;
+	height: 500px;
+	float: right;
+	background-color: gray;
+	margin-bottom: 20px;
+}
+
+</style>
 <script type="text/javascript">
 $("#loginPageBtn").click(function(){
 	$("#loginPage").submit();

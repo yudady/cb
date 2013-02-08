@@ -70,6 +70,17 @@
 <iframe src='<c:url value="/jsp/indexTop.jsp"/>' width="750" height="550" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" align="center"></iframe>
 </div>
 <div id="liveAuctions">
+
+
+
+	<c:url value="/index.do" var="displayURL" />
+	<jsp:include page="/jsp/include/pager.jsp">
+		<jsp:param value="100" name="totalRecord" />
+		<jsp:param value="20" name="pageSize" />
+		<jsp:param value="${displayURL }" name="url" />
+	</jsp:include>
+	
+
 	<h1>Current Auctions</h1>
 	
 	
@@ -110,6 +121,7 @@
 	</div>
 </div>
 <%@ include file="/jsp/include/footer.txt" %>
+
 	
 
 

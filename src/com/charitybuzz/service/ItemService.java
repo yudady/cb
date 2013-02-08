@@ -3,6 +3,7 @@ package com.charitybuzz.service;
 import java.util.Date;
 import java.util.List;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.DualDao;
 import com.charitybuzz.dao.ItemDao;
 import com.charitybuzz.dto.Item;
@@ -122,6 +123,22 @@ public class ItemService {
 	 */
 	public List<Item> findRecentlyAdded(int count) {
 		return itemDao.findRecentlyAdded(0,count);
+	}
+
+	public Pager<Item> findPagerByClosingNext() {
+		return itemDao.findAllByPager();
+	}
+
+	public Pager<Item> findPagerByHotDeals() {
+		return itemDao.findAllByPager();
+	}
+
+	public Pager<Item> findPagerByPopular() {
+		return itemDao.findAllByPager();
+	}
+
+	public Pager<Item> findPagerByRecentAdd() {
+		return itemDao.findAllByPager();
 	}
 
 

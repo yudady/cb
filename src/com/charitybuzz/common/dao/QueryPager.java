@@ -10,15 +10,14 @@ import com.charitybuzz.common.util.OracleUtils;
 
 public abstract class QueryPager<T> extends QueryList<T> {
 
-	protected Pager<T> pager;
-	protected boolean queryCount;
+	protected Pager<T> pager = new Pager<T>();
+	protected boolean queryCount ;
 
 	public QueryPager() {
-		this.pager = new Pager<T>();
+		this.queryCount = true;
 	}
 
 	public QueryPager(boolean queryCount) {
-		this.pager = new Pager<T>();
 		this.queryCount = queryCount;
 	}
 
@@ -37,11 +36,21 @@ public abstract class QueryPager<T> extends QueryList<T> {
 			}
 		}
 		// 查詢資料
+		
+		
 		this.setSql(OracleUtils.getNamedPageSQL(sql, pager.getPageIndex(),
 				pager.getPageIndex() + pager.getPageSize()));
+		System.out.println(pager.getPageIndex());
+		System.out.println(pager.getPageSize());
+		System.out.println(this.getSql());
 		rs = this.getPreparedStatement().executeQuery();
 		datas = this.doResultSet();
 		this.pager.setDatas(datas);
+		
+		
+		System.out.println("[LOG]"+datas.size());
+		
+		
 		rs.close();
 	}
 

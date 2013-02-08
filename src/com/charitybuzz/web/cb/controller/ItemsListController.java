@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
@@ -112,32 +113,35 @@ public class ItemsListController {
 
 	@RequestMapping(value = "/{tabIndex}/index", method = RequestMethod.GET)
 	public ModelAndView index(@PathVariable int tabIndex) {
-		ModelAndView mav = new ModelAndView("items");
+		
+		log.debug("[LOG][tabIndex]");
+		
+		ModelAndView mav = new ModelAndView("itemsPager");
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
 		/**
 		 * 全部商品
 		 */
-		List<Item> items = null;
+		Pager<Item> pager = null;
 		// TODO pager
 		switch (tabIndex) {
 		case 1:
-			items = itemService.findAll();
+			pager = itemService.findPagerByClosingNext();
 			break;
 		case 2:
-			items = itemService.findAll();
+			pager = itemService.findPagerByHotDeals();
 			break;
 		case 3:
-			items = itemService.findAll();
+			pager = itemService.findPagerByPopular();
 			break;
 		case 4:
-			items = itemService.findAll();
+			pager = itemService.findPagerByRecentAdd();
 			break;
 		default:
 			break;
 		}
-
-		mav.addObject("items", items);
+		List<Item> items = pager.getDatas();
+		mav.addObject("pager", pager);
 		for (Item item : items) {
 
 			Long itemId = item.getId();

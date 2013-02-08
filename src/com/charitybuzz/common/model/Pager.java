@@ -25,6 +25,7 @@ public class Pager<E> {
 	
 	public Pager() {
 		this.setPageSize(PagerContext.getPageSize());
+		this.setPageIndex(PagerContext.getPageOffset());
 	}
 	
 	

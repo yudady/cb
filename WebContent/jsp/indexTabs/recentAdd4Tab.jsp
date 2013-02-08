@@ -15,7 +15,7 @@
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/tabs.css"/>'/>
 </head>
 <body>
-	<c:forEach	items="${items}" var="item" end="4">
+	<c:forEach	items="${items}" var="item">
 		<div class="item">
 			<img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
 			<div>

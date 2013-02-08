@@ -51,6 +51,7 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 	}
+
 	public Pager<Item> findAllByPager() {
 		String sql = " select * from item ";
 		return this.queryPager(sql, new QueryPager<Item>() {
@@ -81,8 +82,9 @@ public class ItemDao extends BaseDao<Item> {
 			}
 
 		});
-		 
+
 	}
+
 	/**
 	 * subCategoryId find list
 	 * 
@@ -410,18 +412,12 @@ public class ItemDao extends BaseDao<Item> {
 
 	}
 
-	
-	
-	
-	
-	
-	
-	//TODO
-	
-	
+	// TODO
+
 	public List<Item> findClosingNext(int firstRowNumber, int lastRowNumber) {
 		String sql = "select * from item";
-		return this.queryList(sql, new QueryList<Item>(firstRowNumber,lastRowNumber) {
+		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
+				lastRowNumber) {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 			}
@@ -449,39 +445,109 @@ public class ItemDao extends BaseDao<Item> {
 			}
 
 		});
-		 
+
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public Pager<Item> findDeals() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Item> findDeals(int firstRowNumber, int lastRowNumber) {
+		String sql = "select * from item";
+		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
+				lastRowNumber) {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+
 	}
 
-	public Pager<Item> findMostPopular() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Item> findMostPopular(int firstRowNumber, int lastRowNumber) {
+		String sql = "select * from item";
+		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
+				lastRowNumber) {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+
 	}
 
-	public Pager<Item> findRecentlyAdded() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Item> findRecentlyAdded(int firstRowNumber, int lastRowNumber) {
+		String sql = "select * from item";
+		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
+				lastRowNumber) {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+
 	}
-
-
 
 }

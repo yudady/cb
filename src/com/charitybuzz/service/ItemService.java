@@ -3,7 +3,6 @@ package com.charitybuzz.service;
 import java.util.Date;
 import java.util.List;
 
-import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.DualDao;
 import com.charitybuzz.dao.ItemDao;
 import com.charitybuzz.dto.Item;
@@ -91,8 +90,8 @@ public class ItemService {
 	 * @param pageInfo
 	 * @return
 	 */
-	public List<Item> findClosingNext() {
-		return itemDao.findClosingNext(0,2);
+	public List<Item> findClosingNext(int count) {
+		return itemDao.findClosingNext(0,count);
 	}
 
 	/**
@@ -101,8 +100,8 @@ public class ItemService {
 	 * @param pageInfo
 	 * @return
 	 */
-	public Pager<Item> findDeals() {
-		return itemDao.findDeals();
+	public List<Item> findDeals(int count) {
+		return itemDao.findDeals(0,count);
 	}
 
 	/**
@@ -111,8 +110,8 @@ public class ItemService {
 	 * @param pageInfo
 	 * @return
 	 */
-	public Pager<Item> findMostPopular() {
-		return itemDao.findMostPopular();
+	public List<Item> findMostPopular(int count) {
+		return itemDao.findMostPopular(0,count);
 	}
 
 	/**
@@ -121,8 +120,8 @@ public class ItemService {
 	 * @param pageInfo
 	 * @return
 	 */
-	public Pager<Item> findRecentlyAdded() {
-		return itemDao.findRecentlyAdded();
+	public List<Item> findRecentlyAdded(int count) {
+		return itemDao.findRecentlyAdded(0,count);
 	}
 
 

@@ -57,11 +57,11 @@ public class ItemsListController {
 	public ModelAndView closingNext(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/closeNext4Tab");
 		
-		Pager<Item> pager = itemService.findClosingNext();
-		mav.addObject("items", pager.getDatas());
+		List<Item> items = itemService.findClosingNext();
+		mav.addObject("items", items);
 		
 		
-		System.out.println("[LOG]" + pager.getTotalRecord());
+		System.out.println("[LOG]" + items);
 		return mav;
 		
 	}

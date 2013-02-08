@@ -51,7 +51,38 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 	}
+	public Pager<Item> findAllByPager() {
+		String sql = " select * from item ";
+		return this.queryPager(sql, new QueryPager<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
 
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+		 
+	}
 	/**
 	 * subCategoryId find list
 	 * 
@@ -385,12 +416,12 @@ public class ItemDao extends BaseDao<Item> {
 	
 	
 	
+	//TODO
 	
 	
-	
-	public Pager<Item> findClosingNext() {
-		String sql = " select * from item ";
-		return this.queryPager(sql, new QueryPager<Item>(false) {
+	public List<Item> findClosingNext(int firstRowNumber, int lastRowNumber) {
+		String sql = "select * from item";
+		return this.queryList(sql, new QueryList<Item>(firstRowNumber,lastRowNumber) {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 			}

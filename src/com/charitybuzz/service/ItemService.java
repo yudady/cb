@@ -91,8 +91,8 @@ public class ItemService {
 	 * @param pageInfo
 	 * @return
 	 */
-	public Pager<Item> findClosingNext() {
-		return itemDao.findClosingNext();
+	public List<Item> findClosingNext() {
+		return itemDao.findClosingNext(0,2);
 	}
 
 	/**

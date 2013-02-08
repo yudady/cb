@@ -9,6 +9,7 @@ import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.InsertOrUpdate;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
+import com.charitybuzz.common.model.PageInfo;
 import com.charitybuzz.dto.Item;
 
 public class ItemDao extends BaseDao<Item> {
@@ -375,6 +376,26 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 
+	}
+
+	public List<Item> findClosingNext(PageInfo pageInfo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Item> findDeals(PageInfo pageInfo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Item> findMostPopular(PageInfo pageInfo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Item> findRecentlyAdded(PageInfo pageInfo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

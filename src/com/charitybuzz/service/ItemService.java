@@ -3,6 +3,7 @@ package com.charitybuzz.service;
 import java.util.Date;
 import java.util.List;
 
+import com.charitybuzz.common.model.PageInfo;
 import com.charitybuzz.dao.DualDao;
 import com.charitybuzz.dao.ItemDao;
 import com.charitybuzz.dto.Item;
@@ -82,6 +83,46 @@ public class ItemService {
 
 	public void delete(Long itemId) {
 		itemDao.delete(itemId);
+	}
+
+	/**
+	 * 最接近結標日的商品列表
+	 * 
+	 * @param pageInfo
+	 * @return
+	 */
+	public List<Item> findClosingNext(PageInfo pageInfo) {
+		return itemDao.findClosingNext(pageInfo);
+	}
+
+	/**
+	 * 差價最大的商品列表
+	 * 
+	 * @param pageInfo
+	 * @return
+	 */
+	public List<Item> findDeals(PageInfo pageInfo) {
+		return itemDao.findDeals(pageInfo);
+	}
+
+	/**
+	 * 最受歡迎的商品列表
+	 * 
+	 * @param pageInfo
+	 * @return
+	 */
+	public List<Item> findMostPopular(PageInfo pageInfo) {
+		return itemDao.findMostPopular(pageInfo);
+	}
+
+	/**
+	 * 新進商品的商品列表
+	 * 
+	 * @param pageInfo
+	 * @return
+	 */
+	public List<Item> findRecentlyAdded(PageInfo pageInfo) {
+		return itemDao.findRecentlyAdded(pageInfo);
 	}
 
 }

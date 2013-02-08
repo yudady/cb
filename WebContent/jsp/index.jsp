@@ -102,10 +102,10 @@
 	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
 	<div id="tabs4">
 	     <ul>
-	         <li><a href='<c:url value="/index/closingNext.do"/>'><span>Closing Next</span></a></li>
-	         <li><a href='<c:url value="/index/hotDeals.do"/>'><span>Deals</span></a></li>
-	         <li><a href='<c:url value="/index/popular.do"/>'><span>Most Popular</span></a></li>
-	         <li><a href='<c:url value="/index/recentAdd.do"/>'><span>Recently Added</span></a></li>
+	         <li><a href='<c:url value="/items/closingNext.do"/>'><span>Closing Next</span></a></li>
+	         <li><a href='<c:url value="/items/hotDeals.do"/>'><span>Deals</span></a></li>
+	         <li><a href='<c:url value="/items/popular.do"/>'><span>Most Popular</span></a></li>
+	         <li><a href='<c:url value="/items/recentAdd.do"/>'><span>Recently Added</span></a></li>
 	     </ul>
 	</div>
 </div>

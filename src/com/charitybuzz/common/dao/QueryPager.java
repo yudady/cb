@@ -42,6 +42,7 @@ public abstract class QueryPager<T> extends QueryList<T> {
 				pager.getPageIndex() + pager.getPageSize()));
 		System.out.println(pager.getPageIndex());
 		System.out.println(pager.getPageSize());
+		
 		System.out.println(this.getSql());
 		rs = this.getPreparedStatement().executeQuery();
 		datas = this.doResultSet();

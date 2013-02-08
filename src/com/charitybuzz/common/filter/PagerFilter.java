@@ -31,13 +31,11 @@ public class PagerFilter implements Filter {
 
 			try {
 				pageOffset = Integer.parseInt(req.getParameter("pager.offset"));
-				System.out.println(pageOffset);
 			} catch (NumberFormatException e) {
 				pageOffset = 0;
 			}
 			try {
 				pageSize = Integer.parseInt(req.getParameter("pageSize"));
-				System.out.println(pageSize);
 			} catch (NumberFormatException e) {
 				pageSize = 10;
 			}

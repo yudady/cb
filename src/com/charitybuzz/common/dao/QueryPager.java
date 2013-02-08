@@ -24,9 +24,9 @@ public abstract class QueryPager<T> extends QueryList<T> {
 	public Pager<T> getPager() {
 		return pager;
 	}
-
 	@Override
-	void resultSet(Connection conn, String sql) throws SQLException {
+	public void init(Connection conn, String sql) throws SQLException {
+		this.setConnection(conn);
 		if (queryCount) {// 查詢筆數
 			String countSQL = OracleUtils.getTotalRecord(sql);
 			Statement st = conn.createStatement();
@@ -37,23 +37,19 @@ public abstract class QueryPager<T> extends QueryList<T> {
 		}
 		// 查詢資料
 		
+		String sql2 = OracleUtils.getNamedPageSQL(sql, pager.getPageIndex(),
+				pager.getPageIndex() + pager.getPageSize());
 		
-		this.setSql(OracleUtils.getNamedPageSQL(sql, pager.getPageIndex(),
-				pager.getPageIndex() + pager.getPageSize()));
-		System.out.println(pager.getPageIndex());
-		System.out.println(pager.getPageSize());
-		
-		
-		System.out.println(this.getSql());
-		rs = this.getPreparedStatement().executeQuery();
+		Statement st = conn.createStatement();
+		rs = st.executeQuery(sql2);
 		datas = this.doResultSet();
 		this.pager.setDatas(datas);
 		
-		
-		System.out.println("[LOG]"+datas.size());
-		
-		
-		rs.close();
+	}
+	
+	@Override
+	void resultSet(Connection conn, String sql) throws SQLException {
+
 	}
 
 	public abstract List<T> doResultSet() throws SQLException;

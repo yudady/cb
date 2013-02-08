@@ -34,11 +34,10 @@
 }
 </style>
 <div class="item">
-	<c:url value="/items/4/index.do" var="displayURL" />
 	<jsp:include page="/jsp/include/pager.jsp">
 		<jsp:param value="${pager.totalRecord}" name="totalRecord" />
 		<jsp:param value="${pager.pageSize}" name="pageSize" />
-		<jsp:param value="${displayURL }" name="url" />
+		<jsp:param value="" name="url" />
 	</jsp:include>
 </div>
 <c:forEach items="${pager.datas}" var="item">

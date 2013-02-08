@@ -115,8 +115,10 @@ public class ItemsListController {
 	public ModelAndView index(@PathVariable int tabIndex) {
 		
 		log.debug("[LOG][tabIndex]");
-		
 		ModelAndView mav = new ModelAndView("itemsPager");
+		mav.addObject("tabIndex", tabIndex);
+		
+		
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
 		/**
@@ -142,6 +144,7 @@ public class ItemsListController {
 		}
 		List<Item> items = pager.getDatas();
 		mav.addObject("pager", pager);
+
 		for (Item item : items) {
 
 			Long itemId = item.getId();

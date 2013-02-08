@@ -2,6 +2,8 @@ package com.charitybuzz.common.model;
 
 import java.util.List;
 
+import com.charitybuzz.common.context.PagerContext;
+
 public class Pager<E> {
 	/**
 	 * 第幾頁
@@ -24,6 +26,13 @@ public class Pager<E> {
 	 */
 	private List<E> datas;
 	
+	
+	public Pager() {
+		this.setPageSize(PagerContext.getPageSize());
+	}
+	
+	
+	
 	public int getPageIndex() {
 		return pageIndex;
 	}
@@ -33,7 +42,7 @@ public class Pager<E> {
 	public int getPageSize() {
 		return pageSize;
 	}
-	public void setPageSize(int pageSize) {
+	void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 	public int getTotalRecord() {

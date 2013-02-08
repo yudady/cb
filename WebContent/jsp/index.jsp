@@ -73,10 +73,11 @@
 
 
 
+
 	<c:url value="/index.do" var="displayURL" />
 	<jsp:include page="/jsp/include/pager.jsp">
-		<jsp:param value="100" name="totalRecord" />
-		<jsp:param value="20" name="pageSize" />
+		<jsp:param value="${pager.totalRecord}" name="totalRecord" />
+		<jsp:param value="${pager.pageSize}" name="pageSize" />
 		<jsp:param value="${displayURL }" name="url" />
 	</jsp:include>
 	

@@ -13,14 +13,14 @@
 <div id="pager">
 	<pg:pager url="${param.url}" maxPageItems="${param.pageSize}" items="${param.totalRecord}" export="curPage=pageNumber">
 		<pg:last>
-		共${items}記錄,共${pageNumber}頁,
+		共${param.totalRecord}記錄,共${pageNumber}頁,
 		</pg:last>
 		當前第${curPage}頁
 		<pg:first>
-			<a href="${pageUrl}">首頁 </a>
+			<a href="${pageUrl}&pageSize=${param.pageSize}">首頁 </a>
 		</pg:first>
 		<pg:prev>
-			<a href="${pageUrl}">上一頁$</a>
+			<a href="${pageUrl}&pageSize=${param.pageSize}">上一頁</a>
 		</pg:prev>
 		<pg:pages>
 			<c:choose>
@@ -28,15 +28,15 @@
 					[${pageNumber}]
 				</c:when>
 				<c:otherwise>
-					<a href="${pageUrl}">${pageNumber}</a>
+					<a href="${pageUrl}&pageSize=${param.pageSize}">${pageNumber}</a>
 				</c:otherwise>
 			</c:choose>
 		</pg:pages>
 		<pg:next>
-			<a href="${pageUrl}">下一頁</a>
+			<a href="${pageUrl}&pageSize=${param.pageSize}">下一頁</a>
 		</pg:next>
 		<pg:last>
-			<a href="${pageUrl}">尾頁</a>
+			<a href="${pageUrl}&pageSize=${param.pageSize}">尾頁</a>
 		</pg:last>
 	</pg:pager>
 </div>

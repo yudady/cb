@@ -14,12 +14,12 @@ import javax.servlet.ServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.charitybuzz.common.dao.ConnectionUtil;
+import com.charitybuzz.common.context.ConnectionContext;
 
-public class SystemContextFilter implements Filter {
+public class ConnectionContextFilter implements Filter {
 
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(SystemContextFilter.class);
+	private Logger log = LoggerFactory.getLogger(ConnectionContextFilter.class);
 	
 	@Override
 	public void destroy() {
@@ -36,9 +36,9 @@ public class SystemContextFilter implements Filter {
 			chan.doFilter(req, res);
 			try {
 				//if (insert update delete)
-				if (ConnectionUtil.isConnectionInThreadLocal()) {
+				if (ConnectionContext.isConnectionInThreadLocal()) {
 					//commit;
-					ConnectionUtil.commitWriteConnection();
+					ConnectionContext.commitWriteConnection();
 				}
 			} catch (SQLException e) {
 				log.error(" ConnectionUtil.commitWriteConnection error",e);
@@ -49,11 +49,11 @@ public class SystemContextFilter implements Filter {
 			//關閉
 			//移除
 			
-			if (ConnectionUtil.isConnectionInThreadLocal()) {
+			if (ConnectionContext.isConnectionInThreadLocal()) {
 				try {
-					Connection conn = ConnectionUtil.getWriteConnection();
+					Connection conn = ConnectionContext.getWriteConnection();
 					conn.close();
-					ConnectionUtil.removeWriteConnection();
+					ConnectionContext.removeWriteConnection();
 				} catch (SQLException e) {
 					log.error(" SystemContextFilter error",e);
 				}

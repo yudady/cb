@@ -1,21 +1,23 @@
-package com.charitybuzz.common.dao;
+package com.charitybuzz.common.context;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-public class ConnectionUtil {
+import com.charitybuzz.common.dao.ConnectiionWrap;
+
+public class ConnectionContext {
 
 	private static ThreadLocal<ConnectiionWrap> writeConnectiionWrap = new ThreadLocal<ConnectiionWrap>();
 
 	private static DataSource dataSource;
 
-	private ConnectionUtil() {
+	private ConnectionContext() {
 	}
 
 	public void setDataSource(DataSource dataSource) {
-		ConnectionUtil.dataSource = dataSource;
+		ConnectionContext.dataSource = dataSource;
 	}
 
 	public synchronized static Connection getWriteConnection()

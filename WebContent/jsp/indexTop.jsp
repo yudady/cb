@@ -23,8 +23,6 @@ $(document).ready (function(){
 </head>
 <body>
 <div id="wrapper">
-<h1>Jquery Timer Photogallery Plugin v1 BETA</h1>
-<p class="photo_credits">All photos by: <span>Chloe Rice</span> ,<a href="http://ohchloe.com/section/17235.html">OhChloe.com</a></p>
 <!--start plugin-->
 <div id="slide1" class="slideshow">
 	<div class="img_cont">

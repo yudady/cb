@@ -78,7 +78,7 @@ public abstract class BaseDao<T> {
 	}
 	
 	
-	protected void insertUpdateDelete(String sql, InsertOrUpdate<T> insertOrUpdate) {
+	protected void insertUpdateDelete(String sql, InsertUpdateDelete<T> insertOrUpdate) {
 		Connection conn = null;
 		try {
 			conn = ConnectionContext.getWriteConnection();

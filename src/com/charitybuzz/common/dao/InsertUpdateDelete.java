@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 
-public abstract class InsertOrUpdate<T> extends JdbcObject<T> {
+public abstract class InsertUpdateDelete<T> extends JdbcObject<T> {
 	@Override
 	public void init(Connection conn, String sql) throws SQLException {
 		this.setConnection(conn);

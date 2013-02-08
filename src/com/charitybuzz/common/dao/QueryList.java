@@ -11,9 +11,9 @@ public abstract class QueryList<T> extends JdbcObject<T> {
 
 	protected ResultSet rs;
 	protected List<T> datas;
-	boolean limit;
-	int firstRowNumber;
-	int lastRowNumber;
+	protected boolean limit;
+	protected int firstRowNumber;
+	protected int lastRowNumber;
 
 	public QueryList() {
 		limit = false;

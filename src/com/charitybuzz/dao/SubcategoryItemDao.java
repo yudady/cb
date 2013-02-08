@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.charitybuzz.common.dao.BaseDao;
-import com.charitybuzz.common.dao.InsertOrUpdate;
+import com.charitybuzz.common.dao.InsertUpdateDelete;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.dto.SubcategoryItem;
 
@@ -41,7 +41,7 @@ public class SubcategoryItemDao extends BaseDao<SubcategoryItem> {
 
 	public void insert(final Long itemId,final Long subCategoryId) {
 		String sql = "insert into subcategory_item (id,itemId,subCategoryId) values (seq_subcategory_item.nextval,?,?)";
-		this.insertUpdateDelete(sql, new InsertOrUpdate<SubcategoryItem>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<SubcategoryItem>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, itemId);
@@ -55,7 +55,7 @@ public class SubcategoryItemDao extends BaseDao<SubcategoryItem> {
 	public void deleteByItemId(final Long itemId) {
 		String sql = "delete from subcategory_item where itemId = ?";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<SubcategoryItem>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<SubcategoryItem>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, itemId);

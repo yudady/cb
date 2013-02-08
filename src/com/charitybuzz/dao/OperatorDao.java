@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.charitybuzz.common.dao.BaseDao;
-import com.charitybuzz.common.dao.InsertOrUpdate;
+import com.charitybuzz.common.dao.InsertUpdateDelete;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.dto.Operator;
@@ -84,7 +84,7 @@ public class OperatorDao extends BaseDao<Operator> {
 	public void insert(final Operator operator) {
 		String sql = "insert into operator (id,name,passWord) values (seq_operator.nextval,?,?)";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Operator>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Operator>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, operator.getName());
@@ -98,7 +98,7 @@ public class OperatorDao extends BaseDao<Operator> {
 	public void update(final Operator operator) {
 		String sql = "update operator set name=? ,passWord=? where id = ?";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Operator>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Operator>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, operator.getName());
@@ -113,7 +113,7 @@ public class OperatorDao extends BaseDao<Operator> {
 	public void delete(final Long operatorId) {
 		String sql = "delete from operator where id = ?";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Operator>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Operator>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, operatorId);

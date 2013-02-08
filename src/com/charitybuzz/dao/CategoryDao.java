@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.charitybuzz.common.dao.BaseDao;
-import com.charitybuzz.common.dao.InsertOrUpdate;
+import com.charitybuzz.common.dao.InsertUpdateDelete;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.dto.Category;
@@ -61,7 +61,7 @@ public class CategoryDao extends BaseDao<Category> {
 	public void insert(final Category category) {
 		String sql = "insert into category (id,name) values (seq_category.nextval,?)";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Category>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Category>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, category.getName());
@@ -74,7 +74,7 @@ public class CategoryDao extends BaseDao<Category> {
 	public void update(final Category category) {
 		String sql = "update category set name=? where id = ?";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Category>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Category>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, category.getName());
@@ -88,7 +88,7 @@ public class CategoryDao extends BaseDao<Category> {
 	public void delete(final Long categoryId) {
 		String sql = "delete from category where id = ?";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Category>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Category>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, categoryId);

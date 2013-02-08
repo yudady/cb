@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.charitybuzz.common.dao.BaseDao;
-import com.charitybuzz.common.dao.InsertOrUpdate;
+import com.charitybuzz.common.dao.InsertUpdateDelete;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.dto.Bidlog;
 
@@ -41,7 +41,7 @@ public class BidlogDao extends BaseDao<Bidlog> {
 	public void insert(final Bidlog bidlog) {
 		
 		String sql = "insert into bidlog (id,bidderId,itemId,price,bidTime) values (seq_bidlog.nextval,?,?,?,sysdate)";
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Bidlog>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Bidlog>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, bidlog.getBidderId());

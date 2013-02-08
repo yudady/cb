@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.charitybuzz.common.dao.BaseDao;
-import com.charitybuzz.common.dao.InsertOrUpdate;
+import com.charitybuzz.common.dao.InsertUpdateDelete;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
 import com.charitybuzz.common.dao.QueryPager;
@@ -331,7 +331,7 @@ public class ItemDao extends BaseDao<Item> {
 	public void updateClosingBidding(final Long id) {
 		String sql = "update item  set status='0' where status='1' and id=?";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -347,7 +347,7 @@ public class ItemDao extends BaseDao<Item> {
 				+ "estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,"
 				+ "winningbidderid,createddate,updateddate) values (?,"
 				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, item.getId());
@@ -376,7 +376,7 @@ public class ItemDao extends BaseDao<Item> {
 				+ " status = ? , lotDetails = ? , legalTerms = ? , "
 				+ " shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ?";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, item.getTitle());
@@ -402,7 +402,7 @@ public class ItemDao extends BaseDao<Item> {
 	public void delete(final Long itemId) {
 		String sql = "delete from item where id = ?";
 
-		this.insertUpdateDelete(sql, new InsertOrUpdate<Item>() {
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, itemId);

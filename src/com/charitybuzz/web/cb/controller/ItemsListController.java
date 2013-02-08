@@ -59,6 +59,9 @@ public class ItemsListController {
 		
 		Pager<Item> pager = itemService.findClosingNext();
 		mav.addObject("items", pager.getDatas());
+		
+		
+		System.out.println("[LOG]" + pager.getTotalRecord());
 		return mav;
 		
 	}

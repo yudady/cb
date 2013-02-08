@@ -18,10 +18,6 @@ public class Pager<E> {
 	 */
 	private int totalRecord;
 	/**
-	 * 總共多少頁
-	 */
-	private int totalPage;
-	/**
 	 * 放置具體數據的列表
 	 */
 	private List<E> datas;
@@ -50,12 +46,6 @@ public class Pager<E> {
 	}
 	public void setTotalRecord(int totalRecord) {
 		this.totalRecord = totalRecord;
-	}
-	public int getTotalPage() {
-		return totalPage;
-	}
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
 	}
 	public List<E> getDatas() {
 		return datas;

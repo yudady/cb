@@ -390,7 +390,7 @@ public class ItemDao extends BaseDao<Item> {
 	
 	public Pager<Item> findClosingNext() {
 		String sql = " select * from item ";
-		return this.queryPager(sql, new QueryPager<Item>() {
+		return this.queryPager(sql, new QueryPager<Item>(false) {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 			}

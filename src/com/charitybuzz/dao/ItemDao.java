@@ -51,7 +51,7 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 	}
-
+//TODO
 	public Pager<Item> findAllByPager() {
 		String sql = " select * from item ";
 		return this.queryPager(sql, new QueryPager<Item>() {

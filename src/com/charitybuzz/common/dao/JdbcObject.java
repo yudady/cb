@@ -10,6 +10,11 @@ public abstract class JdbcObject<T> {
 	protected PreparedStatement preparedStatement;
 	private String sql;
 
+	
+	public JdbcObject() {
+		super();
+	}
+
 	public Connection getConnection() {
 		return connection;
 	}
@@ -34,17 +39,8 @@ public abstract class JdbcObject<T> {
 		this.sql = sql;
 	}
 
-	public void init(Connection conn, String sql) throws SQLException {
-		this.setConnection(conn);
-		this.setSql(sql);
-		this.setPreparedStatement(conn.prepareStatement(sql));
-		this.doPreparedStatement();
-		this.resultSet(conn, sql);
-		preparedStatement.close();
-	}
+	public abstract void init(Connection conn, String sql) throws SQLException ;
 	
-	void resultSet(Connection conn, String sql) throws SQLException {
-	}
 	public abstract void doPreparedStatement() throws SQLException;
 
 }

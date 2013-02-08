@@ -5,9 +5,13 @@ import java.sql.SQLException;
 
 
 public abstract class InsertOrUpdate<T> extends JdbcObject<T> {
-	
 	@Override
-	void resultSet(Connection conn, String sql) throws SQLException {
+	public void init(Connection conn, String sql) throws SQLException {
+		this.setConnection(conn);
+		this.setSql(sql);
+		this.setPreparedStatement(conn.prepareStatement(sql));
+		this.doPreparedStatement();
 		this.getPreparedStatement().execute();
+		preparedStatement.close();
 	}
 }

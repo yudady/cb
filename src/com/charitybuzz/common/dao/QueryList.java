@@ -28,9 +28,12 @@ public abstract class QueryList<T> extends JdbcObject<T> {
 	public List<T> getDatas() {
 		return datas;
 	}
-
 	@Override
-	void resultSet(Connection conn, String sql) throws SQLException {
+	public void init(Connection conn, String sql) throws SQLException {
+		this.setConnection(conn);
+		this.setSql(sql);
+		this.setPreparedStatement(conn.prepareStatement(sql));
+		this.doPreparedStatement();
 		if (limit) {
 			this.setSql(OracleUtils.getNamedPageSQL(sql, firstRowNumber,
 					lastRowNumber));
@@ -41,6 +44,7 @@ public abstract class QueryList<T> extends JdbcObject<T> {
 
 		datas = this.doResultSet();
 		rs.close();
+		preparedStatement.close();
 	}
 
 	public abstract List<T> doResultSet() throws SQLException;

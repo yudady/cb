@@ -70,45 +70,36 @@
 <iframe src='<c:url value="/jsp/indexTop.jsp"/>' width="750" height="550" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" align="center"></iframe>
 </div>
 <div id="liveAuctions">
+	<h1>Current Auctions</h1>
+	<hr />
+	<div class="item">
+		<img class="lazy" src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' />
+		<dl>
+			<dt>Boot Campaign Online Auction</dt>
+			<dd>Feb 4 to Feb 26</dd>
+			<dd>Time Left: 19 days, 17 hrs, 6 mins </dd>
+			<dd><a class="cssButton">view items</a></dd>
+		</dl>
+	</div>
+	
+	<hr />
+	<div class="item">
+		<img class="lazy" data-original='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
+		<dl>
+			<dt>Boot Campaign Online Auction</dt>
+			<dd>Feb 4 to Feb 26</dd>
+			<dd>Time Left: 19 days, 17 hrs, 6 mins </dd>
+			<dd><a class="cssButton">view items</a></dd>
+		</dl>
+	</div>
+	
 
-
-
-
-	<c:url value="/index.do" var="displayURL" />
+	<hr />
 	<jsp:include page="/jsp/include/pager.jsp">
 		<jsp:param value="${pager.totalRecord}" name="totalRecord" />
 		<jsp:param value="${pager.pageSize}" name="pageSize" />
-		<jsp:param value="${displayURL }" name="url" />
+		<jsp:param value="" name="url" />
 	</jsp:include>
-	
-
-	<h1>Current Auctions</h1>
-	
-	
-	<hr />
-	<div class="item">
-		<img class="lazy" data-original='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
-		<dl>
-			<dt>Boot Campaign Online Auction</dt>
-			<dd>Feb 4 to Feb 26</dd>
-			<dd>Time Left: 19 days, 17 hrs, 6 mins </dd>
-			<dd><a class="cssButton">view items</a></dd>
-		</dl>
-	</div>
-	
-	<hr />
-	<div class="item">
-		<img class="lazy" data-original='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
-		<dl>
-			<dt>Boot Campaign Online Auction</dt>
-			<dd>Feb 4 to Feb 26</dd>
-			<dd>Time Left: 19 days, 17 hrs, 6 mins </dd>
-			<dd><a class="cssButton">view items</a></dd>
-		</dl>
-	</div>
-	
-	
-	<hr />
 </div>
 <div id="itemsClosing">
 	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.charitybuzz.common.context.ConnectionContext;
+import com.charitybuzz.common.model.Pager;
 
 
 public abstract class BaseDao<T> {
@@ -32,6 +33,24 @@ public abstract class BaseDao<T> {
 		}
 
 		return queryList.getDatas();
+	}
+	protected Pager<T> queryPager(String sql, QueryPager<T> queryPager) {
+		Connection conn = null;
+		try {
+			conn = ConnectionContext.getReadConnection();
+			queryPager.init(conn, sql);
+		} catch (SQLException e) {
+			log.error("query fail", e);
+			throw new RuntimeException("query fail", e);
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				log.error("Connection close fail", e);
+			}
+		}
+		
+		return queryPager.getPager();
 	}
 	/**
 	 * 

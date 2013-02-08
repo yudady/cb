@@ -9,7 +9,8 @@ import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.InsertOrUpdate;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
-import com.charitybuzz.common.model.PageInfo;
+import com.charitybuzz.common.dao.QueryPager;
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Item;
 
 public class ItemDao extends BaseDao<Item> {
@@ -378,24 +379,78 @@ public class ItemDao extends BaseDao<Item> {
 
 	}
 
-	public List<Item> findClosingNext(PageInfo pageInfo) {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Pager<Item> findClosingNext() {
+		String sql = " select * from item ";
+		return this.queryPager(sql, new QueryPager<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+		 
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Pager<Item> findDeals() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Item> findDeals(PageInfo pageInfo) {
+	public Pager<Item> findMostPopular() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Item> findMostPopular(PageInfo pageInfo) {
+	public Pager<Item> findRecentlyAdded() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Item> findRecentlyAdded(PageInfo pageInfo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

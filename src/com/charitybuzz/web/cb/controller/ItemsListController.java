@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.common.model.PageInfo;
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
@@ -42,6 +42,12 @@ public class ItemsListController {
 	private PictureService pictureService;
 
 	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 最接近結標日的商品列表
 	 * @param session
@@ -51,11 +57,24 @@ public class ItemsListController {
 	public ModelAndView closingNext(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/closeNext4Tab");
 		
-		List<Item> items = itemService.findClosingNext(new PageInfo(10, 1));
-		mav.addObject("items", items);
+		Pager<Item> pager = itemService.findClosingNext();
+		mav.addObject("items", pager.getDatas());
 		return mav;
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 差價最大的商品列表
 	 * @param session
@@ -65,8 +84,8 @@ public class ItemsListController {
 	public ModelAndView hotDeals(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/hotDeals4Tab");
 		
-		List<Item> items = itemService.findDeals(new PageInfo(10, 1));
-		mav.addObject("items", items);
+		Pager<Item> pager = itemService.findDeals();
+		mav.addObject("items", pager.getDatas());
 		return mav;
 		
 	}
@@ -79,8 +98,8 @@ public class ItemsListController {
 	public ModelAndView popular(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/popular4Tab");
 		
-		List<Item> items = itemService.findMostPopular(new PageInfo(10, 1));
-		mav.addObject("items", items);
+		Pager<Item> pager = itemService.findMostPopular();
+		mav.addObject("items", pager.getDatas());
 		return mav;
 		
 	}
@@ -93,8 +112,8 @@ public class ItemsListController {
 	public ModelAndView recentAdd(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/recentAdd4Tab");
 		
-		List<Item> items = itemService.findRecentlyAdded(new PageInfo(10, 1));
-		mav.addObject("items", items);
+		Pager<Item> pager = itemService.findRecentlyAdded();
+		mav.addObject("items", pager.getDatas());
 		return mav;
 		
 	}

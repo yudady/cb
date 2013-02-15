@@ -12,9 +12,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.SubCategory;
+import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.service.SubcategoryItemService;
@@ -49,7 +48,8 @@ public class ItemManager {
 	private SubCategoryService subCategoryService;
 	@Resource
 	private SubcategoryItemService subcategoryItemService;
-
+	@Resource
+	private SidebarService sidebarService;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -105,16 +105,22 @@ public class ItemManager {
 				log.error("result.hasErrors" + error);
 			}
 		}
-		log.debug("[LOG]ItemForm=" + form);
-		Long itemId = itemService.insert(new Item(form.getTitle(), form
-				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
-				form.getEstimatedValue(), form.getIncrementPrice(), form
-						.getStatus(), form.getLotDetails(), form
-						.getLegalTerms(), form.getShipping(), form
-						.getWinningBidderId()));
 		
 		
-		subcategoryItemService.insert(itemId,form.getSubCategoryIds());
+		synchronized (sidebarService) {
+			log.debug("[LOG]ItemForm=" + form);
+			Long itemId = itemService.insert(new Item(form.getTitle(), form
+					.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
+					form.getEstimatedValue(), form.getIncrementPrice(), form
+							.getStatus(), form.getLotDetails(), form
+							.getLegalTerms(), form.getShipping(), form
+							.getWinningBidderId()));
+			
+			
+			subcategoryItemService.insert(itemId,form.getSubCategoryIds());
+			sidebarService.setCategories(null);
+		}
+
 		
 		
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
@@ -166,16 +172,25 @@ public class ItemManager {
 				log.error("result.hasErrors" + error);
 			}
 		}
-		log.debug("[LOG]ItemForm=" + form);
-		itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
-				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
-				form.getEstimatedValue(), form.getIncrementPrice(), form
-						.getStatus(), form.getLotDetails(), form
-						.getLegalTerms(), form.getShipping(), form
-						.getWinningBidderId()));
 		
 		
-		subcategoryItemService.update(form.getItemIdForm(),form.getSubCategoryIds());
+		synchronized (sidebarService) {
+			log.debug("[LOG]ItemForm=" + form);
+			itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
+					.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
+					form.getEstimatedValue(), form.getIncrementPrice(), form
+							.getStatus(), form.getLotDetails(), form
+							.getLegalTerms(), form.getShipping(), form
+							.getWinningBidderId()));
+			
+			
+			subcategoryItemService.update(form.getItemIdForm(),form.getSubCategoryIds());
+			sidebarService.setCategories(null);
+		}
+		
+		
+		
+
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
@@ -188,8 +203,4 @@ public class ItemManager {
 		return mav;
 	}
 
-	@ExceptionHandler({ HttpSessionRequiredException.class })
-	public ModelAndView noSessionObject(Exception ex) {
-		return new ModelAndView("redirect:/manager/index.do");
-	}
 }

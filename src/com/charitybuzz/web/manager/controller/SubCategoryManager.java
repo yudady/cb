@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.SubCategory;
+import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.CategoryService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.SubCategoryService;
@@ -48,7 +49,8 @@ public class SubCategoryManager {
 	 */
 	@Resource
 	private ItemService itemService;
-
+	@Resource
+	private SidebarService sidebarService;
 	/**
 	 * 拿到列表
 	 * 
@@ -106,9 +108,12 @@ public class SubCategoryManager {
 
 		if (result.hasErrors()) {
 		}
+		synchronized (sidebarService) {
+			subCategoryService.insert(new SubCategory(form.getSubCaId(), form
+					.getCategoryId(), form.getName(), form.getDescript()));
+			sidebarService.setCategories(null);
+		}
 
-		subCategoryService.insert(new SubCategory(form.getSubCaId(), form
-				.getCategoryId(), form.getName(), form.getDescript()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");
@@ -144,10 +149,13 @@ public class SubCategoryManager {
 			BindingResult result) {
 		if (result.hasErrors()) {
 		}
+		synchronized (sidebarService) {
+			SubCategory sc = new SubCategory(form.getSubCaId(),
+					form.getCategoryId(), form.getName(), form.getDescript());
+			subCategoryService.update(sc);
+			sidebarService.setCategories(null);
+		}
 
-		SubCategory sc = new SubCategory(form.getSubCaId(),
-				form.getCategoryId(), form.getName(), form.getDescript());
-		subCategoryService.update(sc);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");

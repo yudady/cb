@@ -6,8 +6,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.HttpSessionRequiredException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.SubCategory;
+import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.CategoryService;
 import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.web.manager.form.CategoryForm;
@@ -35,6 +34,10 @@ public class CategoryManager {
 	 */
 	@Resource
 	private SubCategoryService subCategoryService;
+
+	@Resource
+	private SidebarService sidebarService;
+
 	/**
 	 * 拿到列表
 	 * 
@@ -47,7 +50,6 @@ public class CategoryManager {
 		ModelAndView mav = new ModelAndView("manager/category/list");
 		List<Category> categories = categoryService.findAll();
 		mav.addObject("categories", categories);
-		
 
 		for (int i = 0; i < categories.size(); i++) {
 			Category category = categories.get(i);
@@ -85,8 +87,10 @@ public class CategoryManager {
 		if (result.hasErrors()) {
 		}
 
-		categoryService.insert(new Category(form.getName()));
-
+		synchronized (sidebarService) {
+			categoryService.insert(new Category(form.getName()));
+			sidebarService.setCategories(null);
+		}
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
 		return mav;
@@ -120,8 +124,10 @@ public class CategoryManager {
 			CategoryForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
-
-		categoryService.update(new Category(form.getId(), form.getName()));
+		synchronized (sidebarService) {
+			categoryService.update(new Category(form.getId(), form.getName()));
+			sidebarService.setCategories(null);
+		}
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
@@ -134,17 +140,15 @@ public class CategoryManager {
 		if (result.hasErrors()) {
 		}
 
-		//先確認是否有subcategory
-		
-		categoryService.delete(categoryId);
+		// 先確認是否有subcategory
+		synchronized (sidebarService) {
+			categoryService.delete(categoryId);
+			sidebarService.setCategories(null);
+		}
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
 		return mav;
 	}
 
-	@ExceptionHandler({ HttpSessionRequiredException.class })
-	public ModelAndView noSessionObject(Exception ex) {
-		return new ModelAndView("redirect:/manager/index.do");
-	}
 }

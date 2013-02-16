@@ -14,14 +14,13 @@
 }
 
 ul,li {
-	padding: 0;
-	margin: 0;
 	list-style: none;
 }
 
 .slideshow {
 	width: 600px;
 	height: 400px;
+
 }
 
 .slideshow img {
@@ -32,7 +31,14 @@ ul,li {
 	height: 300px;
 	margin-bottom: 10px;
 }
-
+.slideshow-top .picMsg {
+	width:600px;
+	height:100px;
+	font-size:24px;
+	position: absolute;
+	background-color: gray;
+	z-index:1;
+}
 .slideshow-top img {
 	width: 600px;
 	height: 300px;
@@ -60,6 +66,7 @@ ul,li {
 	width: 50px;
 	height: 50px;
 }
+
 </style>
 <script type="text/javascript">
 (function($){
@@ -90,12 +97,32 @@ ul,li {
 			//$.log(this.src);
 			$(".slideshow-top img").attr("src" ,this.src);
 		});
+		$(".slideshow-top .picMsg").css({"opacity":"0.4"});
+		$(".slideshow-top .picMsg input[type='button']").click(function(){
+			alert('1');
+		});
+		var sizeMsg = $(".slideshow-button img").size();
+		
+		var count = 0 ;
+		setInterval(function(){
+			count = count + 1;
+			var current = count % sizeMsg ;
+			var imgCurrent = $(".slideshow-button img").get(current);
+			$(imgCurrent).trigger('click');
+		}, 1000);
+
 	});
 </script>
 </head>
 <body>
 	<div class="slideshow">
 		<div class="slideshow-top">
+			<div class="picMsg">
+					111111111111111111111<br/>
+					222222222222222222<br/>
+					<input type="button" value="click" /><br/>
+					4444433333333333333<br/>
+			</div>
         	<img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" />
 		</div>
 		<input type="button" id="pre" value="pre"/>
@@ -111,18 +138,6 @@ ul,li {
 			<li><a href="#"><img rel="img/mojave.jpg" src="img/mojave.jpg" alt="Mojave" /></a></li>
 			<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
 			<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
-			
-			<li><a href="#"><img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" /></a></li>
-			<li><a href="#"><img rel="img/grass-blades.jpg" src="img/grass-blades.jpg" alt="Grass Blades" /></a></li>
-			<li><a href="#"><img rel="img/stones.jpg" src="img/stones.jpg" alt="Stones" /></a></li>
-			<li><a href="#"><img rel="img/sea-mist.jpg" src="img/sea-mist.jpg" alt="Sea Mist" /></a></li>
-			<li><a href="#"><img rel="img/pier.jpg" src="img/pier.jpg" alt="Pier" /></a></li>
-			<li><a href="#"><img rel="img/lotus.jpg" src="img/lotus.jpg" alt="Lotus" /></a></li>
-			<li><a href="#"><img rel="img/mojave.jpg" src="img/mojave.jpg" alt="Mojave" /></a></li>
-			<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
-			<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
-	        
-			
 			</ul>
 		</div>
 	</div>

@@ -20,7 +20,7 @@ ul,li {
 .slideshow {
 	width: 600px;
 	height: 400px;
-
+	background-color: #CCC;
 }
 
 .slideshow img {
@@ -44,6 +44,22 @@ ul,li {
 	height: 300px;
 }
 
+.slideshow-top .direction{
+	width:100px;
+	height:30px;
+	font-size:18px;
+	background-color: black;
+	position: absolute;
+	margin-left:500px;
+	margin-bottom:10px;
+	color:white;
+	top:250px;
+	z-index:1;
+}
+.slideshow-top .direction span{
+	padding:10px;
+	cursor: pointer;
+}
 .slideshow-button {
 	width: 600px; /* 圖片的寬 */
 	position: relative;
@@ -53,7 +69,6 @@ ul,li {
 .slideshow-button ul {
 	width: 9999px;
 	height: 60px;
-	background-color: red;
 }
 
 .slideshow-button ul li {
@@ -67,7 +82,7 @@ ul,li {
 	height: 50px;
 }
 .slideshow-button-click {
-	background-color: yellow;
+	background-color: red;
 }
 
 </style>
@@ -80,6 +95,7 @@ ul,li {
 <script type="text/javascript">
 	
 	$(function() {
+		$("div").addClass('ui-corner-all');
 		var si = 10;
  		var moviePic = 10;
  		var positionRelative = 0;
@@ -113,6 +129,7 @@ ul,li {
 		
 		
 		$(".slideshow-top .picMsg").css({"opacity":"0.4"});
+		$(".slideshow-top .direction").css({"opacity":"0.4"});
 		$(".slideshow-top .picMsg input[type='button']").click(function(){
 			alert('1');
 		});
@@ -200,9 +217,11 @@ ul,li {
 					<input type="button" value="click" /><br/>
 			</div>
         	<img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" />
+			<div class="direction">
+				<span id="left"><<</span>
+				<span id="right">>></span>
+			</div>
 		</div>
-		<input type="button" id="left" value="<<"/>
-		<input type="button" id="right" value=">>"/>
 		<div class="slideshow-button">
 			<ul>
 				<li><a href="#"><img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" /></a></li>

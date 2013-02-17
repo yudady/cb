@@ -80,11 +80,16 @@ ul,li {
 <script type="text/javascript">
 	
 	$(function() {
-		var si = 5;
+		var si = 10;
+ 		var moviePic = 10;
  		var positionRelative = 0;
- 		var moveLength = 60;
+ 		var moveLength = 60 ;
  		
  		var imgs = $(".slideshow-button img");
+ 		
+ 		si = ( si <= imgs.size()) ? si : imgs.size();
+ 		
+ 		
  		imgs.first().addClass("slideshow-button-click");
  		addMoveActivity(0,si);
 		function addMoveActivity(start,end){
@@ -100,6 +105,8 @@ ul,li {
 		$('.move-activity').live('click', function() {
 			$(".slideshow-button-click").removeClass("slideshow-button-click");
 			$(this).addClass("slideshow-button-click");
+			topPicChange(this);
+			
 		});
 		
 		
@@ -112,18 +119,37 @@ ul,li {
 		
 		
 		$("#left").click(function(){
-			if(positionRelative == imgs.size()-1){
+			if(positionRelative >= imgs.size()-si){
 				return;
 			}
-			positionRelative = positionRelative + 1;
+			
+			positionRelative = positionRelative + moviePic ;
+			
+			if(positionRelative + moviePic >= imgs.size()){
+				positionRelative = imgs.size() - moviePic;
+			}
+			
+			
+			
 			addMoveActivity(positionRelative,si+positionRelative);
 			move();
 		}); 
 		$("#right").click(function(){
-			if(positionRelative == 0){
+			if(positionRelative <= 0){
 				return;
 			}
-			positionRelative = positionRelative - 1;
+			
+			positionRelative = positionRelative - moviePic;
+			
+			if(positionRelative <= 0){
+				positionRelative = 0;
+			}
+			
+			
+			
+			$.log(positionRelative);
+			
+			
 			addMoveActivity(positionRelative,si+positionRelative);
 			move();
 		});
@@ -145,8 +171,15 @@ ul,li {
 			}
 			
 			var hh = $(".slideshow-button-click")[0];
-			$(".slideshow-top img").attr("src" ,hh.src);
+			topPicChange(hh);
 		};
+		
+		
+		function topPicChange(pic){
+			$(".slideshow-top img").attr("src" ,pic.src);
+			$(".picMsg span").html(pic.alt);
+		};
+		
 		var myTimer = window.setInterval(findNextPic, 1000);
 		$(".slideshow").on("mouseenter",function(){
 			window.clearInterval(myTimer);
@@ -162,26 +195,62 @@ ul,li {
 	<div class="slideshow">
 		<div class="slideshow-top">
 			<div class="picMsg">
-					111111111111111111111<br/>
-					222222222222222222<br/>
+					<span></span>
+					<br/>
 					<input type="button" value="click" /><br/>
-					4444433333333333333<br/>
 			</div>
         	<img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" />
 		</div>
 		<input type="button" id="left" value="<<"/>
 		<input type="button" id="right" value=">>"/>
 		<div class="slideshow-button">
-		<ul>
-			<li><a href="#"><img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" /></a></li>
-			<li><a href="#"><img rel="img/grass-blades.jpg" src="img/grass-blades.jpg" alt="Grass Blades" /></a></li>
-			<li><a href="#"><img rel="img/stones.jpg" src="img/stones.jpg" alt="Stones" /></a></li>
-			<li><a href="#"><img rel="img/sea-mist.jpg" src="img/sea-mist.jpg" alt="Sea Mist" /></a></li>
-			<li><a href="#"><img rel="img/pier.jpg" src="img/pier.jpg" alt="Pier" /></a></li>
-			<li><a href="#"><img rel="img/lotus.jpg" src="img/lotus.jpg" alt="Lotus" /></a></li>
-			<li><a href="#"><img rel="img/mojave.jpg" src="img/mojave.jpg" alt="Mojave" /></a></li>
-			<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
-			<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+			<ul>
+				<li><a href="#"><img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" /></a></li>
+				<li><a href="#"><img rel="img/grass-blades.jpg" src="img/grass-blades.jpg" alt="Grass Blades" /></a></li>
+				<li><a href="#"><img rel="img/stones.jpg" src="img/stones.jpg" alt="Stones" /></a></li>
+				<li><a href="#"><img rel="img/sea-mist.jpg" src="img/sea-mist.jpg" alt="Sea Mist" /></a></li>
+				<li><a href="#"><img rel="img/pier.jpg" src="img/pier.jpg" alt="Pier" /></a></li>
+				<li><a href="#"><img rel="img/lotus.jpg" src="img/lotus.jpg" alt="Lotus" /></a></li>
+				<li><a href="#"><img rel="img/mojave.jpg" src="img/mojave.jpg" alt="Mojave" /></a></li>
+				<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				
+				<li><a href="#"><img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" /></a></li>
+				<li><a href="#"><img rel="img/grass-blades.jpg" src="img/grass-blades.jpg" alt="Grass Blades" /></a></li>
+				<li><a href="#"><img rel="img/stones.jpg" src="img/stones.jpg" alt="Stones" /></a></li>
+				<li><a href="#"><img rel="img/sea-mist.jpg" src="img/sea-mist.jpg" alt="Sea Mist" /></a></li>
+				<li><a href="#"><img rel="img/pier.jpg" src="img/pier.jpg" alt="Pier" /></a></li>
+				<li><a href="#"><img rel="img/lotus.jpg" src="img/lotus.jpg" alt="Lotus" /></a></li>
+				<li><a href="#"><img rel="img/mojave.jpg" src="img/mojave.jpg" alt="Mojave" /></a></li>
+				<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				<li><a href="#"><img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" /></a></li>
+				<li><a href="#"><img rel="img/grass-blades.jpg" src="img/grass-blades.jpg" alt="Grass Blades" /></a></li>
+				<li><a href="#"><img rel="img/stones.jpg" src="img/stones.jpg" alt="Stones" /></a></li>
+				<li><a href="#"><img rel="img/sea-mist.jpg" src="img/sea-mist.jpg" alt="Sea Mist" /></a></li>
+				<li><a href="#"><img rel="img/pier.jpg" src="img/pier.jpg" alt="Pier" /></a></li>
+				<li><a href="#"><img rel="img/lotus.jpg" src="img/lotus.jpg" alt="Lotus" /></a></li>
+				<li><a href="#"><img rel="img/mojave.jpg" src="img/mojave.jpg" alt="Mojave" /></a></li>
+				<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				<li><a href="#"><img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" /></a></li>
+				<li><a href="#"><img rel="img/grass-blades.jpg" src="img/grass-blades.jpg" alt="Grass Blades" /></a></li>
+				<li><a href="#"><img rel="img/stones.jpg" src="img/stones.jpg" alt="Stones" /></a></li>
+				<li><a href="#"><img rel="img/sea-mist.jpg" src="img/sea-mist.jpg" alt="Sea Mist" /></a></li>
+				<li><a href="#"><img rel="img/pier.jpg" src="img/pier.jpg" alt="Pier" /></a></li>
+				<li><a href="#"><img rel="img/lotus.jpg" src="img/lotus.jpg" alt="Lotus" /></a></li>
+				<li><a href="#"><img rel="img/mojave.jpg" src="img/mojave.jpg" alt="Mojave" /></a></li>
+				<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				<li><a href="#"><img rel="img/lightning.jpg" src="img/lightning.jpg" alt="Lightning" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
+				<li><a href="#"><img rel="img/ladybug.jpg" src="img/ladybug.jpg" alt="Ladybug" /></a></li>
 			</ul>
 		</div>
 	</div>

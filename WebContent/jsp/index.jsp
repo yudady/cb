@@ -109,7 +109,7 @@
 	cursor: pointer;
 }
 .slideshow-button {
-	width: 750px; /* 圖片的寬 */
+	width: 750px; 
 	position: relative;
 	overflow: hidden;
 }
@@ -141,7 +141,7 @@
 		var si = 8;
  		var moviePic = 8;
  		var positionRelative = 0;
- 		var moveLength = 80 ;
+ 		var moveLength = 94 ;//(70 + 10 + 10 + 2 + 2).slideshow-button img
  		
  		var imgs = $(".slideshow-button img");
  		
@@ -230,8 +230,8 @@
 				$(".move-activity").first().addClass("slideshow-button-click");
 			}
 			
-			var hh = $(".slideshow-button-click")[0];
-			topPicChange(hh);
+			var pic = $(".slideshow-button-click")[0];
+			topPicChange(pic);
 		};
 		
 		

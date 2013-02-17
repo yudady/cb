@@ -1,3 +1,3 @@
 $(function() {
-	$("#sidebar").menu();
+	$("#sidebar").toggleClass("menuToggle").menu();//
 });

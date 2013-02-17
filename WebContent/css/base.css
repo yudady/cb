@@ -92,6 +92,8 @@ ul {
 #menu {
 	width: 230px;
 	float: left;
+	position: relative;
+	z-index: 1;
 }
 
 #footer {

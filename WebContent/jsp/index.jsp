@@ -87,7 +87,6 @@
 	font-size:24px;
 	position: absolute;
 	background-color: gray;
-	z-index:1;
 }
 .slideshow-top img {
 	width: 750px;
@@ -104,7 +103,6 @@
 	margin-bottom:10px;
 	color:white;
 	top:530px;
-	z-index:1;
 }
 .slideshow-top .direction input{
 	width:30px;

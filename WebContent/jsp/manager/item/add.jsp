@@ -18,9 +18,9 @@
 }
 
 #content dl dd span {
+	width: 200px;
 	display: block;
 	float: left;
-	width: 200px;
 }
 #content p {
 clear: both;
@@ -41,7 +41,7 @@ clear: both;
 	第二級目錄
 	<dl>
 		<c:forEach	items="${subCategories}" var="subCategory" >
-			<dd><span>${subCategory.name}<input type="checkbox" name="subCategoryIds" value="${subCategory.id}" /></span></dd>
+			<dd><span><label for="subCategoryIds-${subCategory.id}">${subCategory.name}</label><input type="checkbox" id="subCategoryIds-${subCategory.id}" name="subCategoryIds" value="${subCategory.id}" /></span></dd>
 		</c:forEach>
 	</dl>
 	<p></p>

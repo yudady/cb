@@ -81,26 +81,30 @@ ul,li {
 	
 	$(function() {
 		var si = 5;
+ 		var loopPics = (si - 1) ;// 0,1,2,3,4 (5張)
+		var count = -1 ;
  		var positionRelative = 0;
  		var moveLength = 60;
  		
  		var imgs = $(".slideshow-button img");
- 		imgs.first().addClass("slideshow-button-click");
- 		addMoveActivity(0,si);
-		function addMoveActivity(start,end){
-			$(".move-activity").removeClass("move-activity");
-			imgs.each(function(i,value){
-				if(i < end && i >= start){
-					$(this).addClass("move-activity");
-				}
-			});
-		}
-		
-		
-		$('.move-activity').live('click', function() {
-			$(".slideshow-button-click").removeClass("slideshow-button-click");
-			$(this).addClass("slideshow-button-click");
+		imgs.each(function(i,value){
+			$(this).data("imgIndex", i);
+			if(i < si){
+				$(this).addClass("move-activity");
+			}
 		});
+		var moveactivities = imgs.find(".move-activity");
+		moveactivities.first().addClass("slideshow-button-click");
+		
+		
+		moveactivities.click(function(event){
+			moveactivities.removeClass("slideshow-button-click");
+			$(".slideshow-top img").attr("src" ,this.src);
+			$(this).addClass("slideshow-button-click");
+			count = $(this).data("imgIndex");
+			event.preventDefault();
+		});
+		
 		
 		
 		
@@ -111,48 +115,40 @@ ul,li {
 		});
 		
 		
-		$("#left").click(function(){
-			if(positionRelative == imgs.size()-1){
-				return;
-			}
-			positionRelative = positionRelative + 1;
-			addMoveActivity(positionRelative,si+positionRelative);
+		$("#next").click(function(){
+			positionRelative = positionRelative - 1;
 			move();
 		}); 
-		$("#right").click(function(){
-			if(positionRelative == 0){
-				return;
-			}
-			positionRelative = positionRelative - 1;
-			addMoveActivity(positionRelative,si+positionRelative);
+		$("#pre").click(function(){
+			positionRelative = positionRelative + 1;
 			move();
 		});
+		
 		function move(){
 			imgs.css({"position":"relative"}).animate({
- 				left : -(moveLength * positionRelative )+ "px"
- 			}, 500);
+ 				left : (moveLength * positionRelative )+ "px"
+ 			}, 1000);
 		}
 		
 		
-		function findNextPic(){
-			var p = $(".slideshow-button-click").removeClass("slideshow-button-click");
-			var q = p.parent().parent().next().find(".move-activity");
-			if(q.size() > 0){
-				q.addClass("slideshow-button-click");
-			}else{
-				$(".move-activity").removeClass("slideshow-button-click");
-				$(".move-activity").first().addClass("slideshow-button-click");
+		var counter = function(){
+			if(count >= loopPics){
+				count = -1 ;
 			}
-			
-			var hh = $(".slideshow-button-click")[0];
-			$(".slideshow-top img").attr("src" ,hh.src);
+			count = count + 1;
+			return count ; 
 		};
-		var myTimer = window.setInterval(findNextPic, 1000);
+		var ticker = function(){
+			var imgCurrent = imgs.get(counter());
+			imgs.removeClass("slideshow-button-click");
+			$(imgCurrent).trigger('click').addClass("slideshow-button-click");
+		};
+		var myTimer = window.setInterval(ticker, 1000);
 		$(".slideshow").on("mouseenter",function(){
 			window.clearInterval(myTimer);
 		});
 		$(".slideshow").on("mouseleave",function(){
-			myTimer = window.setInterval(findNextPic, 1000);
+			myTimer = window.setInterval(ticker, 1000);
 		});
 		
 	});
@@ -169,8 +165,8 @@ ul,li {
 			</div>
         	<img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" />
 		</div>
-		<input type="button" id="left" value="<<"/>
-		<input type="button" id="right" value=">>"/>
+		<input type="button" id="pre" value="pre"/>
+		<input type="button" id="next" value="next"/>
 		<div class="slideshow-button">
 		<ul>
 			<li><a href="#"><img rel="img/flowing-rock.jpg" src="img/flowing-rock.jpg" alt="Flowing Rock" /></a></li>

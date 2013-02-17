@@ -66,8 +66,233 @@
 	});
 });
 </script>
+<style type="text/css">
+.slideshow {
+	width: 750px;
+	height: 500px;
+	background-color: #CCC;
+}
+
+.slideshow img {
+	cursor: pointer;
+}
+
+.slideshow-top {
+	height: 400px;
+	margin-bottom: 10px;
+}
+.slideshow-top .picMsg {
+	width:750px;
+	height:100px;
+	font-size:24px;
+	position: absolute;
+	background-color: gray;
+	z-index:1;
+}
+.slideshow-top img {
+	width: 750px;
+	height: 400px;
+}
+
+.slideshow-top .direction{
+	width:100px;
+	height:30px;
+	font-size:18px;
+	background-color: black;
+	position: absolute;
+	margin-left:630px;
+	margin-bottom:10px;
+	color:white;
+	top:530px;
+	z-index:1;
+}
+.slideshow-top .direction input{
+	width:30px;
+	cursor: pointer;
+}
+.slideshow-button {
+	width: 750px; /* 圖片的寬 */
+	position: relative;
+	overflow: hidden;
+}
+
+.slideshow-button ul {
+	width: 9999px;
+}
+
+.slideshow-button ul li {
+	height: 100%;
+	float: left;
+}
+
+.slideshow-button img {
+	margin:2px;
+	padding:10px;
+	width: 70px;
+	height: 60px;
+}
+.slideshow-button-click {
+	background-color: red;
+}
+
+</style>
+<script type="text/javascript">
+	
+	$(function() {
+		$("div").addClass('ui-corner-all');
+		var si = 8;
+ 		var moviePic = 8;
+ 		var positionRelative = 0;
+ 		var moveLength = 80 ;
+ 		
+ 		var imgs = $(".slideshow-button img");
+ 		
+ 		si = ( si <= imgs.size()) ? si : imgs.size();
+ 		
+ 		
+ 		$(".slideshow-top img").attr("src",imgs.first().attr("src"));
+ 		imgs.first().addClass("slideshow-button-click");
+ 		addMoveActivity(0,si);
+		function addMoveActivity(start,end){
+			$(".move-activity").removeClass("move-activity");
+			imgs.each(function(i,value){
+				if(i < end && i >= start){
+					$(this).addClass("move-activity");
+				}
+			});
+		}
+		
+		
+		$('.move-activity').live('click', function() {
+			$(".slideshow-button-click").removeClass("slideshow-button-click");
+			$(this).addClass("slideshow-button-click");
+			topPicChange(this);
+			
+		});
+		
+		
+		
+		
+		$(".slideshow-top .picMsg").css({"opacity":"0.4"});
+		$(".slideshow-top .direction").css({"opacity":"0.4"});
+		$(".slideshow-top .picMsg input[type='button']").click(function(){
+			alert('1');
+		});
+		
+		
+		$("#left").click(function(){
+			if(positionRelative >= imgs.size()-si){
+				return;
+			}
+			
+			positionRelative = positionRelative + moviePic ;
+			
+			if(positionRelative + moviePic >= imgs.size()){
+				positionRelative = imgs.size() - moviePic;
+			}
+			
+			
+			
+			addMoveActivity(positionRelative,si+positionRelative);
+			move();
+		}); 
+		$("#right").click(function(){
+			if(positionRelative <= 0){
+				return;
+			}
+			
+			positionRelative = positionRelative - moviePic;
+			
+			if(positionRelative <= 0){
+				positionRelative = 0;
+			}
+			
+			
+			
+			$.log(positionRelative);
+			
+			
+			addMoveActivity(positionRelative,si+positionRelative);
+			move();
+		});
+		function move(){
+			imgs.css({"position":"relative"}).animate({
+ 				left : -(moveLength * positionRelative )+ "px"
+ 			}, 500);
+		}
+		
+		
+		function findNextPic(){
+			var p = $(".slideshow-button-click").removeClass("slideshow-button-click");
+			var q = p.parent().parent().next().find(".move-activity");
+			if(q.size() > 0){
+				q.addClass("slideshow-button-click");
+			}else{
+				$(".move-activity").removeClass("slideshow-button-click");
+				$(".move-activity").first().addClass("slideshow-button-click");
+			}
+			
+			var hh = $(".slideshow-button-click")[0];
+			topPicChange(hh);
+		};
+		
+		
+		function topPicChange(pic){
+			$(".slideshow-top img").attr("src" ,pic.src);
+			$(".picMsg span").html(pic.alt);
+		};
+		
+		var myTimer = window.setInterval(findNextPic, 1000);
+		$(".slideshow").on("mouseenter",function(){
+			window.clearInterval(myTimer);
+		});
+		$(".slideshow").on("mouseleave",function(){
+			myTimer = window.setInterval(findNextPic, 1000);
+		});
+		
+	});
+</script>
+
+
 <div id="content">
-<iframe src='<c:url value="/jsp/indexTop.jsp"/>' width="750" height="550" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" align="center"></iframe>
+	<div class="slideshow">
+		<div class="slideshow-top">
+			<div class="picMsg">
+					<span></span>
+					<br/>
+					<input type="button" value="click" /><br/>
+			</div>
+        	<img src="" alt="" />
+			<div class="direction">
+				<input type="button" id="left" value="<<"/>
+				<input type="button" id="right" value=">>"/>
+			</div>
+		</div>
+		<div class="slideshow-button">
+			<ul>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' alt="Flowing Rock" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/grass-blades.jpg"/>' alt="Grass Blades" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/stones.jpg"/>' alt="Stones" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/sea-mist.jpg"/>' alt="Sea Mist" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/pier.jpg"/>' alt="Pier" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/lotus.jpg"/>' alt="Lotus" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/mojave.jpg"/>' alt="Mojave" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/lightning.jpg"/>' alt="Lightning" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/ladybug.jpg"/>' alt="Ladybug" /></a></li>
+				
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' alt="Flowing Rock" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/grass-blades.jpg"/>' alt="Grass Blades" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/stones.jpg"/>' alt="Stones" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/sea-mist.jpg"/>' alt="Sea Mist" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/pier.jpg"/>' alt="Pier" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/lotus.jpg"/>' alt="Lotus" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/mojave.jpg"/>' alt="Mojave" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/lightning.jpg"/>' alt="Lightning" /></a></li>
+				<li><a href="#"><img src='<c:url value="/pic/upload/item/ladybug.jpg"/>' alt="Ladybug" /></a></li>
+				
+			</ul>
+		</div>
+	</div>
 </div>
 <div id="liveAuctions">
 	<h1>Current Auctions</h1>

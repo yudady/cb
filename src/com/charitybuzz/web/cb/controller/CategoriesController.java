@@ -40,8 +40,7 @@ public class CategoriesController {
 	 */
 	@Resource
 	private PictureService pictureService;
-	
-	
+
 	@Resource
 	private BidlogService bidlogService;
 
@@ -54,33 +53,31 @@ public class CategoriesController {
 	 */
 	@RequestMapping(value = "/{id}/index", method = RequestMethod.GET)
 	public ModelAndView category(@PathVariable Long id) {
-
 		ModelAndView mav = new ModelAndView("itemsPager");
+
+		/**
+		 * 目錄
+		 */
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
+
 		/**
-		 * 全部商品
+		 * 分頁商品
 		 */
-		
-		
 		Pager<Item> pager = itemService.findPagerByCategoryId(id);
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {
-
 			Long itemId = item.getId();
-			
-			
-			
-			//bidTimes
-			
+
+			// bidTimes
+
 			List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
 			item.setBidTimes(bidlogs.size());
-			
-			
+
 			List<Picture> pictures = pictureService.findByItemId(itemId);
 			item.setPictures(pictures);
 		}
-
+		mav.addObject("pager", pager);
 		return mav;
 	}
 
@@ -90,11 +87,14 @@ public class CategoriesController {
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
 
 		ModelAndView mav = new ModelAndView("itemsPager");
+		/**
+		 * 目錄
+		 */
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
-		
-		
-		
+		/**
+		 * 分頁商品
+		 */
 		Pager<Item> pager = itemService.findPagerBySubCategoryId(subcategoryId);
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {

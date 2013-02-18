@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+.slideshow {
+	width: 750px;
+	height: 500px;
+	background-color: #CCC;
+}
+
+.slideshow img {
+	cursor: pointer;
+}
+
+.slideshow-top {
+	height: 400px;
+	margin-bottom: 10px;
+}
+.slideshow-top .picMsg {
+	width: 750px;
+	height: 100px;
+	font-size: 24px;
+	position: absolute;
+	background-color: gray;
+}
+.slideshow-top img {
+	width: 750px;
+	height: 400px;
+}
+
+.slideshow-top .direction {
+	width: 100px;
+	height: 30px;
+	font-size: 18px;
+	background-color: black;
+	position: absolute;
+	margin-left: 630px;
+	margin-bottom: 10px;
+	color: white;
+	top: 530px;
+}
+.slideshow-top .direction input {
+	width: 30px;
+	cursor: pointer;
+}
+.slideshow-button {
+	width: 750px;
+	position: relative;
+	overflow: hidden;
+}
+
+.slideshow-button ul {
+	width: 9999px;
+}
+
+.slideshow-button ul li {
+	height: 100%;
+	float: left;
+}
+
+.slideshow-button img {
+	margin: 2px;
+	padding: 10px;
+	width: 70px;
+	height: 60px;
+}
+.slideshow-button-click {
+	background-color: red;
+}

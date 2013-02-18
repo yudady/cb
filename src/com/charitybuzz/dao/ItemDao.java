@@ -482,10 +482,8 @@ public class ItemDao extends BaseDao<Item> {
 
 	}
 
-	// TODO
-
 	public List<Item> findClosingNext(int firstRowNumber, int lastRowNumber) {
-		String sql = "select * from item";
+		String sql = "Select * from ( SELECT (closedate - SYSDATE ) diff , it.* FROM item it WHERE it.status = 1 AND it.startdate < SYSDATE order by diff ) WHERE diff >= 0 ";
 		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
 				lastRowNumber) {
 			@Override
@@ -518,8 +516,8 @@ public class ItemDao extends BaseDao<Item> {
 
 	}
 
-	public List<Item> findDeals(int firstRowNumber, int lastRowNumber) {
-		String sql = "select * from item";
+	public List<Item> findByHotDeals(int firstRowNumber, int lastRowNumber) {
+		String sql = " SELECT it.* FROM item it WHERE status = '1' AND SYSDATE >= startdate and closedate >= SYSDATE order by (ESTIMATEDVALUE - CURRENTBID) desc ";
 		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
 				lastRowNumber) {
 			@Override
@@ -552,8 +550,8 @@ public class ItemDao extends BaseDao<Item> {
 
 	}
 
-	public List<Item> findMostPopular(int firstRowNumber, int lastRowNumber) {
-		String sql = "select * from item";
+	public List<Item> findPopular(int firstRowNumber, int lastRowNumber) {
+		String sql = " SELECT count(lo.id) cc ,it.id ,it.title,it.CURRENTBID ,it.STARTDATE ,it.CLOSEDATE ,it.ESTIMATEDVALUE ,it.INCREMENTPRICE ,it.STATUS ,it.LOTDETAILS ,it.LEGALTERMS ,it.SHIPPING ,it.WINNINGBIDDERID ,it.CREATEDDATE ,it.UPDATEDDATE FROM item it left join bidlog lo on lo.ITEMID = it.id WHERE status = '1' AND SYSDATE >= startdate AND closedate >= SYSDATE GROUP BY it.ID, it.title, it.CURRENTBID, it.STARTDATE, it.CLOSEDATE, it.ESTIMATEDVALUE, it.INCREMENTPRICE, it.STATUS, it.LOTDETAILS, it.LEGALTERMS, it.SHIPPING, it.WINNINGBIDDERID, it.CREATEDDATE, it.UPDATEDDATE order by cc desc ";
 		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
 				lastRowNumber) {
 			@Override
@@ -586,8 +584,8 @@ public class ItemDao extends BaseDao<Item> {
 
 	}
 
-	public List<Item> findRecentlyAdded(int firstRowNumber, int lastRowNumber) {
-		String sql = "select * from item";
+	public List<Item> findRecentAdd(int firstRowNumber, int lastRowNumber) {
+		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate order by (STARTDATE - sysdate) desc ";
 		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
 				lastRowNumber) {
 			@Override

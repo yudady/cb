@@ -17,7 +17,7 @@
 <body>
 	<c:forEach	items="${items}" var="item">
 		<div class="item">
-			<img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
+			<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}"/>' />
 			<div>
 				<h3>${item.title}</h3>
 				<p>

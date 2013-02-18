@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.common.model.Pager;
+import com.charitybuzz.dto.Bidlog;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.operate.SidebarService;
+import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 /**
@@ -33,7 +35,7 @@ public class TabsItemsListController {
 	/**
 	 * 頁籤出現幾筆資料
 	 */
-	private int count = 5;
+	private int count = 25;
 
 	@Resource
 	private SidebarService sidebarService;
@@ -49,6 +51,9 @@ public class TabsItemsListController {
 	@Resource
 	private PictureService pictureService;
 
+	@Resource
+	private BidlogService bidlogService;
+
 	/**
 	 * 最接近結標日的商品列表
 	 * 
@@ -60,9 +65,12 @@ public class TabsItemsListController {
 		ModelAndView mav = new ModelAndView("indexTabs/closeNext4Tab");
 
 		List<Item> items = itemService.findClosingNext(count);
+		for (Item item : items) {
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
 		mav.addObject("items", items);
-
-		System.out.println("[LOG]" + items);
 		return mav;
 
 	}
@@ -77,7 +85,12 @@ public class TabsItemsListController {
 	public ModelAndView hotDeals(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/hotDeals4Tab");
 
-		List<Item> items = itemService.findDeals(count);
+		List<Item> items = itemService.findByHotDeals(count);
+		for (Item item : items) {
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
 		mav.addObject("items", items);
 		return mav;
 
@@ -93,7 +106,15 @@ public class TabsItemsListController {
 	public ModelAndView popular(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/popular4Tab");
 
-		List<Item> items = itemService.findMostPopular(count);
+		List<Item> items = itemService.findPopular(count);
+		for (Item item : items) {
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+			
+			List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
+			item.setBidlogs(bidlogs);
+		}
 		mav.addObject("items", items);
 		return mav;
 
@@ -109,7 +130,12 @@ public class TabsItemsListController {
 	public ModelAndView recentAdd(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/recentAdd4Tab");
 
-		List<Item> items = itemService.findRecentlyAdded(count);
+		List<Item> items = itemService.findRecentAdd(count);
+		for (Item item : items) {
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
 		mav.addObject("items", items);
 		return mav;
 

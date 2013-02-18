@@ -111,8 +111,8 @@ public class ItemService {
 	 * @param pageInfo
 	 * @return
 	 */
-	public List<Item> findDeals(int count) {
-		return itemDao.findDeals(0, count);
+	public List<Item> findByHotDeals(int count) {
+		return itemDao.findByHotDeals(0, count);
 	}
 
 	/**
@@ -121,8 +121,8 @@ public class ItemService {
 	 * @param pageInfo
 	 * @return
 	 */
-	public List<Item> findMostPopular(int count) {
-		return itemDao.findMostPopular(0, count);
+	public List<Item> findPopular(int count) {
+		return itemDao.findPopular(0, count);
 	}
 
 	/**
@@ -131,8 +131,8 @@ public class ItemService {
 	 * @param pageInfo
 	 * @return
 	 */
-	public List<Item> findRecentlyAdded(int count) {
-		return itemDao.findRecentlyAdded(0, count);
+	public List<Item> findRecentAdd(int count) {
+		return itemDao.findRecentAdd(0, count);
 	}
 
 	/**

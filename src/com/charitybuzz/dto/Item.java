@@ -290,6 +290,7 @@ public class Item {
 	}
 
 	public void setBidlogs(List<Bidlog> bidlogs) {
+		this.setBidTimes(bidlogs.size());
 		this.bidlogs = bidlogs;
 	}
 

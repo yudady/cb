@@ -20,6 +20,14 @@
 	position: absolute;
 	background-color: gray;
 }
+/**
+ * 	Bid NOW
+ */
+.slideshow-top .picMsg input{
+	width: 100px;
+	margin-left: 630px;
+	margin-top: 40px;
+}
 .slideshow-top img {
 	width: 750px;
 	height: 400px;

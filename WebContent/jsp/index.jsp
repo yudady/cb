@@ -74,7 +74,7 @@
 			<div class="picMsg">
 					<span></span>
 					<br/>
-					<input type="button" value="click" /><br/>
+					<input class="cssButton" type="button" value="Bid NOW" /><br/>
 			</div>
         	<img src="" alt="" />
 			<div class="direction">
@@ -112,7 +112,7 @@
 	<h1>Current Auctions</h1>
 	<hr />
 	<div class="item">
-		<img class="lazy" src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' />
+		<img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' />
 		<dl>
 			<dt>Boot Campaign Online Auction</dt>
 			<dd>Feb 4 to Feb 26</dd>
@@ -123,7 +123,7 @@
 	
 	<hr />
 	<div class="item">
-		<img class="lazy" src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
+		<img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
 		<dl>
 			<dt>Boot Campaign Online Auction</dt>
 			<dd>Feb 4 to Feb 26</dd>

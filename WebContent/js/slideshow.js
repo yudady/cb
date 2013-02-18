@@ -11,8 +11,11 @@
  		
  		si = ( si <= imgs.size()) ? si : imgs.size();
  		
- 		
+ 		/**
+ 		 *第一章圖片 
+ 		 */
  		$(".slideshow-top img").attr("src",imgs.first().attr("src"));
+ 		$(".slideshow-top img").attr("alt",imgs.first().attr("alt"));
  		imgs.first().addClass("slideshow-button-click");
  		addMoveActivity(0,si);
 		function addMoveActivity(start,end){

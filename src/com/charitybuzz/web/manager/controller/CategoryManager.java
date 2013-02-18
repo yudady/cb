@@ -87,10 +87,8 @@ public class CategoryManager {
 		if (result.hasErrors()) {
 		}
 
-		synchronized (sidebarService) {
-			categoryService.insert(new Category(form.getName()));
-			sidebarService.setCategories(null);
-		}
+		categoryService.insert(new Category(form.getName()));
+		sidebarService.setCategories(null);
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
 		return mav;
@@ -124,10 +122,8 @@ public class CategoryManager {
 			CategoryForm form, BindingResult result) {
 		if (result.hasErrors()) {
 		}
-		synchronized (sidebarService) {
-			categoryService.update(new Category(form.getId(), form.getName()));
-			sidebarService.setCategories(null);
-		}
+		categoryService.update(new Category(form.getId(), form.getName()));
+		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
@@ -140,11 +136,8 @@ public class CategoryManager {
 		if (result.hasErrors()) {
 		}
 
-		// 先確認是否有subcategory
-		synchronized (sidebarService) {
-			categoryService.delete(categoryId);
-			sidebarService.setCategories(null);
-		}
+		categoryService.delete(categoryId);
+		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");

@@ -123,6 +123,38 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 	}
+	public Pager<Item> findPagerBySubCategoryId(final Long subCategoryId) {
+		String sql = "SELECT b.id as id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = "+subCategoryId+" AND b.id = a.itemid ";
+		return this.queryPager(sql, new QueryPager<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				//this.preparedStatement.setLong(1, subCategoryId);
+			}
+			
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+				
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+							.getDouble("incrementPrice"), rs
+							.getInt("status"), rs
+							.getString("lotDetails"), rs
+							.getString("legalTerms"), rs
+							.getString("shipping"), rs
+							.getLong("winningBidderId"), rs
+							.getDate("createdDate"), rs
+							.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+			
+		});
+	}
 
 	/**
 	 * 找出categoryId的全部商品
@@ -160,6 +192,44 @@ public class ItemDao extends BaseDao<Item> {
 				return itemList;
 			}
 
+		});
+	}
+	/**
+	 * 找出categoryId的全部商品
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
+	public Pager<Item> findPagerByCategoryId(final Long categoryId) {
+		String sql = "SELECT x.* FROM ITEM x WHERE x.id in(SELECT d.itemid FROM subcategory_item d WHERE d.subcategoryid IN (SELECT A.ID FROM subcategory A where a.categoryid = "+categoryId+")) ";
+		return this.queryPager(sql, new QueryPager<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				//this.preparedStatement.setLong(1, categoryId);
+			}
+			
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+				
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+							.getDouble("incrementPrice"), rs
+							.getInt("status"), rs
+							.getString("lotDetails"), rs
+							.getString("legalTerms"), rs
+							.getString("shipping"), rs
+							.getLong("winningBidderId"), rs
+							.getDate("createdDate"), rs
+							.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+			
 		});
 	}
 

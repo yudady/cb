@@ -13,16 +13,17 @@ import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.SubCategoryService;
 
 /**
- * 單例 如果商品或目錄有變動，把此物件synchronized
- * 
  * @author Administrator
- * 
  */
 public class SidebarService {
 
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
+	
+	/**
+	 * 緩存目錄
+	 */
 	private List<Category> categories;
 
 

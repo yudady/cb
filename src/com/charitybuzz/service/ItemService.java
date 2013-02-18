@@ -31,7 +31,9 @@ public class ItemService {
 	public List<Item> findBySubCategoryId(Long id) {
 		return itemDao.findBySubCategoryId(id);
 	}
-
+	public Pager<Item> findPagerBySubCategoryId(Long subcategoryId) {
+		return itemDao.findPagerBySubCategoryId(subcategoryId);
+	}
 	/**
 	 * 找出categoryId的全部商品
 	 * 
@@ -41,7 +43,9 @@ public class ItemService {
 	public List<Item> findByCategoryId(Long categoryId) {
 		return itemDao.findByCategoryId(categoryId);
 	}
-
+	public Pager<Item> findPagerByCategoryId(Long categoryId) {
+		return itemDao.findPagerByCategoryId(categoryId);
+	}
 	/**
 	 * pk find object
 	 * 
@@ -170,5 +174,9 @@ public class ItemService {
 		log.debug("findPagerByRecentAdd");
 		return itemDao.findPagerByRecentAdd();
 	}
+
+
+
+
 
 }

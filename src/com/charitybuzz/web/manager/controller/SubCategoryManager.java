@@ -43,7 +43,7 @@ public class SubCategoryManager {
 	 */
 	@Resource
 	private SubCategoryService subCategoryService;
-	
+
 	/**
 	 * 全部商品
 	 */
@@ -51,6 +51,7 @@ public class SubCategoryManager {
 	private ItemService itemService;
 	@Resource
 	private SidebarService sidebarService;
+
 	/**
 	 * 拿到列表
 	 * 
@@ -63,20 +64,16 @@ public class SubCategoryManager {
 		ModelAndView mav = new ModelAndView("manager/subcategory/list");
 		List<SubCategory> subCategories = subCategoryService.findAll();
 		mav.addObject("subCategories", subCategories);
-		
+
 		/**
 		 * 第二級目錄
 		 */
 		for (int j = 0; j < subCategories.size(); j++) {
 			SubCategory subs = subCategories.get(j);
-			List<Item> items = itemService.findBySubCategoryId(subs
-					.getId());
+			List<Item> items = itemService.findBySubCategoryId(subs.getId());
 			subs.setItems(items);
 		}
-		
-		
-		
-		
+
 		return mav;
 	}
 
@@ -108,12 +105,9 @@ public class SubCategoryManager {
 
 		if (result.hasErrors()) {
 		}
-		synchronized (sidebarService) {
-			subCategoryService.insert(new SubCategory(form.getSubCaId(), form
-					.getCategoryId(), form.getName(), form.getDescript()));
-			sidebarService.setCategories(null);
-		}
-
+		subCategoryService.insert(new SubCategory(form.getSubCaId(), form
+				.getCategoryId(), form.getName(), form.getDescript()));
+		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");
@@ -149,13 +143,10 @@ public class SubCategoryManager {
 			BindingResult result) {
 		if (result.hasErrors()) {
 		}
-		synchronized (sidebarService) {
-			SubCategory sc = new SubCategory(form.getSubCaId(),
-					form.getCategoryId(), form.getName(), form.getDescript());
-			subCategoryService.update(sc);
-			sidebarService.setCategories(null);
-		}
-
+		SubCategory sc = new SubCategory(form.getSubCaId(),
+				form.getCategoryId(), form.getName(), form.getDescript());
+		subCategoryService.update(sc);
+		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");

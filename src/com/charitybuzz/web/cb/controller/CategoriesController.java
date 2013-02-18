@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Bidlog;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
@@ -54,14 +55,16 @@ public class CategoriesController {
 	@RequestMapping(value = "/{id}/index", method = RequestMethod.GET)
 	public ModelAndView category(@PathVariable Long id) {
 
-		ModelAndView mav = new ModelAndView("items");
+		ModelAndView mav = new ModelAndView("itemsPager");
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
 		/**
 		 * 全部商品
 		 */
-		List<Item> items = itemService.findByCategoryId(id);
-		mav.addObject("items", items);
+		
+		
+		Pager<Item> pager = itemService.findPagerByCategoryId(id);
+		List<Item> items = pager.getDatas();
 		for (Item item : items) {
 
 			Long itemId = item.getId();
@@ -86,21 +89,21 @@ public class CategoriesController {
 
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
 
-		ModelAndView mav = new ModelAndView("items");
+		ModelAndView mav = new ModelAndView("itemsPager");
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
-		/**
-		 * 全部商品
-		 */
-		List<Item> items = itemService.findBySubCategoryId(subcategoryId);
-		mav.addObject("items", items);
+		
+		
+		
+		Pager<Item> pager = itemService.findPagerBySubCategoryId(subcategoryId);
+		List<Item> items = pager.getDatas();
 		for (Item item : items) {
 
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);
 			item.setPictures(pictures);
 		}
-
+		mav.addObject("pager", pager);
 		return mav;
 	}
 

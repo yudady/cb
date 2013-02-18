@@ -50,6 +50,7 @@ public class ItemManager {
 	private SubcategoryItemService subcategoryItemService;
 	@Resource
 	private SidebarService sidebarService;
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -105,24 +106,18 @@ public class ItemManager {
 				log.error("result.hasErrors" + error);
 			}
 		}
-		
-		
-		synchronized (sidebarService) {
-			log.debug("[LOG]ItemForm=" + form);
-			Long itemId = itemService.insert(new Item(form.getTitle(), form
-					.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
-					form.getEstimatedValue(), form.getIncrementPrice(), form
-							.getStatus(), form.getLotDetails(), form
-							.getLegalTerms(), form.getShipping(), form
-							.getWinningBidderId()));
-			
-			
-			subcategoryItemService.insert(itemId,form.getSubCategoryIds());
-			sidebarService.setCategories(null);
-		}
 
-		
-		
+		log.debug("[LOG]ItemForm=" + form);
+		Long itemId = itemService.insert(new Item(form.getTitle(), form
+				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
+				form.getEstimatedValue(), form.getIncrementPrice(), form
+						.getStatus(), form.getLotDetails(), form
+						.getLegalTerms(), form.getShipping(), form
+						.getWinningBidderId()));
+
+		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
+		sidebarService.setCategories(null);
+
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
 	}
@@ -172,25 +167,18 @@ public class ItemManager {
 				log.error("result.hasErrors" + error);
 			}
 		}
-		
-		
-		synchronized (sidebarService) {
-			log.debug("[LOG]ItemForm=" + form);
-			itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
-					.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
-					form.getEstimatedValue(), form.getIncrementPrice(), form
-							.getStatus(), form.getLotDetails(), form
-							.getLegalTerms(), form.getShipping(), form
-							.getWinningBidderId()));
-			
-			
-			subcategoryItemService.update(form.getItemIdForm(),form.getSubCategoryIds());
-			sidebarService.setCategories(null);
-		}
-		
-		
-		
 
+		log.debug("[LOG]ItemForm=" + form);
+		itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
+				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
+				form.getEstimatedValue(), form.getIncrementPrice(), form
+						.getStatus(), form.getLotDetails(), form
+						.getLegalTerms(), form.getShipping(), form
+						.getWinningBidderId()));
+
+		subcategoryItemService.update(form.getItemIdForm(),
+				form.getSubCategoryIds());
+		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;

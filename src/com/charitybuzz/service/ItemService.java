@@ -3,12 +3,18 @@ package com.charitybuzz.service;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.DualDao;
 import com.charitybuzz.dao.ItemDao;
 import com.charitybuzz.dto.Item;
 
 public class ItemService {
+
+	/** logger. */
+	private Logger log = LoggerFactory.getLogger(ItemService.class);
 
 	private ItemDao itemDao;
 
@@ -92,7 +98,7 @@ public class ItemService {
 	 * @return
 	 */
 	public List<Item> findClosingNext(int count) {
-		return itemDao.findClosingNext(0,count);
+		return itemDao.findClosingNext(0, count);
 	}
 
 	/**
@@ -102,7 +108,7 @@ public class ItemService {
 	 * @return
 	 */
 	public List<Item> findDeals(int count) {
-		return itemDao.findDeals(0,count);
+		return itemDao.findDeals(0, count);
 	}
 
 	/**
@@ -112,7 +118,7 @@ public class ItemService {
 	 * @return
 	 */
 	public List<Item> findMostPopular(int count) {
-		return itemDao.findMostPopular(0,count);
+		return itemDao.findMostPopular(0, count);
 	}
 
 	/**
@@ -122,25 +128,47 @@ public class ItemService {
 	 * @return
 	 */
 	public List<Item> findRecentlyAdded(int count) {
-		return itemDao.findRecentlyAdded(0,count);
+		return itemDao.findRecentlyAdded(0, count);
 	}
 
+	/**
+	 * 分頁 最接近結標日的商品列表
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerByClosingNext() {
-		return itemDao.findAllByPager();
+		log.debug("findPagerByClosingNext");
+		return itemDao.findPagerByClosingNext();
 	}
 
+	/**
+	 * 分頁 差價最大的商品列表
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerByHotDeals() {
-		return itemDao.findAllByPager();
+		log.debug("findPagerByHotDeals");
+		return itemDao.findPagerByHotDeals();
 	}
 
+	/**
+	 * 分頁 最受歡迎的商品列表
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerByPopular() {
-		return itemDao.findAllByPager();
+		log.debug("findPagerByPopular");
+		return itemDao.findPagerByPopular();
 	}
 
+	/**
+	 * 分頁 新進商品的商品列表
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerByRecentAdd() {
-		return itemDao.findAllByPager();
+		log.debug("findPagerByRecentAdd");
+		return itemDao.findPagerByRecentAdd();
 	}
-
-
 
 }

@@ -20,12 +20,16 @@ import com.charitybuzz.dto.Picture;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
-
+/**
+ * 首頁tabs
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping("/items")
-public class ItemsListController {
+public class TabsItemsListController {
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(ItemsListController.class);
+	private Logger log = LoggerFactory.getLogger(TabsItemsListController.class);
 	/**
 	 * 頁籤出現幾筆資料
 	 */

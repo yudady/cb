@@ -5,12 +5,37 @@
 <style type="text/css">
 #pager {
 	text-align: center;
-	width: 500px;
 	height: 60px;
 	line-height: 60px;
 }
 </style>
+<script type="text/javascript">
+	$(function(){
+		$("#lotsPerPage-select").on("change",function(){
+			var ps = $(this).find(":selected").val();
+			var href = window.location.href ;
+			$.log(href);
+			var aa = href.search('pageSize');
+			if(aa == -1){
+				window.location.href = href + "?pageSize=" + ps;
+			}else{
+				window.location.href = href.substr(0,aa) + "pageSize=" + ps;
+			}
+		});
+	});
+</script>
 <div id="pager">
+	<select id="lotsPerPage-select">
+		<option value="10" 
+		<%if("10".equals(request.getParameter("pageSize"))) {%>selected="selected"<%} %> 
+		>10 per page</option>
+		<option value="25"  
+		<%if("25".equals(request.getParameter("pageSize"))) {%>selected="selected"<%} %> 
+		>25 per page</option>
+		<option value="50" 
+		<%if("50".equals(request.getParameter("pageSize"))) {%>selected="selected"<%} %> 
+		>50 per page</option>
+	</select>
 	<pg:pager url="${param.url}" maxPageItems="${param.pageSize}" items="${param.totalRecord}" export="curPage=pageNumber">
 		<pg:last>
 		共${param.totalRecord}記錄,共${pageNumber}頁,

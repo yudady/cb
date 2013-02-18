@@ -33,13 +33,14 @@
 	color:red;
 }
 </style>
-<div class="item">
+<div>
 	<jsp:include page="/jsp/include/pager.jsp">
 		<jsp:param value="${pager.totalRecord}" name="totalRecord" />
 		<jsp:param value="${pager.pageSize}" name="pageSize" />
 		<jsp:param value="" name="url" />
 	</jsp:include>
 </div>
+
 <c:forEach items="${pager.datas}" var="item">
 	<div class="item">
 		<span class="pic"> 

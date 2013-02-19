@@ -152,10 +152,3 @@
 	</div>
 </div>
 <%@ include file="/jsp/include/footer.txt" %>
-
-	
-
-
-
-
-

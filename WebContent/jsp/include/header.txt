@@ -61,7 +61,7 @@ $(function() {
 		
 		$("#loginForm").dialog({ 
 			resizable: false,
-			position: { of: $( "#login" ) , my: "center top", at: "left bottom"  },
+			position: { of: $( "#loginBtn" ) , my: "center top", at: "left bottom"  },
 			draggable: false,
 			height: 300,
 			width:400,
@@ -137,8 +137,8 @@ $(function() {
 	</form>
 </div>
 </div>
-
-<div>
+<div class="mainBody"><!-- mainBody start -->
+<div class="top-menu">
 	<div id="nav">
 		<ul>
 			<li><a href='<c:url value="/"/>'>Home</a> |</li>

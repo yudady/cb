@@ -17,9 +17,11 @@
 <body>
 	<c:forEach	items="${items}" var="item">
 		<div class="item">
-			<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}"/>' />
+			<a href='<c:url value="/item/${item.id}/index.do"/>'>
+				<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}"/>' />
+			</a>
 			<div>
-				<h3>${item.title}</h3>
+				<h3><a href='<c:url value="/item/${item.id}/index.do"/>'>${item.title}</a></h3>
 				<p>
 					<strong>Bid:</strong>${item.currentBid}
 				</p>

@@ -39,12 +39,10 @@ ul {
 #login {
 	width: 300px;
 	position: relative;
-	top: -40px;
-	left: 750px;
+	top: -55px;
+	left: 770px;
 }
-#login button{
-	
-}
+
 #loginForm {
 	display: none;
 }
@@ -52,6 +50,18 @@ ul {
 	position: relative;
 	top: -20px;
 	left: 220px;
+}
+
+.mainBody {
+	margin-top: 5px;
+	padding: 5px;
+	background-color: #CCCCCC;
+}
+
+.top-menu {
+	margin-top: 5px;
+	height: 30px;
+	margin-bottom: 5px;
 }
 
 
@@ -76,6 +86,9 @@ ul {
 #nav ul li a:hover {
 	color:#f60;
 }
+
+
+
 #social {
 	font-size:16px;
 	width: 400px;
@@ -100,6 +113,7 @@ ul {
 	color:#f60;
 }
 
+
 #menu {
 	width: 230px;
 	float: left;
@@ -112,7 +126,7 @@ ul {
 #footer {
 	clear: both;
 	height: 200px;
-	background-color: green;
+	background-color:#CCA; 
 }
 
 

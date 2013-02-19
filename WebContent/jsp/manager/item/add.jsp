@@ -26,17 +26,18 @@
 clear: both;
 }
 </style>
-
+<script type="text/javascript" src='<c:url value="/js/manager/item.js"/>'></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.cleditor').cleditor({
 			width:        700, // width not including margins, borders or padding
 	        height:       150 // height not including margins, borders or padding});
 		});
+	
 	});
 </script>
 <div id="content">
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	<input type="hidden" name="itemIdForm" value="${item.id}"/>
 	第二級目錄
 	<dl>
@@ -63,8 +64,7 @@ clear: both;
 			<textarea class="cleditor" name="shipping" id="shipping"></textarea>
 		</li>
 		<li>當前贏家id<input type="text" name="winningBidderId" /></li>
-		<li></li>
-		<li></li>
+		<li><input type="button" id="addPicBtn" value="add pic"/></li>
 	</ul>
 	<input type="reset" name="reset" "/>
 	<input type="submit" name="submit" "/>

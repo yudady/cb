@@ -106,15 +106,18 @@ public class ItemManager {
 	 * @param form
 	 * @param result
 	 * @return
+	 * @throws IOException
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView itemAdd(ItemForm form, BindingResult result) {
+	public ModelAndView itemAdd(ItemForm form, BindingResult result)
+			throws IOException {
 
-		if (result.hasErrors()) {
-			throw new RuntimeException("驗證錯誤");
-		}
+		// if (result.hasErrors()) {
+		// throw new RuntimeException("驗證錯誤");
+		// }
 
 		log.debug("[LOG]ItemForm=" + form);
+
 		Long itemId = itemService.insert(new Item(form.getTitle(), form
 				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
 				form.getEstimatedValue(), form.getIncrementPrice(), form
@@ -124,6 +127,9 @@ public class ItemManager {
 
 		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
 		sidebarService.setCategories(null);
+
+		form.setItemIdForm(itemId);
+		this.pictures(form);
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
@@ -172,61 +178,11 @@ public class ItemManager {
 	public ModelAndView itemUpdate(@ModelAttribute("itemForm") ItemForm form,
 			BindingResult result, HttpServletRequest request)
 			throws IOException {
-		if (result.hasErrors()) {
-			throw new RuntimeException("驗證錯誤");
-		}
-
+		// if (result.hasErrors()) {
+		// throw new RuntimeException("驗證錯誤");
+		// }
 		log.debug("[LOG]ItemForm=" + form);
-		List<CommonsMultipartFile> files = form.getFiles();
-		List<Integer> priorities = form.getPriorities();
-		List<Long> picIds = form.getPicIds();
-		List<String> cruds = form.getCruds();
-
-		List<Picture> insertPictures = new ArrayList<Picture>();
-		List<Picture> updatePictures = new ArrayList<Picture>();
-		List<Long> deletePictures = new ArrayList<Long>();
-		String uploadFolder = WebUtils.getUPLOAD_FOLDER();
-		if (null != files && files.size() > 0) {
-			for (int i = 0; i < files.size(); i++) {
-				CommonsMultipartFile multipartFile = files.get(i);
-				Integer priority = priorities.get(i);
-				String crud = cruds.get(i);
-				Long picId = picIds.get(i);
-
-				if ("d".equals(crud)) {
-					deletePictures.add(picId);
-				}
-
-				String fileName = multipartFile.getOriginalFilename();
-				if (StringUtils.isBlank(fileName)) {
-					// 沒有圖片
-					continue;
-				}
-
-				fileName = new Date().getTime()
-						+ fileName.substring(fileName.indexOf("."));
-
-				if ("u".equals(crud)) {
-					updatePictures.add(new Picture(picId, form.getItemIdForm(),
-							priority, fileName));
-					FileUtils.copyInputStreamToFile(multipartFile
-							.getInputStream(),
-							new File(uploadFolder + fileName));
-				}
-				if ("c".equals(crud)) {
-					insertPictures.add(new Picture(form.getItemIdForm(),
-							priority, fileName));
-					FileUtils.copyInputStreamToFile(multipartFile
-							.getInputStream(),
-							new File(uploadFolder + fileName));
-				}
-
-			}
-		}
-		// 圖片處理
-		pictureService.insert(form.getItemIdForm(), insertPictures);
-		pictureService.delete(deletePictures);
-		pictureService.update(updatePictures);
+		this.pictures(form);
 
 		itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
 				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
@@ -250,4 +206,61 @@ public class ItemManager {
 		return mav;
 	}
 
+	private void pictures(ItemForm form) throws IOException {
+
+		List<CommonsMultipartFile> files = form.getFiles();
+		List<Integer> priorities = form.getPriorities();
+		List<Long> picIds = form.getPicIds();
+		List<String> cruds = form.getCruds();
+
+		List<Picture> insertPictures = new ArrayList<Picture>();
+		List<Picture> updatePictures = new ArrayList<Picture>();
+		List<Long> deletePictures = new ArrayList<Long>();
+		String uploadFolder = WebUtils.getUPLOAD_FOLDER();
+		if (null != files && files.size() > 0) {
+			for (int i = 0; i < files.size(); i++) {
+				CommonsMultipartFile multipartFile = files.get(i);
+				Integer priority = priorities.get(i);
+				String crud = cruds.get(i);
+				Long picId = picIds.get(i);
+
+				if ("d".equals(crud)) {
+					deletePictures.add(picId);
+				}
+
+				String fileName = multipartFile.getOriginalFilename();
+
+				if(StringUtils.isNotBlank(fileName)){
+					fileName = new Date().getTime()
+							+ fileName.substring(fileName.indexOf("."));
+				}
+
+				if ("u".equals(crud)) {
+
+					if (StringUtils.isNotBlank(fileName)) {
+						FileUtils.copyInputStreamToFile(multipartFile
+								.getInputStream(), new File(uploadFolder
+								+ fileName));
+					} else {
+						fileName = "";
+					}
+					updatePictures.add(new Picture(picId, form
+							.getItemIdForm(), priority, fileName));
+
+				}
+				if ("c".equals(crud)) {
+					insertPictures.add(new Picture(form.getItemIdForm(),
+							priority, fileName));
+					FileUtils.copyInputStreamToFile(multipartFile
+							.getInputStream(),
+							new File(uploadFolder + fileName));
+				}
+
+			}
+		}
+		// 圖片處理
+		pictureService.insert(insertPictures);
+		pictureService.delete(deletePictures);
+		pictureService.update(updatePictures);
+	}
 }

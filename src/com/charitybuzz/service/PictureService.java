@@ -3,6 +3,8 @@ package com.charitybuzz.service;
 import java.io.File;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.charitybuzz.common.util.WebUtils;
 import com.charitybuzz.dao.PictureDao;
 import com.charitybuzz.dto.Picture;
@@ -28,10 +30,9 @@ public class PictureService {
 	/**
 	 * 新增圖片
 	 * 
-	 * @param itemId
 	 * @param pictures
 	 */
-	public void insert(Long itemId, List<Picture> pictures) {
+	public void insert(List<Picture> pictures) {
 		for (Picture picture : pictures) {
 			pictureDao.insert(picture);
 		}
@@ -43,12 +44,18 @@ public class PictureService {
 	 * @param updatePictures
 	 */
 	public void update(List<Picture> updatePictures) {
+
 		String uploadFolder = WebUtils.getUPLOAD_FOLDER();
 		for (int i = 0; i < updatePictures.size(); i++) {
-			Picture delPicture = pictureDao.findByPK(updatePictures.get(i)
-					.getId());
-			new File(uploadFolder + delPicture.getPhotoPath()).delete();
-			pictureDao.update(updatePictures.get(i));
+			Picture pi = updatePictures.get(i);
+			Picture delPicture = pictureDao.findByPK(pi.getId());
+
+			if (StringUtils.isNotBlank(pi.getPhotoPath())) {
+				new File(uploadFolder + delPicture.getPhotoPath()).delete();
+			} else {
+				pi.setPhotoPath(delPicture.getPhotoPath());
+			}
+			pictureDao.update(pi);
 
 		}
 

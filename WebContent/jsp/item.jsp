@@ -62,7 +62,6 @@
 <script type="text/javascript">
 $(function() {
 	
-	//$(".counter").height($("#bidding").height() + 100);
 	/**
 	 * bid now btn
 	 * 競標
@@ -99,6 +98,9 @@ $(function() {
 			$("#watchingItem").prop("checked", true);
 			watchStatus = "1";
 		}
+		/**
+		 * call dwr
+		 */
 		watch.item( itemId , watchStatus , {
 			callback : function(data){
 				$.log(data);

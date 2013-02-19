@@ -12,23 +12,22 @@ div {
 }
 .counter {
 	padding: 10px;
-	height: auto;
 }
-#item {
+#itemDetail {
 	width: 330px;
-	float: left;
 	padding: 20px;
-	margin-bottom: 20px;
-	margin-left: 20px;
 	background-color: #CCC;
+	position:absolute;
+	top: 160px;
+	left: 390px;
 }
 
-#item .itemLargePic img {
+#itemDetail .itemLargePic img {
 	width: 330px;
 	height: 250px;
 }
 
-#item .itemSmallPic img {
+#itemDetail .itemSmallPic img {
 	width: 75px;
 	height: 50px;
 	padding: 2px;
@@ -36,10 +35,11 @@ div {
 
 #bidding {
 	width: 300px;
-	float: left;
 	padding: 20px;
 	margin-left: 20px;
 	background-color: #CCC;
+	position: relative;
+	left: 600px;
 }
 
 #biddingIitem {
@@ -64,7 +64,7 @@ div {
 <script type="text/javascript">
 $(function() {
 	
-	$(".counter").height($("#bidding").height() + 100);
+	//$(".counter").height($("#bidding").height() + 100);
 	/**
 	 * bid now btn
 	 * 競標
@@ -132,32 +132,7 @@ $(function() {
 </script>
 <div class="counter"><!-- counter -->
 <%@ include file="/jsp/include/menu.txt" %>
-<div id="item">
-	<div class="itemLargePic">
-		<div>${item.difDay} day</div>
-		<!-- time-tag -->
-		<a href="#"> <img
-			src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
-		</a>
-	</div>
-	<div class="itemSmallPic">
-		<c:if test="${fn:length(item.pictures) gt 1}">
-			<c:forEach items="${item.pictures}" var="picture">
-				<img src='<c:url value="/pic/upload/item/${picture.photoPath}" />' />
-			</c:forEach>
-		</c:if>
-	</div>
-	<div id="itemTabs">
-		<ul>
-			<li><a href="#lotDetails">Lot Details </a></li>
-			<li><a href="#legalTerms">Legal Terms</a></li>
-			<li><a href="#shipping">Shipping</a></li>
-		</ul>
-		<div id="lotDetails">${item.lotDetails}</div>
-		<div id="legalTerms">${item.legalTerms}</div>
-		<div id="shipping">${item.shipping}</div>
-	</div>
-</div>
+
 <div id="bidding">
 	<div id="biddingIitem">
 		<h2>${item.title}</h2>
@@ -233,6 +208,32 @@ $(function() {
 	<div>
 		 tweet
 		 fasebook
+	</div>
+</div>
+<div id="itemDetail">
+	<div class="itemLargePic">
+		<div>${item.difDay} day</div>
+		<!-- time-tag -->
+		<a href="#"> <img
+			src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+		</a>
+	</div>
+	<div class="itemSmallPic">
+		<c:if test="${fn:length(item.pictures) gt 1}">
+			<c:forEach items="${item.pictures}" var="picture">
+				<img src='<c:url value="/pic/upload/item/${picture.photoPath}" />' />
+			</c:forEach>
+		</c:if>
+	</div>
+	<div id="itemTabs">
+		<ul>
+			<li><a href="#lotDetails">Lot Details </a></li>
+			<li><a href="#legalTerms">Legal Terms</a></li>
+			<li><a href="#shipping">Shipping</a></li>
+		</ul>
+		<div id="lotDetails">${item.lotDetails}</div>
+		<div id="legalTerms">${item.legalTerms}</div>
+		<div id="shipping">${item.shipping}</div>
 	</div>
 </div>
 </div><!-- counter -->

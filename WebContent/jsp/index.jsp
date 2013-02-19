@@ -2,12 +2,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/jsp/include/header.txt" %>
-<%@ include file="/jsp/include/menu.txt" %>
 <style type="text/css">
-#content {
-	width: 750px;
-	float: right;
+
+.indexTop {
+	background-color: #FFFFFF;
+	padding: 2px;
+}
+.content {
+	width: 760px;
 	margin-bottom: 20px;
+	position:relative;
+	left: 210px;
+	margin-right:5px;
 }
 
 #liveAuctions {
@@ -68,7 +74,10 @@
 </script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/slideshow.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/slideshow.js"/>'></script>
-<div id="content">
+
+<div class="indexTop">
+<%@ include file="/jsp/include/menu.txt" %>
+<div class="content">
 	<div class="slideshow">
 		<div class="slideshow-top">
 			<div class="picMsg">
@@ -108,6 +117,9 @@
 		</div>
 	</div>
 </div>
+</div>
+
+
 <div id="liveAuctions">
 	<h1>Current Auctions</h1>
 	<hr />

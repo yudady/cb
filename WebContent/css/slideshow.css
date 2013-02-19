@@ -14,43 +14,54 @@
 	margin-bottom: 10px;
 }
 .slideshow-top .picMsg {
-	width: 750px;
-	height: 100px;
+	width: 730px;
+	height: 200px;
 	font-size: 24px;
-	position: absolute;
 	background-color: gray;
+	position: relative;
+	z-index: 1;
+	left:10px;
+	top: 5px;
 }
 /**
  * 	Bid NOW
  */
 .slideshow-top .picMsg input{
 	width: 100px;
-	margin-left: 630px;
-	margin-top: 40px;
+	position: relative;
+	top: 130px;
+	left: 400px;
 }
+/**
+ * 	大圖片
+ */
 .slideshow-top img {
-	width: 750px;
+	position: relative;
+	top: -250px;
+	width: 730px;
 	height: 400px;
+	padding: 10px;
 }
-
+/**
+ * 	左右方向
+ */
 .slideshow-top .direction {
 	width: 100px;
 	height: 30px;
 	font-size: 18px;
 	background-color: black;
-	position: absolute;
-	margin-left: 630px;
-	margin-bottom: 10px;
+	position: relative;
+	z-index: 1;
+	left: 630px;
+	top: -300px;
 	color: white;
-	top: 530px;
 }
 .slideshow-top .direction input {
 	width: 30px;
 	cursor: pointer;
 }
 .slideshow-button {
-	width: 750px;
-	position: relative;
+	width: 730px;
 	overflow: hidden;
 }
 
@@ -62,7 +73,9 @@
 	height: 100%;
 	float: left;
 }
-
+/**
+ * 	小圖片
+ */
 .slideshow-button img {
 	margin: 2px;
 	padding: 10px;

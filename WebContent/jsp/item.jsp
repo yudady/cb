@@ -7,19 +7,17 @@
 <script type='text/javascript' src='<c:url value="/dwr/util.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/dwr/interface/watch.js"/>'></script>
 <style type="text/css">
-div {
-	background-color: white;
-}
 .counter {
 	padding: 10px;
+	background-color: white;
 }
 #itemDetail {
-	width: 330px;
-	padding: 20px;
-	background-color: #CCC;
+	width: 400px;
+	padding: 5px;
+	background-color:#CCC;
 	position:absolute;
 	top: 160px;
-	left: 390px;
+	left: 370px;
 }
 
 #itemDetail .itemLargePic img {
@@ -34,8 +32,8 @@ div {
 }
 
 #bidding {
-	width: 300px;
-	padding: 20px;
+	width: 330px;
+	padding: 5px;
 	margin-left: 20px;
 	background-color: #CCC;
 	position: relative;

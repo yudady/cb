@@ -1,7 +1,6 @@
 ;$(function() {
 	
 	$(function() {
-		$("div").addClass('ui-corner-all');
 		var si = 8;
  		var moviePic = 8;
  		var positionRelative = 0;
@@ -27,41 +26,33 @@
 			});
 		}
 		
-		
-		$('.move-activity').live('click', function() {
-			$(".slideshow-button-click").removeClass("slideshow-button-click");
-			$(this).addClass("slideshow-button-click");
-			topPicChange(this);
-			
-		});
-		
-		
+        $(".slideshow-button").on("click",".move-activity",  function(event){
+            $(".slideshow-button-click").removeClass("slideshow-button-click");
+            $(this).addClass("slideshow-button-click");
+            topPicChange(this);
+            event.preventDefault();
+        });
 		
 		
 		$(".slideshow-top .picMsg").css({"opacity":"0.4"});
 		$(".slideshow-top .direction").css({"opacity":"0.4"});
-		$(".slideshow-top .picMsg input[type='button']").click(function(){
+		$(".slideshow-top .picMsg input[type='button']").on('click',function(){
 			alert('1');
 		});
 		
 		
-		$("#left").click(function(){
+		$("#left").on('click',function(){
 			if(positionRelative >= imgs.size()-si){
 				return;
 			}
-			
 			positionRelative = positionRelative + moviePic ;
-			
 			if(positionRelative + moviePic >= imgs.size()){
 				positionRelative = imgs.size() - moviePic;
 			}
-			
-			
-			
 			addMoveActivity(positionRelative,si+positionRelative);
 			move();
 		}); 
-		$("#right").click(function(){
+		$("#right").on('click',function(){
 			if(positionRelative <= 0){
 				return;
 			}

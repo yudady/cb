@@ -1,5 +1,5 @@
 ;$(function() {
-	$("a.tabUrl").click(function(){
+	$("a.tabUrl").on('click',function(){
 		window.parent.document.location = this.href;
 		return false;
 	});

@@ -55,6 +55,32 @@
 </script>
 <script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
+<script type="text/javascript">
+$(function() {
+	$("#loginBtn").click(function(){
+		
+		$("#loginForm").dialog({ 
+			resizable: false,
+			position: { of: $( "#login" ) , my: "center top", at: "left bottom"  },
+			draggable: false,
+			height: 300,
+			width:400,
+			title: "Account Login"
+		
+		});
+	});
+	
+	$("#loginFormBtn").click(function(){
+		$("#url").val(window.location.href);
+		$("#loginForm").submit();
+	});
+	$("#loginOutFormBtn").click(function(){
+		$("#url").val(window.location.href);
+		$("#loginOutForm").submit();
+	});
+
+});
+</script>
 </head>
 <body>
 <div id="header">
@@ -66,7 +92,9 @@
 <div id="login">
 <c:choose>
     <c:when test="${empty bidder}">
-		<span>Login with email and Password</span>
+		<a class="cssButton" id="loginBtn">login</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="cssButton" id="registerBtn">register</a>
+		<div>
 		<form id="loginForm" action="<c:url value='/login/form.do' />" method='post'>
 			<table>
 				<tr>
@@ -81,11 +109,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td><input id="loginFormBtn" type="button" value="login" /></td>
-					<td><input name="reset" type="reset" /></td>
+					<td><input id="loginFormBtn" class="cssButton" type="button" value="login" /></td>
 				</tr>
 			</table>
 		</form>
+		</div>
     </c:when>
     <c:otherwise>
         <h1>${bidder.email}</h1>

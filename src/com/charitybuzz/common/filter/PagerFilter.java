@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.charitybuzz.common.context.PagerContext;
+import com.charitybuzz.common.util.WebUtils;
 
 public class PagerFilter implements Filter {
 
@@ -41,6 +42,7 @@ public class PagerFilter implements Filter {
 			}
 			PagerContext.setPageOffset(pageOffset);
 			PagerContext.setPageSize(pageSize);
+			// here chain
 			chain.doFilter(request, response);
 		} finally {
 			PagerContext.removePageOffset();
@@ -51,6 +53,13 @@ public class PagerFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig cf) throws ServletException {
+		/**
+		 * 初始化
+		 */
+		String path = cf.getServletContext().getRealPath("/");
+		String uploadFolder = path + "pic/upload/item/";
+		WebUtils.setUPLOAD_FOLDER(uploadFolder);
+		
 	}
 
 }

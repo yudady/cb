@@ -1,11 +1,17 @@
 package com.charitybuzz.web.manager.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -14,16 +20,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.util.WebUtils;
 import com.charitybuzz.dto.Item;
+import com.charitybuzz.dto.Picture;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.ItemService;
+import com.charitybuzz.service.PictureService;
 import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.service.SubcategoryItemService;
 import com.charitybuzz.web.manager.form.ItemForm;
@@ -48,6 +59,8 @@ public class ItemManager {
 	private SubCategoryService subCategoryService;
 	@Resource
 	private SubcategoryItemService subcategoryItemService;
+	@Resource
+	private PictureService pictureService;
 	@Resource
 	private SidebarService sidebarService;
 
@@ -146,6 +159,9 @@ public class ItemManager {
 				}
 			}
 		}
+		
+		List<Picture> pictures = pictureService.findByItemId(itemId);
+		item.setPictures(pictures);
 
 		return mav;
 	}
@@ -156,9 +172,12 @@ public class ItemManager {
 	 * @param sessionObject
 	 * @param itemId
 	 * @return
+	 * @throws IOException
 	 */
 	@RequestMapping(value = "{itemId}/update", method = RequestMethod.POST)
-	public ModelAndView itemUpdate(ItemForm form, BindingResult result) {
+	public ModelAndView itemUpdate(@ModelAttribute("itemForm") ItemForm form,
+			BindingResult result, HttpServletRequest request)
+			throws IOException {
 		if (result.hasErrors()) {
 			// TODO fix error msg
 			List<ObjectError> errors = result.getAllErrors();
@@ -169,6 +188,63 @@ public class ItemManager {
 		}
 
 		log.debug("[LOG]ItemForm=" + form);
+		List<CommonsMultipartFile> files = form.getFiles();
+		List<Integer> priorities = form.getPriorities();
+		List<Long> picIds = form.getPicIds();
+		List<String> cruds = form.getCruds();
+		
+		
+		List<Picture> insertPictures = new ArrayList<Picture>();
+		List<Picture> updatePictures = new ArrayList<Picture>();
+		List<Long> deletePictures = new ArrayList<Long>();
+		String uploadFolder = WebUtils.getUPLOAD_FOLDER();
+		if (null != files && files.size() > 0) {
+			for (int i = 0 ; i < files.size() ; i ++) {
+				CommonsMultipartFile multipartFile = files.get(i);
+				Integer priority = priorities.get(i);
+				String crud = cruds.get(i);
+				Long picId = picIds.get(i);
+				
+				
+				
+				if("d".equals(crud)){
+					// del pic file
+					//del db
+					deletePictures.add(picId);
+				}
+				
+				String fileName = multipartFile.getOriginalFilename();
+				if(StringUtils.isBlank(fileName)){
+					//沒有圖片
+					continue;
+				}
+				
+
+				
+				
+				
+				fileName = new Date().getTime()
+						+ fileName.substring(fileName.indexOf("."));
+				
+				if("u".equals(crud)){
+					updatePictures.add(new Picture(picId,form.getItemIdForm(), priority, fileName));
+					FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
+							new File(uploadFolder + fileName));
+				}
+				if("c".equals(crud)){
+					insertPictures.add(new Picture(form.getItemIdForm(), priority, fileName));
+					FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
+							new File(uploadFolder + fileName));
+				}
+
+			}
+		}
+		//寫入圖片
+		pictureService.insert(form.getItemIdForm(),insertPictures);
+		pictureService.delete(deletePictures);
+		pictureService.update(updatePictures);
+		
+
 		itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
 				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
 				form.getEstimatedValue(), form.getIncrementPrice(), form

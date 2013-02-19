@@ -22,7 +22,7 @@ public class Picture {
 	 * 數字越小越優先，預設值等於自動編號的值
 	 * </pre>
 	 */
-	private String priority;
+	private int priority;
 	/**
 	 * 圖片路徑
 	 */
@@ -38,7 +38,18 @@ public class Picture {
 	public Picture() {
 	}
 
-	public Picture(Long id, Long itemId, String priority, String photoPath,
+	public Picture(Long itemId, int priority, String photoPath) {
+		this.itemId = itemId;
+		this.priority = priority;
+		this.photoPath = photoPath;
+	}
+	public Picture(Long id, Long itemId, int priority, String photoPath) {
+		this.id = id;
+		this.itemId = itemId;
+		this.priority = priority;
+		this.photoPath = photoPath;
+	}
+	public Picture(Long id, Long itemId, int priority, String photoPath,
 			Date createdDate) {
 		this.id = id;
 		this.itemId = itemId;
@@ -65,11 +76,11 @@ public class Picture {
 		this.itemId = itemId;
 	}
 
-	public String getPriority() {
+	public int getPriority() {
 		return priority;
 	}
 
-	public void setPriority(String priority) {
+	public void setPriority(int priority) {
 		this.priority = priority;
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 /**
  * 第一級目錄
@@ -12,12 +13,15 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author Administrator
  * 
  */
-public class ItemForm {
+public class ItemForm implements java.io.Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1772039844990388765L;
+
 	/**
 	 * 此商品有哪些二級目錄
 	 */
-
-
 	private List<Long> subCategoryIds;
 	/**
 	 * 第一級目錄id
@@ -73,6 +77,14 @@ public class ItemForm {
 	 * 當前贏家id winningBidderId
 	 */
 	private Long winningBidderId;
+
+	private List<CommonsMultipartFile> files;
+
+	private List<Integer> priorities;
+
+	private List<Long> picIds;
+
+	private List<String> cruds;
 
 	public List<Long> getSubCategoryIds() {
 		return subCategoryIds;
@@ -176,6 +188,38 @@ public class ItemForm {
 
 	public void setWinningBidderId(Long winningBidderId) {
 		this.winningBidderId = winningBidderId;
+	}
+
+	public List<CommonsMultipartFile> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<CommonsMultipartFile> files) {
+		this.files = files;
+	}
+
+	public List<Integer> getPriorities() {
+		return priorities;
+	}
+
+	public void setPriorities(List<Integer> priorities) {
+		this.priorities = priorities;
+	}
+
+	public List<Long> getPicIds() {
+		return picIds;
+	}
+
+	public void setPicIds(List<Long> picIds) {
+		this.picIds = picIds;
+	}
+
+	public List<String> getCruds() {
+		return cruds;
+	}
+
+	public void setCruds(List<String> cruds) {
+		this.cruds = cruds;
 	}
 
 	@Override

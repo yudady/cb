@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.charitybuzz.common.util.WebUtils;
+import com.charitybuzz.common.Constant;
 import com.charitybuzz.dao.PictureDao;
 import com.charitybuzz.dto.Picture;
 
@@ -45,13 +45,12 @@ public class PictureService {
 	 */
 	public void update(List<Picture> updatePictures) {
 
-		String uploadFolder = WebUtils.getUPLOAD_FOLDER();
 		for (int i = 0; i < updatePictures.size(); i++) {
 			Picture pi = updatePictures.get(i);
 			Picture delPicture = pictureDao.findByPK(pi.getId());
 
 			if (StringUtils.isNotBlank(pi.getPhotoPath())) {
-				new File(uploadFolder + delPicture.getPhotoPath()).delete();
+				new File(Constant.UPLOAD_FOLDER + delPicture.getPhotoPath()).delete();
 			} else {
 				pi.setPhotoPath(delPicture.getPhotoPath());
 			}
@@ -67,10 +66,9 @@ public class PictureService {
 	 * @param picIds
 	 */
 	public void delete(List<Long> picIds) {
-		String uploadFolder = WebUtils.getUPLOAD_FOLDER();
 		for (Long picId : picIds) {
 			Picture picture = pictureDao.findByPK(picId);
-			new File(uploadFolder + picture.getPhotoPath()).delete();
+			new File(Constant.UPLOAD_FOLDER + picture.getPhotoPath()).delete();
 			pictureDao.deleteByPK(picId);
 		}
 

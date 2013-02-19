@@ -11,8 +11,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.charitybuzz.common.Constant;
 import com.charitybuzz.common.context.PagerContext;
-import com.charitybuzz.common.util.WebUtils;
 
 public class PagerFilter implements Filter {
 
@@ -58,7 +58,7 @@ public class PagerFilter implements Filter {
 		 */
 		String path = cf.getServletContext().getRealPath("/");
 		String uploadFolder = path + "pic/upload/item/";
-		WebUtils.setUPLOAD_FOLDER(uploadFolder);
+		Constant.UPLOAD_FOLDER = uploadFolder;
 		
 	}
 

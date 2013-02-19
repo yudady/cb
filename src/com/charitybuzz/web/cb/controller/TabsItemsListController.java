@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.Constant;
 import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Bidlog;
 import com.charitybuzz.dto.Category;
@@ -32,10 +33,6 @@ import com.charitybuzz.service.PictureService;
 public class TabsItemsListController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(TabsItemsListController.class);
-	/**
-	 * 頁籤出現幾筆資料
-	 */
-	private int count = 25;
 
 	@Resource
 	private SidebarService sidebarService;
@@ -64,7 +61,7 @@ public class TabsItemsListController {
 	public ModelAndView closingNext(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/closeNext4Tab");
 
-		List<Item> items = itemService.findClosingNext(count);
+		List<Item> items = itemService.findClosingNext(Constant.INDEX_TABS_ITEMS_SIZE);
 		for (Item item : items) {
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);
@@ -85,7 +82,7 @@ public class TabsItemsListController {
 	public ModelAndView hotDeals(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/hotDeals4Tab");
 
-		List<Item> items = itemService.findByHotDeals(count);
+		List<Item> items = itemService.findByHotDeals(Constant.INDEX_TABS_ITEMS_SIZE);
 		for (Item item : items) {
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);
@@ -106,7 +103,7 @@ public class TabsItemsListController {
 	public ModelAndView popular(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/popular4Tab");
 
-		List<Item> items = itemService.findPopular(count);
+		List<Item> items = itemService.findPopular(Constant.INDEX_TABS_ITEMS_SIZE);
 		for (Item item : items) {
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);
@@ -130,7 +127,7 @@ public class TabsItemsListController {
 	public ModelAndView recentAdd(HttpSession session) {
 		ModelAndView mav = new ModelAndView("indexTabs/recentAdd4Tab");
 
-		List<Item> items = itemService.findRecentAdd(count);
+		List<Item> items = itemService.findRecentAdd(Constant.INDEX_TABS_ITEMS_SIZE);
 		for (Item item : items) {
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);

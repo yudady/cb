@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.common.util.WebUtils;
+import com.charitybuzz.common.Constant;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.dto.SubCategory;
@@ -216,7 +216,6 @@ public class ItemManager {
 		List<Picture> insertPictures = new ArrayList<Picture>();
 		List<Picture> updatePictures = new ArrayList<Picture>();
 		List<Long> deletePictures = new ArrayList<Long>();
-		String uploadFolder = WebUtils.getUPLOAD_FOLDER();
 		if (null != files && files.size() > 0) {
 			for (int i = 0; i < files.size(); i++) {
 				CommonsMultipartFile multipartFile = files.get(i);
@@ -239,7 +238,7 @@ public class ItemManager {
 
 					if (StringUtils.isNotBlank(fileName)) {
 						FileUtils.copyInputStreamToFile(multipartFile
-								.getInputStream(), new File(uploadFolder
+								.getInputStream(), new File(Constant.UPLOAD_FOLDER
 								+ fileName));
 					} else {
 						fileName = "";
@@ -253,7 +252,7 @@ public class ItemManager {
 							priority, fileName));
 					FileUtils.copyInputStreamToFile(multipartFile
 							.getInputStream(),
-							new File(uploadFolder + fileName));
+							new File(Constant.UPLOAD_FOLDER + fileName));
 				}
 
 			}

@@ -39,14 +39,19 @@ ul {
 #login {
 	width: 300px;
 	position: relative;
-	top: -70px;
-	left: 650px;
+	top: -40px;
+	left: 750px;
 }
 #login button{
 	
 }
 #loginForm {
 	display: none;
+}
+#loginOutForm {
+	position: relative;
+	top: -20px;
+	left: 220px;
 }
 
 

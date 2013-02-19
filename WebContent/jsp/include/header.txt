@@ -98,7 +98,7 @@ $(function() {
 		<form id="loginForm" action="<c:url value='/login/form.do' />" method='post'>
 			<table>
 				<tr>
-					<td>email:</td>
+					<td>Email Address:</td>
 					<td><input type='text' name='email' ></td>
 				</tr>
 				<tr>
@@ -111,20 +111,30 @@ $(function() {
 				<tr>
 					<td><input id="loginFormBtn" class="cssButton" type="button" value="login" /></td>
 				</tr>
+				<tr>
+					<td>Forgot Password?</td>
+				</tr>
 			</table>
 		</form>
 		</div>
     </c:when>
     <c:otherwise>
-        <h1>${bidder.email}</h1>
-		<form id="loginOutForm" action="<c:url value='/login/loginOut.do' />" method='post'>
-			<input type='hidden' id='loginOutFormEmail' value="${bidder.email}" />
-			<input type='hidden' id='loginOutFormItemId' value="${item.id}" />
-			<input type='hidden' name='url' id='url' value=""/>
-			<input id="loginOutFormBtn" type="button" value="login out" />
-		</form>
+        <div>
+        	You are logged in as ${bidder.email} | 
+        	<a href="#" >Account info</a> | 
+			<form id="loginOutForm" action="<c:url value='/login/loginOut.do' />" method='post'>
+				<input type='hidden' id='loginOutFormEmail' value="${bidder.email}" />
+				<input type='hidden' id='loginOutFormItemId' value="${item.id}" />
+				<input type='hidden' name='url' id='url' value=""/>
+				<input id="loginOutFormBtn" type="button" value="login out" />
+			</form>
+		</div>
     </c:otherwise>
 </c:choose>
+	<form id="searchItem" action="<c:url value='/categories/searchItems.do' />" method='post'>
+		<input type='text' name='search' />
+		<input type="submit" value="search" />
+	</form>
 </div>
 </div>
 

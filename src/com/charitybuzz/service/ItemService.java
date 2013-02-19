@@ -175,6 +175,15 @@ public class ItemService {
 		return itemDao.findPagerByRecentAdd();
 	}
 
+	/**
+	 * 關鍵字查找
+	 * @param keyWord
+	 * @return
+	 */
+	public Pager<Item> findByKeyWord(String keyWord) {
+		return itemDao.findByKeyWord(keyWord);
+	}
+
 
 
 

@@ -3,6 +3,7 @@ package com.charitybuzz.web.cb.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,6 +100,31 @@ public class CategoriesController {
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {
 
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
+		mav.addObject("pager", pager);
+		return mav;
+	}
+	@RequestMapping(value = "/searchItems", method = RequestMethod.POST)
+	public ModelAndView searchItems(HttpServletRequest request) {
+		
+		log.debug("[LOG][searchItems]");
+		String keyWord = request.getParameter("search");
+		ModelAndView mav = new ModelAndView("itemsPager");
+		/**
+		 * 目錄
+		 */
+		List<Category> categories = sidebarService.getSidebar();
+		mav.addObject("categories", categories);
+		/**
+		 * 分頁商品
+		 */
+		Pager<Item> pager = itemService.findByKeyWord(keyWord);
+		List<Item> items = pager.getDatas();
+		for (Item item : items) {
+			
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);
 			item.setPictures(pictures);

@@ -16,15 +16,25 @@
 	margin-right:5px;
 }
 
+.indexDown {
+	margin-top:20px;
+	background-color: #FFFFFF;
+	padding: 2px;
+}
+
+/**
+ * 	下左
+ */
+
 #liveAuctions {
 	width: 600px;
-	float: left;
 	background-color: pink;
 	margin-bottom: 20px;
 }
 
 #liveAuctions hr {
-	clear: both;
+	/*
+	clear: both;*/
 }
 
 #liveAuctions .item {
@@ -33,7 +43,6 @@
 }
 
 #liveAuctions .item img {
-	float: left;
 	width: 159px;
 	height: 116px;
 	margin-right: 20px;
@@ -44,9 +53,19 @@
 	margin-left: 20px;
 }
 
+
+
+
+
+/**
+ * 	下右邊
+ */
 #itemsClosing {
+	/*
+	position:absolute;
+	left:760px;*/
+	float:right;
 	width: 370px;
-	float: right;
 	background-color: gray;
 }
 
@@ -119,7 +138,18 @@
 </div>
 </div>
 
-
+<div class="indexDown">
+<div id="itemsClosing">
+	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
+	<div id="tabs4">
+	     <ul>
+	         <li><a href='<c:url value="/items/closingNext.do"/>'><span>Closing Next</span></a></li>
+	         <li><a href='<c:url value="/items/hotDeals.do"/>'><span>Deals</span></a></li>
+	         <li><a href='<c:url value="/items/popular.do"/>'><span>Most Popular</span></a></li>
+	         <li><a href='<c:url value="/items/recentAdd.do"/>'><span>Recently Added</span></a></li>
+	     </ul>
+	</div>
+</div>
 <div id="liveAuctions">
 	<h1>Current Auctions</h1>
 	<hr />
@@ -152,15 +182,6 @@
 		<jsp:param value="" name="url" />
 	</jsp:include>
 </div>
-<div id="itemsClosing">
-	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
-	<div id="tabs4">
-	     <ul>
-	         <li><a href='<c:url value="/items/closingNext.do"/>'><span>Closing Next</span></a></li>
-	         <li><a href='<c:url value="/items/hotDeals.do"/>'><span>Deals</span></a></li>
-	         <li><a href='<c:url value="/items/popular.do"/>'><span>Most Popular</span></a></li>
-	         <li><a href='<c:url value="/items/recentAdd.do"/>'><span>Recently Added</span></a></li>
-	     </ul>
-	</div>
+
 </div>
 <%@ include file="/jsp/include/footer.txt" %>

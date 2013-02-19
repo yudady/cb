@@ -2,16 +2,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="/jsp/include/header.txt" %>
-<%@ include file="/jsp/include/menu.txt" %>
 <style type="text/css">
-
+.counter {
+	padding: 10px;
+	
+}
 .item {
 	width: 680px;
 	height: 200px;
-	float: right;
 	padding: 30px; 
+	margin-left: 220px;
 	margin-bottom : 20px;
-	background-color: #CCC;
+	background-color: white;
 }
 .pic {
 	float:left;
@@ -33,6 +35,8 @@
 	color:red;
 }
 </style>
+<div class="counter"><!-- counter -->
+<%@ include file="/jsp/include/menu.txt" %>
 <div>
 	<jsp:include page="/jsp/include/pager.jsp">
 		<jsp:param value="${pager.totalRecord}" name="totalRecord" />
@@ -79,4 +83,5 @@
 		</span>
 	</div>
 </c:forEach>
+</div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>

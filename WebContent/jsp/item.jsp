@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/jsp/include/header.txt" %>
-<%@ include file="/jsp/include/menu.txt" %>
 <script type='text/javascript' src='<c:url value="/dwr/engine.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/dwr/util.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/dwr/interface/watch.js"/>'></script>
@@ -11,7 +10,10 @@
 div {
 	background-color: white;
 }
-
+.counter {
+	padding: 10px;
+	height: auto;
+}
 #item {
 	width: 330px;
 	float: left;
@@ -62,7 +64,7 @@ div {
 <script type="text/javascript">
 $(function() {
 	
-	
+	$(".counter").height($("#bidding").height() + 100);
 	/**
 	 * bid now btn
 	 * 競標
@@ -128,6 +130,8 @@ $(function() {
 
 
 </script>
+<div class="counter"><!-- counter -->
+<%@ include file="/jsp/include/menu.txt" %>
 <div id="item">
 	<div class="itemLargePic">
 		<div>${item.difDay} day</div>
@@ -231,4 +235,5 @@ $(function() {
 		 fasebook
 	</div>
 </div>
+</div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>

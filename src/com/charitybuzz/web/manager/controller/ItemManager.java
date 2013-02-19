@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -112,12 +111,7 @@ public class ItemManager {
 	public ModelAndView itemAdd(ItemForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
-			// TODO fix error msg
-			List<ObjectError> errors = result.getAllErrors();
-			for (ObjectError error : errors) {
-
-				log.error("result.hasErrors" + error);
-			}
+			throw new RuntimeException("驗證錯誤");
 		}
 
 		log.debug("[LOG]ItemForm=" + form);
@@ -159,7 +153,7 @@ public class ItemManager {
 				}
 			}
 		}
-		
+
 		List<Picture> pictures = pictureService.findByItemId(itemId);
 		item.setPictures(pictures);
 
@@ -179,12 +173,7 @@ public class ItemManager {
 			BindingResult result, HttpServletRequest request)
 			throws IOException {
 		if (result.hasErrors()) {
-			// TODO fix error msg
-			List<ObjectError> errors = result.getAllErrors();
-			for (ObjectError error : errors) {
-
-				log.error("result.hasErrors" + error);
-			}
+			throw new RuntimeException("驗證錯誤");
 		}
 
 		log.debug("[LOG]ItemForm=" + form);
@@ -192,58 +181,52 @@ public class ItemManager {
 		List<Integer> priorities = form.getPriorities();
 		List<Long> picIds = form.getPicIds();
 		List<String> cruds = form.getCruds();
-		
-		
+
 		List<Picture> insertPictures = new ArrayList<Picture>();
 		List<Picture> updatePictures = new ArrayList<Picture>();
 		List<Long> deletePictures = new ArrayList<Long>();
 		String uploadFolder = WebUtils.getUPLOAD_FOLDER();
 		if (null != files && files.size() > 0) {
-			for (int i = 0 ; i < files.size() ; i ++) {
+			for (int i = 0; i < files.size(); i++) {
 				CommonsMultipartFile multipartFile = files.get(i);
 				Integer priority = priorities.get(i);
 				String crud = cruds.get(i);
 				Long picId = picIds.get(i);
-				
-				
-				
-				if("d".equals(crud)){
-					// del pic file
-					//del db
+
+				if ("d".equals(crud)) {
 					deletePictures.add(picId);
 				}
-				
+
 				String fileName = multipartFile.getOriginalFilename();
-				if(StringUtils.isBlank(fileName)){
-					//沒有圖片
+				if (StringUtils.isBlank(fileName)) {
+					// 沒有圖片
 					continue;
 				}
-				
 
-				
-				
-				
 				fileName = new Date().getTime()
 						+ fileName.substring(fileName.indexOf("."));
-				
-				if("u".equals(crud)){
-					updatePictures.add(new Picture(picId,form.getItemIdForm(), priority, fileName));
-					FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
+
+				if ("u".equals(crud)) {
+					updatePictures.add(new Picture(picId, form.getItemIdForm(),
+							priority, fileName));
+					FileUtils.copyInputStreamToFile(multipartFile
+							.getInputStream(),
 							new File(uploadFolder + fileName));
 				}
-				if("c".equals(crud)){
-					insertPictures.add(new Picture(form.getItemIdForm(), priority, fileName));
-					FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
+				if ("c".equals(crud)) {
+					insertPictures.add(new Picture(form.getItemIdForm(),
+							priority, fileName));
+					FileUtils.copyInputStreamToFile(multipartFile
+							.getInputStream(),
 							new File(uploadFolder + fileName));
 				}
 
 			}
 		}
-		//寫入圖片
-		pictureService.insert(form.getItemIdForm(),insertPictures);
+		// 圖片處理
+		pictureService.insert(form.getItemIdForm(), insertPictures);
 		pictureService.delete(deletePictures);
 		pictureService.update(updatePictures);
-		
 
 		itemService.update(new Item(form.getItemIdForm(), form.getTitle(), form
 				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),

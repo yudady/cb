@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.HttpSessionRequiredException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,11 +47,13 @@ public class SubCategoryManager {
 	 */
 	@Resource
 	private ItemService itemService;
+	
+	
 	@Resource
 	private SidebarService sidebarService;
 
 	/**
-	 * 拿到列表
+	 * 拿到列表，第二級目錄下有商品，則不能刪除
 	 * 
 	 * @param form
 	 * @param sessionObject
@@ -104,6 +104,7 @@ public class SubCategoryManager {
 			BindingResult result) {
 
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
 		subCategoryService.insert(new SubCategory(form.getSubCaId(), form
 				.getCategoryId(), form.getName(), form.getDescript()));
@@ -142,6 +143,7 @@ public class SubCategoryManager {
 	public ModelAndView categoryUpdate(SubCategoryForm form,
 			BindingResult result) {
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
 		SubCategory sc = new SubCategory(form.getSubCaId(),
 				form.getCategoryId(), form.getName(), form.getDescript());
@@ -157,6 +159,7 @@ public class SubCategoryManager {
 	public ModelAndView categoryDelete(@PathVariable Long subCategoryId,
 			SubCategoryForm form, BindingResult result) {
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
 
 		subCategoryService.delete(subCategoryId);
@@ -166,8 +169,4 @@ public class SubCategoryManager {
 		return mav;
 	}
 
-	@ExceptionHandler({ HttpSessionRequiredException.class })
-	public ModelAndView noSessionObject(Exception ex) {
-		return new ModelAndView("redirect:/manager/index.do");
-	}
 }

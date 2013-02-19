@@ -68,9 +68,11 @@ public class OperatorManager {
 	public ModelAndView operatorAdd(OperatorForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
 
-		operatorService.insert(new Operator(form.getOperatorId(), form.getName(), form.getPassWord()));
+		operatorService.insert(new Operator(form.getOperatorId(), form
+				.getName(), form.getPassWord()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/operator/list.do");
@@ -104,8 +106,10 @@ public class OperatorManager {
 	public ModelAndView operatorUpdate(@PathVariable Long operatorId,
 			OperatorForm form, BindingResult result) {
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
-		operatorService.update(new Operator(form.getOperatorId(), form.getName(), form.getPassWord()));
+		operatorService.update(new Operator(form.getOperatorId(), form
+				.getName(), form.getPassWord()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/operator/list.do");
@@ -116,6 +120,7 @@ public class OperatorManager {
 	public ModelAndView operatorDelete(@PathVariable Long operatorId,
 			OperatorForm form, BindingResult result) {
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
 
 		operatorService.delete(operatorId);

@@ -19,7 +19,7 @@ public class Picture {
 	 * 圖片顯示的優先權
 	 * 
 	 * <pre>
-	 * 數字越小越優先，預設值等於自動編號的值
+	 * 數字越小越優先
 	 * </pre>
 	 */
 	private int priority;
@@ -43,12 +43,14 @@ public class Picture {
 		this.priority = priority;
 		this.photoPath = photoPath;
 	}
+
 	public Picture(Long id, Long itemId, int priority, String photoPath) {
 		this.id = id;
 		this.itemId = itemId;
 		this.priority = priority;
 		this.photoPath = photoPath;
 	}
+
 	public Picture(Long id, Long itemId, int priority, String photoPath,
 			Date createdDate) {
 		this.id = id;

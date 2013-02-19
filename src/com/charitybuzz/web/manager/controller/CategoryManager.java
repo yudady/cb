@@ -85,6 +85,7 @@ public class CategoryManager {
 	public ModelAndView categoryAdd(CategoryForm form, BindingResult result) {
 
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
 
 		categoryService.insert(new Category(form.getName()));
@@ -121,6 +122,7 @@ public class CategoryManager {
 	public ModelAndView categoryUpdate(@PathVariable Long categoryId,
 			CategoryForm form, BindingResult result) {
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
 		categoryService.update(new Category(form.getId(), form.getName()));
 		sidebarService.setCategories(null);
@@ -134,6 +136,7 @@ public class CategoryManager {
 	public ModelAndView categoryDelete(@PathVariable Long categoryId,
 			CategoryForm form, BindingResult result) {
 		if (result.hasErrors()) {
+			throw new RuntimeException("驗證錯誤");
 		}
 
 		categoryService.delete(categoryId);

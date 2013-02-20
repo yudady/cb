@@ -7,17 +7,22 @@
 <script type='text/javascript' src='<c:url value="/dwr/util.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/dwr/interface/watch.js"/>'></script>
 <style type="text/css">
+
 .counter {
 	padding: 10px;
 	background-color: white;
 }
+
+
+/**
+ *	中間
+ */
 #itemDetail {
+	margin-left:5px;
 	width: 400px;
 	padding: 5px;
 	background-color:#CCC;
-	position:absolute;
-	top: 160px;
-	left: 370px;
+	float: left;
 }
 
 #itemDetail .itemLargePic img {
@@ -30,32 +35,42 @@
 	padding: 2px;
 }
 
-#bidding {
+
+/**
+ *右邊
+ */
+.bidding {
+	margin-left:620px;
 	width: 330px;
 	padding: 5px;
-	margin-left: 20px;
 	background-color: #CCC;
-	position: relative;
-	left: 600px;
 }
 
-#biddingIitem {
-	margin-bottom: 10px;
+.biddingIitem {
+	background-color: white;
 }
 
-#biddingProceedsBenefit {
+
+.biddingProceedsBenefit {
+
 	height: 100px;
 	margin-bottom: 10px;
+	background-color: purple;
 }
 
-#biddingWatchQuestion {
+.biddingWatchQuestion {
 	line-height: 50px;
 	font-size: 16px;
 	color: red;
 	height: 50px;
 	text-align: center;
-	background-color: #CCC;
+	background-color: yellow;
 }
+.biddingMoreDetails dl{
+	display: none;
+}
+
+
 
 </style>
 <script type="text/javascript">
@@ -114,14 +129,14 @@ $(function() {
 	
 	//以下是頁面資訊=============================================
 	$("#itemTabs").tabs();
-	$("#biddingIitemWhat").click(function(){
+	$("#biddingIitemWhat").on('click',function(){
 		cb.openAlertDialog("This is the time the auction will end, but \"Popcorn Bidding\" could add 10 minutes to the closing time. If a bid is placed within 10 minutes of the closing time, the auction will extend by 10 minutes. This allows competing bidders a chance to stay in the race.");
 	});
-	$("#biddingIncrementPriceBtn").click(function(){
+	$(".biddingIncrementPriceBtn").on('click',function(){
 		cb.openAlertDialog("Max Bid This item supports Max Bidding! The bid you enter will automatically be a Max Bid. If your Max Bid is higher than the next Bid Increment, the bid will only be raised to the next Bid Increment. If someone else bids on this item for an amount less than your Max Bid, then you will automatically beat them and your bid will be increased to the Bid Increment necessary to beat them (or increased to your Max Bid itself, if that's lower).Bid Increment	To keep bidding competitive and interesting, you are required to increase the bid by an amount comparable to the current bid itself. Here's the guide:	Current Bid Amount 	Bid Increment	250 or less 	25	250 - 500 	50");
 	});
-	$("#biddingMoreDetails a").click(function(){
-		$("#biddingMoreDetails dl").toggle('slow');
+	$(".biddingMoreDetails a").on('click',function(){
+		$(".biddingMoreDetails dl").toggle('slow');
 		return false;
 	});
 	
@@ -131,86 +146,7 @@ $(function() {
 </script>
 <div class="counter"><!-- counter -->
 <%@ include file="/jsp/include/menu.txt" %>
-
-<div id="bidding">
-	<div id="biddingIitem">
-		<h2>${item.title}</h2>
-		<div>
-			<a href='<c:url value="/" />'><i><span>Home</span></i></a> » <a
-				href='#" />'>麵包屑</a>
-		</div>
-
-		<div>
-			<div>
-				Current Bid: <span id="currentPrice">${item.currentBid}</span> <span>
-					( <a href='<c:url value="/item/${item.id}/bidlog" />'>${item.bidTimes}</a>
-					)
-				</span>
-			</div>
-			<div id="placedBy">
-				placed by: <b>jaimervelasco</b>
-			</div>
-			<div>
-				Estimated Value: <b> ${item.estimatedValue} </b>
-			</div>
-		</div>
-		<div>
-			<span>??? days left to bid</span>
-		</div>
-		<div>
-			<span>${item.closeDate}<input id="biddingIitemWhat" type="button" value="?" /></span>
-		</div>
-		<div>
-			<form id="biddingBidForm" action='<c:url value="/bid/${item.id}/index.do" />'>
-				<input id="biddingBidUrl" name="biddingBidUrl" type="hidden" />
-				<input id="biddingBidNowPrice" name="biddingBidNowPrice" type="text" />
-				<input id="biddingBidNowBtn" name="biddingBidNowBtn" type="button" value="Bid Now" />
-			</form>
-		</div>
-		<div>
-			<span>you must bid at least ${item.incrementPrice}
-				<input id="biddingIncrementPriceBtn" type="button" value="?" />
-			</span>
-		</div>
-
-
-	</div>
-	<div id="biddingProceedsBenefit">
- Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
- 這裡是一個超連結，連到其他商品網站
-	</div>
-	<div id="biddingWatchQuestion">
-		<div id="biddingWatchThisItem">
-			<input type="checkbox" id="watchingItem" name="watchingItem" ${item.watch} />
-			 Watch This Item
-		</div>
-		<div id="biddingAskQuestion">
-			Ask a Question 
-		</div>
-	</div>
-	<div id="biddingMoreDetails">
-		<a href="#">More Details</a>
-		<dl>
-			<dt>Lot Number:</dt>
-			<dd>${item.id}</dd>
-			<dt>Estimated Value:</dt>
-			<dd>${item.estimatedValue}</dd>
-			<dt>Open Date</dt>
-			<dd>${item.startDate}</dd>
-			<dt>Close Date:</dt>
-			<dd>${item.closeDate}</dd>
-		</dl>
-	</div>
-	<div>
-		Share this item:
-	</div>
-	<div>
-		 tweet
-		 fasebook
-	</div>
-</div>
 <div id="itemDetail">
-
 		<div class="itemLargePic">
 			<!-- time-tag -->
 			<div class="time-tag">
@@ -243,5 +179,92 @@ $(function() {
 		<div id="shipping">${item.shipping}</div>
 	</div>
 </div>
+<div class="bidding">
+	<div class="biddingIitem">
+		<h2>${item.title}</h2>
+		<div>
+			<a href='<c:url value="/" />'><i><span>Home</span></i></a> » <a
+				href='#" />'>麵包屑</a>
+		</div>
+
+		<div>
+			<div>
+				Current Bid: <span id="currentPrice">${item.currentBid}</span> <span>
+					( <a href='<c:url value="/item/${item.id}/bidlog" />'>${item.bidTimes}</a>
+					)
+				</span>
+			</div>
+			<div id="placedBy">
+				placed by: <b>jaimervelasco</b>
+			</div>
+			<div>
+				Estimated Value: <b> ${item.estimatedValue} </b>
+			</div>
+		</div>
+		<div>
+			<span>??? days left to bid</span>
+		</div>
+		<div>
+			<span>${item.closeDate}<input id="biddingIitemWhat" type="button" value="?" /></span>
+		</div>
+		
+		
+		
+		<div><!-- Bid Now -->
+			<form id="biddingBidForm" action='<c:url value="/bid/${item.id}/index.do" />'>
+				<input id="biddingBidUrl" name="biddingBidUrl" type="hidden" />
+				<input id="biddingBidNowPrice" name="biddingBidNowPrice" type="text" />
+				<input id="biddingBidNowBtn" name="biddingBidNowBtn" type="button" value="Bid Now" />
+			</form>
+		</div>
+		<div>
+			<span>you must bid at least ${item.incrementPrice}
+				<input class="biddingIncrementPriceBtn" type="button" value="?" />
+			</span>
+		</div>
+
+
+	</div>
+	<div class="biddingProceedsBenefit">
+ Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
+ 這裡是一個超連結，連到其他商品網站
+	</div>
+	<div class="biddingWatchQuestion">
+		<div id="biddingWatchThisItem">
+			<input type="checkbox" id="watchingItem" name="watchingItem" ${item.watch} />
+			 Watch This Item
+		</div>
+		<div id="biddingAskQuestion">
+			Ask a Question 
+		</div>
+	</div>
+	<div class="biddingMoreDetails">
+		<a href="#">More Details</a>
+		<dl>
+			<dt>Lot Number:</dt>
+			<dd>${item.id}</dd>
+			<dt>Estimated Value:</dt>
+			<dd>${item.estimatedValue}</dd>
+			<dt>Open Date</dt>
+			<dd>${item.startDate}</dd>
+			<dt>Close Date:</dt>
+			<dd>${item.closeDate}</dd>
+		</dl>
+	</div>
+	<div>
+		Share this item:
+	</div>
+	<div>
+		 tweet
+		 fasebook
+	</div>
+</div>
+
+
+
+
+
+
+
 </div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>

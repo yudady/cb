@@ -6,11 +6,13 @@
 <script type='text/javascript' src='<c:url value="/dwr/engine.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/dwr/util.js"/>'></script>
 <script type='text/javascript' src='<c:url value="/dwr/interface/watch.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/time-tag.css"/>'/>
 <style type="text/css">
 
 .counter {
 	padding: 10px;
 	background-color: white;
+
 }
 
 
@@ -23,6 +25,7 @@
 	padding: 5px;
 	background-color:#CCC;
 	float: left;
+	position: relative;
 }
 
 #itemDetail .itemLargePic img {
@@ -72,6 +75,8 @@
 .shareItem {
 	background-color: olive;
 }
+
+
 
 
 
@@ -148,8 +153,8 @@ $(function() {
 
 </script>
 <div class="counter"><!-- counter -->
-<%@ include file="/jsp/include/menu.txt" %>
-<div id="itemDetail">
+	<%@ include file="/jsp/include/menu.txt" %>
+	<div id="itemDetail">
 		<div class="itemLargePic">
 			<!-- time-tag -->
 			<div class="time-tag">
@@ -165,23 +170,26 @@ $(function() {
 		</div>
 
 		<div class="itemSmallPic">
+			<c:if test="${fn:length(item.pictures) gt 1}">
+				<c:forEach items="${item.pictures}" var="picture">
+					<img src='<c:url value="/pic/upload/item/${picture.photoPath}" />' />
+				</c:forEach>
+			</c:if>
+		</div>
 		<c:if test="${fn:length(item.pictures) gt 1}">
-			<c:forEach items="${item.pictures}" var="picture">
-				<img src='<c:url value="/pic/upload/item/${picture.photoPath}" />' />
-			</c:forEach>
+			<span>a</span><span>b</span>
 		</c:if>
+		<div id="itemTabs">
+			<ul>
+				<li><a href="#lotDetails">Lot Details </a></li>
+				<li><a href="#legalTerms">Legal Terms</a></li>
+				<li><a href="#shipping">Shipping</a></li>
+			</ul>
+			<div id="lotDetails">${item.lotDetails}</div>
+			<div id="legalTerms">${item.legalTerms}</div>
+			<div id="shipping">${item.shipping}</div>
+		</div>
 	</div>
-	<div id="itemTabs">
-		<ul>
-			<li><a href="#lotDetails">Lot Details </a></li>
-			<li><a href="#legalTerms">Legal Terms</a></li>
-			<li><a href="#shipping">Shipping</a></li>
-		</ul>
-		<div id="lotDetails">${item.lotDetails}</div>
-		<div id="legalTerms">${item.legalTerms}</div>
-		<div id="shipping">${item.shipping}</div>
-	</div>
-</div>
 <div class="bidding">
 	<div class="biddingIitem">
 		<h2>${item.title}</h2>
@@ -262,11 +270,6 @@ $(function() {
 		</div>
 	</div>
 </div>
-
-
-
-
-
 
 
 </div><!-- counter -->

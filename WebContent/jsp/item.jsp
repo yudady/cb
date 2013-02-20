@@ -27,11 +27,26 @@
 	float: left;
 	position: relative;
 }
+#itemDetail img{
+	cursor: pointer;
+}
+#itemDetail a {
+	text-decoration:none;
+	color:red;
+}
+#itemDetail a:hover {
+	color:#f60;
+}
 
+/**
+ *  大圖
+ */
 #itemDetail .itemLargePic img {
 	width: 400px;
 }
-
+/**
+ *  小圖
+ */
 #itemDetail .itemSmallPic img {
 	width: 75px;
 	height: 50px;
@@ -78,12 +93,61 @@
 
 
 
+.imgHighLight {
+    background-color: red;
+}
+
+
+
 
 
 </style>
 <script type="text/javascript">
 $(function() {
 	
+	//第一張小圖加上color
+	$(".itemSmallPic img").first().addClass("imgHighLight");
+	
+	//中間=============================
+	//點擊圖片
+	$(".itemSmallPic img").on('click',function(event){
+		$(".itemLargePic img").attr("src",$(this).attr("src"));
+		event.preventDefault();
+		event.stopImmediatePropagation();
+	});
+	//上一張圖片
+	$(".previousImage").on('click',function(event){
+		var currentPicSrc = $(".itemLargePic img").attr("src");
+		var smallImgs = $(".itemSmallPic img");
+		var cur = smallImgs.filter("[src='"+currentPicSrc+"']").prev();
+		if(cur.size() == 0){
+			cur = smallImgs.last();
+		}
+		$(".itemLargePic img").attr("src",cur.attr("src"));
+		smallImgs.removeClass("imgHighLight");
+		cur.addClass("imgHighLight");
+		event.preventDefault();
+		event.stopImmediatePropagation();
+	});
+	//下一張圖片
+	$(".nextImage").on('click',function(event){
+		var currentPicSrc = $(".itemLargePic img").attr("src");
+		var smallImgs = $(".itemSmallPic img");
+		var cur = smallImgs.filter("[src='"+currentPicSrc+"']").next();
+		if(cur.size() == 0){
+			cur = smallImgs.first();
+		}
+		$(".itemLargePic img").attr("src",cur.attr("src"));
+		smallImgs.removeClass("imgHighLight");
+		cur.addClass("imgHighLight");
+		event.preventDefault();
+		event.stopImmediatePropagation();
+	});
+	
+	
+	
+
+	//右邊=============================
 	/**
 	 * bid now btn
 	 * 競標
@@ -177,7 +241,9 @@ $(function() {
 			</c:if>
 		</div>
 		<c:if test="${fn:length(item.pictures) gt 1}">
-			<span>a</span><span>b</span>
+			<a href="#" class="previousImage">previous image</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#" class="nextImage">next image</a>
 		</c:if>
 		<div id="itemTabs">
 			<ul>

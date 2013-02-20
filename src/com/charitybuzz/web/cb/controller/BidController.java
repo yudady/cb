@@ -22,7 +22,6 @@ import com.charitybuzz.service.ItemService;
 import com.charitybuzz.web.cb.form.BidForm;
 
 @Controller
-@RequestMapping("/bid")
 @SessionAttributes({ "bidder" })
 public class BidController {
 
@@ -34,7 +33,7 @@ public class BidController {
 	@Resource
 	private BidlogService bidlogService;
 
-	@RequestMapping(value = "/{itemId}/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/bid/{itemId}/index", method = RequestMethod.GET)
 	public String bid(@ModelAttribute("bidder") Bidder bidder, BidForm form) {
 
 		Long winningBidderId = bidder.getId();
@@ -57,8 +56,10 @@ public class BidController {
 		return "redirect:" + form.getBiddingBidUrl();
 	}
 
+	
+
 	@ExceptionHandler({ HttpSessionRequiredException.class })
 	public ModelAndView noSessionObject(Exception ex) {
-		return new ModelAndView("redirect:/index.do");
+		return new ModelAndView("redirect:/login.do");
 	}
 }

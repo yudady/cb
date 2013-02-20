@@ -286,7 +286,7 @@ $(function() {
 		<div>
 			<div>
 				Current Bid: <span id="currentPrice">${item.currentBid}</span> <span>
-					( <a href='<c:url value="/item/${item.id}/bidlog" />'>${item.bidTimes}</a>
+					( <a href='<c:url value="/item/${item.id}/bidslog.do" />'>${item.bidTimes}</a>
 					)
 				</span>
 			</div>

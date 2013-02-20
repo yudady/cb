@@ -14,8 +14,12 @@
 
 </style>
 <script type="text/javascript">
-$("#loginPageBtn").click(function(){
-	$("#loginPage").submit();
+$(function(){
+	$("#loginPageBtn").click(function(){
+		//$("#loginPage").submit();
+		$.log('1');
+		return true;
+	});
 });
 </script>
 <div id="content">
@@ -36,7 +40,7 @@ $("#loginPageBtn").click(function(){
 				</td>
 			</tr>
 			<tr>
-				<td><input id="loginPageBtn" type="button" value="login" /></td>
+				<td><input id="loginPageBtn" type="submit" value="login" /></td>
 				<td><input name="reset" type="reset" /></td>
 			</tr>
 		</table>

@@ -150,3 +150,26 @@ ul {
 a.cssButton:hover {
 	color: black;
 }
+
+
+
+.time-tag {
+    background-image: url("../pic/site/clock-triangle.png");
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    width: 101px;
+    height: 102px;
+    position: absolute;
+    right: -10px;
+    top: 12px;
+}
+
+.rotate-clock {
+    transform: rotate(46deg);
+    font-size: 12px;
+    right: 2px;
+    top: 20px;
+    position: absolute;
+    width: 68px;
+    text-align: center;
+}

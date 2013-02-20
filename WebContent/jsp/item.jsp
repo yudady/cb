@@ -21,8 +21,7 @@
 }
 
 #itemDetail .itemLargePic img {
-	width: 330px;
-	height: 250px;
+	width: 400px;
 }
 
 #itemDetail .itemSmallPic img {
@@ -211,14 +210,22 @@ $(function() {
 	</div>
 </div>
 <div id="itemDetail">
-	<div class="itemLargePic">
-		<div>${item.difDay} day</div>
-		<!-- time-tag -->
-		<a href="#"> <img
-			src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
-		</a>
-	</div>
-	<div class="itemSmallPic">
+
+		<div class="itemLargePic">
+			<!-- time-tag -->
+			<div class="time-tag">
+				<!-- rotate-clock -->
+				<div class="rotate-clock">8 days</div>
+			</div>
+			<a href="#">
+				<div>
+					<i>&nbsp;</i>
+				</div>
+				<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+			</a>
+		</div>
+
+		<div class="itemSmallPic">
 		<c:if test="${fn:length(item.pictures) gt 1}">
 			<c:forEach items="${item.pictures}" var="picture">
 				<img src='<c:url value="/pic/upload/item/${picture.photoPath}" />' />

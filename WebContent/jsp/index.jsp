@@ -80,7 +80,6 @@
 </style>
 <script type="text/javascript">
 ;$(function() {
-	$.log('index');
 	$('#tabs4').tabs({
 	    load: function(event, ui) {
 	        $(ui.panel).on('click', 'a', function(event) {

@@ -1,13 +1,15 @@
 ;
-// $.log( xxxxxxxxxxxxxxxxxx );
-(function(a) {
-	a.log = function() {
-		if (window.console && window.console.log && window.console.log.apply) {
-			console.log.apply(window.console, arguments);
-		}
-	};
-	a.fn.log = function() {
-		a.log(this);
-		return this;
-	};
-})(jQuery);
+// $.log( 'string' );
+// $(select).log();
+(function($) {
+    $.log = function() {
+        if (window.console && window.console.log && window.console.log.apply) {
+            console.log.apply(window.console, arguments);
+        }
+    };
+    $.fn.log = function() {
+        return this.each(function(index, value) {
+            $.log(value);
+        });
+    };
+})(jQuery); 

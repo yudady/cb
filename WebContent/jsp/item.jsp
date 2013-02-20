@@ -52,13 +52,12 @@
 
 
 .biddingProceedsBenefit {
-
-	height: 100px;
 	margin-bottom: 10px;
 	background-color: purple;
 }
 
 .biddingWatchQuestion {
+	height:200px;
 	line-height: 50px;
 	font-size: 16px;
 	color: red;
@@ -68,6 +67,10 @@
 }
 .biddingMoreDetails dl{
 	display: none;
+	background-color: blue;
+}
+.shareItem {
+	background-color: olive;
 }
 
 
@@ -230,13 +233,13 @@ $(function() {
  這裡是一個超連結，連到其他商品網站
 	</div>
 	<div class="biddingWatchQuestion">
-		<div id="biddingWatchThisItem">
+		<span id="biddingWatchThisItem">
 			<input type="checkbox" id="watchingItem" name="watchingItem" ${item.watch} />
 			 Watch This Item
-		</div>
-		<div id="biddingAskQuestion">
+		</span>
+		<span id="biddingAskQuestion">
 			Ask a Question 
-		</div>
+		</span>
 	</div>
 	<div class="biddingMoreDetails">
 		<a href="#">More Details</a>
@@ -251,12 +254,12 @@ $(function() {
 			<dd>${item.closeDate}</dd>
 		</dl>
 	</div>
-	<div>
-		Share this item:
-	</div>
-	<div>
-		 tweet
-		 fasebook
+	<div class="shareItem">
+		<h3>Share this item:</h3>
+		<div>
+			 tweet
+			 fasebook
+		</div>
 	</div>
 </div>
 

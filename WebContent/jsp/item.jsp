@@ -105,6 +105,25 @@
 <script type="text/javascript">
 $(function() {
 	
+	
+	$(".itemLargePic img").on('click',function(){
+		var clo = $(this).clone();
+		clo.css({ 
+			width: "500px",
+			height: "400px"
+		});
+		$("#itemLargePicDialog").append(clo).dialog({
+			title: "",
+			width: 530,
+			height:450,
+			modal: true,
+			close: function( event, ui ) {
+				$("#itemLargePicDialog").empty().dialog( "destroy" );
+			}
+		});
+	});
+
+	
 	//第一張小圖加上color
 	$(".itemSmallPic img").first().addClass("imgHighLight");
 	
@@ -143,7 +162,6 @@ $(function() {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 	});
-	
 	
 	
 
@@ -230,6 +248,7 @@ $(function() {
 					<i>&nbsp;</i>
 				</div>
 				<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+				<div id="itemLargePicDialog"></div>
 			</a>
 		</div>
 

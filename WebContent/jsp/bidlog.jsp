@@ -18,10 +18,18 @@
 	margin-left:210px;
 	background-color: green;
 }
+#returnToItem {
+	float: right;
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 $(function(){
-
+	$("#returnToItem").on('click',function(){
+		var loc = window.location.href ;
+		loc = loc.replace("/bidlog.do","/index.do");
+		window.location.href = loc;
+	});
 	
 });
 </script>
@@ -29,7 +37,7 @@ $(function(){
 <%@ include file="/jsp/include/menu.txt" %>
 	<div class="mainRightTop">
 		<h1>Bidding History</h1>
-		<span>Lot #: 3307149</span>&nbsp;&nbsp;&nbsp;<span>return to item</span>
+		<span>Lot #: 3307149</span>&nbsp;&nbsp;&nbsp;<span id="returnToItem">return to item</span>
 		<p>
 		55th GRAMMY® Awards Bronze Ticket Experience for Two on February 10 in Los Angeles
 		<p>

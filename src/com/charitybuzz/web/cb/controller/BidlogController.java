@@ -20,7 +20,7 @@ import com.charitybuzz.service.BidlogService;
 @Controller
 @RequestMapping("/item")
 
-public class BidslogController {
+public class BidlogController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -40,11 +40,11 @@ public class BidslogController {
 	 * @param itemId
 	 * @return
 	 */
-	@RequestMapping(value = "/{itemId}/bidslog", method = RequestMethod.GET)
+	@RequestMapping(value = "/{itemId}/bidlog", method = RequestMethod.GET)
 	public ModelAndView bidderlog(@PathVariable Long itemId) {
 		log.debug("[LOG][itemId][bidlog]=" + itemId);
 
-		ModelAndView mav = new ModelAndView("bidslog");
+		ModelAndView mav = new ModelAndView("bidlog");
 		
 		/**
 		 * 目錄
@@ -55,6 +55,7 @@ public class BidslogController {
 		
 		
 		List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
+		System.out.println("[LOG]" + bidlogs);
 		log.debug("[LOG]" + bidlogs.size());
 		mav.addObject("bidlogs", bidlogs);
 		return mav;

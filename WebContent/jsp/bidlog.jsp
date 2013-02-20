@@ -4,10 +4,30 @@
 <%@ include file="/jsp/include/header.txt" %>
 <style type="text/css">
 
+.counter {
+	padding: 10px;
+	background-color: white;
+}
+.mainRightTop {
+	margin-left:210px;
+	padding:20px;
+	margin-bottom:10px;
+	background-color: red;
+}
+.mainRightDown {
+	margin-left:210px;
+	background-color: green;
+}
 </style>
+<script type="text/javascript">
+$(function(){
+
+	
+});
+</script>
 <div class="counter"><!-- counter -->
 <%@ include file="/jsp/include/menu.txt" %>
-	<div id="mainRightTop">
+	<div class="mainRightTop">
 		<h1>Bidding History</h1>
 		<span>Lot #: 3307149</span>&nbsp;&nbsp;&nbsp;<span>return to item</span>
 		<p>
@@ -16,7 +36,7 @@
 		In support of The Actors Fund
 
 	</div>
-	<div id="mainRightDown">
+	<div class="mainRightDown">
 		<table>
 			<thead>
 				<tr>
@@ -35,7 +55,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<table>
+		<table border="1">
 			<thead>
 				<tr>
 					<th>Bidder</th>
@@ -49,7 +69,7 @@
 					<tr>
 						<td>${bidlog.bidderId}</td>
 						<td></td>
-						<td>${bidlog.amount}</td>
+						<td>${bidlog.price}</td>
 						<td>${bidlog.bidTime}</td>
 					</tr>
 				</c:forEach>

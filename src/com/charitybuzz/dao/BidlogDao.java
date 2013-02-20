@@ -28,7 +28,9 @@ public class BidlogDao extends BaseDao<Bidlog> {
 			public List<Bidlog> doResultSet() throws SQLException {
 				List<Bidlog> BidlogList = new ArrayList<Bidlog>();
 				while (rs.next()) {
-					Bidlog bidlog = new Bidlog();
+					Bidlog bidlog = new Bidlog(rs.getLong("id"), rs
+							.getLong("bidderId"), rs.getLong("itemId"), rs
+							.getDouble("price"), rs.getDate("bidTime"));
 
 					BidlogList.add(bidlog);
 				}
@@ -39,7 +41,7 @@ public class BidlogDao extends BaseDao<Bidlog> {
 	}
 
 	public void insert(final Bidlog bidlog) {
-		
+
 		String sql = "insert into bidlog (id,bidderId,itemId,price,bidTime) values (seq_bidlog.nextval,?,?,?,sysdate)";
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Bidlog>() {
 			@Override
@@ -50,6 +52,6 @@ public class BidlogDao extends BaseDao<Bidlog> {
 			}
 
 		});
-		
+
 	}
 }

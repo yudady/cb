@@ -9,6 +9,9 @@
 <link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-1.10.0/smoothness/jquery-ui-1.10.0.custom.min.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.lazyload.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/site.css"/>'/>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/prettify.css"/>'/>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/font-awesome.css"/>'/>
 <script type="text/javascript">
 
 	/**
@@ -81,6 +84,13 @@ $(function() {
 	$("#emailsubscribe input.subscribeemails").on('focusin',function(){
 		$(this).val('');
 	});
+	$("#searchItem a").on('click',function(event){
+		$("#searchItem").submit();
+		event.preventDefault();
+	});
+
+
+
 
 });
 </script>
@@ -135,8 +145,10 @@ $(function() {
     </c:otherwise>
 </c:choose>
 	<form id="searchItem" action="<c:url value='/categories/searchItems.do' />" method='post'>
-		<input type='text' name='search' />
-		<input type="submit" value="search" />
+		<input type='text' id="search" name='search' />
+		<a style="font-size: 19px;margin-top: 3px;margin-left: 5px;" href="#">
+			<i class="icon-search"> </i>
+		</a>
 	</form>
 </div>
 </div>

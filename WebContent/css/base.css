@@ -6,11 +6,19 @@
 }
 
 body {
-    font-size: 12px;
     text-align: left;
     width: 988px;
     margin: 0 auto;
     padding-top: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #B5121B;
+}
+a:hover {
+    text-decoration: none;
+    color: #F00;
 }
 
 ul {
@@ -40,7 +48,7 @@ ul {
     width: 300px;
     position: relative;
     top: -55px;
-    left: 770px;
+    left: 730px;
 }
 
 #loginForm {
@@ -94,7 +102,7 @@ ul {
     font-size: 16px;
     width: 400px;
     position: relative;
-    top: -40px;
+    top: -50px;
     left: 600px;
 }
 .sprite-social span {

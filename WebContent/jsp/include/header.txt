@@ -189,7 +189,7 @@ $(function() {
 				<form id="emailsubscribe" method="post">
 					<input type="hidden" value="buzz" name="source"> 
 					<input class="subscribeemails" type="text" name="email_address" value="Join mailing list"> 
-					<input class="NewEmailSubBtn" type="submit" value="+">
+					<input class="NewEmailSubBtn" type="button" value="+">
 				</form>
 			</li>
 		</ul>

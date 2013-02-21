@@ -1,10 +1,41 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="footer">
-		footer
-		footer
-		footer
-		footer
+<div class="footer-dl">
+	<dl>
+		<dt>Charitybuzz 101</dt>
+		<dd class="footer-sp">&nbsp;</dd>
+		<dd>Want to Donate?</dd>
+		<dd>About Us</dd>
+		<dd>Management Team</dd>
+		<dd>FAQs</dd>
+	</dl>
+</div>
+<div class="footer-dl">
+	<dl>
+		<dt>Working with Charitybuzz</dt>
+		<dd class="footer-sp">&nbsp;</dd>
+		<dd>Charities</dd>
+		<dd>Corporations</dd>
+		<dd>Jobs</dd>
+	</dl>
+</div>
+<div class="footer-dl">
+	<dl>
+		<dt>Press</dt>
+		<dd class="footer-sp">&nbsp;</dd>
+		<dd>Press Room</dd>
+	</dl>
+</div>
+<div class="footer-dl">
+	<dl>
+		<dt>Contact Us</dt>
+		<dd class="footer-sp">&nbsp;</dd>
+		<dd>General Contact</dd>
+		<dd>Partnership Inquiries</dd>
+	</dl>
+</div>
+<div class="clearBoth">© 2013 Charitybuzz Inc. All rights reserved.   |   Privacy Policy</div>
 </div>
 <div id="dialog"></div>
 </div><!-- mainBody end -->

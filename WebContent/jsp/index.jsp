@@ -141,23 +141,42 @@
 <div id="itemsClosing">
 	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
 	<div id="tabs4">
-        <ul>
-            <li><a href="#fragment-1"><span>One</span></a></li>
-            <li><a href="#fragment-2"><span>Two</span></a></li>
-            <li><a href="#fragment-3"><span>Three</span></a></li>
-        </ul>
-        <div id="fragment-1">
-            <p>First tab is active by default:</p>
-            <pre><code>$('#example').tabs();</code></pre>
-        </div>
+	     <ul>
+	         <li><a href='<c:url value="/items/closingNext.do"/>'><span>Closing Next</span></a></li>
+	         <li><a href='#fragment-2'><span>Deals</span></a></li>
+	         <li><a href='<c:url value="/items/popular.do"/>'><span>Most Popular</span></a></li>
+	         <li><a href='<c:url value="/items/recentAdd.do"/>'><span>Recently Added</span></a></li>
+	     </ul>
         <div id="fragment-2">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-        </div>
-        <div id="fragment-3">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+			<c:forEach	items="${items}" var="item">
+				<div class="item">
+					<a href='<c:url value="/item/${item.id}/index.do"/>'>
+						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}"/>' />
+					</a>
+					<div>
+						<h3><a href='<c:url value="/item/${item.id}/index.do"/>'>${item.title}</a></h3>
+						<p>
+							<strong>Estimated:</strong>${item.estimatedValue}
+						</p>
+						<p>
+							<strong>Bid:</strong>${item.currentBid}
+						</p>
+						<p>
+							<strong>Time Left:</strong>${item.closeDate}
+						</p>
+						<div class="dealhidetopborder">
+							<a href="">
+								<img src='<c:url value="/pic/site/deals_bg_vector_round-small.gif"/>' />
+								<span>-82%</span>
+							</a>
+						</div>
+						
+					</div>
+					<hr />
+				</div>
+			</c:forEach>
+			<span><a class="tabUrl" class="cssButton" href='<c:url value="/items/2/index.do"/>'>view all</a></span>
+			<span id="rss">RSS</span>
         </div>
 	</div>
 </div>

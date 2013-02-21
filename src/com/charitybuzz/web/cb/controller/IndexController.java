@@ -11,16 +11,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.Constant;
 import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Category;
+import com.charitybuzz.dto.Item;
+import com.charitybuzz.dto.Picture;
 import com.charitybuzz.operate.SidebarService;
+import com.charitybuzz.service.ItemService;
+import com.charitybuzz.service.PictureService;
 
 @Controller
 @RequestMapping(value = "/index")
 public class IndexController {
 	@Resource
 	private SidebarService sidebarService;
-
+	/**
+	 * 全部商品
+	 */
+	@Resource
+	private ItemService itemService;
+	/**
+	 * 商品圖片
+	 */
+	@Resource
+	private PictureService pictureService;
+	
+	
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(HttpSession session, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("index");
@@ -54,6 +71,27 @@ public class IndexController {
 		mav.addObject("categories", categories);
 		mav.addObject("pager", pager);
 
+		
+		
+		
+		
+		
+		List<Item> items = itemService.findByHotDeals(Constant.INDEX_TABS_ITEMS_SIZE);
+		for (Item item : items) {
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
+		mav.addObject("items", items);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		return mav;
 
 	}

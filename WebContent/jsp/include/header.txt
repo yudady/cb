@@ -70,13 +70,16 @@ $(function() {
 		});
 	});
 	
-	$("#loginFormBtn").click(function(){
+	$("#loginFormBtn").on('click',function(){
 		$("#url").val(window.location.href);
 		$("#loginForm").submit();
 	});
-	$("#loginOutFormBtn").click(function(){
+	$("#loginOutFormBtn").on('click',function(){
 		$("#url").val(window.location.href);
 		$("#loginOutForm").submit();
+	});
+	$("#emailsubscribe input.subscribeemails").on('focusin',function(){
+		$(this).val('');
 	});
 
 });
@@ -149,14 +152,35 @@ $(function() {
 			<li><a href='<c:url value="/"/>'>Dream Big NEW</a></li>
 		</ul>
 	</div>
-	<div id="social">
-		<ul>
-			<li>F</li>
-			<li>T</li>
-			<li>F</li>
-			<li>T</li>
-			<li>F</li>
-			<li>T</li>
+	<div class="social">
+		<ul class="sprite-social">
+			<li>
+				<a class="fb" target="_blank" href="#">
+					<span>Facebook</span>
+				</a>
+			</li>
+			<li>
+				<a class="tw" target="_blank" href="#">
+					<span>twitter</span>
+				</a>
+			</li>
+			<li>
+				<a class="yt" target="_blank" href="#">
+					<span>youtube</span>
+				</a>
+			</li>
+			<li>
+				<a class="tm" target="_blank" href="#"> 
+					<span>tumblr</span>
+				</a>
+			</li>
+			<li>
+				<form id="emailsubscribe" method="post">
+					<input type="hidden" value="buzz" name="source"> 
+					<input class="subscribeemails" type="text" name="email_address" value="Join mailing list"> 
+					<input class="NewEmailSubBtn" type="submit" value="+">
+				</form>
+			</li>
 		</ul>
 	</div>
 </div>

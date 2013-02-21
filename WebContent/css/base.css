@@ -1,134 +1,264 @@
 @CHARSET "UTF-8";
 
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	font-size: 12px;
-	text-align: left;
-	width: 988px;
-	margin: 0 auto;
-	padding-top: 20px;
+    font-size: 12px;
+    text-align: left;
+    width: 988px;
+    margin: 0 auto;
+    padding-top: 20px;
 }
 
 ul {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 #header {
-	height: 80px;
+    height: 80px;
 }
 
 #header .logo {
-	width: 500px;
+    width: 500px;
 }
 
 #header .logo a {
-	display: block;
-	width: 500px;
+    display: block;
+    width: 500px;
 }
 
 #header .logo a img {
-	display: block;
-	width: 500px;
-	height: 67px;
+    display: block;
+    width: 500px;
+    height: 67px;
 }
 
 #login {
-	width: 300px;
-	position: relative;
-	top: -55px;
-	left: 770px;
+    width: 300px;
+    position: relative;
+    top: -55px;
+    left: 770px;
 }
 
 #loginForm {
-	display: none;
+    display: none;
 }
 #loginOutForm {
-	position: relative;
-	top: -20px;
-	left: 220px;
+    position: relative;
+    top: -20px;
+    left: 220px;
 }
 
 .mainBody {
-	margin-top: 5px;
-	padding: 5px;
-	background-color: #CCCCCC;
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #CCCCCC;
 }
 
 .top-menu {
-	margin-top: 5px;
-	height: 30px;
-	margin-bottom: 5px;
+    margin-top: 5px;
+    height: 30px;
+    margin-bottom: 5px;
 }
-
 
 #nav {
-	font-size:16px;
-	width: 500px;
-	margin-left: 10px;
+    font-size: 16px;
+    width: 500px;
+    margin-left: 10px;
 }
 #nav ul {
-	color:green;
-	height:30px;
-	line-height:30px;
-	text-align:left;
+    color: green;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
 }
 #nav ul li {
-	display:inline;
+    display: inline;
 }
 #nav ul li a {
-	text-decoration:none;
-	color:green;
+    text-decoration: none;
+    color: green;
 }
 #nav ul li a:hover {
-	color:#f60;
+    color: #f60;
 }
 
 
+/**
+ * 社群 start
+ */
+.social {
+    font-size: 16px;
+    width: 400px;
+    position: relative;
+    top: -40px;
+    left: 600px;
+}
+.sprite-social span {
+    display: none;
+}
+.sprite-social {
+    font-family: "Ave", Arial, Helvetica, sans-serif;
+    position: absolute;
+    right: 55px;
+    top: 2px;
+    font-size: 1em;
+    color: #666666;
+}
+.sprite-social li {
+    display: inline;
+    float: left;
+    vertical-align: middle;
+    margin-left: 7px;
+    color: #B5121B;
+}
+.sprite-social a {
+    display: block;
+    background-image: url(../pic/site/top_nav_sprite.png);
+    background-color: transparent;
+}
+.sprite-social a.fb {
+    height: 40px;
+    width: 37px;
+    background-position: 0 0;
+}
+.sprite-social a:hover.fb {
+    background-image: url(../pic/site/top_nav_sprite.png);
+    background-position: 0 47px;
+    background-color: transparent;
+}
+.sprite-social a.tw {
+    height: 40px;
+    width: 36px;
+    background-position: -43px 0;
+}
+.sprite-social a:hover.tw {
+    background-image: url(../pic/site/top_nav_sprite.png);
+    background-position: -43px 47px;
+    background-color: transparent
+}
+.sprite-social a.yt {
+    height: 40px;
+    width: 36px;
+    background-position: -86px 0;
+}
+.sprite-social a:hover.yt {
+    background-image: url(../pic/site/top_nav_sprite.png);
+    background-position: -86px 47px;
+    background-color: transparent
+}
+.sprite-social a.tm {
+    height: 40px;
+    width: 36px;
+    background-position: -127px 0;
+}
+.sprite-social a:hover.tm {
+    background-image: url(../pic/site/top_nav_sprite.png);
+    background-position: -127px 47px;
+    background-color: transparent
+}
+.sprite-social .subscribeemails {
+    color: #666;
+    font-family: "Ave", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    height: 25px;
+    width: 123px;
+    padding-left: 8px;
+    padding-right: 4px;
+    padding-top: 3px;
+    border: 1px solid #C2B49A;
+    margin-top: 7px;
+    /*
+    -moz-border-radius-topleft: 25px;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 25px;
+    -webkit-border-top-left-radius: 25px;
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 25px;*/
+    padding-top: 7px;
+    height: 20px;
+    padding-top: 7px;
+    height: 20px;
+    border-radius: 25px 0 0 25px;
+}
+.sprite-social input.NewEmailSubBtn {
+    cursor: pointer;
+    color: #FFFFFF;
+    position: absolute;
+    background: #666;
+    height: 31px;
+    width: 30px;
+    right: -28px;
+    margin-top: 7px;
+    border: 1px solid #C2B49A;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    -webkit-border-radius: 0;
+    /*
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-topright: 13px;
+    -moz-border-radius-bottomright: 0;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-top-right-radius: 13px;
+    -webkit-border-bottom-right-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    */
+    border-radius: 0 13px 0 0;
+}
+.sprite-social input:focus {
+    outline: none;
+    text-transform: none
+}
+.sprite-social input.NewEmailSubBtn:hover {
+    background: #B5121B;
+}
+/*
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .sprite-social input.NewEmailSubBtn {
+        height: 34px;
+        width: 30px
+    }
+}*/
+.sprite-social label.error {
+    color: red !important;
+    font-size: 10px !important;
+    position: absolute !important;
+    float: right !important;
+    clear: both;
+    top: 36px !important;
+    right: -84px !important;
+    width: 200px !important
+}
 
-#social {
-	font-size:16px;
-	width: 400px;
-    position:relative;
-    top:-30px;
-  	left:530px; 
-}
-#social ul {
-	color:green;
-	height:30px;
-	line-height:30px;
-	text-align:left;
-}
-#social ul li {
-	display:inline;
-}
-#social ul li a {
-	text-decoration:none;
-	color:green;
-}
-#social ul li a:hover {
-	color:#f60;
-}
-
-
+/**
+ * 左邊菜單
+ */
 #menu {
-	width: 200px;
-	float: left;
+    width: 200px;
+    float: left;
 }
 .menuToggle {
-	position: relative;
-	z-index: 10;
+    position: relative;
+    z-index: 10;
 }
+/**
+ * 底部
+ */
 #footer {
-	clear: both;
-	height: 200px;
-	background-color:#CCA; 
+    clear: both;
+    height: 200px;
+    background-color: #CCA;
 }
-
-
+/**
+ * 其他
+ */
 .cssButton {
     background: url("../pic/site/gradient-red-50.jpg") repeat-x scroll 0 0 #E31B23;
     border: medium none;
@@ -148,7 +278,6 @@ ul {
     text-transform: uppercase;
 }
 a.cssButton:hover {
-	color: black;
+    color: black;
 }
-
 

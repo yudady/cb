@@ -73,22 +73,7 @@
 	margin: 10px;
 }
 
-#tabs4>ul>li>a>span {
-	border:0;
-	padding:0;
-	margin:0;
-	font-size: 8px;
-}
-#tabs4>ul>li>a:hover {
-	background-color:red;
-    color: white;;
-}
 
-
-#fragment-2 .dealhidetopborder span {
-	font-size: 24px;
-	text-align: center;
-}
 </style>
 <script type="text/javascript">
 ;$(function() {

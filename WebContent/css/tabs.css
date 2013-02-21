@@ -1,5 +1,16 @@
 @CHARSET "UTF-8";
 
+#tabs4>ul>li>a>span {
+    border:0;
+    padding:0;
+    margin:0;
+    font-size: 8px;
+}
+#tabs4>ul>li>a:hover {
+    background-color:red;
+    color: white;;
+}
+
 .item img {
 	width: 85px;
 	height: 60px;
@@ -32,12 +43,13 @@
     top: 0px;
 }
 .item .dealhidetopborder a span {
+    font-size: 18px;
+    text-align: center;
     color: white;
     position: absolute;
     z-index: 1;
-    left: 45px;
-    top: 30px;
+    left: 30px;
+    top: 25px;
 }
-
 
 

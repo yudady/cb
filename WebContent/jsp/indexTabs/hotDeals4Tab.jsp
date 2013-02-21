@@ -31,6 +31,13 @@
 				<p>
 					<strong>Time Left:</strong>${item.closeDate}
 				</p>
+				<div class="dealhidetopborder">
+					<a href="">
+						<img src='<c:url value="/pic/site/deals_bg_vector_round-small.gif"/>' />
+						<span>-82%</span>
+					</a>
+				</div>
+				
 			</div>
 			<hr />
 		</div>

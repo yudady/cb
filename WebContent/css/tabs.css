@@ -13,11 +13,8 @@
 	clear: both;
 }
 
-span a {
+.item span a {
 	float: right;
-}
-#rss {
-	clear: both;
 }
 
 

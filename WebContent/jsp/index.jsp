@@ -73,8 +73,20 @@
 	margin: 10px;
 }
 
-#itemsClosing #tabs4 span {
+#tabs4>ul>li>a>span {
+	border:0;
+	padding:0;
+	margin:0;
 	font-size: 8px;
+}
+#tabs4>ul>li>a:hover {
+	background-color:red;
+    color: white;;
+}
+
+
+#fragment-2 .dealhidetopborder span {
+	font-size: 24px;
 	text-align: center;
 }
 </style>
@@ -176,7 +188,7 @@
 				</div>
 			</c:forEach>
 			<span><a class="tabUrl" class="cssButton" href='<c:url value="/items/2/index.do"/>'>view all</a></span>
-			<span id="rss">RSS</span>
+			<span class="clearBoth">RSS</span>
         </div>
 	</div>
 </div>

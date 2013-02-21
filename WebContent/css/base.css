@@ -255,6 +255,26 @@ ul {
     width: 200px;
     float: left;
 }
+#menu li{
+    background-color: #F2F1EE;
+}
+#menu .sec-sidebar-li{
+    background-color: #FFFFFF;
+}
+#menu a {
+    text-decoration: none;
+    color: #B5121B;
+}
+#menu a:hover {
+    text-decoration: none;
+    color: #F00;
+}
+
+
+
+
+
+
 .menuToggle {
     position: relative;
     z-index: 10;

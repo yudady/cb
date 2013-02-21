@@ -8,7 +8,7 @@
 			<c:if test="${not empty category.subCategories}">
 				<ul>
 					<c:forEach items="${category.subCategories}" var="subCategory">
-						<li><a
+						<li class="sec-sidebar-li"><a
 							href='<c:url value="/categories/${category.id}/subcategories/${subCategory.id}/index.do" />'>${subCategory.name}(${subCategory.itemsCount})</a></li>
 					</c:forEach>
 				</ul>

@@ -5,8 +5,8 @@
 <style type="text/css">
 #pager {
 	text-align: center;
-	height: 60px;
-	line-height: 60px;
+	height: 100px;
+	line-height: 50px;
 }
 </style>
 <script type="text/javascript">

@@ -43,7 +43,7 @@ public class IndexController {
 
 
 		Pager<Category> pager = new Pager<Category>();
-		pager.setTotalRecord(100);
+		pager.setTotalRecord(30);
 
 		
 		

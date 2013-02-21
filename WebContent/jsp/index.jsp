@@ -105,8 +105,8 @@
 			</div>
         	<img src="" alt="" />
 			<div class="direction">
-				<input type="button" value="<<"/>
-				<input type="button" value=">>"/>
+                <i class="icon-double-angle-left" id="left" >&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="icon-double-angle-right" id="right" >&nbsp;</i>
 			</div>
 		</div>
 		<div class="slideshow-button">

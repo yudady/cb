@@ -99,14 +99,14 @@
 	<div class="slideshow">
 		<div class="slideshow-top">
 			<div class="picMsg">
-					<span></span>
+					<span>&nbsp;</span>
 					<br/>
 					<input class="cssButton" type="button" value="Bid NOW" /><br/>
 			</div>
         	<img src="" alt="" />
 			<div class="direction">
-				<input type="button" id="left" value="<<"/>
-				<input type="button" id="right" value=">>"/>
+				<input type="button" value="<<"/>
+				<input type="button" value=">>"/>
 			</div>
 		</div>
 		<div class="slideshow-button">

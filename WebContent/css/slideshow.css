@@ -37,10 +37,10 @@
  */
 .slideshow-top img {
 	position: relative;
-	top: -250px;
+	top: -385px;
 	width: 730px;
 	height: 400px;
-	padding: 10px;
+	padding-left: 10px;
 }
 /**
  * 	左右方向

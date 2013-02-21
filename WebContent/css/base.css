@@ -50,6 +50,9 @@ ul {
     top: -55px;
     left: 730px;
 }
+.loginLink{
+    margin-left: 50px;
+}
 
 #loginForm {
     display: none;
@@ -102,7 +105,7 @@ ul {
     font-size: 16px;
     width: 400px;
     position: relative;
-    top: -50px;
+    top: -40px;
     left: 600px;
 }
 .sprite-social span {

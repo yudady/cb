@@ -1,10 +1,13 @@
 @CHARSET "UTF-8";
+#tabs4 {
+    font-size: 12px;
+}
 
 #tabs4>ul>li>a>span {
     border:0;
     padding:0;
     margin:0;
-    font-size: 8px;
+    font-size: 9px;
 }
 #tabs4>ul>li>a:hover {
     background-color:red;
@@ -28,22 +31,32 @@
 	float: right;
 }
 
-
+/**
+ * 定位
+ */
 .item {
     position: relative;
 }
+/**
+ * 先移動
+ */
 .item .dealhidetopborder {
     position: absolute;
-    left: 260px;
-    top: 100px;
+    left: 270px;
+    top: 10px;
 }
+/**
+ * 微調
+ */
 .item .dealhidetopborder a img{
     position: absolute;
     left: 0px;
     top: 0px;
 }
+/**
+ * 微調
+ */
 .item .dealhidetopborder a span {
-    font-size: 18px;
     text-align: center;
     color: white;
     position: absolute;
@@ -51,5 +64,10 @@
     left: 30px;
     top: 25px;
 }
-
+/**
+ * XXX%字體大小
+ */
+#tabs4 .dealhidetopborder a span {
+    font-size: 18px;
+}
 

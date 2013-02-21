@@ -141,24 +141,12 @@
 <div id="itemsClosing">
 	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
 	<div id="tabs4">
-        <ul>
-            <li><a href="#fragment-1"><span>One</span></a></li>
-            <li><a href="#fragment-2"><span>Two</span></a></li>
-            <li><a href="#fragment-3"><span>Three</span></a></li>
-        </ul>
-        <div id="fragment-1">
-            <p>First tab is active by default:</p>
-            <pre><code>$('#example').tabs();</code></pre>
-        </div>
-        <div id="fragment-2">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-        </div>
-        <div id="fragment-3">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-        </div>
+	     <ul>
+	         <li><a href='<c:url value="/items/closingNext.do"/>'><span>Closing Next</span></a></li>
+	         <li><a href='<c:url value="/items/hotDeals.do"/>'><span>Deals</span></a></li>
+	         <li><a href='<c:url value="/items/popular.do"/>'><span>Most Popular</span></a></li>
+	         <li><a href='<c:url value="/items/recentAdd.do"/>'><span>Recently Added</span></a></li>
+	     </ul>
 	</div>
 </div>
 <div id="liveAuctions">

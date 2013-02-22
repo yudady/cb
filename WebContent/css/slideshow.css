@@ -3,6 +3,7 @@
 	width: 750px;
 	height: 500px;
 	background-color: #CCC;
+	position: relative;
 }
 
 .slideshow img {
@@ -12,13 +13,14 @@
 .slideshow-top {
 	height: 400px;
 	margin-bottom: 10px;
+
 }
 .slideshow-top .picMsg {
 	width: 730px;
 	height: 200px;
 	font-size: 24px;
 	background-color: gray;
-	position: relative;
+    position: absolute;
 	z-index: 1;
 	left:10px;
 	top: 5px;
@@ -28,42 +30,46 @@
  */
 .slideshow-top .picMsg input{
 	width: 100px;
-	position: relative;
-	top: 130px;
-	left: 400px;
+	position: absolute;
+	top: 150px;
+	left: 600px;
 }
 /**
  * 	大圖片
  */
 .slideshow-top img {
-	position: relative;
-	top: -385px;
 	width: 730px;
 	height: 400px;
 	padding-left: 10px;
+	position: absolute;
+	top: 5px;
+	left: 0px;
 }
+/**
+ * alt文字
+ */
 .slideshow-top .picMsg span {
 	color: white;
-    position: relative;
-    top: 20px;
-    left: -150px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 /**
  * 	左右方向
  */
-.slideshow-top .direction {
+.slideshow-top div.direction {
 	width: 100px;
 	line-height: 30px;
 	height: 30px;
 	font-size: 18px;
 	background-color: black;
-	position: relative;
-	z-index: 1;
-	left: 630px;
-	top: -430px;
 	color: white;
+	position: absolute;
+	z-index: 1;
+	left: 620px;
+	top: 360px;
 }
-.slideshow-top .direction i {
+.slideshow-top div.direction i {
     padding: 10px;
 	width: 30px;
 	cursor: pointer;

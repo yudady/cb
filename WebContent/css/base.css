@@ -76,12 +76,12 @@ ul {
 }
 
 #nav {
-    font-size: 16px;
-    width: 500px;
+    font-size: 18px;
+    width: 600px;
     margin-left: 10px;
 }
 #nav ul {
-    color: green;
+    color: white;
     height: 30px;
     line-height: 30px;
     text-align: left;
@@ -91,10 +91,8 @@ ul {
 }
 #nav ul li a {
     text-decoration: none;
-    color: green;
 }
 #nav ul li a:hover {
-    color: #f60;
 }
 
 /**

@@ -159,8 +159,8 @@ $(function() {
 			<li><a href='<c:url value="/"/>'>Auctions</a> |</li>
 			<li><a href='<c:url value="/"/>'>Blog</a> |</li>
 			<li><a href='<c:url value="/"/>'>Testimonials</a> |</li>
-			<li><a href='<c:url value="/contact_us"/>'>Contact Us |</a></li>
-			<li><a href='<c:url value="/"/>'>Dream Big NEW</a></li>
+			<li><a href='<c:url value="/contact_us"/>'>Contact Us</a> |</li>
+			<li><a href='<c:url value="/"/>'>Dream Big <sup>NEW</sup></a></li>
 		</ul>
 	</div>
 	<div class="social">

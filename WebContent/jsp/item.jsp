@@ -32,10 +32,10 @@
 }
 #itemDetail a {
 	text-decoration:none;
-	color:red;
+	color:#B5121B;
 }
 #itemDetail a:hover {
-	color:#f60;
+	color:red;
 }
 
 /**
@@ -52,7 +52,9 @@
 	height: 50px;
 	padding: 2px;
 }
-
+#itemTabs a {
+	color:black;
+}
 
 /**
  *右邊
@@ -62,6 +64,7 @@
 	width: 330px;
 	padding: 5px;
 	background-color: #CCC;
+	position: relative;
 }
 
 .biddingIitem {
@@ -97,8 +100,20 @@
     background-color: red;
 }
 
-
-
+.bidNowSpan {
+	font-size: 20px;
+	margin-left:10px;
+	width:130px;
+	border-color:red;
+	border:1px solid red;
+}
+.bidNowSpan input{
+	text-align: right;
+}
+#biddingBidNowBtn {
+	position: absolute;
+	left: 200px;
+}
 
 
 </style>
@@ -170,7 +185,11 @@ $(function() {
 	 * bid now btn
 	 * 競標
 	 */
-	$("#biddingBidNowBtn").click(function(){
+	$("#biddingBidNowBtn").on('click',function(){
+		$("#biddingBidForm").effect( 'shake', {}, 500, function(){
+			$.log("shake");
+		} );
+		return;
 		if(!(cb.isBidderLogin())){
 			window.location.href = cb.getSafeUrl("login.do");
 			return;
@@ -215,10 +234,13 @@ $(function() {
 		});
 	});
 	
-	
+
 	
 	//以下是頁面資訊=============================================
 	$("#itemTabs").tabs();
+	$("#link-currency").on('click',function(){
+		cb.openAlertDialog(" money ");
+	});
 	$("#biddingIitemWhat").on('click',function(){
 		cb.openAlertDialog("This is the time the auction will end, but \"Popcorn Bidding\" could add 10 minutes to the closing time. If a bid is placed within 10 minutes of the closing time, the auction will extend by 10 minutes. This allows competing bidders a chance to stay in the race.");
 	});
@@ -260,9 +282,9 @@ $(function() {
 			</c:if>
 		</div>
 		<c:if test="${fn:length(item.pictures) gt 1}">
-			<a href="#" class="previousImage">previous image</a>
+			<a href="#" class="previousImage"><i class="icon-circle-arrow-left">&nbsp;</i>previous image</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#" class="nextImage">next image</a>
+			<a href="#" class="nextImage"><i class="icon-circle-arrow-right">&nbsp;</i>next image</a>
 		</c:if>
 		<div id="itemTabs">
 			<ul>
@@ -308,9 +330,13 @@ $(function() {
 		
 		<div><!-- Bid Now -->
 			<form id="biddingBidForm" action='<c:url value="/bid/${item.id}/index.do" />'>
-				<input id="biddingBidUrl" name="biddingBidUrl" type="hidden" />
-				<input id="biddingBidNowPrice" name="biddingBidNowPrice" type="text" />
-				<input id="biddingBidNowBtn" name="biddingBidNowBtn" type="button" value="Bid Now" />
+				<span  class="bidNowSpan ui-corner-all">
+					<a id="link-currency" href="#">$<small>▾</small></a>
+					<input id="biddingBidUrl" name="biddingBidUrl" type="hidden" />
+					<input class="inputBorderHide" id="biddingBidNowPrice" name="biddingBidNowPrice" type="text" />
+					&nbsp;&nbsp;&nbsp;&nbsp;
+				</span>
+				<input id="biddingBidNowBtn" name="biddingBidNowBtn" type="button" class="cssButton" value="Bid Now" />
 			</form>
 		</div>
 		<div>

@@ -7,6 +7,7 @@
 
 body {
     text-align: left;
+    font-size: 12px;
     width: 988px;
     margin: 0 auto;
     padding-top: 20px;
@@ -249,6 +250,7 @@ ul {
  * 左邊菜單
  */
 #menu {
+    font-size: 14px;
     width: 200px;
     float: left;
 }
@@ -306,6 +308,10 @@ ul {
  */
 .clearBoth {
     clear: both;
+}
+.inputBorderHide {
+    border:0;
+    background:transparent;
 }
 .cssButton {
     background: url("../pic/site/gradient-red-50.jpg") repeat-x scroll 0 0 #E31B23;

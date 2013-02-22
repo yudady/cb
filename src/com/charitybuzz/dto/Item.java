@@ -132,7 +132,7 @@ public class Item {
 	public Item(String title, Double currentBid, Date startDate,
 			Date closeDate, Double estimatedValue, Double incrementPrice,
 			int status, String lotDetails, String legalTerms, String shipping,
-			Long winningBidderId,Long auctioneerId) {
+			Long winningBidderId,Long operatorId) {
 		this.title = title;
 		this.currentBid = currentBid;
 		this.startDate = startDate;
@@ -144,6 +144,7 @@ public class Item {
 		this.legalTerms = legalTerms;
 		this.shipping = shipping;
 		this.winningBidderId = winningBidderId;
+		this.operatorId = operatorId;
 	}
 
 	public Item(Long id, String title, Double currentBid, Date startDate,
@@ -175,13 +176,15 @@ public class Item {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getAuctioneerId() {
+
+	public Long getOperatorId() {
 		return operatorId;
 	}
 
-	public void setAuctioneerId(Long auctioneerId) {
-		this.operatorId = auctioneerId;
+	public void setOperatorId(Long operatorId) {
+		this.operatorId = operatorId;
 	}
+
 	public String getTitle() {
 		return title;
 	}

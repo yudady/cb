@@ -4,8 +4,8 @@
 	
 	//$("img.lazy").lazyload( { effect : "slideDown" } );
 	$("div").addClass('ui-corner-all');
-    if($(".counter").height() < 300){
-        $(".counter").height(300);
+    if($(".counter").height() < 350){
+        $(".counter").height(350);
     }
 });
 

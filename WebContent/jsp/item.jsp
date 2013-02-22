@@ -86,9 +86,14 @@
 	text-align: center;
 	background-color: yellow;
 }
-.biddingMoreDetails dl{
+.biddingMoreDetails {
+	background-color: white;
+}
+.biddingMoreDetails a {
+	font-size: 18px;
+}
+.biddingMoreDetails table {
 	display: none;
-	background-color: blue;
 }
 .shareItem {
 	background-color: olive;
@@ -147,7 +152,7 @@ $(function() {
 	$(".itemSmallPic img").on('click',function(event){
 		$(".itemLargePic img").attr("src",$(this).attr("src"));
 		event.preventDefault();
-		event.stopImmediatePropagation();
+		event.stopPropagation();
 	});
 	//上一張圖片
 	$(".previousImage").on('click',function(event){
@@ -161,7 +166,7 @@ $(function() {
 		smallImgs.removeClass("imgHighLight");
 		cur.addClass("imgHighLight");
 		event.preventDefault();
-		event.stopImmediatePropagation();
+		event.stopPropagation();
 	});
 	//下一張圖片
 	$(".nextImage").on('click',function(event){
@@ -175,7 +180,7 @@ $(function() {
 		smallImgs.removeClass("imgHighLight");
 		cur.addClass("imgHighLight");
 		event.preventDefault();
-		event.stopImmediatePropagation();
+		event.stopPropagation();
 	});
 	
 	
@@ -238,18 +243,27 @@ $(function() {
 	
 	//以下是頁面資訊=============================================
 	$("#itemTabs").tabs();
-	$("#link-currency").on('click',function(){
+	$("#link-currency").on('click',function(event){
 		cb.openAlertDialog(" money ");
+		event.preventDefault();
+		event.stopPropagation();
 	});
-	$("#biddingIitemWhat").on('click',function(){
+	$("#biddingIitemWhat").on('click',function(event){
 		cb.openAlertDialog("This is the time the auction will end, but \"Popcorn Bidding\" could add 10 minutes to the closing time. If a bid is placed within 10 minutes of the closing time, the auction will extend by 10 minutes. This allows competing bidders a chance to stay in the race.");
+		event.preventDefault();
+		event.stopPropagation();
+
 	});
-	$(".biddingIncrementPriceBtn").on('click',function(){
+	$("#biddingIncrementPriceBtn").on('click',function(event){
 		cb.openAlertDialog("Max Bid This item supports Max Bidding! The bid you enter will automatically be a Max Bid. If your Max Bid is higher than the next Bid Increment, the bid will only be raised to the next Bid Increment. If someone else bids on this item for an amount less than your Max Bid, then you will automatically beat them and your bid will be increased to the Bid Increment necessary to beat them (or increased to your Max Bid itself, if that's lower).Bid Increment	To keep bidding competitive and interesting, you are required to increase the bid by an amount comparable to the current bid itself. Here's the guide:	Current Bid Amount 	Bid Increment	250 or less 	25	250 - 500 	50");
+		event.preventDefault();
+		event.stopPropagation();
 	});
-	$(".biddingMoreDetails a").on('click',function(){
-		$(".biddingMoreDetails dl").toggle('slow');
-		return false;
+	$(".biddingMoreDetails a").on('click',function(event){
+		$(".biddingMoreDetails table").toggle('slow');
+		$(this).find("span").toggle();
+		event.preventDefault();
+		event.stopPropagation();
 	});
 	
 });
@@ -284,7 +298,7 @@ $(function() {
 		<c:if test="${fn:length(item.pictures) gt 1}">
 			<a href="#" class="previousImage"><i class="icon-circle-arrow-left">&nbsp;</i>previous image</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#" class="nextImage"><i class="icon-circle-arrow-right">&nbsp;</i>next image</a>
+			<a href="#" class="nextImage">next image<i class="icon-circle-arrow-right">&nbsp;</i></a>
 		</c:if>
 		<div id="itemTabs">
 			<ul>
@@ -323,7 +337,7 @@ $(function() {
 			<span>??? days left to bid</span>
 		</div>
 		<div>
-			<span>${item.closeDate}<input id="biddingIitemWhat" type="button" value="?" /></span>
+			<span>${item.closeDate}<i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
 		</div>
 		
 		
@@ -341,7 +355,7 @@ $(function() {
 		</div>
 		<div>
 			<span>you must bid at least ${item.incrementPrice}
-				<input class="biddingIncrementPriceBtn" type="button" value="?" />
+				<i class="icon-question-sign" id="biddingIncrementPriceBtn">&nbsp;</i>
 			</span>
 		</div>
 
@@ -361,17 +375,25 @@ $(function() {
 		</span>
 	</div>
 	<div class="biddingMoreDetails">
-		<a href="#">More Details</a>
-		<dl>
-			<dt>Lot Number:</dt>
-			<dd>${item.id}</dd>
-			<dt>Estimated Value:</dt>
-			<dd>${item.estimatedValue}</dd>
-			<dt>Open Date</dt>
-			<dd>${item.startDate}</dd>
-			<dt>Close Date:</dt>
-			<dd>${item.closeDate}</dd>
-		</dl>
+		<a href="#">
+			<span><i class="icon-angle-right">&nbsp;</i></span>
+			<span class="displayNone"><i class="icon-angle-down">&nbsp;</i></span>
+			More Details
+		</a>
+		<table>
+			<tr>
+				<th>Lot Number:</th><td>${item.id}</td>
+			</tr>
+			<tr>
+				<th>Estimated Value:</th><td>${item.estimatedValue}</td>
+			</tr>
+			<tr>
+				<th>Open Date</th><td>${item.startDate}</td>
+			</tr>
+			<tr>
+				<th>Close Date:</th><td>${item.closeDate}</td>
+			</tr>
+		</table>
 	</div>
 	<div class="shareItem">
 		<h3>Share this item:</h3>

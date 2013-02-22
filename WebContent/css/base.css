@@ -4,7 +4,12 @@
     margin: 0;
     padding: 0;
 }
-
+i[class^="icon-"],i[class*=" icon-"] {
+    color: #B5121B;
+    font-size: 14px;
+    margin: 0 5px;
+    cursor: pointer;
+}
 body {
     text-align: left;
     font-size: 12px;
@@ -334,4 +339,6 @@ ul {
 a.cssButton:hover {
     color: black;
 }
-
+.displayNone {
+    display: none;
+}

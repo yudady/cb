@@ -415,8 +415,8 @@ public class ItemDao extends BaseDao<Item> {
 
 		String sql = "insert into item (id,title,currentbid,startdate,closedate,"
 				+ "estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,"
-				+ "winningbidderid,createddate,updateddate) values (?,"
-				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
+				+ "winningbidderid,createddate,updateddate,auctioneerId) values (?,"
+				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate,?)";
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -434,6 +434,7 @@ public class ItemDao extends BaseDao<Item> {
 				this.preparedStatement.setString(10, item.getLegalTerms());
 				this.preparedStatement.setString(11, item.getShipping());
 				this.preparedStatement.setLong(12, item.getWinningBidderId());
+				this.preparedStatement.setLong(13, item.getAuctioneerId());
 			}
 
 		});
@@ -765,6 +766,38 @@ public class ItemDao extends BaseDao<Item> {
 
 	public Pager<Item> findByKeyWord(final String keyWord) {
 		String sql = "  SELECT * FROM item  WHERE status = '1' AND STARTDATE <= SYSDATE AND closedate >= SYSDATE  and (title like '%"+keyWord+"%' or lotdetails like '%"+keyWord+"%') ";
+		return this.queryPager(sql, new QueryPager<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+	}
+
+	public Pager<Item> findPagerByAuctioneerId(Long auctioneerId) {
+		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate and auctioneerId = '"+auctioneerId+"'" ;
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {

@@ -184,6 +184,15 @@ public class ItemService {
 		return itemDao.findByKeyWord(keyWord);
 	}
 
+	/**
+	 * 分頁 拍賣者登錄商品列表
+	 * @param auctioneerId
+	 * @return
+	 */
+	public Pager<Item> findPagerByAuctioneerId(Long auctioneerId) {
+		return itemDao.findPagerByAuctioneerId(auctioneerId);
+	}
+
 
 
 

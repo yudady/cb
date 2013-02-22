@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.HttpSessionRequiredException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +22,9 @@ import com.charitybuzz.web.manager.form.OperatorForm;
 @RequestMapping(value = "/manager/operator")
 @SessionAttributes({ "operator" })
 public class OperatorManager {
+
+	/** logger. */
+	private Logger log = LoggerFactory.getLogger(SubCategoryManager.class);
 
 	/**
 	 * 商品
@@ -70,9 +73,8 @@ public class OperatorManager {
 		if (result.hasErrors()) {
 			throw new RuntimeException("驗證錯誤");
 		}
-
-		operatorService.insert(new Operator(form.getOperatorId(), form
-				.getName(), form.getPassWord()));
+		operatorService.insert(new Operator(form.getName(), form.getPassWord(),
+				form.getLogo(), form.getBrief(), form.getWebSite()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/operator/list.do");
@@ -92,6 +94,7 @@ public class OperatorManager {
 
 		Operator operatorObj = operatorService.findById(operatorId);
 		mav.addObject("operatorObj", operatorObj);
+		log.debug("[LOG][form]" + operatorObj);
 		return mav;
 	}
 
@@ -108,8 +111,11 @@ public class OperatorManager {
 		if (result.hasErrors()) {
 			throw new RuntimeException("驗證錯誤");
 		}
-		operatorService.update(new Operator(form.getOperatorId(), form
-				.getName(), form.getPassWord()));
+
+		log.debug("[LOG][form]" + form);
+		operatorService.update((new Operator(form.getId(), form.getName(), form
+				.getPassWord(), form.getLogo(), form.getBrief(), form
+				.getWebSite())));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/operator/list.do");
@@ -130,8 +136,4 @@ public class OperatorManager {
 		return mav;
 	}
 
-	@ExceptionHandler({ HttpSessionRequiredException.class })
-	public ModelAndView noSessionObject(Exception ex) {
-		return new ModelAndView("redirect:/manager/index.do");
-	}
 }

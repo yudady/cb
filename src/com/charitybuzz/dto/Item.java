@@ -100,13 +100,16 @@ public class Item {
 	private Long difDay;
 
 	private String watch;
-
+	/**
+	 * 拍賣者id
+	 */
+	private Long operatorId;
 	// ====================================================
 
 	public Item() {
 	}
 
-	public Item(Long id, String title, Double currentBid, Date startDate,
+	public Item(Long id,String title, Double currentBid, Date startDate,
 			Date closeDate, Double estimatedValue, Double incrementPrice,
 			int status, String lotDetails, String legalTerms, String shipping,
 			Long winningBidderId) {
@@ -129,7 +132,7 @@ public class Item {
 	public Item(String title, Double currentBid, Date startDate,
 			Date closeDate, Double estimatedValue, Double incrementPrice,
 			int status, String lotDetails, String legalTerms, String shipping,
-			Long winningBidderId) {
+			Long winningBidderId,Long auctioneerId) {
 		this.title = title;
 		this.currentBid = currentBid;
 		this.startDate = startDate;
@@ -172,7 +175,13 @@ public class Item {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public Long getAuctioneerId() {
+		return operatorId;
+	}
 
+	public void setAuctioneerId(Long auctioneerId) {
+		this.operatorId = auctioneerId;
+	}
 	public String getTitle() {
 		return title;
 	}

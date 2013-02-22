@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.common.Constant;
 import com.charitybuzz.dto.Item;
+import com.charitybuzz.dto.Operator;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.operate.SidebarService;
@@ -109,7 +111,7 @@ public class ItemManager {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView itemAdd(ItemForm form, BindingResult result)
+	public ModelAndView itemAdd(ItemForm form, BindingResult result,HttpSession session)
 			throws IOException {
 
 		// if (result.hasErrors()) {
@@ -117,13 +119,13 @@ public class ItemManager {
 		// }
 
 		log.debug("[LOG]ItemForm=" + form);
-
+		Operator operator = (Operator)session.getAttribute("operator");
 		Long itemId = itemService.insert(new Item(form.getTitle(), form
 				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
 				form.getEstimatedValue(), form.getIncrementPrice(), form
 						.getStatus(), form.getLotDetails(), form
 						.getLegalTerms(), form.getShipping(), form
-						.getWinningBidderId()));
+						.getWinningBidderId(),operator.getId()));
 
 		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
 		sidebarService.setCategories(null);

@@ -220,18 +220,27 @@ commit;
 INSERT INTO bidder VALUES ('1', 'lin', 'tommy', 'yudady', '123456', 'yu_dady@yahoo.com.tw', '123456');
 INSERT INTO bidder VALUES ('2', 'lin', 'kevin', 'kevin', '123456', 'kevin@yahoo.com.tw', '123456');
 
-
+-------------------------------------
 DROP TABLE operator ;
 commit;
 CREATE TABLE operator (
 id NUMBER(10) NOT NULL PRIMARY KEY,
-name NVARCHAR2(20) NOT NULL,
-passWord NVARCHAR2(20) NOT NULL
+name NVARCHAR2(2000) NOT NULL,
+passWord NVARCHAR2(2000) NOT NULL,
+logo NVARCHAR2(2000) NOT NULL,
+brief NVARCHAR2(2000) NOT NULL,
+webSite NVARCHAR2(2000) NOT NULL
 )
 ;
-COMMENT ON COLUMN operator.id IS '後台管理者帳號id';
-INSERT INTO operator VALUES ('1','111','111');
+COMMENT ON COLUMN operator.id IS '後台管理者帳號id, 拍賣商家ID';
+COMMENT ON COLUMN operator.name IS '公司名稱';
+COMMENT ON COLUMN operator.passWord IS '密碼';
+COMMENT ON COLUMN operator.logo IS '公司logo';
+COMMENT ON COLUMN operator.brief IS '簡介';
+COMMENT ON COLUMN operator.webSite IS '網址';
 
+commit;
+INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1');
 commit;
 drop sequence seq_operator;
 create sequence seq_operator;
@@ -256,3 +265,14 @@ commit;
 --Seq_watching.NEXTVAL
 
 commit;
+
+
+
+
+
+
+
+
+
+
+

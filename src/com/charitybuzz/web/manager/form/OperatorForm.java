@@ -10,17 +10,38 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 public class OperatorForm {
 
-	private Long operatorId;
-
+	/**
+	 * 拍賣商家ID
+	 */
+	private Long id;
+	/**
+	 * 公司名稱
+	 */
 	private String name;
+	/**
+	 * 密碼
+	 */
 	private String passWord;
 
-	public Long getOperatorId() {
-		return operatorId;
+	/**
+	 * 公司logo
+	 */
+	private String logo;
+	/**
+	 * 簡介
+	 */
+	private String brief;
+	/**
+	 * 網址
+	 */
+	private String webSite;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setOperatorId(Long operatorId) {
-		this.operatorId = operatorId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -37,6 +58,30 @@ public class OperatorForm {
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public String getBrief() {
+		return brief;
+	}
+
+	public void setBrief(String brief) {
+		this.brief = brief;
+	}
+
+	public String getWebSite() {
+		return webSite;
+	}
+
+	public void setWebSite(String webSite) {
+		this.webSite = webSite;
 	}
 
 	@Override

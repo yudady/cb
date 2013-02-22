@@ -30,7 +30,9 @@ public class OperatorDao extends BaseDao<Operator> {
 				Operator it = null;
 				if (rs.next()) {
 					it = new Operator(rs.getLong("id"), rs.getString("name"),
-							rs.getString("passWord"));
+							rs.getString("passWord"), rs.getString("logo"), rs
+									.getString("brief"), rs
+									.getString("webSite"));
 				}
 				return it;
 			}
@@ -51,7 +53,9 @@ public class OperatorDao extends BaseDao<Operator> {
 				Operator it = null;
 				if (rs.next()) {
 					it = new Operator(rs.getLong("id"), rs.getString("name"),
-							rs.getString("passWord"));
+							rs.getString("passWord"), rs.getString("logo"), rs
+									.getString("brief"), rs
+									.getString("webSite"));
 				}
 				return it;
 			}
@@ -72,7 +76,9 @@ public class OperatorDao extends BaseDao<Operator> {
 				List<Operator> operatorList = new ArrayList<Operator>();
 				while (rs.next()) {
 					Operator it = new Operator(rs.getLong("id"), rs
-							.getString("name"), rs.getString("passWord"));
+							.getString("name"), rs.getString("passWord"), rs
+							.getString("logo"), rs.getString("brief"), rs
+							.getString("webSite"));
 					operatorList.add(it);
 				}
 				return operatorList;
@@ -96,14 +102,17 @@ public class OperatorDao extends BaseDao<Operator> {
 	}
 
 	public void update(final Operator operator) {
-		String sql = "update operator set name=? ,passWord=? where id = ?";
+		String sql = "update operator set name=? ,passWord=? ,logo=? ,brief=? ,webSite=? where id = ?";
 
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Operator>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, operator.getName());
 				this.preparedStatement.setString(2, operator.getPassWord());
-				this.preparedStatement.setLong(3, operator.getId());
+				this.preparedStatement.setString(3, operator.getLogo());
+				this.preparedStatement.setString(4, operator.getBrief());
+				this.preparedStatement.setString(5, operator.getWebSite());
+				this.preparedStatement.setLong(6, operator.getId());
 			}
 
 		});

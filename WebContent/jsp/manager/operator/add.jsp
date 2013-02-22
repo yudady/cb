@@ -6,9 +6,11 @@
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
 <div id="content">
 <form method="post">
-	<input type="hidden" name="operatorId" value="${operator.id}"/><br/>
-	name<input type="text" name="name" value="${operator.name}"/><br/>
-	passWord<input type="text" name="passWord" value="${operator.passWord}"/><br/>
+	name<input type="text" name="name" /><br/>
+	passWord<input type="text" name="passWord" /><br/>
+	logo<input type="text" name="logo" /><br/>
+	brief<input type="text" name="brief" /><br/>
+	webSite<input type="text" name="webSite" /><br/>
 	<input type="reset" name="reset" "/><br/>
 	<input type="submit" name="submit" "/><br/>
 </form>

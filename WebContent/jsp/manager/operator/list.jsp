@@ -18,7 +18,11 @@
 	<table>
 		<tr>
 			<th>id</th>
-			<th>name</th>
+			<th>公司名稱</th>
+			<th>密碼</th>
+			<th>公司logo</th>
+			<th>簡介</th>
+			<th>網址</th>
 			<th>update</th>
 			<th>delete</th>
 		</tr>
@@ -26,6 +30,10 @@
 			<tr>
 				<td>${operator.id}</td>
 				<td>${operator.name}</td>
+				<td>${operator.passWord}</td>
+				<td>${operator.logo}</td>
+				<td>${operator.brief}</td>
+				<td>${operator.webSite}</td>
 				<td><a
 					href='<c:url value="/manager/operator/${operator.id}/update.do"/>'>update</a></td>
 				<td>

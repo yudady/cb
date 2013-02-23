@@ -10,10 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/contact_us")
-public class ContactsController {
+public class ContactUsController {
 
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(ContactsController.class);
+	private Logger log = LoggerFactory.getLogger(ContactUsController.class);
 
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {

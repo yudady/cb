@@ -82,7 +82,6 @@
 	height:50px;
 	line-height: 50px;
 	font-size: 14px;
-	color: red;
 	margin-bottom: 10px;
 }
 .biddingWatchQuestion div{
@@ -90,6 +89,7 @@
 	height:50px;
 	line-height: 50px;
 	background-color: white;
+	cursor: pointer;
 }
 #biddingWatchThisItem {
 	float:left;
@@ -209,12 +209,22 @@ $(function() {
 	 * 競標
 	 */
 	$("#biddingBidNowBtn").on('click',function(){
-		$("#biddingBidForm").effect( 'shake', {}, 500, function(){
-			$.log("shake");
-		} );
-		return;
 		if(!(cb.isBidderLogin())){
+			//沒登入
 			window.location.href = cb.getSafeUrl("login.do");
+			return;
+		}
+		
+		var biddingBidNowPrice = $.trim($("#biddingBidNowPrice").val()) || "0";
+		var incrementPrice = $("#incrementPrice").val() || "0";
+		var hasError = false;
+		
+		if(parseFloat(biddingBidNowPrice) < parseFloat(incrementPrice)){
+			hasError = true;
+		}
+
+		if(hasError){
+			$("#biddingBidForm").effect('shake', 300);
 			return;
 		}
 		
@@ -228,20 +238,23 @@ $(function() {
 	/**
 	 * 關注
 	 */
-	$("#biddingWatchThisItem").click(function(){
+	$("#biddingWatchThisItem").click(function(event){
+		event.preventDefault();
+		event.stopPropagation();
 		//判斷是否login
-		
 		if(!(cb.isBidderLogin())){
 			window.location.href = cb.getSafeUrl("login.do");
 			return;
 		}
 		var itemId = $("#loginOutFormItemId").val();
+		// 0 沒關注 , 1 關注
 		var watchStatus = "";
-		$.log($(".icon-eye-open:visible")[0]);
 		if ($(".icon-eye-open:visible")[0]){
 			watchStatus = "1";
+			$(".biddingWatchThisItemLink").html('Watching');
 		}else{
 			watchStatus = "0";
+			$(".biddingWatchThisItemLink").html('Watch This Item');
 		}
 		$(".icon-eye-open,.icon-check").parent().toggleClass("displayNone");
 		/**
@@ -373,6 +386,7 @@ $(function() {
 		</div>
 		<div>
 			<span>you must bid at least ${item.incrementPrice}
+				<input id="incrementPrice" type="hidden" value="${item.incrementPrice}"/>
 				<i class="icon-question-sign" id="biddingIncrementPriceBtn">&nbsp;</i>
 			</span>
 		</div>
@@ -389,16 +403,18 @@ $(function() {
 				<c:when test="${item.watch}">
 					<span class="displayNone"><i class="icon-eye-open">&nbsp;</i></span>
 					<span><i class="icon-check">&nbsp;</i></span>
+					<a href="#" class="biddingWatchThisItemLink">Watching</a>
 				</c:when>
 				<c:otherwise>
 					<span><i class="icon-eye-open">&nbsp;</i></span>
 					<span class="displayNone"><i class="icon-check">&nbsp;</i></span>
+					<a href="#" class="biddingWatchThisItemLink">Watch This Item</a>
 				</c:otherwise>
 			</c:choose>
-			 Watch This Item
 		</div>
 		<div id="biddingAskQuestion">
-			<i class="icon-comments-alt">&nbsp;</i>Ask a Question 
+			<i class="icon-comments-alt">&nbsp;</i>
+			<a href='<c:url value="/contacts/item/${item.id}/index.do" />'>Ask a Question </a>
 		</div>
 	</div>
 	<div class="biddingMoreDetails">

@@ -99,3 +99,16 @@
 .slideshow-button-click {
 	background-color: red;
 }
+
+
+#rerunOut {
+    width: 200px;
+    background-color: pink;
+}
+#select {
+}
+#catcompleteDiv {
+    clear: both;
+}
+
+

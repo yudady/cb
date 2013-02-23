@@ -28,12 +28,44 @@ public class ItemService {
 		this.dualDao = dualDao;
 	}
 
+	/**
+	 * 2級目錄找商品
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public List<Item> findBySubCategoryId(Long id) {
 		return itemDao.findBySubCategoryId(id);
 	}
+
+	/**
+	 * 2級目錄找商品
+	 * 
+	 * @param subcategoryId
+	 * @return
+	 */
 	public Pager<Item> findPagerBySubCategoryId(Long subcategoryId) {
 		return itemDao.findPagerBySubCategoryId(subcategoryId);
 	}
+
+	/**
+	 * 找出全部商品
+	 * 
+	 * @return
+	 */
+	public List<Item> findAll() {
+		return itemDao.findAll();
+	}
+
+	/**
+	 * 找出全部商品
+	 * 
+	 * @return
+	 */
+	public Pager<Item> findPager() {
+		return itemDao.findPager();
+	}
+
 	/**
 	 * 找出categoryId的全部商品
 	 * 
@@ -43,9 +75,17 @@ public class ItemService {
 	public List<Item> findByCategoryId(Long categoryId) {
 		return itemDao.findByCategoryId(categoryId);
 	}
+
+	/**
+	 * 找出categoryId的全部商品
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
 	public Pager<Item> findPagerByCategoryId(Long categoryId) {
 		return itemDao.findPagerByCategoryId(categoryId);
 	}
+
 	/**
 	 * pk find object
 	 * 
@@ -73,10 +113,6 @@ public class ItemService {
 	 */
 	public void updateClosingBidding(Long id) {
 		itemDao.updateClosingBidding(id);
-	}
-
-	public List<Item> findAll() {
-		return itemDao.findAll();
 	}
 
 	public Long insert(Item item) {
@@ -177,6 +213,7 @@ public class ItemService {
 
 	/**
 	 * 關鍵字查找
+	 * 
 	 * @param keyWord
 	 * @return
 	 */
@@ -186,15 +223,12 @@ public class ItemService {
 
 	/**
 	 * 分頁 拍賣者登錄商品列表
+	 * 
 	 * @param auctioneerId
 	 * @return
 	 */
 	public Pager<Item> findPagerByAuctioneerId(Long auctioneerId) {
 		return itemDao.findPagerByAuctioneerId(auctioneerId);
 	}
-
-
-
-
 
 }

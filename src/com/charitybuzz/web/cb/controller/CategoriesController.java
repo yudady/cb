@@ -84,9 +84,9 @@ public class CategoriesController {
 
 	@RequestMapping(value = "/{id}/subcategories/{subcategoryId}/index", method = RequestMethod.GET)
 	public ModelAndView subCategory(@PathVariable Long subcategoryId) {
-
+		
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
-
+		
 		ModelAndView mav = new ModelAndView("itemsPager");
 		/**
 		 * 目錄
@@ -97,6 +97,29 @@ public class CategoriesController {
 		 * 分頁商品
 		 */
 		Pager<Item> pager = itemService.findPagerBySubCategoryId(subcategoryId);
+		List<Item> items = pager.getDatas();
+		for (Item item : items) {
+			
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
+		mav.addObject("pager", pager);
+		return mav;
+	}
+	@RequestMapping(value = "/viewall", method = RequestMethod.GET)
+	public ModelAndView viewAll() {
+
+		ModelAndView mav = new ModelAndView("itemsPager");
+		/**
+		 * 目錄
+		 */
+		List<Category> categories = sidebarService.getSidebar();
+		mav.addObject("categories", categories);
+		/**
+		 * 分頁商品
+		 */
+		Pager<Item> pager = itemService.findPager();
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {
 

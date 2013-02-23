@@ -15,5 +15,17 @@
 			</c:if>
 		</li>
 	</c:forEach>
+	<li>
+		<a href='<c:url value="/categories/viewall.do" />'>view all</a>
+	</li>
 </ul>
+<div>
+	<span id="rerunOut">
+		<span id="rerun">Select a Charity</span>
+	</span>
+	<button id="select">Select an action</button>
+	<div id="catcompleteDiv" class="displayNone ui-widget">
+		<input id="catcomplete" value="&nbsp;"/>
+	</div>
+</div>
 </div>

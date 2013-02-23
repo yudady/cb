@@ -414,7 +414,7 @@ $(function() {
 		</div>
 		<div id="biddingAskQuestion">
 			<i class="icon-comments-alt">&nbsp;</i>
-			<a href='<c:url value="/contacts/item/${item.id}/index.do" />'>Ask a Question </a>
+			<a href='<c:url value="/contact_us/item/${item.id}/index.do" />'>Ask a Question </a>
 		</div>
 	</div>
 	<div class="biddingMoreDetails">

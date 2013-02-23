@@ -156,11 +156,11 @@ $(function() {
 	<div id="nav">
 		<ul>
 			<li><a href='<c:url value="/"/>'>Home</a> |</li>
-			<li><a href='<c:url value="/"/>'>Auctions</a> |</li>
-			<li><a href='<c:url value="/"/>'>Blog</a> |</li>
-			<li><a href='<c:url value="/"/>'>Testimonials</a> |</li>
-			<li><a href='<c:url value="/contact_us"/>'>Contact Us</a> |</li>
-			<li><a href='<c:url value="/"/>'>Dream Big <sup>NEW</sup></a></li>
+			<li><a href='<c:url value="/auctions/index.do"/>'>Auctions</a> |</li>
+			<li><a href='<c:url value="/blog/index.do"/>'>Blog</a> |</li>
+			<li><a href='<c:url value="/testimonials/index.do"/>'>Testimonials</a> |</li>
+			<li><a href='<c:url value="/contact_us/index.do"/>'>Contact Us</a> |</li>
+			<li><a href='<c:url value="/dogooddreambig/index.do"/>'>Dream Big <sup>NEW</sup></a></li>
 		</ul>
 	</div>
 	<div class="social">

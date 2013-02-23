@@ -46,6 +46,14 @@ public class AuctionsController {
 	@Resource
 	private BidlogService bidlogService;
 	
+	@RequestMapping(value = "/index",method = RequestMethod.GET)
+	public ModelAndView indexPage() {
+		ModelAndView mav = new ModelAndView("auctions");
+		
+		return mav;
+	}
+	
+	
 	@RequestMapping(value = "/{auctioneerId}/catalog_items",method = RequestMethod.GET)
 	public ModelAndView auctions(@PathVariable Long auctioneerId) {
 		log.debug("[LOG][auctioneerId]" + auctioneerId);

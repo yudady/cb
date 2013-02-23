@@ -78,7 +78,7 @@ public class ItemController {
 			Bidder bidder = (Bidder) session.getAttribute("bidder");
 			Watching watching = watchingService.isWatch(bidder.getId(), itemId);
 			if(watching != null){
-				item.setWatch("checked");
+				item.setWatch(true);
 			}
 		}
 

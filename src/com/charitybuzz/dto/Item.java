@@ -99,17 +99,18 @@ public class Item {
 	 */
 	private Long difDay;
 
-	private String watch;
+	private boolean watch;
 	/**
 	 * 拍賣者id
 	 */
 	private Long operatorId;
+
 	// ====================================================
 
 	public Item() {
 	}
 
-	public Item(Long id,String title, Double currentBid, Date startDate,
+	public Item(Long id, String title, Double currentBid, Date startDate,
 			Date closeDate, Double estimatedValue, Double incrementPrice,
 			int status, String lotDetails, String legalTerms, String shipping,
 			Long winningBidderId) {
@@ -127,12 +128,10 @@ public class Item {
 		this.winningBidderId = winningBidderId;
 	}
 
-
-
 	public Item(String title, Double currentBid, Date startDate,
 			Date closeDate, Double estimatedValue, Double incrementPrice,
 			int status, String lotDetails, String legalTerms, String shipping,
-			Long winningBidderId,Long operatorId) {
+			Long winningBidderId, Long operatorId) {
 		this.title = title;
 		this.currentBid = currentBid;
 		this.startDate = startDate;
@@ -333,11 +332,11 @@ public class Item {
 		this.difDay = difDay;
 	}
 
-	public String getWatch() {
+	public boolean isWatch() {
 		return watch;
 	}
 
-	public void setWatch(String watch) {
+	public void setWatch(boolean watch) {
 		this.watch = watch;
 	}
 

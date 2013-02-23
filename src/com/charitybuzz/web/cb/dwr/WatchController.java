@@ -42,7 +42,7 @@ public class WatchController {
 			watchingService.delBidderWaching(bidder.getId(), itemId);
 		}
 		return "watch itemId=" + itemId + " bidderId=" + bidder.getId()
-				+ " watchStatus=" + watchStatus;
+				+ " watchStatus(0:false,1:true)=" + watchStatus;
 	}
 
 	@ExceptionHandler({ HttpSessionRequiredException.class })

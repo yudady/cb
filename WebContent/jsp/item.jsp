@@ -78,14 +78,32 @@
 }
 
 .biddingWatchQuestion {
-	height:200px;
+	text-align:center;
+	height:50px;
 	line-height: 50px;
-	font-size: 16px;
+	font-size: 14px;
 	color: red;
-	height: 50px;
-	text-align: center;
-	background-color: yellow;
+	margin-bottom: 10px;
 }
+.biddingWatchQuestion div{
+	width:164px;
+	height:50px;
+	line-height: 50px;
+	background-color: white;
+}
+#biddingWatchThisItem {
+	float:left;
+}
+#biddingAskQuestion {
+	float:right;
+}
+
+
+
+
+/**
+ * detail
+ */
 .biddingMoreDetails {
 	background-color: white;
 }
@@ -210,7 +228,7 @@ $(function() {
 	/**
 	 * 關注
 	 */
-	$("#biddingWatchQuestion").click(function(){
+	$("#biddingWatchThisItem").click(function(){
 		//判斷是否login
 		
 		if(!(cb.isBidderLogin())){
@@ -219,13 +237,13 @@ $(function() {
 		}
 		var itemId = $("#loginOutFormItemId").val();
 		var watchStatus = "";
-		if ($("#watchingItem").prop("checked")){
-			watchStatus = "0";
-			$("#watchingItem").prop("checked", false);
-		}else{
-			$("#watchingItem").prop("checked", true);
+		$.log($(".icon-eye-open:visible")[0]);
+		if ($(".icon-eye-open:visible")[0]){
 			watchStatus = "1";
+		}else{
+			watchStatus = "0";
 		}
+		$(".icon-eye-open,.icon-check").parent().toggleClass("displayNone");
 		/**
 		 * call dwr
 		 */
@@ -366,13 +384,22 @@ $(function() {
  這裡是一個超連結，連到其他商品網站
 	</div>
 	<div class="biddingWatchQuestion">
-		<span id="biddingWatchThisItem">
-			<input type="checkbox" id="watchingItem" name="watchingItem" ${item.watch} />
+		<div id="biddingWatchThisItem">
+			<c:choose>
+				<c:when test="${item.watch}">
+					<span class="displayNone"><i class="icon-eye-open">&nbsp;</i></span>
+					<span><i class="icon-check">&nbsp;</i></span>
+				</c:when>
+				<c:otherwise>
+					<span><i class="icon-eye-open">&nbsp;</i></span>
+					<span class="displayNone"><i class="icon-check">&nbsp;</i></span>
+				</c:otherwise>
+			</c:choose>
 			 Watch This Item
-		</span>
-		<span id="biddingAskQuestion">
-			Ask a Question 
-		</span>
+		</div>
+		<div id="biddingAskQuestion">
+			<i class="icon-comments-alt">&nbsp;</i>Ask a Question 
+		</div>
 	</div>
 	<div class="biddingMoreDetails">
 		<a href="#">

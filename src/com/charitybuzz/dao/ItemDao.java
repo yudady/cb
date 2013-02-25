@@ -123,36 +123,37 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 	}
+
 	public Pager<Item> findPagerBySubCategoryId(final Long subCategoryId) {
-		String sql = "SELECT b.id as id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = "+subCategoryId+" AND b.id = a.itemid ";
+		String sql = "SELECT b.id as id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				//this.preparedStatement.setLong(1, subCategoryId);
+				this.preparedStatement.setLong(1, subCategoryId);
 			}
-			
+
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-				
+
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
 					Item it = new Item(rs.getLong("id"), rs.getString("title"),
 							rs.getDouble("currentBid"),
 							rs.getDate("startDate"), rs.getDate("closeDate"),
 							rs.getDouble("estimatedValue"), rs
-							.getDouble("incrementPrice"), rs
-							.getInt("status"), rs
-							.getString("lotDetails"), rs
-							.getString("legalTerms"), rs
-							.getString("shipping"), rs
-							.getLong("winningBidderId"), rs
-							.getDate("createdDate"), rs
-							.getDate("updatedDate"));
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
 					itemList.add(it);
 				}
 				return itemList;
 			}
-			
+
 		});
 	}
 
@@ -194,6 +195,7 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 	}
+
 	/**
 	 * 找出categoryId的全部商品
 	 * 
@@ -201,35 +203,35 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public Pager<Item> findPagerByCategoryId(final Long categoryId) {
-		String sql = "SELECT x.* FROM ITEM x WHERE x.id in(SELECT d.itemid FROM subcategory_item d WHERE d.subcategoryid IN (SELECT A.ID FROM subcategory A where a.categoryid = "+categoryId+")) ";
+		String sql = "SELECT x.* FROM ITEM x WHERE x.id in(SELECT d.itemid FROM subcategory_item d WHERE d.subcategoryid IN (SELECT A.ID FROM subcategory A where a.categoryid = ? )) ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				//this.preparedStatement.setLong(1, categoryId);
+				this.preparedStatement.setLong(1, categoryId);
 			}
-			
+
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-				
+
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
 					Item it = new Item(rs.getLong("id"), rs.getString("title"),
 							rs.getDouble("currentBid"),
 							rs.getDate("startDate"), rs.getDate("closeDate"),
 							rs.getDouble("estimatedValue"), rs
-							.getDouble("incrementPrice"), rs
-							.getInt("status"), rs
-							.getString("lotDetails"), rs
-							.getString("legalTerms"), rs
-							.getString("shipping"), rs
-							.getLong("winningBidderId"), rs
-							.getDate("createdDate"), rs
-							.getDate("updatedDate"));
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
 					itemList.add(it);
 				}
 				return itemList;
 			}
-			
+
 		});
 	}
 
@@ -656,6 +658,7 @@ public class ItemDao extends BaseDao<Item> {
 		});
 
 	}
+
 	/**
 	 * 分頁 差價最大的商品列表
 	 * 
@@ -692,7 +695,7 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 	}
-	
+
 	/**
 	 * 分頁 最受歡迎的商品列表
 	 * 
@@ -765,10 +768,15 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public Pager<Item> findByKeyWord(final String keyWord) {
-		String sql = "  SELECT * FROM item  WHERE status = '1' AND STARTDATE <= SYSDATE AND closedate >= SYSDATE  and (title like '%"+keyWord+"%' or lotdetails like '%"+keyWord+"%') ";
+		log.debug("[LOG][findByKeyWord]");
+
+		String sql = "  SELECT * FROM item  WHERE status = '1' AND "
+				+ "STARTDATE <= SYSDATE AND closedate >= SYSDATE  and (title like ? or lotdetails like ?) ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setString(1, "%" + keyWord + "%");
+				this.preparedStatement.setString(2, "%" + keyWord + "%");
 			}
 
 			@Override
@@ -796,11 +804,12 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
-	public Pager<Item> findPagerByAuctioneerId(Long auctioneerId) {
-		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate and auctioneerId = '"+auctioneerId+"'" ;
+	public Pager<Item> findPagerByAuctioneerId(final Long auctioneerId) {
+		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate and auctioneerId = ? ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, auctioneerId);
 			}
 
 			@Override
@@ -829,7 +838,7 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public Pager<Item> findPager() {
-		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate " ;
+		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -859,6 +868,5 @@ public class ItemDao extends BaseDao<Item> {
 
 		});
 	}
-
 
 }

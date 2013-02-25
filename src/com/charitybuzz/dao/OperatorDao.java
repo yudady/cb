@@ -88,13 +88,16 @@ public class OperatorDao extends BaseDao<Operator> {
 	}
 
 	public void insert(final Operator operator) {
-		String sql = "insert into operator (id,name,passWord) values (seq_operator.nextval,?,?)";
+		String sql = "insert into operator (id,name,passWord,logo,brief,webSite) values (seq_operator.nextval,?,?,?,?,?)";
 
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Operator>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, operator.getName());
 				this.preparedStatement.setString(2, operator.getPassWord());
+				this.preparedStatement.setString(3, operator.getLogo());
+				this.preparedStatement.setString(4, operator.getBrief());
+				this.preparedStatement.setString(5, operator.getWebSite());
 			}
 
 		});

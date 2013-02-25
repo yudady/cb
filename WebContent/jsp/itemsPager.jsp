@@ -7,6 +7,14 @@
 	padding: 10px;
 	
 }
+.itemList {
+	width: 680px;
+	height: 50px;
+	padding: 30px; 
+	margin-left: 220px;
+	margin-bottom : 20px;
+	background-color: white;
+}
 .item {
 	width: 680px;
 	height: 200px;
@@ -35,9 +43,38 @@
 	color:red;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	var loc = window.location.href ;
+	$.log(loc);
+	$.log(loc.search("displayClosed"));
+	
+	
+	
+	if(loc.search("displayClosed") > 0){
+		$("#ftr-displayClosed").prop("checked",true);
+	}else{
+		$("#ftr-displayClosed").prop("checked",false);
+	}
+	
+	 //action="displayClosed.do"
+	$("#ftr-displayClosed").on('click',function(event){
+		var src = window.location.href  ;
+		src = src.substr(0,src.lastIndexOf("/"));
+		var _this = $(this);
+		if(_this.prop("checked")){
+			window.location.href = src + "/index.do?displayClosed=true";
+		}else{
+			window.location.href = src + "/index.do";
+		}
+		event.preventDefault();
+		event.stopPropagation();
+	});
+});
+</script>
 <div class="counter"><!-- counter -->
 <%@ include file="/jsp/include/menu.txt" %>
-<div>
+<div class="itemList">
 	<jsp:include page="/jsp/include/pager.jsp">
 		<jsp:param value="${pager.totalRecord}" name="totalRecord" />
 		<jsp:param value="${pager.pageSize}" name="pageSize" />
@@ -83,5 +120,14 @@
 		</span>
 	</div>
 </c:forEach>
+
+
+	<div class="itemList">
+		<form id="displayClosed"  action="">
+			Showing <strong>1</strong> item
+			<input id="ftr-displayClosed" type="checkbox" name="closed" /> 
+			<label for="ftr-displayClosed">Display closed items only</label>
+		</form>
+	</div>
 </div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>

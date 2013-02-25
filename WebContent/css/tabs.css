@@ -64,6 +64,13 @@
     left: 30px;
     top: 25px;
 }
+#linkAll {
+    float: right;
+}
+#rss {
+    float: left;
+}
+
 /**
  * XXX%字體大小
  */

@@ -172,8 +172,6 @@
 					<hr />
 				</div>
 			</c:forEach>
-			<span><a class="tabUrl" class="cssButton" href='<c:url value="/items/2/index.do"/>'>view all</a></span>
-			<span class="clearBoth">RSS</span>
         </div>
 	</div>
 </div>

@@ -32,7 +32,9 @@
 			<hr />
 		</div>
 	</c:forEach>
-	<span><a class="tabUrl" class="cssButton" href='<c:url value="/items/3/index.do"/>'>view all</a></span>
-	<span id="rss">RSS</span>
+	<div>
+	<span id="linkAll"><a class="tabUrl" class="cssButton" href='<c:url value="/items/3/index.do"/>'>view all</a></span>
+	<span id="rss">Subscribe to the Feed</span>
+	</div>
 </body>
 </html>

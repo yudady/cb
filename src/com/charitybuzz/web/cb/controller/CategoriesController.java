@@ -84,9 +84,9 @@ public class CategoriesController {
 
 	@RequestMapping(value = "/{id}/subcategories/{subcategoryId}/index", method = RequestMethod.GET)
 	public ModelAndView subCategory(@PathVariable Long subcategoryId) {
-		
+
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
-		
+
 		ModelAndView mav = new ModelAndView("itemsPager");
 		/**
 		 * 目錄
@@ -99,7 +99,7 @@ public class CategoriesController {
 		Pager<Item> pager = itemService.findPagerBySubCategoryId(subcategoryId);
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {
-			
+
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);
 			item.setPictures(pictures);
@@ -107,6 +107,46 @@ public class CategoriesController {
 		mav.addObject("pager", pager);
 		return mav;
 	}
+
+	/**
+	 * displayClosed
+	 * 
+	 * @param subcategoryId
+	 * @return
+	 */
+	// http://localhost:8080/cb/categories/1/subcategories/2/displayClosed.do?closed=1
+	@RequestMapping(value = "/{id}/subcategories/{subcategoryId}/index", method = RequestMethod.GET, params = "displayClosed=true")
+	public ModelAndView subCategoryDisplayClosed(Long subcategoryId, HttpServletRequest request) {
+		//TODO
+		
+		//查商品關閉
+		
+		
+		log.debug("[LOG][subcategoryId]" + subcategoryId);
+		String closed = request.getParameter("closed");
+		log.debug("[LOG][closed]" + closed);
+
+		ModelAndView mav = new ModelAndView("itemsPager");
+		/**
+		 * 目錄
+		 */
+		List<Category> categories = sidebarService.getSidebar();
+		mav.addObject("categories", categories);
+		/**
+		 * 分頁商品
+		 */
+		Pager<Item> pager = itemService.findPagerBySubCategoryId(subcategoryId);
+		List<Item> items = pager.getDatas();
+		for (Item item : items) {
+
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
+		mav.addObject("pager", pager);
+		return mav;
+	}
+
 	@RequestMapping(value = "/viewall", method = RequestMethod.GET)
 	public ModelAndView viewAll() {
 
@@ -130,9 +170,10 @@ public class CategoriesController {
 		mav.addObject("pager", pager);
 		return mav;
 	}
+
 	@RequestMapping(value = "/searchItems", method = RequestMethod.POST)
 	public ModelAndView searchItems(HttpServletRequest request) {
-		
+
 		log.debug("[LOG][searchItems]");
 		String keyWord = request.getParameter("search");
 		ModelAndView mav = new ModelAndView("itemsPager");
@@ -147,7 +188,7 @@ public class CategoriesController {
 		Pager<Item> pager = itemService.findByKeyWord(keyWord);
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {
-			
+
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);
 			item.setPictures(pictures);

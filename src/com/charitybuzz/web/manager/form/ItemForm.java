@@ -77,6 +77,15 @@ public class ItemForm implements java.io.Serializable {
 	 * 當前贏家id winningBidderId
 	 */
 	private Long winningBidderId;
+	private Long auctionId;
+
+	public Long getAuctionId() {
+		return auctionId;
+	}
+
+	public void setAuctionId(Long auctionId) {
+		this.auctionId = auctionId;
+	}
 
 	private List<CommonsMultipartFile> files;
 

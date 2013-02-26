@@ -4,6 +4,7 @@ DROP TABLE item ;
 commit;
 CREATE TABLE item (
 id NUMBER(10) NOT NULL PRIMARY KEY,
+auctionId NUMBER(10) NOT NULL ,
 title NVARCHAR2(2000) NOT NULL ,
 currentBid NUMBER(10) NULL ,
 startDate DATE NOT NULL ,
@@ -21,6 +22,7 @@ updatedDate DATE NOT NULL
 ;
 commit;
 COMMENT ON COLUMN item.id IS '商品id';
+COMMENT ON COLUMN item.auctionId IS '拍賣會id';
 COMMENT ON COLUMN item.title IS '商品訊息';
 COMMENT ON COLUMN item.currentBid IS '當前標價';
 COMMENT ON COLUMN item.startDate IS '商品 開始日期';
@@ -38,20 +40,16 @@ drop sequence seq_item;
 create sequence seq_item;
 commit;
 --seq_item.nextval
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
-
-
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,1,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
 
 commit;
 
@@ -272,7 +270,7 @@ commit;
 
 INSERT INTO operator VALUES (seq_operator.nextval, '123', '123', '1', '1', '1');
 --seq_operator.nextval
-
+----------------------------------------------------------------
 DROP TABLE watching ;
 CREATE TABLE watching (
 id NUMBER(10) NOT NULL PRIMARY KEY,
@@ -292,6 +290,29 @@ commit;
 
 commit;
 
+
+
+
+
+----------------------------------------------------------------
+DROP TABLE auction ;
+CREATE TABLE auction (
+id NUMBER(10) NOT NULL PRIMARY KEY,
+startDate DATE NOT NULL ,
+closeDate DATE NOT NULL
+)
+;
+COMMENT ON COLUMN auction.id IS '拍賣會id';
+COMMENT ON COLUMN auction.startDate IS '拍賣會 開始日期';
+COMMENT ON COLUMN auction.closeDate IS '拍賣會 結束日期';
+
+commit;
+drop sequence seq_auction;
+create sequence seq_auction;
+commit;
+--seq_auction.NEXTVAL
+INSERT INTO auction VALUES (seq_auction.nextval, sysdate, sysdate);
+commit;
 
 
 

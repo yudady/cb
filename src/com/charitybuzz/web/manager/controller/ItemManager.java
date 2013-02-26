@@ -30,7 +30,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.common.Constant;
 import com.charitybuzz.dto.Item;
-import com.charitybuzz.dto.Operator;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.operate.SidebarService;
@@ -119,13 +118,12 @@ public class ItemManager {
 		// }
 
 		log.debug("[LOG]ItemForm=" + form);
-		Operator operator = (Operator)session.getAttribute("operator");
 		Long itemId = itemService.insert(new Item(form.getTitle(), form
 				.getCurrentBid(), form.getStartDate(), form.getCloseDate(),
 				form.getEstimatedValue(), form.getIncrementPrice(), form
 						.getStatus(), form.getLotDetails(), form
 						.getLegalTerms(), form.getShipping(), form
-						.getWinningBidderId(),operator.getId()));
+						.getWinningBidderId(),form.getAuctionId()));
 
 		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
 		sidebarService.setCategories(null);

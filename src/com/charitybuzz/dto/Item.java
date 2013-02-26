@@ -103,9 +103,11 @@ public class Item {
 	/**
 	 * 拍賣者id
 	 */
-	private Long operatorId;
+	private Long auctionId;
 
 	// ====================================================
+
+
 
 	public Item() {
 	}
@@ -131,7 +133,7 @@ public class Item {
 	public Item(String title, Double currentBid, Date startDate,
 			Date closeDate, Double estimatedValue, Double incrementPrice,
 			int status, String lotDetails, String legalTerms, String shipping,
-			Long winningBidderId, Long operatorId) {
+			Long winningBidderId, Long auctionId) {
 		this.title = title;
 		this.currentBid = currentBid;
 		this.startDate = startDate;
@@ -143,7 +145,7 @@ public class Item {
 		this.legalTerms = legalTerms;
 		this.shipping = shipping;
 		this.winningBidderId = winningBidderId;
-		this.operatorId = operatorId;
+		this.auctionId = auctionId;
 	}
 
 	public Item(Long id, String title, Double currentBid, Date startDate,
@@ -176,12 +178,12 @@ public class Item {
 		this.id = id;
 	}
 
-	public Long getOperatorId() {
-		return operatorId;
+	public Long getAuctionId() {
+		return auctionId;
 	}
 
-	public void setOperatorId(Long operatorId) {
-		this.operatorId = operatorId;
+	public void setAuctionId(Long auctionId) {
+		this.auctionId = auctionId;
 	}
 
 	public String getTitle() {

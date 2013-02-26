@@ -1,12 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="menu">
-<script type="text/javascript" src='<c:url value="/js/include/sidebar.js"/>'></script>
-<ul id="sidebar">
-	<li><a href='<c:url value="/manager/index.do" />'>index</a></li>
-	<li><a href='<c:url value="/manager/category/list.do" />'>Category List</a></li>
-	<li><a href='<c:url value="/manager/subcategory/list.do" />'>SubCategory List</a></li>
-	<li><a href='<c:url value="/manager/item/list.do" />'>Item List</a></li>
-	<li><a href='<c:url value="/manager/operator/list.do" />'>Operator List</a></li>
-</ul>
+	<ul id="sidebar">
+		<li><a href='<c:url value="/manager/index.do" />'>index</a></li>
+		<li><a href='<c:url value="/manager/category/list.do" />'>Category List</a></li>
+		<li><a href='<c:url value="/manager/subcategory/list.do" />'>SubCategory List</a></li>
+		<li><a href='<c:url value="/manager/item/list.do" />'>Item List</a></li>
+		<li><a href='<c:url value="/manager/operator/list.do" />'>Operator List</a></li>
+	</ul>
 </div>

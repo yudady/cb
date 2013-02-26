@@ -125,4 +125,29 @@ public class PictureDao extends BaseDao<Picture> {
 		});
 
 	}
+
+	public List<Picture> findPictures(final int firstRowNumber,
+			final int lastRowNumber) {
+		String sql = " select * from picture ";
+		return this.queryList(sql, new QueryList<Picture>(firstRowNumber,
+				lastRowNumber) {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Picture> doResultSet() throws SQLException {
+
+				List<Picture> itemList = new ArrayList<Picture>();
+				while (rs.next()) {
+					Picture it = new Picture(rs.getLong("id"), rs
+							.getLong("itemId"), rs.getInt("priority"), rs
+							.getString("photoPath"), rs.getDate("createdDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+	}
 }

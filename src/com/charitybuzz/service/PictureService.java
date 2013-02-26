@@ -50,7 +50,8 @@ public class PictureService {
 			Picture delPicture = pictureDao.findByPK(pi.getId());
 
 			if (StringUtils.isNotBlank(pi.getPhotoPath())) {
-				new File(Constant.UPLOAD_FOLDER + delPicture.getPhotoPath()).delete();
+				new File(Constant.UPLOAD_FOLDER + delPicture.getPhotoPath())
+						.delete();
 			} else {
 				pi.setPhotoPath(delPicture.getPhotoPath());
 			}
@@ -72,6 +73,17 @@ public class PictureService {
 			pictureDao.deleteByPK(picId);
 		}
 
+	}
+
+	/**
+	 * index 輪播圖片
+	 * 
+	 * @param firstRowNumber
+	 * @param lastRowNumber
+	 * @return
+	 */
+	public List<Picture> findPictures(int firstRowNumber, int lastRowNumber) {
+		return pictureDao.findPictures(firstRowNumber, lastRowNumber);
 	}
 
 }

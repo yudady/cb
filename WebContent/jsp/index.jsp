@@ -108,26 +108,9 @@
 		</div>
 		<div class="slideshow-button">
 			<ul>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' alt="Flowing Rock" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/grass-blades.jpg"/>' alt="Grass Blades" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/stones.jpg"/>' alt="Stones" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/sea-mist.jpg"/>' alt="Sea Mist" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/pier.jpg"/>' alt="Pier" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/lotus.jpg"/>' alt="Lotus" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/mojave.jpg"/>' alt="Mojave" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/lightning.jpg"/>' alt="Lightning" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/ladybug.jpg"/>' alt="Ladybug" /></a></li>
-				
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' alt="Flowing Rock" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/grass-blades.jpg"/>' alt="Grass Blades" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/stones.jpg"/>' alt="Stones" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/sea-mist.jpg"/>' alt="Sea Mist" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/pier.jpg"/>' alt="Pier" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/lotus.jpg"/>' alt="Lotus" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/mojave.jpg"/>' alt="Mojave" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/lightning.jpg"/>' alt="Lightning" /></a></li>
-				<li><a href="#"><img src='<c:url value="/pic/upload/item/ladybug.jpg"/>' alt="Ladybug" /></a></li>
-				
+				<c:forEach items="${topPics}" var="pic">
+					<li><a href="#"><img src='<c:url value="/pic/upload/item/${pic.photoPath}"/>' alt="Flowing Rock" /></a></li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>

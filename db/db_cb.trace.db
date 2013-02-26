@@ -669,3 +669,6 @@ INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '1', '205', TO_DATE('2013-02
 	at org.h2.server.web.WebThread.process(WebThread.java:166)
 	at org.h2.server.web.WebThread.run(WebThread.java:93)
 	at java.lang.Thread.run(Thread.java:662)
+02-26 11:49:19 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM ( SELECT ROW_.*, ROWNUM ROWNUM_ FROM (    )[*] ROW_ WHERE ROWNUM <= 10 ) WHERE ROWNUM_ > 0  "; expected "identifier"; SQL statement:
+SELECT * FROM ( SELECT row_.*, rownum rownum_ FROM (    ) row_ WHERE rownum <= 10 ) WHERE rownum_ > 0  [42001-169]

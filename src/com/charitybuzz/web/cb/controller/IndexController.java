@@ -17,6 +17,7 @@ import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.operate.SidebarService;
+import com.charitybuzz.operate.SlideshowService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 
@@ -36,12 +37,16 @@ public class IndexController {
 	@Resource
 	private PictureService pictureService;
 	
-	
+	@Resource
+	private SlideshowService slideshowService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(HttpSession session, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("index");
-
+		
+		
+		List<Picture> topPics = slideshowService.searchPictures(10);
+		mav.addObject("topPics", topPics);
 //		String pagerOffset = request.getParameter("pager.offset");
 //		if (StringUtils.isBlank(pagerOffset)) {
 //			pagerOffset = "0";

@@ -78,4 +78,7 @@
 		<property name="subCategoryService" ref="subCategoryService" />
 		<property name="itemService" ref="itemService" />
 	</bean>
+	<bean id="slideshowService" class="com.charitybuzz.operate.SlideshowService">
+		<property name="pictureService" ref="pictureService" />
+	</bean>
 </beans>

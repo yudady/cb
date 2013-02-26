@@ -70,3 +70,602 @@ INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [
 	at org.h2.server.web.WebThread.process(WebThread.java:166)
 	at org.h2.server.web.WebThread.run(WebThread.java:93)
 	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ITEM" not found; SQL statement:
+--oracle  '||'&'||'  =>    &
+
+DROP TABLE item [42102-169]
+02-26 08:49:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_ITEM" not found; SQL statement:
+drop sequence seq_item [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "CATEGORY" not found; SQL statement:
+-------------------------------------
+
+
+DROP TABLE category [42102-169]
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_CATEGORY" not found; SQL statement:
+drop sequence seq_category [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBCATEGORY" not found; SQL statement:
+-------------------------------------
+
+DROP TABLE subcategory [42102-169]
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_SUBCATEGORY" not found; SQL statement:
+drop sequence seq_subcategory [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "SUBCATEGORY_ITEM" not found; SQL statement:
+-------------------------------------
+DROP TABLE subcategory_item [42102-169]
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_SUBCATEGORY_ITEM" not found; SQL statement:
+drop sequence seq_subcategory_item [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PICTURE" not found; SQL statement:
+-------------------------------------
+DROP TABLE picture [42102-169]
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_PICTURE" not found; SQL statement:
+drop sequence seq_picture [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "BIDLOG" not found; SQL statement:
+-------------------------------------
+
+DROP TABLE bidlog [42102-169]
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_BIDLOG" not found; SQL statement:
+drop sequence seq_bidlog [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "BIDDER" not found; SQL statement:
+--seq_bidlog.nextval
+-------------------------------------
+
+DROP TABLE bidder [42102-169]
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_BIDDER" not found; SQL statement:
+drop sequence seq_bidder [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Column "SEQ_OPERATOR.NEXTVA" not found; SQL statement:
+INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.command.dml.Insert.prepare(Insert.java:231)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "WATCHING" not found; SQL statement:
+--seq_operator.nextval
+
+DROP TABLE watching [42102-169]
+02-26 08:49:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_WATCHING" not found; SQL statement:
+drop sequence seq_watching [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:50:31 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Column "SEQ_OPERATOR.NEXTVA" not found; SQL statement:
+INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.command.dml.Insert.prepare(Insert.java:231)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:51:32 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Column "SEQ_OPERATOR.NEXTVA" not found; SQL statement:
+INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.command.dml.Insert.prepare(Insert.java:231)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:51:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "SEQ_OPERATOR.NEXTVA" not found; SQL statement:
+INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.command.dml.Insert.prepare(Insert.java:231)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:52:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "SEQ_OPERATOR.NEXTVA" not found; SQL statement:
+INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.command.dml.Insert.prepare(Insert.java:231)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:53:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "SEQ_OPERATOR.NEXTVA" not found; SQL statement:
+INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.command.dml.Insert.prepare(Insert.java:231)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:54:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "SEQ_OPERATOR" already exists; SQL statement:
+create sequence seq_operator [90035-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.CreateSequence.update(CreateSequence.java:50)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 08:57:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO OPERATOR NAME[*] (ID,NAME,PASSWORD,LOGO,BRIEF,WEBSITE)VALUES (SEQ_OPERATOR.NEXTVA, '123', '123', '1', '1', '1') "; expected "., (, DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"; SQL statement:
+INSERT INTO operator name (ID,NAME,PASSWORD,LOGO,BRIEF,WEBSITE)VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42001-169]
+02-26 08:57:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO OPERATOR NAME[*] (ID,NAME,PASSWORD,LOGO,BRIEF,WEBSITE) VALUES (SEQ_OPERATOR.NEXTVA, '123', '123', '1', '1', '1') "; expected "., (, DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"; SQL statement:
+INSERT INTO operator name (ID,NAME,PASSWORD,LOGO,BRIEF,WEBSITE) VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42001-169]
+02-26 08:59:08 jdbc[4]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-169]
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.get(DbException.java:135)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:120)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:93)
+	at org.h2.Driver.connect(Driver.java:72)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at com.charitybuzz.common.context.ConnectionContext.getReadConnection(ConnectionContext.java:57)
+	at com.charitybuzz.common.dao.BaseDao.queryList(BaseDao.java:22)
+	at com.charitybuzz.dao.CategoryDao.findAll(CategoryDao.java:21)
+	at com.charitybuzz.service.CategoryService.findAll(CategoryService.java:22)
+	at com.charitybuzz.operate.SidebarService.searchSidebarData(SidebarService.java:71)
+	at com.charitybuzz.operate.SidebarService.getSidebar(SidebarService.java:66)
+	at com.charitybuzz.web.cb.controller.IndexController.index(IndexController.java:70)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:219)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:100)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:604)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:565)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:923)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:852)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:882)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:778)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:617)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.charitybuzz.common.filter.ConnectionContextFilter.doFilter(ConnectionContextFilter.java:36)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.charitybuzz.common.filter.PagerFilter.doFilter(PagerFilter.java:46)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:76)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+	at org.apache.catalina.core.StandardContextValve.__invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:293)
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:859)
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:602)
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+	at java.lang.Thread.run(Thread.java:662)
+Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	... 59 more
+02-26 09:03:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "REM[*] INSERTING INTO BIDDER
+INSERT INTO BIDDER (ID,FIRSTNAME,LASTNAME,SCREENNAME,PASSWORD,EMAIL,PROMOCODE) VALUES (3,'lin','tommy','yudady','111','111','111') "; expected "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE, {"; SQL statement:
+REM INSERTING into BIDDER
+Insert into BIDDER (ID,FIRSTNAME,LASTNAME,SCREENNAME,PASSWORD,EMAIL,PROMOCODE) values (3,'lin','tommy','yudady','111','111','111') [42001-169]
+02-26 09:09:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO OPERATOR NAME[*] (ID,NAME,PASSWORD,LOGO,BRIEF,WEBSITE)VALUES (SEQ_OPERATOR.NEXTVA, '123', '123', '1', '1', '1') "; expected "., (, DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"; SQL statement:
+INSERT INTO operator name (ID,NAME,PASSWORD,LOGO,BRIEF,WEBSITE)VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42001-169]
+02-26 09:11:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO OPERATOR NAME[*] (ID,NAME,PASSWORD,LOGO,BRIEF,WEBSITE) VALUES (SEQ_OPERATOR.NEXTVA, '123', '123', '1', '1', '1') "; expected "., (, DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"; SQL statement:
+INSERT INTO operator name (id,name,password,logo,brief,website) VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42001-169]
+02-26 09:12:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "SEQ_OPERATOR.NEXTVA" not found; SQL statement:
+INSERT INTO operator (id,name,password,logo,brief,website) VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.command.dml.Insert.prepare(Insert.java:231)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 09:12:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "SEQ_OPERATOR.NEXTVA" not found; SQL statement:
+INSERT INTO operator (id,name,password,logo,brief,website) VALUES (seq_operator.nextva, '123', '123', '1', '1', '1') [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.command.dml.Insert.prepare(Insert.java:231)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 09:19:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO BIDDER VALUES (SEQUENCE SEQ_BIDDER[*], 'lin', 'tommy', 'yudady', '123456', 'yu_dady@yahoo.com.tw', '123456') "; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO bidder VALUES (sequence seq_bidder, 'lin', 'tommy', 'yudady', '123456', 'yu_dady@yahoo.com.tw', '123456') [42001-169]
+02-26 09:19:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO BIDDER VALUES (SEQUENCE SEQ_BIDDER[*], 'lin', 'kevin', 'kevin', '123456', 'kevin@yahoo.com.tw', '123456') "; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO bidder VALUES (sequence seq_bidder, 'lin', 'kevin', 'kevin', '123456', 'kevin@yahoo.com.tw', '123456') [42001-169]
+02-26 09:19:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO BIDDER VALUES (SEQUENCE SEQ_BIDDER[*], 'lin', 'tommy', 'yudady', '111', '111', '111') "; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO bidder VALUES (sequence seq_bidder, 'lin', 'tommy', 'yudady', '111', '111', '111') [42001-169]
+02-26 09:19:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO BIDDER VALUES (SEQUENCE SEQ_BIDDER[*], 'lin', 'tommy', 'yudady', '123456', '111', '123456') "; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO bidder VALUES (sequence seq_bidder, 'lin', 'tommy', 'yudady', '123456', '111', '123456') [42001-169]
+02-26 09:19:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO BIDDER VALUES (SEQUENCE SEQ_BIDDER[*], 'lin', 'kevin', 'kevin', '123456', '111', '123456') "; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO bidder VALUES (sequence seq_bidder, 'lin', 'kevin', 'kevin', '123456', '111', '123456') [42001-169]
+02-26 09:19:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO BIDDER VALUES (SEQUENCE SEQ_BIDDER[*], 'lin', 'tommy', 'yudady', '111', '111', '111') "; expected "., (, [, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+INSERT INTO bidder VALUES (sequence seq_bidder, 'lin', 'tommy', 'yudady', '111', '111', '111') [42001-169]
+02-26 09:24:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Function "TO_DATE" not found; SQL statement:
+--seq_bidlog.nextval
+
+INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '6', '111', TO_DATE('2013-02-23 09:33:35', 'YYYY-MM-DD HH24:MI:SS')) [90022-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:2122)
+	at org.h2.command.Parser.readFunction(Parser.java:2174)
+	at org.h2.command.Parser.readTerm(Parser.java:2476)
+	at org.h2.command.Parser.readFactor(Parser.java:2046)
+	at org.h2.command.Parser.readSum(Parser.java:2033)
+	at org.h2.command.Parser.readConcat(Parser.java:2006)
+	at org.h2.command.Parser.readCondition(Parser.java:1871)
+	at org.h2.command.Parser.readAnd(Parser.java:1852)
+	at org.h2.command.Parser.readExpression(Parser.java:1844)
+	at org.h2.command.Parser.parseInsert(Parser.java:989)
+	at org.h2.command.Parser.parsePrepared(Parser.java:375)
+	at org.h2.command.Parser.parse(Parser.java:279)
+	at org.h2.command.Parser.parse(Parser.java:251)
+	at org.h2.command.Parser.prepareCommand(Parser.java:217)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 09:24:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Function "TO_DATE" not found; SQL statement:
+INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '6', '200', TO_DATE('2013-02-23 09:34:59', 'YYYY-MM-DD HH24:MI:SS')) [90022-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:2122)
+	at org.h2.command.Parser.readFunction(Parser.java:2174)
+	at org.h2.command.Parser.readTerm(Parser.java:2476)
+	at org.h2.command.Parser.readFactor(Parser.java:2046)
+	at org.h2.command.Parser.readSum(Parser.java:2033)
+	at org.h2.command.Parser.readConcat(Parser.java:2006)
+	at org.h2.command.Parser.readCondition(Parser.java:1871)
+	at org.h2.command.Parser.readAnd(Parser.java:1852)
+	at org.h2.command.Parser.readExpression(Parser.java:1844)
+	at org.h2.command.Parser.parseInsert(Parser.java:989)
+	at org.h2.command.Parser.parsePrepared(Parser.java:375)
+	at org.h2.command.Parser.parse(Parser.java:279)
+	at org.h2.command.Parser.parse(Parser.java:251)
+	at org.h2.command.Parser.prepareCommand(Parser.java:217)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 09:24:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Function "TO_DATE" not found; SQL statement:
+INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '1', '150', TO_DATE('2013-02-05 10:57:27', 'YYYY-MM-DD HH24:MI:SS')) [90022-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:2122)
+	at org.h2.command.Parser.readFunction(Parser.java:2174)
+	at org.h2.command.Parser.readTerm(Parser.java:2476)
+	at org.h2.command.Parser.readFactor(Parser.java:2046)
+	at org.h2.command.Parser.readSum(Parser.java:2033)
+	at org.h2.command.Parser.readConcat(Parser.java:2006)
+	at org.h2.command.Parser.readCondition(Parser.java:1871)
+	at org.h2.command.Parser.readAnd(Parser.java:1852)
+	at org.h2.command.Parser.readExpression(Parser.java:1844)
+	at org.h2.command.Parser.parseInsert(Parser.java:989)
+	at org.h2.command.Parser.parsePrepared(Parser.java:375)
+	at org.h2.command.Parser.parse(Parser.java:279)
+	at org.h2.command.Parser.parse(Parser.java:251)
+	at org.h2.command.Parser.prepareCommand(Parser.java:217)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)
+02-26 09:24:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Function "TO_DATE" not found; SQL statement:
+INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '1', '205', TO_DATE('2013-02-05 10:57:50', 'YYYY-MM-DD HH24:MI:SS')) [90022-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.Parser.readJavaFunction(Parser.java:2122)
+	at org.h2.command.Parser.readFunction(Parser.java:2174)
+	at org.h2.command.Parser.readTerm(Parser.java:2476)
+	at org.h2.command.Parser.readFactor(Parser.java:2046)
+	at org.h2.command.Parser.readSum(Parser.java:2033)
+	at org.h2.command.Parser.readConcat(Parser.java:2006)
+	at org.h2.command.Parser.readCondition(Parser.java:1871)
+	at org.h2.command.Parser.readAnd(Parser.java:1852)
+	at org.h2.command.Parser.readExpression(Parser.java:1844)
+	at org.h2.command.Parser.parseInsert(Parser.java:989)
+	at org.h2.command.Parser.parsePrepared(Parser.java:375)
+	at org.h2.command.Parser.parse(Parser.java:279)
+	at org.h2.command.Parser.parse(Parser.java:251)
+	at org.h2.command.Parser.prepareCommand(Parser.java:217)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)

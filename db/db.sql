@@ -38,7 +38,21 @@ drop sequence seq_item;
 create sequence seq_item;
 commit;
 --seq_item.nextval
-insert into item (id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate) values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10),10000,100,1,'lotdetails訊息','legalterms訊息','shipping訊息',1,sysdate,sysdate);
+
+
+
 commit;
 
 -------------------------------------
@@ -188,6 +202,15 @@ drop sequence seq_bidlog;
 create sequence seq_bidlog;
 commit;
 --seq_bidlog.nextval
+
+INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '6', '111', sysdate);
+INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '6', '200', sysdate);
+INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '1', '150', sysdate);
+INSERT INTO bidlog VALUES (seq_bidlog.nextval, '3', '1', '205', sysdate);
+commit;
+
+
+
 -------------------------------------
 
 DROP TABLE bidder ;
@@ -217,8 +240,10 @@ create sequence seq_bidder;
 commit;
 
 
-INSERT INTO bidder VALUES ('1', 'lin', 'tommy', 'yudady', '123456', 'yu_dady@yahoo.com.tw', '123456');
-INSERT INTO bidder VALUES ('2', 'lin', 'kevin', 'kevin', '123456', 'kevin@yahoo.com.tw', '123456');
+INSERT INTO bidder VALUES (seq_bidder.nextval, 'lin', 'tommy', 'yudady', '123456', '111', '123456');
+INSERT INTO bidder VALUES (seq_bidder.nextval, 'lin', 'kevin', 'kevin', '123456', '111', '123456');
+INSERT INTO bidder VALUES (seq_bidder.nextval, 'lin', 'tommy', 'yudady', '111', '111', '111');
+commit;
 
 -------------------------------------
 DROP TABLE operator ;
@@ -240,11 +265,12 @@ COMMENT ON COLUMN operator.brief IS '簡介';
 COMMENT ON COLUMN operator.webSite IS '網址';
 
 commit;
-INSERT INTO operator VALUES (seq_operator.nextva, '123', '123', '1', '1', '1');
-commit;
 drop sequence seq_operator;
 create sequence seq_operator;
 commit;
+commit;
+
+INSERT INTO operator VALUES (seq_operator.nextval, '123', '123', '1', '1', '1');
 --seq_operator.nextval
 
 DROP TABLE watching ;

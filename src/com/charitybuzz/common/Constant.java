@@ -14,6 +14,11 @@ public class Constant {
 	/**
 	 * index頁面中tabs裡面items數量
 	 */
-	public static int INDEX_TABS_ITEMS_SIZE = 5;
+	public static final int INDEX_TABS_ITEMS_SIZE = 5;
+	
+	/**
+	 * 日期格式
+	 */
+	public static final String DATE_STYLE = "yyyy-MM-dd";
 
 }

@@ -66,7 +66,7 @@ public class ItemManager {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat(Constant.DATE_STYLE);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 				dateFormat, true));
 	}

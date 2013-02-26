@@ -249,18 +249,12 @@ commit;
 CREATE TABLE operator (
 id NUMBER(10) NOT NULL PRIMARY KEY,
 name NVARCHAR2(2000) NOT NULL,
-passWord NVARCHAR2(2000) NOT NULL,
-logo NVARCHAR2(2000) NOT NULL,
-brief NVARCHAR2(2000) NOT NULL,
-webSite NVARCHAR2(2000) NOT NULL
+passWord NVARCHAR2(2000) NOT NULL
 )
 ;
 COMMENT ON COLUMN operator.id IS '後台管理者帳號id, 拍賣商家ID';
 COMMENT ON COLUMN operator.name IS '公司名稱';
 COMMENT ON COLUMN operator.passWord IS '密碼';
-COMMENT ON COLUMN operator.logo IS '公司logo';
-COMMENT ON COLUMN operator.brief IS '簡介';
-COMMENT ON COLUMN operator.webSite IS '網址';
 
 commit;
 drop sequence seq_operator;
@@ -268,7 +262,7 @@ create sequence seq_operator;
 commit;
 commit;
 
-INSERT INTO operator VALUES (seq_operator.nextval, '123', '123', '1', '1', '1');
+INSERT INTO operator VALUES (seq_operator.nextval, '123', '123');
 --seq_operator.nextval
 ----------------------------------------------------------------
 DROP TABLE watching ;
@@ -298,11 +292,19 @@ commit;
 DROP TABLE auction ;
 CREATE TABLE auction (
 id NUMBER(10) NOT NULL PRIMARY KEY,
+title NVARCHAR2(2000) NOT NULL ,
+brief NVARCHAR2(2000) NOT NULL ,
+webSite NVARCHAR2(2000) NOT NULL ,
+auctionLogoPath NVARCHAR2(2000) NOT NULL ,
 startDate DATE NOT NULL ,
 closeDate DATE NOT NULL
 )
 ;
 COMMENT ON COLUMN auction.id IS '拍賣會id';
+COMMENT ON COLUMN auction.title IS '主題';
+COMMENT ON COLUMN auction.brief IS '描述';
+COMMENT ON COLUMN auction.webSite IS '網址';
+COMMENT ON COLUMN auction.auctionLogoPath IS 'logo';
 COMMENT ON COLUMN auction.startDate IS '拍賣會 開始日期';
 COMMENT ON COLUMN auction.closeDate IS '拍賣會 結束日期';
 
@@ -311,12 +313,8 @@ drop sequence seq_auction;
 create sequence seq_auction;
 commit;
 --seq_auction.NEXTVAL
-INSERT INTO auction VALUES (seq_auction.nextval, sysdate, sysdate);
+INSERT INTO auction VALUES (seq_auction.nextval,'1','1','1','1',sysdate, sysdate);
 commit;
-
-
-
-
 
 
 

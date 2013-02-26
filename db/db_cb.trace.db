@@ -1046,3 +1046,25 @@ insert into item values (seq_item.nextval,'商品訊息',1,sysdate,(sysdate + 10
 	at org.h2.server.web.WebThread.process(WebThread.java:166)
 	at org.h2.server.web.WebThread.run(WebThread.java:93)
 	at java.lang.Thread.run(Thread.java:662)
+02-26 15:41:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column count does not match; SQL statement:
+--seq_auction.NEXTVAL
+INSERT INTO auction VALUES (seq_auction.nextval, sysdate, sysdate) [21002-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.get(DbException.java:135)
+	at org.h2.command.dml.Insert.prepare(Insert.java:226)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)

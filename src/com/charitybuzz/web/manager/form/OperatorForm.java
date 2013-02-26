@@ -23,19 +23,6 @@ public class OperatorForm {
 	 */
 	private String passWord;
 
-	/**
-	 * 公司logo
-	 */
-	private String logo;
-	/**
-	 * 簡介
-	 */
-	private String brief;
-	/**
-	 * 網址
-	 */
-	private String webSite;
-
 	public Long getId() {
 		return id;
 	}
@@ -58,30 +45,6 @@ public class OperatorForm {
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
-	}
-
-	public String getLogo() {
-		return logo;
-	}
-
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
-	public String getBrief() {
-		return brief;
-	}
-
-	public void setBrief(String brief) {
-		this.brief = brief;
-	}
-
-	public String getWebSite() {
-		return webSite;
-	}
-
-	public void setWebSite(String webSite) {
-		this.webSite = webSite;
 	}
 
 	@Override

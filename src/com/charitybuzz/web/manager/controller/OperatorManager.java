@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,7 @@ import com.charitybuzz.web.manager.form.OperatorForm;
 public class OperatorManager {
 
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(SubCategoryManager.class);
+	private Logger log = LoggerFactory.getLogger(OperatorManager.class);
 
 	/**
 	 * 商品
@@ -73,8 +74,11 @@ public class OperatorManager {
 		if (result.hasErrors()) {
 			throw new RuntimeException("驗證錯誤");
 		}
-		operatorService.insert(new Operator(form.getName(), form.getPassWord(),
-				form.getLogo(), form.getBrief(), form.getWebSite()));
+		
+		
+		Operator operator = new Operator();
+		BeanUtils.copyProperties(form, operator);
+		operatorService.insert(operator);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/operator/list.do");
@@ -113,10 +117,9 @@ public class OperatorManager {
 		}
 
 		log.debug("[LOG][form]" + form);
-		operatorService.update((new Operator(form.getId(), form.getName(), form
-				.getPassWord(), form.getLogo(), form.getBrief(), form
-				.getWebSite())));
-
+		Operator operator = new Operator();
+		BeanUtils.copyProperties(form, operator);
+		operatorService.update(operator);
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/operator/list.do");
 		return mav;

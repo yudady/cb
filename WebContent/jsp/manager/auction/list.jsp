@@ -12,33 +12,34 @@
 </script>
 <div id="content">
 	<div>
-		<a href='<c:url value="/manager/operator/add.do"/>'><input
+		<a href='<c:url value="/manager/auction/add.do"/>'><input
 			type="button" id="add" value="add"></a>
 	</div>
 	<table>
 		<tr>
 			<th>id</th>
-			<th>公司名稱</th>
-			<th>密碼</th>
-			<th>update</th>
-			<th>delete</th>
+			<th>主題</th>
+			<th>描述</th>
+			<th>網址</th>
+			<th>logo</th>
+			<th>拍賣會 開始日期 startDate</th>
+			<th>拍賣會 結束日期 closeDate</th>
 		</tr>
-		<c:forEach items="${operators}" var="operator">
+		<c:forEach items="${auctions}" var="auction">
 			<tr>
-				<td>${operator.id}</td>
-				<td>${operator.name}</td>
-				<td>${operator.passWord}</td>
+				<td>${auction.id}</td>
+				<td>${auction.title}</td>
+				<td>${auction.brief}</td>
+				<td>${auction.webSite}</td>
+				<td>${auction.auctionLogoPath}</td>
+				<td>${auction.startDate}</td>
+				<td>${auction.closeDate}</td>
 				<td><a
-					href='<c:url value="/manager/operator/${operator.id}/update.do"/>'>update</a></td>
+					href='<c:url value="/manager/auction/${auction.id}/update.do"/>'>update</a></td>
 				<td>
-				<td><a href='<c:url value="/manager/operator/${operator.id}/delete.do"/>'>delete</a></td>
+				<td><a href='<c:url value="/manager/auction/${auction.id}/delete.do"/>'>delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 </div>
 <%@ include file="/jsp/include/footer_manager.txt"%>
-
-
-
-
-

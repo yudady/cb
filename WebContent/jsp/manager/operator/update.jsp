@@ -10,9 +10,6 @@ update
 	<input type="hidden" name="id" value="${operatorObj.id}" /><br/>
 	name<input type="text" name="name" value="${operatorObj.name}" /><br/>
 	passWord<input type="text" name="passWord" value="${operatorObj.passWord}" /><br/>
-	logo<input type="text" name="logo" value="${operatorObj.logo}" /><br/>
-	brief<input type="text" name="brief" value="${operatorObj.brief}" /><br/>
-	webSite<input type="text" name="webSite" value="${operatorObj.webSite}" /><br/>
 	<input type="reset" name="reset" "/><br/>
 	<input type="submit" name="submit" value="update"/><br/>
 </form>

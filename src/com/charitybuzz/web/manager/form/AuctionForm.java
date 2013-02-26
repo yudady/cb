@@ -1,4 +1,4 @@
-package com.charitybuzz.dto;
+package com.charitybuzz.web.manager.form;
 
 import java.util.Date;
 
@@ -6,12 +6,11 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * 拍賣會
  * 
  * @author Administrator
  * 
  */
-public class Auction {
+public class AuctionForm {
 
 	private Long id;
 	/**
@@ -38,21 +37,6 @@ public class Auction {
 	 * 拍賣會 結束日期 closeDate
 	 */
 	private Date closeDate;
-
-	// ========================
-	public Auction() {
-	}
-
-	public Auction(Long id, String title, String brief, String webSite,
-			String auctionLogoPath, Date startDate, Date closeDate) {
-		this.id = id;
-		this.title = title;
-		this.brief = brief;
-		this.webSite = webSite;
-		this.auctionLogoPath = auctionLogoPath;
-		this.startDate = startDate;
-		this.closeDate = closeDate;
-	}
 
 	public Long getId() {
 		return id;
@@ -115,5 +99,4 @@ public class Auction {
 		return ReflectionToStringBuilder.toString(this,
 				ToStringStyle.SIMPLE_STYLE);
 	}
-
 }

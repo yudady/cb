@@ -6,8 +6,12 @@
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
 <div id="content">
 <form method="post">
-	name<input type="text" name="name" /><br/>
-	passWord<input type="text" name="passWord" /><br/>
+	主題<input type="text" name="title" /><br/>
+	描述<input type="text" name="brief" /><br/>
+	網址<input type="text" name="webSite" /><br/>
+	logo<input type="text" name="auctionLogoPath" /><br/>
+	開始日期<input class="datepicker" type="text" name="startDate" /><br/>
+	結束日期<input class="datepicker" type="text" name="closeDate" /><br/>
 	<input type="reset" name="reset" "/><br/>
 	<input type="submit" name="submit" "/><br/>
 </form>

@@ -57,9 +57,10 @@ public class PagerFilter implements Filter {
 		 * 初始化
 		 */
 		String path = cf.getServletContext().getRealPath("/");
-		String uploadFolder = path + "pic/upload/item/";
+		String uploadFolder = path + "pic/upload/";
 		Constant.UPLOAD_FOLDER = uploadFolder;
-		
+		Constant.UPLOAD_FOLDER_ITEM = uploadFolder + "item/";
+		Constant.UPLOAD_FOLDER_AUCTION = uploadFolder + "auction/";
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 /**
  * 
@@ -29,6 +30,10 @@ public class AuctionForm {
 	 * logo
 	 */
 	private String auctionLogoPath;
+	private String auctionLogoPathAction;
+
+	private CommonsMultipartFile file;
+
 	/**
 	 * 拍賣會 開始日期 startDate
 	 */
@@ -76,6 +81,22 @@ public class AuctionForm {
 
 	public void setAuctionLogoPath(String auctionLogoPath) {
 		this.auctionLogoPath = auctionLogoPath;
+	}
+
+	public String getAuctionLogoPathAction() {
+		return auctionLogoPathAction;
+	}
+
+	public void setAuctionLogoPathAction(String auctionLogoPathAction) {
+		this.auctionLogoPathAction = auctionLogoPathAction;
+	}
+
+	public CommonsMultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(CommonsMultipartFile file) {
+		this.file = file;
 	}
 
 	public Date getStartDate() {

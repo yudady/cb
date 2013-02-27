@@ -238,7 +238,7 @@ public class ItemManager {
 
 					if (StringUtils.isNotBlank(fileName)) {
 						FileUtils.copyInputStreamToFile(multipartFile
-								.getInputStream(), new File(Constant.UPLOAD_FOLDER
+								.getInputStream(), new File(Constant.UPLOAD_FOLDER_ITEM
 								+ fileName));
 					} else {
 						fileName = "";
@@ -252,7 +252,7 @@ public class ItemManager {
 							priority, fileName));
 					FileUtils.copyInputStreamToFile(multipartFile
 							.getInputStream(),
-							new File(Constant.UPLOAD_FOLDER + fileName));
+							new File(Constant.UPLOAD_FOLDER_ITEM + fileName));
 				}
 
 			}

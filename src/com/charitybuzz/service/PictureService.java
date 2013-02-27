@@ -50,7 +50,7 @@ public class PictureService {
 			Picture delPicture = pictureDao.findByPK(pi.getId());
 
 			if (StringUtils.isNotBlank(pi.getPhotoPath())) {
-				new File(Constant.UPLOAD_FOLDER + delPicture.getPhotoPath())
+				new File(Constant.UPLOAD_FOLDER_ITEM + delPicture.getPhotoPath())
 						.delete();
 			} else {
 				pi.setPhotoPath(delPicture.getPhotoPath());
@@ -69,7 +69,7 @@ public class PictureService {
 	public void delete(List<Long> picIds) {
 		for (Long picId : picIds) {
 			Picture picture = pictureDao.findByPK(picId);
-			new File(Constant.UPLOAD_FOLDER + picture.getPhotoPath()).delete();
+			new File(Constant.UPLOAD_FOLDER_ITEM + picture.getPhotoPath()).delete();
 			pictureDao.deleteByPK(picId);
 		}
 

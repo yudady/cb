@@ -11,10 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.Constant;
 import com.charitybuzz.dto.Auction;
 import com.charitybuzz.dto.Category;
+import com.charitybuzz.dto.Item;
+import com.charitybuzz.dto.Picture;
 import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.AuctionService;
+import com.charitybuzz.service.ItemService;
+import com.charitybuzz.service.PictureService;
 
 @Controller
 @RequestMapping("/auctions")
@@ -32,6 +37,17 @@ public class AuctionsController {
 	 */
 	@Resource
 	private AuctionService auctionService;
+	
+	/**
+	 * 全部商品
+	 */
+	@Resource
+	private ItemService itemService;
+	/**
+	 * 商品圖片
+	 */
+	@Resource
+	private PictureService pictureService;
 	
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
@@ -52,8 +68,16 @@ public class AuctionsController {
 		 */
 		List<Auction> willAuctions = auctionService.findWillAuctions();
 		mav.addObject("willAuctions", willAuctions);
-		
-		
+		/**
+		 * tabs
+		 */
+		List<Item> items = itemService.findByHotDeals(Constant.INDEX_TABS_ITEMS_SIZE);
+		for (Item item : items) {
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
+		mav.addObject("items", items);
 		
 		return mav;
 	}

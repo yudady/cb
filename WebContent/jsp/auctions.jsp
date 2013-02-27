@@ -16,14 +16,12 @@
 }
 
 .downLeft {
-	width: 350px;
+	width: 400px;
 	height: 300px;
 	float: left;
 }
 
 .downRight {
-	width: 300px;
-	height: 400px;
 	float: left;
 }
 
@@ -85,6 +83,18 @@
 <script type="text/javascript">
 $(function(){
 	$("#auctionLists").tabs();
+	
+	$('#tabs4').tabs({
+	    load: function(event, ui) {
+	        $(ui.panel).on('click', 'a', function(event) {
+	            $(ui.panel).load(this.href);
+	            event.preventDefault();
+	        });
+	    }
+	});
+	
+	
+	
 });
 </script>
 <div id="content">
@@ -179,10 +189,10 @@ $(function(){
 	</div>
 	<div class="down">
 		<div class="downLeft">
-		Top Items By Category 
+			Top Items By Category 
 		</div>
 		<div class="downRight">
-		tabs
+			<%@ include file="/jsp/include/tabs4.txt" %>
 		</div>
 	</div>
 </div>

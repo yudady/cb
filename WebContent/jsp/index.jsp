@@ -120,43 +120,7 @@
 <div class="indexDown">
 <div id="itemsClosing">
 	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
-	<div id="tabs4">
-	     <ul>
-	         <li><a href='<c:url value="/items/closingNext.do"/>'><span>Closing Next</span></a></li>
-	         <li><a href='#fragment-2'><span>Deals</span></a></li>
-	         <li><a href='<c:url value="/items/popular.do"/>'><span>Most Popular</span></a></li>
-	         <li><a href='<c:url value="/items/recentAdd.do"/>'><span>Recently Added</span></a></li>
-	     </ul>
-        <div id="fragment-2">
-			<c:forEach	items="${items}" var="item">
-				<div class="item">
-					<a href='<c:url value="/item/${item.id}/index.do"/>'>
-						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}"/>' />
-					</a>
-					<div>
-						<h3><a href='<c:url value="/item/${item.id}/index.do"/>'>${item.title}</a></h3>
-						<p>
-							<strong>Estimated:</strong>${item.estimatedValue}
-						</p>
-						<p>
-							<strong>Bid:</strong>${item.currentBid}
-						</p>
-						<p>
-							<strong>Time Left:</strong>${item.closeDate}
-						</p>
-						<div class="dealhidetopborder">
-							<a href="">
-								<img src='<c:url value="/pic/site/deals_bg_vector_round-small.gif"/>' />
-								<span>-82%</span>
-							</a>
-						</div>
-						
-					</div>
-					<hr />
-				</div>
-			</c:forEach>
-        </div>
-	</div>
+	<%@ include file="/jsp/include/tabs4.txt" %>
 </div>
 <div id="liveAuctions">
 	<h1>Current Auctions</h1>

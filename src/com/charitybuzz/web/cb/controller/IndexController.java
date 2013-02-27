@@ -45,7 +45,7 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView("index");
 		
 		
-		List<Picture> topPics = slideshowService.searchPictures(10);
+		List<Picture> topPics = slideshowService.getPictures();
 		mav.addObject("topPics", topPics);
 //		String pagerOffset = request.getParameter("pager.offset");
 //		if (StringUtils.isBlank(pagerOffset)) {

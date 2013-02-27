@@ -28,5 +28,17 @@ public class Constant {
 	 * 日期格式
 	 */
 	public static final String DATE_STYLE = "yyyy-MM-dd";
-
+	
+	/**
+	 * 選多少個圖片 10 (SlideshowService)
+	 */
+	public static  int SEARCH_PICTURES = 10; 
+	/**
+	 * 選多少個一級目錄 5 (TopItemsCategoryService)
+	 */
+	public static  int CATEGORY_SIZE = 5; 
+	/**
+	 * 選多少個item	3 (TopItemsCategoryService)
+	 */
+	public static  int ITEM_SIZE = 3;
 }

@@ -7,9 +7,9 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-1.8.3.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-1.10.0/jquery-ui-1.10.0.custom.min.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-1.10.0/smoothness/jquery-ui-1.10.0.custom.min.css"/>'/>
-<script type="text/javascript" src='<c:url value="/js/jquery/jquery.lazyload.min.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/tabs.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
 </head>
 <body>

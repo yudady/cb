@@ -16,7 +16,9 @@ import com.charitybuzz.dto.Auction;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
+import com.charitybuzz.dto.TopItemsCategory;
 import com.charitybuzz.operate.SidebarService;
+import com.charitybuzz.operate.TopItemsCategoryService;
 import com.charitybuzz.service.AuctionService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
@@ -37,7 +39,7 @@ public class AuctionsController {
 	 */
 	@Resource
 	private AuctionService auctionService;
-	
+
 	/**
 	 * 全部商品
 	 */
@@ -48,7 +50,9 @@ public class AuctionsController {
 	 */
 	@Resource
 	private PictureService pictureService;
-	
+	@Resource
+	private TopItemsCategoryService topItemsCategoryService;
+
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
 		ModelAndView mav = new ModelAndView("auctions");
@@ -78,12 +82,12 @@ public class AuctionsController {
 			item.setPictures(pictures);
 		}
 		mav.addObject("items", items);
-		
+		/**
+		 * TopItemsByCategory 
+		 */
+		List<TopItemsCategory> topItemsCategories = topItemsCategoryService.getTopItemsCategorys();
+		mav.addObject("topItemsCategories", topItemsCategories);
 		return mav;
 	}
-	
-	
-	
-	
 
 }

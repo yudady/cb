@@ -18,15 +18,12 @@ import com.charitybuzz.service.SubCategoryService;
 public class SidebarService {
 
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	private Logger log = LoggerFactory.getLogger(SidebarService.class);
 
-	
 	/**
 	 * 緩存目錄
 	 */
 	private List<Category> categories;
-
-
 
 	/**
 	 * 第一級目錄
@@ -52,9 +49,11 @@ public class SidebarService {
 	public void setItemService(ItemService itemService) {
 		this.itemService = itemService;
 	}
+
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
+
 	public List<Category> getCategories() {
 		return categories;
 	}
@@ -67,7 +66,9 @@ public class SidebarService {
 
 	}
 
-	public List<Category> searchSidebarData() {
+	private List<Category> searchSidebarData() {
+		log.debug("[LOG][searchSidebarData]");
+		
 		List<Category> cas = categoryService.findAll();
 
 		for (int i = 0; i < cas.size(); i++) {

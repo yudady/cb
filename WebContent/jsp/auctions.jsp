@@ -1,30 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ include file="/jsp/include/header_login.txt" %>
-<%@ include file="/jsp/include/menu.txt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/jsp/include/header.txt" %>
 <style type="text/css">
-#content {
+.content {
+	width: 760px;
+	margin-bottom: 20px;
+	position:relative;
+	left: 210px;
+	margin-right:5px;
+}
+#contenta {
 	width: 750px;
 	float: right;
-	background-color: gray;
 	margin-bottom: 20px;
 }
-
-.down {
-	height: 500px;
-}
-
-.downLeft {
-	width: 400px;
-	height: 300px;
-	float: left;
-}
-
-.downRight {
-	float: left;
-}
-
 #fragment-1 {
 }
 
@@ -42,7 +33,6 @@
 	padding-top : 20px;
 	width: 340px;
 	height: 170px;
-	background-color: white;
 	margin: 2px;
 	padding-top: 20px;
 }
@@ -79,6 +69,30 @@
 	white-space: normal;
 	word-break: break-all;
 }
+
+
+
+.down {
+	height: 500px;
+}
+
+.downLeft {
+	width: 400px;
+	float: left;
+}
+
+.downRight {
+	float: left;
+}
+dl.topItem {
+}
+
+dl.topItem dd{
+	color: red;
+	
+}
+
+
 </style>
 <script type="text/javascript">
 $(function(){
@@ -97,7 +111,9 @@ $(function(){
 	
 });
 </script>
-<div id="content">
+<div class="counter"><!-- counter -->
+<%@ include file="/jsp/include/menu.txt" %>
+<div id="contenta">
 	<div class="top">
 		<div id="auctionLists">
 		     <ul>
@@ -143,8 +159,6 @@ $(function(){
 	        		</div>
 				</c:forEach>
 	        	</div>
-				
-
 	        </div>
 	        <div id="fragment-2">
 	        	<div class="fragment-1-right">
@@ -189,17 +203,19 @@ $(function(){
 	</div>
 	<div class="down">
 		<div class="downLeft">
-			Top Items By Category 
+			<c:forEach items="${topItemsCategories}" var="topItem">
+	        	<dl class="topItem">
+	        		${topItem.category.name}
+					<c:forEach items="${topItem.items}" var="item" begin="0" end="2">
+						<dd><i class="icon-circle">&nbsp;</i>${item.title}</dd>
+					</c:forEach>
+	        	</dl>
+			</c:forEach>
 		</div>
 		<div class="downRight">
 			<%@ include file="/jsp/include/tabs4.txt" %>
 		</div>
 	</div>
-</div>
+</div>	
+</div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>
-	
-
-
-
-
-

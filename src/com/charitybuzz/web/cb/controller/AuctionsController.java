@@ -42,8 +42,16 @@ public class AuctionsController {
 		List<Category> categories = sidebarService.getSidebar();
 		mav.addObject("categories", categories);
 		
-		List<Auction> auctions = auctionService.findAll();
+		/**
+		 * 已經開始的拍賣會
+		 */
+		List<Auction> auctions = auctionService.findStartAuctions();
 		mav.addObject("auctions", auctions);
+		/**
+		 * 尚未開始的拍賣會
+		 */
+		List<Auction> willAuctions = auctionService.findWillAuctions();
+		mav.addObject("willAuctions", willAuctions);
 		
 		
 		

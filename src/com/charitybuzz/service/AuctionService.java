@@ -17,10 +17,30 @@ public class AuctionService {
 		return auctionDao.findById(id);
 	}
 
+	/**
+	 * 全部
+	 * 
+	 * @return
+	 */
 	public List<Auction> findAll() {
 		return auctionDao.findAll();
 	}
 
+	/**
+	 * 已經開始的拍賣會
+	 * 
+	 * @return
+	 */
+	public List<Auction> findStartAuctions() {
+		return auctionDao.findStartAuctions();
+	}
+	/**
+	 * 尚未開始的拍賣會
+	 * @return
+	 */
+	public List<Auction> findWillAuctions() {
+		return auctionDao.findWillAuctions();
+	}
 	public void insert(Auction auction) {
 		auctionDao.insert(auction);
 	}
@@ -31,7 +51,9 @@ public class AuctionService {
 
 	public void delete(Long auctionId) {
 		auctionDao.delete(auctionId);
-		
+
 	}
+
+
 
 }

@@ -63,7 +63,7 @@ public class ItemService {
 	 * @return
 	 */
 	public Pager<Item> findPager() {
-		return itemDao.findPager();
+		return itemDao.findAllPager();
 	}
 
 	/**
@@ -227,8 +227,9 @@ public class ItemService {
 	 * @param auctioneerId
 	 * @return
 	 */
-	public Pager<Item> findPagerByAuctioneerId(Long auctioneerId) {
-		return itemDao.findPagerByAuctioneerId(auctioneerId);
+	public Pager<Item> findPagerByAuctionId(Long auctionId) {
+		return itemDao.findPagerByAuctionId(auctionId);
 	}
+
 
 }

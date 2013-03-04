@@ -14,14 +14,13 @@ import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Item;
 
 public class ItemDao extends BaseDao<Item> {
-
 	/**
-	 * find all
+	 * find list
 	 * 
+	 * @param sql
 	 * @return
 	 */
-	public List<Item> findAll() {
-		String sql = "select * from item ";
+	private List<Item> findList(String sql) {
 		return this.queryList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -52,8 +51,54 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
-	public Pager<Item> findAllByPager() {
-		String sql = " Select * from item ";
+	/**
+	 * find list by start end
+	 * 
+	 * @param sql
+	 * @param firstRowNumber
+	 * @param lastRowNumber
+	 * @return
+	 */
+	private List<Item> findList(String sql, int firstRowNumber,
+			int lastRowNumber) {
+		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
+				lastRowNumber) {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+
+				List<Item> itemList = new ArrayList<Item>();
+				while (rs.next()) {
+					Item it = new Item(rs.getLong("id"), rs.getString("title"),
+							rs.getDouble("currentBid"),
+							rs.getDate("startDate"), rs.getDate("closeDate"),
+							rs.getDouble("estimatedValue"), rs
+									.getDouble("incrementPrice"), rs
+									.getInt("status"), rs
+									.getString("lotDetails"), rs
+									.getString("legalTerms"), rs
+									.getString("shipping"), rs
+									.getLong("winningBidderId"), rs
+									.getDate("createdDate"), rs
+									.getDate("updatedDate"));
+					itemList.add(it);
+				}
+				return itemList;
+			}
+
+		});
+	}
+
+	/**
+	 * 分頁
+	 * 
+	 * @param sql
+	 * @return
+	 */
+	private Pager<Item> findPager(String sql) {
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -82,7 +127,21 @@ public class ItemDao extends BaseDao<Item> {
 			}
 
 		});
+	}
 
+	/**
+	 * find all
+	 * 
+	 * @return
+	 */
+	public List<Item> findAll() {
+		String sql = "select * from item ";
+		return this.findList(sql);
+	}
+
+	public Pager<Item> findAllByPager() {
+		String sql = " Select * from item ";
+		return this.findPager(sql);
 	}
 
 	/**
@@ -487,137 +546,25 @@ public class ItemDao extends BaseDao<Item> {
 
 	public List<Item> findClosingNext(int firstRowNumber, int lastRowNumber) {
 		String sql = "Select * from ( SELECT (closedate - SYSDATE ) diff , it.* FROM item it WHERE it.status = 1 AND it.startdate < SYSDATE order by diff ) WHERE diff >= 0 ";
-		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
-				lastRowNumber) {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return this.findList(sql, firstRowNumber, lastRowNumber);
 
 	}
 
 	public List<Item> findByHotDeals(int firstRowNumber, int lastRowNumber) {
 		String sql = " SELECT it.* FROM item it WHERE status = '1' AND SYSDATE >= startdate and closedate >= SYSDATE order by (ESTIMATEDVALUE - CURRENTBID) desc ";
-		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
-				lastRowNumber) {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return this.findList(sql, firstRowNumber, lastRowNumber);
 
 	}
 
 	public List<Item> findPopular(int firstRowNumber, int lastRowNumber) {
 		String sql = " SELECT count(lo.id) cc ,it.id ,it.title,it.CURRENTBID ,it.STARTDATE ,it.CLOSEDATE ,it.ESTIMATEDVALUE ,it.INCREMENTPRICE ,it.STATUS ,it.LOTDETAILS ,it.LEGALTERMS ,it.SHIPPING ,it.WINNINGBIDDERID ,it.CREATEDDATE ,it.UPDATEDDATE FROM item it left join bidlog lo on lo.ITEMID = it.id WHERE status = '1' AND SYSDATE >= startdate AND closedate >= SYSDATE GROUP BY it.ID, it.title, it.CURRENTBID, it.STARTDATE, it.CLOSEDATE, it.ESTIMATEDVALUE, it.INCREMENTPRICE, it.STATUS, it.LOTDETAILS, it.LEGALTERMS, it.SHIPPING, it.WINNINGBIDDERID, it.CREATEDDATE, it.UPDATEDDATE order by cc desc ";
-		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
-				lastRowNumber) {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return this.findList(sql, firstRowNumber, lastRowNumber);
 
 	}
 
 	public List<Item> findRecentAdd(int firstRowNumber, int lastRowNumber) {
 		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate order by (STARTDATE - sysdate) desc ";
-		return this.queryList(sql, new QueryList<Item>(firstRowNumber,
-				lastRowNumber) {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return findList(sql, firstRowNumber, lastRowNumber);
 
 	}
 
@@ -628,34 +575,7 @@ public class ItemDao extends BaseDao<Item> {
 	 */
 	public Pager<Item> findPagerByClosingNext() {
 		String sql = " Select * from ( SELECT (closedate - SYSDATE ) diff , it.* FROM item it WHERE it.status = 1 AND it.startdate < SYSDATE order by diff ) WHERE diff >= 0 ";
-		return this.queryPager(sql, new QueryPager<Item>() {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return this.findPager(sql);
 
 	}
 
@@ -666,34 +586,7 @@ public class ItemDao extends BaseDao<Item> {
 	 */
 	public Pager<Item> findPagerByHotDeals() {
 		String sql = " SELECT it.* FROM item it WHERE status = '1' AND SYSDATE >= startdate and closedate >= SYSDATE order by (ESTIMATEDVALUE - CURRENTBID) desc ";
-		return this.queryPager(sql, new QueryPager<Item>() {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return this.findPager(sql);
 	}
 
 	/**
@@ -703,67 +596,13 @@ public class ItemDao extends BaseDao<Item> {
 	 */
 	public Pager<Item> findPagerByPopular() {
 		String sql = " SELECT count(lo.id) cc ,it.id ,it.title,it.CURRENTBID ,it.STARTDATE ,it.CLOSEDATE ,it.ESTIMATEDVALUE ,it.INCREMENTPRICE ,it.STATUS ,it.LOTDETAILS ,it.LEGALTERMS ,it.SHIPPING ,it.WINNINGBIDDERID ,it.CREATEDDATE ,it.UPDATEDDATE FROM item it left join bidlog lo on lo.ITEMID = it.id WHERE status = '1' AND SYSDATE >= startdate AND closedate >= SYSDATE GROUP BY it.ID, it.title, it.CURRENTBID, it.STARTDATE, it.CLOSEDATE, it.ESTIMATEDVALUE, it.INCREMENTPRICE, it.STATUS, it.LOTDETAILS, it.LEGALTERMS, it.SHIPPING, it.WINNINGBIDDERID, it.CREATEDDATE, it.UPDATEDDATE order by cc desc ";
-		return this.queryPager(sql, new QueryPager<Item>() {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return this.findPager(sql);
 
 	}
 
 	public Pager<Item> findPagerByRecentAdd() {
 		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate order by (STARTDATE - sysdate) desc ";
-		return this.queryPager(sql, new QueryPager<Item>() {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return this.findPager(sql);
 
 	}
 
@@ -804,12 +643,12 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
-	public Pager<Item> findPagerByAuctioneerId(final Long auctioneerId) {
-		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate and auctioneerId = ? ";
+	public Pager<Item> findPagerByAuctionId(final Long auctionId) {
+		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate and auctionId = ? ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.preparedStatement.setLong(1, auctioneerId);
+				this.preparedStatement.setLong(1, auctionId);
 			}
 
 			@Override
@@ -837,36 +676,9 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
-	public Pager<Item> findPager() {
+	public Pager<Item> findAllPager() {
 		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate ";
-		return this.queryPager(sql, new QueryPager<Item>() {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
-
-			@Override
-			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
-					itemList.add(it);
-				}
-				return itemList;
-			}
-
-		});
+		return this.findPager(sql);
 	}
 
 }

@@ -28,7 +28,6 @@
 
 #liveAuctions {
 	width: 600px;
-	background-color: pink;
 	margin-bottom: 20px;
 }
 
@@ -124,33 +123,21 @@
 </div>
 <div id="liveAuctions">
 	<h1>Current Auctions</h1>
-	<hr />
-	<div class="item">
-		<img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' />
-		<dl>
-			<dt>Boot Campaign Online Auction</dt>
-			<dd>Feb 4 to Feb 26</dd>
-			<dd>Time Left: 19 days, 17 hrs, 6 mins </dd>
-			<dd><a class="cssButton">view items</a></dd>
-		</dl>
-	</div>
 	
-	<hr />
-	<div class="item">
-		<img src='<c:url value="/pic/upload/item/3331_feature.jpg"/>' src='<c:url value="/pic/site/grey.gif"/>' />
-		<dl>
-			<dt>Boot Campaign Online Auction</dt>
-			<dd>Feb 4 to Feb 26</dd>
-			<dd>Time Left: 19 days, 17 hrs, 6 mins </dd>
-			<dd><a class="cssButton">view items</a></dd>
-		</dl>
-	</div>
-	
-
-	<hr />
+	<c:forEach items="${auctions.datas}" var="auction">
+		<div class="item">
+			<img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' />
+			<dl>
+				<dt>${auction.title}</dt>
+				<dd>${auction.startDate}</dd>
+				<dd>${auction.closeDate}</dd>
+				<dd><a class="cssButton" href='<c:url value="/auctions/${auction.id}/index.do"/>'>view items</a></dd>
+			</dl>
+		</div>
+	</c:forEach>
 	<jsp:include page="/jsp/include/pager.jsp">
-		<jsp:param value="${pager.totalRecord}" name="totalRecord" />
-		<jsp:param value="${pager.pageSize}" name="pageSize" />
+		<jsp:param value="${auctions.totalRecord}" name="totalRecord" />
+		<jsp:param value="${auctions.pageSize}" name="pageSize" />
 		<jsp:param value="" name="url" />
 	</jsp:include>
 </div>

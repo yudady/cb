@@ -8,6 +8,8 @@ import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.InsertUpdateDelete;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
+import com.charitybuzz.common.dao.QueryPager;
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Auction;
 
 
@@ -72,6 +74,32 @@ public class AuctionDao extends BaseDao<Auction> {
 		});
 	}
 	/**
+	 * find List<Auction>
+	 * 
+	 * @return
+	 */
+	private Pager<Auction> findPager(String sql ) {
+		return this.queryPager(sql, new QueryPager<Auction>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Auction> doResultSet() throws SQLException {
+				List<Auction> list = new ArrayList<Auction>();
+				while (rs.next()) {
+					list.add(new Auction(rs.getLong("id"), rs
+							.getString("title"), rs.getString("brief"), rs
+							.getString("webSite"), rs
+							.getString("auctionLogoPath"), rs
+							.getDate("startDate"), rs.getDate("closeDate")));
+				}
+				return list;
+			}
+
+		});
+	}
+	/**
 	 * find all
 	 * 
 	 * @return
@@ -87,6 +115,14 @@ public class AuctionDao extends BaseDao<Auction> {
 	public List<Auction> findStartAuctions() {
 		String sql = "SELECT * FROM AUCTION where closeDate >= sysdate and startDate <= sysdate";
 		return this.findList(sql);
+	}
+	/**
+	 * 已經開始的拍賣會
+	 * @return
+	 */
+	public Pager<Auction> findPagerStartAuctions() {
+		String sql = " SELECT * FROM AUCTION where closeDate >= sysdate and startDate <= sysdate ";
+		return this.findPager(sql);
 	}
 	/**
 	 * 尚未開始的拍賣會
@@ -152,6 +188,8 @@ public class AuctionDao extends BaseDao<Auction> {
 		});
 
 	}
+
+
 
 
 

@@ -15,9 +15,11 @@ import com.charitybuzz.cache.SidebarService;
 import com.charitybuzz.cache.SlideshowService;
 import com.charitybuzz.common.Constant;
 import com.charitybuzz.common.model.Pager;
+import com.charitybuzz.dto.Auction;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
+import com.charitybuzz.service.AuctionService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 
@@ -36,67 +38,48 @@ public class IndexController {
 	 */
 	@Resource
 	private PictureService pictureService;
-	
+	/**
+	 * 拍賣會
+	 */
+	@Resource
+	private AuctionService auctionService;
+
 	@Resource
 	private SlideshowService slideshowService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(HttpSession session, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("index");
-		
-		
-		List<Picture> topPics = slideshowService.getPictures();
-		mav.addObject("topPics", topPics);
-//		String pagerOffset = request.getParameter("pager.offset");
-//		if (StringUtils.isBlank(pagerOffset)) {
-//			pagerOffset = "0";
-//		}
-//		System.out.println("[LOG]" + pagerOffset);
-//		
-//		String pageSize = request.getParameter("pageSize");
-//		if (StringUtils.isBlank(pageSize)) {
-//			pageSize = "10";
-//		}
-//		System.out.println("[LOG]" + pageSize);
-		
-		
-		
-		//System.out.println("[LOG]" + PagerContext.getPageOffset());
 
-
-		Pager<Category> pager = new Pager<Category>();
-		pager.setTotalRecord(30);
-
-		
-		
-		
-		
-		
+		/**
+		 * 目錄
+		 */
 		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
-		mav.addObject("pager", pager);
+		/**
+		 * top輪動圖片
+		 */
+		List<Picture> topPics = slideshowService.getPictures();
+		mav.addObject("topPics", topPics);
 
-		
-		
-		
-		
-		
-		List<Item> items = itemService.findByHotDeals(Constant.INDEX_TABS_ITEMS_SIZE);
+		/**
+		 * Current Auctions
+		 */
+		Pager<Auction> auctions = auctionService.findPagerStartAuctions();
+		mav.addObject("auctions", auctions);
+
+		/**
+		 * tabs 4
+		 */
+		List<Item> items = itemService
+				.findByHotDeals(Constant.INDEX_TABS_ITEMS_SIZE);
 		for (Item item : items) {
 			Long itemId = item.getId();
 			List<Picture> pictures = pictureService.findByItemId(itemId);
 			item.setPictures(pictures);
 		}
 		mav.addObject("items", items);
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		return mav;
 
 	}

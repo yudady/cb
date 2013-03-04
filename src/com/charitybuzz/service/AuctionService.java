@@ -2,6 +2,7 @@ package com.charitybuzz.service;
 
 import java.util.List;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.AuctionDao;
 import com.charitybuzz.dto.Auction;
 
@@ -33,6 +34,9 @@ public class AuctionService {
 	 */
 	public List<Auction> findStartAuctions() {
 		return auctionDao.findStartAuctions();
+	}
+	public Pager<Auction> findPagerStartAuctions() {
+		return auctionDao.findPagerStartAuctions();
 	}
 	/**
 	 * 尚未開始的拍賣會

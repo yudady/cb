@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,12 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.charitybuzz.cache.SidebarService;
 import com.charitybuzz.cache.TopItemsCategoryService;
 import com.charitybuzz.common.Constant;
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Auction;
+import com.charitybuzz.dto.Bidlog;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.dto.TopItemsCategory;
 import com.charitybuzz.service.AuctionService;
+import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 
@@ -52,6 +56,8 @@ public class AuctionsController {
 	private PictureService pictureService;
 	@Resource
 	private TopItemsCategoryService topItemsCategoryService;
+	@Resource
+	private BidlogService bidlogService;
 
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
@@ -89,5 +95,34 @@ public class AuctionsController {
 		mav.addObject("topItemsCategories", topItemsCategories);
 		return mav;
 	}
+	
+	
+	
+	@RequestMapping(value = "/{auctionId}/index", method = RequestMethod.GET)
+	public ModelAndView index(@PathVariable Long auctionId) {
+		ModelAndView mav = new ModelAndView("itemsPager");
 
+		/**
+		 * 目錄
+		 */
+		List<Category> categories = sidebarService.getCategories();
+		mav.addObject("categories", categories);
+
+		/**
+		 * 分頁商品
+		 */
+		Pager<Item> pager = itemService.findPagerByAuctionId(auctionId);
+		List<Item> items = pager.getDatas();
+		for (Item item : items) {
+			Long itemId = item.getId();
+
+			List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
+			item.setBidTimes(bidlogs.size());
+
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
+		mav.addObject("pager", pager);
+		return mav;
+	}
 }

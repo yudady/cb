@@ -114,15 +114,9 @@
     <aop:config>  
         <aop:aspect id="slideshowAspect" ref="slideshowService">  
             <aop:pointcut id="slideshowServiceAOP" expression="
-            execution(* com.charitybuzz.service.CategoryService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.CategoryService.update*(..) ) and
-            execution(* com.charitybuzz.service.CategoryService.delete*(..) ) and 
-            execution(* com.charitybuzz.service.SubCategoryService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.SubCategoryService.update*(..) ) and
-            execution(* com.charitybuzz.service.SubCategoryService.delete*(..) ) and 
-            execution(* com.charitybuzz.service.ItemService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.ItemService.update*(..) ) and
-            execution(* com.charitybuzz.service.ItemService.delete*(..) )  
+            execution(* com.charitybuzz.service.PictureService.insert*(..) ) and 
+            execution(* com.charitybuzz.service.PictureService.update*(..) ) and
+            execution(* com.charitybuzz.service.PictureService.delete*(..) )  
             " />  
             <aop:after pointcut-ref="slideshowServiceAOP" method="doAfter"/>  
         </aop:aspect>

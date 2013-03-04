@@ -59,7 +59,7 @@ public class CategoriesController {
 		/**
 		 * 目錄
 		 */
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 
 		/**
@@ -91,7 +91,7 @@ public class CategoriesController {
 		/**
 		 * 目錄
 		 */
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 		/**
 		 * 分頁商品
@@ -130,7 +130,7 @@ public class CategoriesController {
 		/**
 		 * 目錄
 		 */
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 		/**
 		 * 分頁商品
@@ -154,7 +154,7 @@ public class CategoriesController {
 		/**
 		 * 目錄
 		 */
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 		/**
 		 * 分頁商品
@@ -180,7 +180,7 @@ public class CategoriesController {
 		/**
 		 * 目錄
 		 */
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 		/**
 		 * 分頁商品

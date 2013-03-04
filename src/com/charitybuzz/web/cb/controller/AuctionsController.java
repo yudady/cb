@@ -59,7 +59,7 @@ public class AuctionsController {
 		/**
 		 * 目錄
 		 */
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 		
 		/**

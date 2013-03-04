@@ -32,6 +32,9 @@ public class TopItemsCategoryService {
 	 * 第一級目錄
 	 */
 	private CategoryService categoryService;
+	/**
+	 * 全部商品
+	 */
 	private ItemService itemService;
 
 	public void setItemService(ItemService itemService) {
@@ -51,7 +54,7 @@ public class TopItemsCategoryService {
 
 	}
 
-	public void setTopItemsCategorys(List<TopItemsCategory> topItemsCategorys) {
+	void setTopItemsCategorys(List<TopItemsCategory> topItemsCategorys) {
 		this.topItemsCategorys = topItemsCategorys;
 	}
 
@@ -75,7 +78,7 @@ public class TopItemsCategoryService {
 		}
 		log.debug("[LOG][categorySize]" + categorySize);
 		
-		//this.setTopItemsCategorys(topItems);
+		this.setTopItemsCategorys(topItems);
 		return topItems;
 	}
 	

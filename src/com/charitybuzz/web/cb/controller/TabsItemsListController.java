@@ -146,7 +146,7 @@ public class TabsItemsListController {
 		mav.addObject("tabIndex", tabIndex);
 		
 		
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 		/**
 		 * 全部商品

@@ -72,7 +72,7 @@ public class IndexController {
 		
 		
 		
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 		mav.addObject("pager", pager);
 

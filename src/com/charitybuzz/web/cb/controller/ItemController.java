@@ -58,7 +58,7 @@ public class ItemController {
 	@RequestMapping(value = "/{itemId}/index", method = RequestMethod.GET)
 	public ModelAndView index(@PathVariable Long itemId, HttpSession session) {
 		ModelAndView mav = new ModelAndView("item");
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 
 		log.debug("[itemId]=" + itemId);

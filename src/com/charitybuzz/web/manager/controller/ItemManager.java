@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.cache.SidebarService;
 import com.charitybuzz.common.Constant;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
@@ -61,8 +60,6 @@ public class ItemManager {
 	private SubcategoryItemService subcategoryItemService;
 	@Resource
 	private PictureService pictureService;
-	@Resource
-	private SidebarService sidebarService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -126,7 +123,6 @@ public class ItemManager {
 						.getWinningBidderId(),form.getAuctionId()));
 
 		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
-		sidebarService.setCategories(null);
 
 		form.setItemIdForm(itemId);
 		this.pictures(form);
@@ -193,7 +189,6 @@ public class ItemManager {
 
 		subcategoryItemService.update(form.getItemIdForm(),
 				form.getSubCategoryIds());
-		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;

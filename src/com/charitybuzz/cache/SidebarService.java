@@ -51,20 +51,15 @@ public class SidebarService {
 		this.itemService = itemService;
 	}
 
-	public void setCategories(List<Category> categories) {
+	void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 
 	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public List<Category> getSidebar() {
 		if (this.categories != null) {
 			return this.categories;
 		}
 		return this.searchSidebarData();
-
 	}
 
 	private List<Category> searchSidebarData() {

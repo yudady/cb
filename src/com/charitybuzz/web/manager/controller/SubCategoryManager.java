@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.cache.SidebarService;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.SubCategory;
@@ -49,8 +48,6 @@ public class SubCategoryManager {
 	private ItemService itemService;
 	
 	
-	@Resource
-	private SidebarService sidebarService;
 
 	/**
 	 * 拿到列表，第二級目錄下有商品，則不能刪除
@@ -108,7 +105,6 @@ public class SubCategoryManager {
 		}
 		subCategoryService.insert(new SubCategory(form.getSubCaId(), form
 				.getCategoryId(), form.getName(), form.getDescript()));
-		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");
@@ -148,7 +144,6 @@ public class SubCategoryManager {
 		SubCategory sc = new SubCategory(form.getSubCaId(),
 				form.getCategoryId(), form.getName(), form.getDescript());
 		subCategoryService.update(sc);
-		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");

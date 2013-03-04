@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.charitybuzz.cache.SidebarService;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.CategoryService;
@@ -34,9 +33,6 @@ public class CategoryManager {
 	 */
 	@Resource
 	private SubCategoryService subCategoryService;
-
-	@Resource
-	private SidebarService sidebarService;
 
 	/**
 	 * 拿到列表
@@ -89,7 +85,6 @@ public class CategoryManager {
 		}
 
 		categoryService.insert(new Category(form.getName()));
-		sidebarService.setCategories(null);
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
 		return mav;
@@ -125,7 +120,6 @@ public class CategoryManager {
 			throw new RuntimeException("驗證錯誤");
 		}
 		categoryService.update(new Category(form.getId(), form.getName()));
-		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");
@@ -140,7 +134,6 @@ public class CategoryManager {
 		}
 
 		categoryService.delete(categoryId);
-		sidebarService.setCategories(null);
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/category/list.do");

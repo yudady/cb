@@ -39,7 +39,7 @@ public class SlideshowService {
 		return this.searchPictures(Constant.SEARCH_PICTURES);
 	}
 
-	public void setPictures(List<Picture> pictures) {
+	void setPictures(List<Picture> pictures) {
 		this.pictures = pictures;
 	}
 

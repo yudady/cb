@@ -40,7 +40,7 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView page(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("login");
-		List<Category> categories = sidebarService.getSidebar();
+		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 
 		Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);

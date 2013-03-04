@@ -101,7 +101,10 @@ public class SidebarService {
 	}
 	
 	
-	
+	/**
+	 * AOP
+	 * @param jp
+	 */
 	public void doAfter(JoinPoint jp) {
 		log.debug("log Ending method: " + jp.getTarget().getClass().getName()
 				+ "." + jp.getSignature().getName());

@@ -2,6 +2,7 @@ package com.charitybuzz.cache;
 
 import java.util.List;
 
+import org.aspectj.lang.JoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,5 +49,14 @@ public class SlideshowService {
 		this.setPictures(pics);
 		return pics;
 	}
-
+	/**
+	 * AOP
+	 * @param jp
+	 */
+	public void doAfter(JoinPoint jp) {
+		log.debug("log Ending method: " + jp.getTarget().getClass().getName()
+				+ "." + jp.getSignature().getName());
+		
+		this.setPictures(null);
+	}
 }

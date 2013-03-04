@@ -3,6 +3,7 @@ package com.charitybuzz.cache;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.aspectj.lang.JoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,5 +77,16 @@ public class TopItemsCategoryService {
 		
 		//this.setTopItemsCategorys(topItems);
 		return topItems;
+	}
+	
+	/**
+	 * AOP
+	 * @param jp
+	 */
+	public void doAfter(JoinPoint jp) {
+		log.debug("log Ending method: " + jp.getTarget().getClass().getName()
+				+ "." + jp.getSignature().getName());
+		
+		this.setTopItemsCategorys(null);
 	}
 }

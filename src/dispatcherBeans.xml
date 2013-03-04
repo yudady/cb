@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -76,17 +80,38 @@
 	<bean id="subcategoryItemDao" class="com.charitybuzz.dao.SubcategoryItemDao" />
 	<bean id="auctionDao" class="com.charitybuzz.dao.AuctionDao" />
 
-	<!-- other service -->
-	<bean id="sidebarService" class="com.charitybuzz.operate.SidebarService">
+	<!-- cache -->
+	<bean id="sidebarService" class="com.charitybuzz.cache.SidebarService">
 		<property name="categoryService" ref="categoryService" />
 		<property name="subCategoryService" ref="subCategoryService" />
 		<property name="itemService" ref="itemService" />
 	</bean>
-	<bean id="slideshowService" class="com.charitybuzz.operate.SlideshowService">
+	<bean id="slideshowService" class="com.charitybuzz.cache.SlideshowService">
 		<property name="pictureService" ref="pictureService" />
 	</bean>
-	<bean id="topItemsCategoryService" class="com.charitybuzz.operate.TopItemsCategoryService">
+	<bean id="topItemsCategoryService" class="com.charitybuzz.cache.TopItemsCategoryService">
 		<property name="categoryService" ref="categoryService" />
 		<property name="itemService" ref="itemService" />
 	</bean>
+	
+	
+    <aop:config>  
+        <aop:aspect id="sidebarAspect" ref="sidebarService">  
+            <aop:pointcut id="sidebarCUD" expression="
+            execution(* com.charitybuzz.service.CategoryService.insert*(..) ) and 
+            execution(* com.charitybuzz.service.CategoryService.update*(..) ) and
+            execution(* com.charitybuzz.service.CategoryService.delete*(..) ) and 
+            execution(* com.charitybuzz.service.SubCategoryService.insert*(..) ) and 
+            execution(* com.charitybuzz.service.SubCategoryService.update*(..) ) and
+            execution(* com.charitybuzz.service.SubCategoryService.delete*(..) ) and 
+            execution(* com.charitybuzz.service.ItemService.insert*(..) ) and 
+            execution(* com.charitybuzz.service.ItemService.update*(..) ) and
+            execution(* com.charitybuzz.service.ItemService.delete*(..) )  
+            " />  
+            <aop:after pointcut-ref="sidebarCUD" method="doAfter"/>  
+        </aop:aspect>
+    </aop:config>  
+	
+	
+	
 </beans>

@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.charitybuzz.cache.SidebarService;
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.dto.Category;
-import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.BidderService;
 import com.charitybuzz.web.cb.form.LoginForm;
 

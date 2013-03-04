@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.cache.SidebarService;
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.dto.Bidlog;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.dto.Watching;
-import com.charitybuzz.operate.SidebarService;
 import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;

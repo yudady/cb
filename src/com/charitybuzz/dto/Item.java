@@ -15,7 +15,10 @@ import org.apache.commons.lang.builder.ToStringStyle;
 public class Item {
 
 	private Long id;
-
+	/**
+	 * 拍賣會id
+	 */
+	private Long auctionId;
 	/**
 	 * 商品訊息
 	 */
@@ -100,10 +103,7 @@ public class Item {
 	private Long difDay;
 
 	private boolean watch;
-	/**
-	 * 拍賣者id
-	 */
-	private Long auctionId;
+
 
 	// ====================================================
 
@@ -112,47 +112,15 @@ public class Item {
 	public Item() {
 	}
 
-	public Item(Long id, String title, Double currentBid, Date startDate,
-			Date closeDate, Double estimatedValue, Double incrementPrice,
-			int status, String lotDetails, String legalTerms, String shipping,
-			Long winningBidderId) {
-		this.id = id;
-		this.title = title;
-		this.currentBid = currentBid;
-		this.startDate = startDate;
-		this.closeDate = closeDate;
-		this.estimatedValue = estimatedValue;
-		this.incrementPrice = incrementPrice;
-		this.status = status;
-		this.lotDetails = lotDetails;
-		this.legalTerms = legalTerms;
-		this.shipping = shipping;
-		this.winningBidderId = winningBidderId;
-	}
+	// ====================================================
 
-	public Item(String title, Double currentBid, Date startDate,
-			Date closeDate, Double estimatedValue, Double incrementPrice,
-			int status, String lotDetails, String legalTerms, String shipping,
-			Long winningBidderId, Long auctionId) {
-		this.title = title;
-		this.currentBid = currentBid;
-		this.startDate = startDate;
-		this.closeDate = closeDate;
-		this.estimatedValue = estimatedValue;
-		this.incrementPrice = incrementPrice;
-		this.status = status;
-		this.lotDetails = lotDetails;
-		this.legalTerms = legalTerms;
-		this.shipping = shipping;
-		this.winningBidderId = winningBidderId;
+	public Item(Long id, Long auctionId, String title, Double currentBid,
+			Date startDate, Date closeDate, Double estimatedValue,
+			Double incrementPrice, int status, String lotDetails,
+			String legalTerms, String shipping, Long winningBidderId,
+			Date createdDate, Date updatedDate) {
+		this.id = id;
 		this.auctionId = auctionId;
-	}
-
-	public Item(Long id, String title, Double currentBid, Date startDate,
-			Date closeDate, Double estimatedValue, Double incrementPrice,
-			int status, String lotDetails, String legalTerms, String shipping,
-			Long winningBidderId, Date createdDate, Date updatedDate) {
-		this.id = id;
 		this.title = title;
 		this.currentBid = currentBid;
 		this.startDate = startDate;
@@ -168,7 +136,7 @@ public class Item {
 		this.updatedDate = updatedDate;
 	}
 
-	// ====================================================
+
 
 	public Long getId() {
 		return id;

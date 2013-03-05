@@ -40,6 +40,12 @@ public class Auction {
 	private Date closeDate;
 
 	// ========================
+	
+	private String AuctionCheckedMark;
+	
+	
+
+
 	public Auction() {
 	}
 
@@ -109,7 +115,13 @@ public class Auction {
 	public void setCloseDate(Date closeDate) {
 		this.closeDate = closeDate;
 	}
+	public String getAuctionCheckedMark() {
+		return AuctionCheckedMark;
+	}
 
+	public void setAuctionCheckedMark(String auctionCheckedMark) {
+		AuctionCheckedMark = auctionCheckedMark;
+	}
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this,

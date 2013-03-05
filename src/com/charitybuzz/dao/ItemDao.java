@@ -1,5 +1,6 @@
 package com.charitybuzz.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +15,19 @@ import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Item;
 
 public class ItemDao extends BaseDao<Item> {
+
+	private static Item newItem(ResultSet rs) throws SQLException {
+		return new Item(rs.getLong("id"), rs.getLong("auctionId"),
+				rs.getString("title"), rs.getDouble("currentBid"),
+				rs.getDate("startDate"), rs.getDate("closeDate"),
+				rs.getDouble("estimatedValue"), rs.getDouble("incrementPrice"),
+				rs.getInt("status"), rs.getString("lotDetails"),
+				rs.getString("legalTerms"), rs.getString("shipping"),
+				rs.getLong("winningBidderId"), rs.getDate("createdDate"),
+				rs.getDate("updatedDate"));
+
+	}
+
 	/**
 	 * find list
 	 * 
@@ -31,18 +45,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -72,18 +75,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -109,18 +101,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -151,7 +132,7 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public List<Item> findBySubCategoryId(final Long subCategoryId) {
-		String sql = "SELECT b.id as id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
+		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
 		return this.queryList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -163,18 +144,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -184,7 +154,7 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public Pager<Item> findPagerBySubCategoryId(final Long subCategoryId) {
-		String sql = "SELECT b.id as id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
+		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -196,18 +166,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -235,18 +194,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -274,18 +222,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -301,7 +238,7 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public List<Item> findBySubItemId(final Long subItemId) {
-		String sql = "SELECT b.id as id,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,winningbidderid,createddate,updateddate FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subItemId = ? AND b.id = a.itemid ";
+		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subItemId = ? AND b.id = a.itemid ";
 		return this.queryList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -313,18 +250,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -352,18 +278,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -390,18 +305,7 @@ public class ItemDao extends BaseDao<Item> {
 			public Item doResultSet() throws SQLException {
 				Item it = null;
 				if (rs.next()) {
-					it = new Item(rs.getLong("id"), rs.getString("title"), rs
-							.getDouble("currentBid"), rs.getDate("startDate"),
-							rs.getDate("closeDate"), rs
-									.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					it = ItemDao.newItem(rs);
 				}
 				return it;
 			}
@@ -433,18 +337,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -474,14 +367,45 @@ public class ItemDao extends BaseDao<Item> {
 
 	public void insert(final Item item) {
 
-		String sql = "insert into item (id,title,currentbid,startdate,closedate,"
+		String sql = "insert into item (id,auctionId,title,currentbid,startdate,closedate,"
 				+ "estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,"
-				+ "winningbidderid,createddate,updateddate,auctionId) values (?,"
+				+ "winningbidderid,createddate,updateddate,auctionId) values (?,?,"
 				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate,?)";
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, item.getId());
+				this.preparedStatement.setLong(2, item.getAuctionId());
+				this.preparedStatement.setString(3, item.getTitle());
+				this.preparedStatement.setDouble(4, item.getCurrentBid());
+				this.preparedStatement.setDate(5, new java.sql.Date(item
+						.getStartDate().getTime()));
+				this.preparedStatement.setDate(6, new java.sql.Date(item
+						.getCloseDate().getTime()));
+				this.preparedStatement.setDouble(7, item.getEstimatedValue());
+				this.preparedStatement.setDouble(8, item.getIncrementPrice());
+				this.preparedStatement.setInt(9, item.getStatus());
+				this.preparedStatement.setString(10, item.getLotDetails());
+				this.preparedStatement.setString(11, item.getLegalTerms());
+				this.preparedStatement.setString(12, item.getShipping());
+				this.preparedStatement.setLong(13, item.getWinningBidderId());
+				this.preparedStatement.setLong(14, item.getAuctionId());
+			}
+
+		});
+
+	}
+
+	public void update(final Item item) {
+		String sql = "update item set auctionId = ? , title = ? ,currentBid = ? ,startDate = ? ,"
+				+ " closeDate = ? , estimatedValue = ? , incrementPrice = ? ,"
+				+ " status = ? , lotDetails = ? , legalTerms = ? , "
+				+ " shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ?";
+
+		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, item.getAuctionId());
 				this.preparedStatement.setString(2, item.getTitle());
 				this.preparedStatement.setDouble(3, item.getCurrentBid());
 				this.preparedStatement.setDate(4, new java.sql.Date(item
@@ -495,36 +419,7 @@ public class ItemDao extends BaseDao<Item> {
 				this.preparedStatement.setString(10, item.getLegalTerms());
 				this.preparedStatement.setString(11, item.getShipping());
 				this.preparedStatement.setLong(12, item.getWinningBidderId());
-				this.preparedStatement.setLong(13, item.getAuctionId());
-			}
-
-		});
-
-	}
-
-	public void update(final Item item) {
-		String sql = "update item set title = ? ,currentBid = ? ,startDate = ? ,"
-				+ " closeDate = ? , estimatedValue = ? , incrementPrice = ? ,"
-				+ " status = ? , lotDetails = ? , legalTerms = ? , "
-				+ " shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ?";
-
-		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-				this.preparedStatement.setString(1, item.getTitle());
-				this.preparedStatement.setDouble(2, item.getCurrentBid());
-				this.preparedStatement.setDate(3, new java.sql.Date(item
-						.getStartDate().getTime()));
-				this.preparedStatement.setDate(4, new java.sql.Date(item
-						.getCloseDate().getTime()));
-				this.preparedStatement.setDouble(5, item.getEstimatedValue());
-				this.preparedStatement.setDouble(6, item.getIncrementPrice());
-				this.preparedStatement.setInt(7, item.getStatus());
-				this.preparedStatement.setString(8, item.getLotDetails());
-				this.preparedStatement.setString(9, item.getLegalTerms());
-				this.preparedStatement.setString(10, item.getShipping());
-				this.preparedStatement.setLong(11, item.getWinningBidderId());
-				this.preparedStatement.setLong(12, item.getId());
+				this.preparedStatement.setLong(13, item.getId());
 			}
 
 		});
@@ -557,7 +452,7 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public List<Item> findPopular(int firstRowNumber, int lastRowNumber) {
-		String sql = " SELECT count(lo.id) cc ,it.id ,it.title,it.CURRENTBID ,it.STARTDATE ,it.CLOSEDATE ,it.ESTIMATEDVALUE ,it.INCREMENTPRICE ,it.STATUS ,it.LOTDETAILS ,it.LEGALTERMS ,it.SHIPPING ,it.WINNINGBIDDERID ,it.CREATEDDATE ,it.UPDATEDDATE FROM item it left join bidlog lo on lo.ITEMID = it.id WHERE status = '1' AND SYSDATE >= startdate AND closedate >= SYSDATE GROUP BY it.ID, it.title, it.CURRENTBID, it.STARTDATE, it.CLOSEDATE, it.ESTIMATEDVALUE, it.INCREMENTPRICE, it.STATUS, it.LOTDETAILS, it.LEGALTERMS, it.SHIPPING, it.WINNINGBIDDERID, it.CREATEDDATE, it.UPDATEDDATE order by cc desc ";
+		String sql = " SELECT count(lo.id) cc ,it.* FROM item it left join bidlog lo on lo.ITEMID = it.id WHERE status = '1' AND SYSDATE >= startdate AND closedate >= SYSDATE GROUP BY it.ID, it.title, it.CURRENTBID, it.STARTDATE, it.CLOSEDATE, it.ESTIMATEDVALUE, it.INCREMENTPRICE, it.STATUS, it.LOTDETAILS, it.LEGALTERMS, it.SHIPPING, it.WINNINGBIDDERID, it.CREATEDDATE, it.UPDATEDDATE order by cc desc ";
 		return this.findList(sql, firstRowNumber, lastRowNumber);
 
 	}
@@ -595,7 +490,7 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public Pager<Item> findPagerByPopular() {
-		String sql = " SELECT count(lo.id) cc ,it.id ,it.title,it.CURRENTBID ,it.STARTDATE ,it.CLOSEDATE ,it.ESTIMATEDVALUE ,it.INCREMENTPRICE ,it.STATUS ,it.LOTDETAILS ,it.LEGALTERMS ,it.SHIPPING ,it.WINNINGBIDDERID ,it.CREATEDDATE ,it.UPDATEDDATE FROM item it left join bidlog lo on lo.ITEMID = it.id WHERE status = '1' AND SYSDATE >= startdate AND closedate >= SYSDATE GROUP BY it.ID, it.title, it.CURRENTBID, it.STARTDATE, it.CLOSEDATE, it.ESTIMATEDVALUE, it.INCREMENTPRICE, it.STATUS, it.LOTDETAILS, it.LEGALTERMS, it.SHIPPING, it.WINNINGBIDDERID, it.CREATEDDATE, it.UPDATEDDATE order by cc desc ";
+		String sql = " SELECT count(lo.id) cc ,it.* FROM item it left join bidlog lo on lo.ITEMID = it.id WHERE status = '1' AND SYSDATE >= startdate AND closedate >= SYSDATE GROUP BY it.ID, it.title, it.CURRENTBID, it.STARTDATE, it.CLOSEDATE, it.ESTIMATEDVALUE, it.INCREMENTPRICE, it.STATUS, it.LOTDETAILS, it.LEGALTERMS, it.SHIPPING, it.WINNINGBIDDERID, it.CREATEDDATE, it.UPDATEDDATE order by cc desc ";
 		return this.findPager(sql);
 
 	}
@@ -623,18 +518,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;
@@ -656,18 +540,7 @@ public class ItemDao extends BaseDao<Item> {
 
 				List<Item> itemList = new ArrayList<Item>();
 				while (rs.next()) {
-					Item it = new Item(rs.getLong("id"), rs.getString("title"),
-							rs.getDouble("currentBid"),
-							rs.getDate("startDate"), rs.getDate("closeDate"),
-							rs.getDouble("estimatedValue"), rs
-									.getDouble("incrementPrice"), rs
-									.getInt("status"), rs
-									.getString("lotDetails"), rs
-									.getString("legalTerms"), rs
-									.getString("shipping"), rs
-									.getLong("winningBidderId"), rs
-									.getDate("createdDate"), rs
-									.getDate("updatedDate"));
+					Item it = ItemDao.newItem(rs);
 					itemList.add(it);
 				}
 				return itemList;

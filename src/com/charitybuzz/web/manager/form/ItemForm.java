@@ -24,9 +24,17 @@ public class ItemForm implements java.io.Serializable {
 	 */
 	private List<Long> subCategoryIds;
 	/**
-	 * 第一級目錄id
+	 * id
 	 */
-	private Long itemIdForm;
+	private Long id;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	/**
 	 * 第一級目錄名稱分類種類
 	 */
@@ -103,13 +111,6 @@ public class ItemForm implements java.io.Serializable {
 		this.subCategoryIds = subCategoryIds;
 	}
 
-	public Long getItemIdForm() {
-		return itemIdForm;
-	}
-
-	public void setItemIdForm(Long itemIdForm) {
-		this.itemIdForm = itemIdForm;
-	}
 
 	public String getTitle() {
 		return title;

@@ -83,11 +83,17 @@ clear: both;
 </script>
 <div id="content">
 <form method="post" enctype="multipart/form-data">
-	<input type="hidden" name="itemIdForm" value="${item.id}"/>
-	第二級目錄
+	<input type="hidden" name="id" value="${item.id}"/>
+	<p>第二級目錄</p>
 	<dl>
 		<c:forEach	items="${subCategories}" var="subCategory" >
 			<dd><span><label for="subCategoryIds-${subCategory.id}">${subCategory.name}</label><input type="checkbox" id="subCategoryIds-${subCategory.id}" name="subCategoryIds" value="${subCategory.id}" ${subCategory.itemCheckedMark }/></span></dd>
+		</c:forEach>
+	</dl>
+	<p>拍賣會</p>
+	<dl>
+		<c:forEach	items="${auctions}" var="auction" >
+			<dd><span><label for="auctionIds-${auction.id}">${auction.title}</label><input type="radio" id="auctionIds-${auction.id}" name="auctionId" value="${auction.id}" ${auction.auctionCheckedMark }/></span></dd>
 		</c:forEach>
 	</dl>
 	<p></p>

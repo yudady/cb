@@ -98,14 +98,14 @@
     <aop:config>  
         <aop:aspect id="sidebarAspect" ref="sidebarService">  
             <aop:pointcut id="sidebarServiceAOP" expression="
-            execution(* com.charitybuzz.service.CategoryService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.CategoryService.update*(..) ) and
-            execution(* com.charitybuzz.service.CategoryService.delete*(..) ) and 
-            execution(* com.charitybuzz.service.SubCategoryService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.SubCategoryService.update*(..) ) and
-            execution(* com.charitybuzz.service.SubCategoryService.delete*(..) ) and 
-            execution(* com.charitybuzz.service.ItemService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.ItemService.update*(..) ) and
+            execution(* com.charitybuzz.service.CategoryService.insert*(..) ) || 
+            execution(* com.charitybuzz.service.CategoryService.update*(..) ) ||
+            execution(* com.charitybuzz.service.CategoryService.delete*(..) ) || 
+            execution(* com.charitybuzz.service.SubCategoryService.insert*(..) ) || 
+            execution(* com.charitybuzz.service.SubCategoryService.update*(..) ) ||
+            execution(* com.charitybuzz.service.SubCategoryService.delete*(..) ) || 
+            execution(* com.charitybuzz.service.ItemService.insert*(..) ) || 
+            execution(* com.charitybuzz.service.ItemService.update*(..) ) ||
             execution(* com.charitybuzz.service.ItemService.delete*(..) )  
             " />  
             <aop:after pointcut-ref="sidebarServiceAOP" method="doAfter"/>  
@@ -114,8 +114,8 @@
     <aop:config>  
         <aop:aspect id="slideshowAspect" ref="slideshowService">  
             <aop:pointcut id="slideshowServiceAOP" expression="
-            execution(* com.charitybuzz.service.PictureService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.PictureService.update*(..) ) and
+            execution(* com.charitybuzz.service.PictureService.insert*(..) ) || 
+            execution(* com.charitybuzz.service.PictureService.update*(..) ) ||
             execution(* com.charitybuzz.service.PictureService.delete*(..) )  
             " />  
             <aop:after pointcut-ref="slideshowServiceAOP" method="doAfter"/>  
@@ -124,14 +124,14 @@
     <aop:config>  
         <aop:aspect id="topItemsCategoryAspect" ref="topItemsCategoryService">  
             <aop:pointcut id="topItemsCategoryServiceAOP" expression="
-            execution(* com.charitybuzz.service.CategoryService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.CategoryService.update*(..) ) and
-            execution(* com.charitybuzz.service.CategoryService.delete*(..) ) and 
-            execution(* com.charitybuzz.service.SubCategoryService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.SubCategoryService.update*(..) ) and
-            execution(* com.charitybuzz.service.SubCategoryService.delete*(..) ) and 
-            execution(* com.charitybuzz.service.ItemService.insert*(..) ) and 
-            execution(* com.charitybuzz.service.ItemService.update*(..) ) and
+            execution(* com.charitybuzz.service.CategoryService.insert*(..) ) || 
+            execution(* com.charitybuzz.service.CategoryService.update*(..) ) ||
+            execution(* com.charitybuzz.service.CategoryService.delete*(..) ) || 
+            execution(* com.charitybuzz.service.SubCategoryService.insert*(..) ) || 
+            execution(* com.charitybuzz.service.SubCategoryService.update*(..) ) ||
+            execution(* com.charitybuzz.service.SubCategoryService.delete*(..) ) || 
+            execution(* com.charitybuzz.service.ItemService.insert*(..) ) || 
+            execution(* com.charitybuzz.service.ItemService.update*(..) ) ||
             execution(* com.charitybuzz.service.ItemService.delete*(..) )  
             " />  
             <aop:after pointcut-ref="topItemsCategoryServiceAOP" method="doAfter"/>  

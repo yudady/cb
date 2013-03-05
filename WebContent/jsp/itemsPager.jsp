@@ -62,6 +62,9 @@
 	font-size: 18px;
 	color:red;
 }
+#crumbs {
+	font-size:18px;
+}
 #pager {
 	clear:right;
 	text-align: center;
@@ -102,7 +105,7 @@ $(function(){
 <c:choose>
 	<c:when test="${!empty auction}">
 		<div>
-			<div>
+			<div id="crumbs">
 				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auction.title}
 			</div>
 			<div class="auctionPic"><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}" />'></div>

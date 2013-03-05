@@ -32,7 +32,6 @@ table {
 
 i[class^="icon-"], i[class*=" icon-"] {
     color: #B5121B;
-    font-size: 14px;
     margin: 0 5px;
     cursor: pointer;
 }

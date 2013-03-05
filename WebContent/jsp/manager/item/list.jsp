@@ -21,7 +21,7 @@
 			<th>update</th>
 			<th>delete</th>
 		</tr>
-		<c:forEach items="${items}" var="item">
+		<c:forEach items="${items.datas}" var="item">
 			<tr>
 				<td>${item.id}</td>
 				<td>${item.title}</td>
@@ -30,6 +30,13 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<jsp:include page="/jsp/include/pager.jsp">
+		<jsp:param value="${items.totalRecord}" name="totalRecord" />
+		<jsp:param value="${items.pageSize}" name="pageSize" />
+		<jsp:param value="" name="url" />
+	</jsp:include>
+	
 </div>
 <%@ include file="/jsp/include/footer_manager.txt"%>
 

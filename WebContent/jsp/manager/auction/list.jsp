@@ -34,9 +34,11 @@ th, td {
 			<th>logo</th>
 			<th>拍賣會 開始日期 startDate</th>
 			<th>拍賣會 結束日期 closeDate</th>
+			<th>商品</th>
 			<th></th>
 			<th></th>
 		</tr>
+		<c:set var="nowDate" value="<%=System.currentTimeMillis()%>"></c:set>
 		<c:forEach items="${auctions}" var="auction">
 			<tr>
 				<td>${auction.id}</td>
@@ -44,10 +46,23 @@ th, td {
 				<td>${auction.brief}</td>
 				<td>${auction.webSite}</td>
 				<td>${auction.auctionLogoPath}</td>
-				<td>${auction.startDate}</td>
-				<td>${auction.closeDate}</td>
-				<td><a href='<c:url value="/manager/auction/${auction.id}/update.do"/>'>update</a></td>
-				<td><a href='<c:url value="/manager/auction/${auction.id}/delete.do"/>'>delete</a></td>
+				<td><fmt:formatDate value="${auction.startDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+				<td><fmt:formatDate value="${auction.closeDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+				<td><a href='<c:url value="/manager/item/auctionId/${auction.id}/list.do" />'>Item List</a></td>
+				<c:choose>
+					<c:when test="${auction.closeDate.time < nowDate}">
+						<td>拍賣會結束</td>
+						<td>拍賣會結束</td>
+					</c:when>
+					<c:when test="${auction.startDate.time > nowDate}">
+						<td><a href='<c:url value="/manager/auction/${auction.id}/update.do"/>'>拍賣會尚未開始update</a></td>
+						<td><a href='<c:url value="/manager/auction/${auction.id}/delete.do"/>'>拍賣會尚未開始delete</a></td>
+					</c:when>
+					<c:otherwise>
+						<td><a href='<c:url value="/manager/auction/${auction.id}/update.do"/>'>拍賣中update</a></td>
+						<td>拍賣中</td>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 		</c:forEach>
 	</table>

@@ -38,7 +38,7 @@ public class AuctionManager {
 	private Logger log = LoggerFactory.getLogger(AuctionManager.class);
 
 	/**
-	 * 商品
+	 * 拍賣會
 	 */
 	@Resource
 	private AuctionService auctionService;
@@ -51,8 +51,8 @@ public class AuctionManager {
 	}
 
 	/**
-	 * 拿到列表
-	 * 
+	 * 拿到拍賣會列表
+	 * http://localhost:8080/cb/manager/auction/1/item/list.do
 	 * @param form
 	 * @param sessionObject
 	 * @return
@@ -64,7 +64,8 @@ public class AuctionManager {
 		mav.addObject("auctions", auctions);
 		return mav;
 	}
-
+	
+	
 	/**
 	 * 拿到add page
 	 * 
@@ -102,7 +103,6 @@ public class AuctionManager {
 		FileUtils.copyInputStreamToFile(file.getInputStream(), new File(
 				Constant.UPLOAD_FOLDER_AUCTION + fileName));
 		auction.setAuctionLogoPath(fileName);
-
 		auctionService.insert(auction);
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/auction/list.do");
@@ -173,5 +173,6 @@ public class AuctionManager {
 		ModelAndView mav = new ModelAndView("redirect:/manager/auction/list.do");
 		return mav;
 	}
+	
 
 }

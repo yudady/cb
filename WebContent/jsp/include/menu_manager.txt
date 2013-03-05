@@ -6,7 +6,6 @@
 		<li><a href='<c:url value="/manager/category/list.do" />'>Category List</a></li>
 		<li><a href='<c:url value="/manager/subcategory/list.do" />'>SubCategory List</a></li>
 		<li><a href='<c:url value="/manager/auction/list.do" />'>Auction List</a></li>
-		<li><a href='<c:url value="/manager/item/list.do" />'>Item List</a></li>
 		<li><a href='<c:url value="/manager/operator/list.do" />'>Operator List</a></li>
 	</ul>
 </div>

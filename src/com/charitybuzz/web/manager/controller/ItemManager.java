@@ -29,6 +29,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.common.Constant;
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Auction;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
@@ -77,19 +78,19 @@ public class ItemManager {
 
 	/**
 	 * 拿到列表
+	 * 當商品開始拍賣，則不能刪除
 	 * 
 	 * @param form
 	 * @param sessionObject
 	 * @return
 	 */
-	@RequestMapping(value = "/list")
-	public ModelAndView itemList(ItemForm form) {
+	@RequestMapping(value = "/auctionId/{auctionId}/list")
+	public ModelAndView itemList(@PathVariable Long auctionId) {
 		ModelAndView mav = new ModelAndView("manager/item/list");
-		List<Item> items = itemService.findAll();
+		Pager<Item> items = itemService.findPagerByAuctionId(auctionId);
 		mav.addObject("items", items);
 		return mav;
 	}
-
 	/**
 	 * 拿到add page
 	 * 

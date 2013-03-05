@@ -30,11 +30,11 @@ public class Item {
 	private Double currentBid;
 
 	/**
-	 * 商品 開始日期 startDate
+	 * 商品 開始日期
 	 */
 	private Date startDate;
 	/**
-	 * Lot Closes 商品結束日期 closeDate
+	 * 商品結束日期
 	 */
 	private Date closeDate;
 
@@ -81,7 +81,7 @@ public class Item {
 	// =======關聯資料===以下內容沒有資料庫column==========
 
 	/**
-	 * (6 bids Bid次數)bidlog的筆數
+	 * bidlog的筆數
 	 */
 	private int bidTimes;
 	/**
@@ -102,6 +102,9 @@ public class Item {
 	 */
 	private Long difDay;
 
+	/**
+	 * 是否關注
+	 */
 	private boolean watch;
 
 

@@ -126,7 +126,7 @@
 	
 	<c:forEach items="${auctions.datas}" var="auction">
 		<div class="item">
-			<img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' />
+			<a href='<c:url value="/auctions/${auction.id}/index.do"/>'><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' /></a>
 			<dl>
 				<dt>${auction.title}</dt>
 				<dd>${auction.startDate}</dd>

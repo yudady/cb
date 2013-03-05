@@ -82,7 +82,7 @@ public class CategoriesController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/{id}/subcategories/{subcategoryId}/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/subcategories/{subcategoryId}/{subCategoryName}", method = RequestMethod.GET)
 	public ModelAndView subCategory(@PathVariable Long subcategoryId) {
 
 		log.debug("[LOG][subcategoryId]" + subcategoryId);

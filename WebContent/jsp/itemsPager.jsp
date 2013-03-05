@@ -9,12 +9,32 @@
 }
 .itemList {
 	width: 680px;
-	height: 50px;
 	padding: 30px; 
 	margin-left: 220px;
 	margin-bottom : 20px;
 	background-color: white;
 }
+.auction {
+	width: 680px;
+	padding: 30px; 
+	padding-bottom:0px;
+	margin-left: 220px;
+	background-color: white;
+}
+.auctionPic {
+	float:left;
+	width: 250px;
+}
+.auctionPic img{
+	width: 250px;
+	height: 200px;
+}
+.auctionDetail{
+	width: 350px;
+	height: 230px;
+	margin-left:300px;
+}
+
 .item {
 	width: 680px;
 	height: 200px;
@@ -41,6 +61,10 @@
 .detail a {
 	font-size: 18px;
 	color:red;
+}
+#pager {
+	clear:right;
+	text-align: center;
 }
 </style>
 <script type="text/javascript">
@@ -74,6 +98,47 @@ $(function(){
 </script>
 <div class="counter"><!-- counter -->
 <%@ include file="/jsp/include/menu.txt" %>
+<div class="auction">
+<c:choose>
+	<c:when test="${!empty auction}">
+		<div>
+			<div>
+				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auction.title}
+			</div>
+			<div class="auctionPic"><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}" />'></div>
+			<div class="auctionDetail">
+				<div>${auction.brief}</div>
+				<div>&nbsp;</div>
+				<div>${auction.webSite}</div>
+			</div>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div id="crumbs">
+			<a href='<c:url value="/" />'><i class="icon-home"></i></a>
+			<script type="text/javascript">
+			$(function(){
+				
+				var loc = window.location.href;
+				$.log(loc);
+				var path = loc.split("/");
+				$.log(path);
+				$.each(path,function(i,v){
+					if(path[i] == 'categories'){
+						var a = $('<a>'+path[i]+'</a>').attr('href',cb.getSafeUrl('categories/'+path[i+1]+'/index.do')) ;
+						$("#crumbs").append('<b> » </b>').append(a);
+					}
+					if(path[i] == 'subcategories'){
+						var val = decodeURIComponent(path[i+2]).replace('.do','');
+						$("#crumbs").append('<b> » </b>').append(val);
+					}
+				});
+			});
+			</script>
+		</div>
+	</c:otherwise>
+</c:choose>
+</div>
 <div class="itemList">
 	<jsp:include page="/jsp/include/pager.jsp">
 		<jsp:param value="${pager.totalRecord}" name="totalRecord" />

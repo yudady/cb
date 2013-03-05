@@ -108,6 +108,12 @@ public class AuctionsController {
 		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 
+		
+		Auction auction = auctionService.findById(auctionId);
+		mav.addObject("auction", auction);
+		
+		
+		
 		/**
 		 * 分頁商品
 		 */

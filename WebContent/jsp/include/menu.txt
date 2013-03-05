@@ -9,7 +9,7 @@
 				<ul>
 					<c:forEach items="${category.subCategories}" var="subCategory">
 						<li class="sec-sidebar-li"><a
-							href='<c:url value="/categories/${category.id}/subcategories/${subCategory.id}/index.do" />'>${subCategory.name}(${subCategory.itemsCount})</a></li>
+							href='<c:url value="/categories/${category.id}/subcategories/${subCategory.id}/${subCategory.name}.do" />'>${subCategory.name}(${subCategory.itemsCount})</a></li>
 					</c:forEach>
 				</ul>
 			</c:if>

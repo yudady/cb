@@ -36,6 +36,9 @@ public class BidController {
 	@RequestMapping(value = "/bid/{itemId}/index", method = RequestMethod.GET)
 	public String bid(@ModelAttribute("bidder") Bidder bidder, BidForm form) {
 
+		
+		
+		
 		Long winningBidderId = bidder.getId();
 		Item item = itemService.findById(form.getItemId());
 		log.debug("[LOG][bid]" + winningBidderId);

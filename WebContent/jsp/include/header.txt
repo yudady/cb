@@ -73,22 +73,41 @@ $(function() {
 	
 	$("#loginFormBtn").on('click',function(){
 		$("#url").val(window.location.href);
-		$("#loginForm").submit();
+		var form = $("#loginForm");
+		var url = form.attr('action');
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : form.serialize(), 
+			success : function(data) {
+				window.location.reload(true);
+			}
+		});
+		return false;
 	});
-	$("#loginOutFormBtn").on('click',function(){
+
+	$("#loginOutFormBtn").on('click', function() {
 		$("#url").val(window.location.href);
-		$("#loginOutForm").submit();
+		var form = $("#loginOutForm");
+		var url = form.attr('action');
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : form.serialize(), 
+			success : function(data) {
+				window.location.reload(true);
+			}
+		});
+		return false;
 	});
-	$("#emailsubscribe input.subscribeemails").on('focusin',function(){
+
+	$("#emailsubscribe input.subscribeemails").on('focusin', function() {
 		$(this).val('');
 	});
-	$("#searchItem a").on('click',function(event){
+	$("#searchItem a").on('click', function(event) {
 		$("#searchItem").submit();
 		event.preventDefault();
 	});
-
-
-
 
 });
 </script>

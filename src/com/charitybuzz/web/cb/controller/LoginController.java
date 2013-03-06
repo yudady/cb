@@ -36,7 +36,6 @@ public class LoginController {
 	@Resource
 	private BidderService bidderService;
 
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView page(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("login");
@@ -57,26 +56,34 @@ public class LoginController {
 
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
+			log.debug("[LOG][LoginForm]" + form);
 			mav.setViewName("redirect:" + "/login.do");
 			return mav;
 		}
 
 		String email = form.getEmail();
 		String passWord = form.getPassWord();
-		String url = form.getUrl();
-
+		log.debug("[LOG][email]" + email);
+		log.debug("[LOG][passWord]" + passWord);
 		Bidder bidder = bidderService.findByEmail(email);
 		if (bidder == null) {
-			redirectAttributes.addFlashAttribute("errorMsg", "email error")
-					.addFlashAttribute("url", url);
+			/*
+			 * email error
+			 */
+			redirectAttributes.addFlashAttribute("errorMsg", "email error");
 			mav.setViewName("redirect:" + "/login.do");
 		} else if (!(bidder.getPassWord()).equals(passWord)) {
-			redirectAttributes.addFlashAttribute("errorMsg", "password error")
-					.addFlashAttribute("url", url);
+			/*
+			 * password error
+			 */
+			redirectAttributes.addFlashAttribute("errorMsg", "password error");
 			mav.setViewName("redirect:" + "/login.do");
 		} else {
+			/*
+			 * success
+			 */
 			session.setAttribute("bidder", bidder);
-			mav.setViewName("redirect:" + url);
+			mav.setViewName("redirect:/");
 		}
 		return mav;
 

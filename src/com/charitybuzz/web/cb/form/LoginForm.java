@@ -1,10 +1,16 @@
 package com.charitybuzz.web.cb.form;
 
-public class LoginForm {
+import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotEmpty;
 
+public class LoginForm {
+	
+	@NotEmpty(message = "Contact cannot be left empty.")
 	private String email;
+	
+	@NotEmpty(message = "Contact cannot be left empty.")
 	private String passWord;
-	private String url;
 
 	public String getEmail() {
 		return email;
@@ -22,12 +28,10 @@ public class LoginForm {
 		this.passWord = passWord;
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this,
+				ToStringStyle.SIMPLE_STYLE);
 	}
 
 }

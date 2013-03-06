@@ -82,15 +82,6 @@
 
 
 </style>
-<script type="text/javascript">
-$(function() {
-	$("#loginPageBtn").click(function(){
-		//$("#loginPage").submit();
-		$.log('1');
-		return true;
-	});
-});
-</script>
 <div class="counter"><!-- counter -->
 <%@ include file="/jsp/include/menu.txt" %>
 <div class="mainCounter">
@@ -107,11 +98,10 @@ $(function() {
 				<td>Password:</td>
 				<td>
 					<input type='passWord' name='passWord' /> 
-					<input type='hidden' name='url' id='url' value="${url}" />
 				</td>
 			</tr>
 			<tr>
-				<td><input id="loginPageBtn" type="submit" value="login" /></td>
+				<td><input type="submit" value="login" /></td>
 				<td><input name="reset" type="reset" /></td>
 			</tr>
 		</table>

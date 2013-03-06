@@ -229,8 +229,9 @@ $(function() {
 			return;
 		}
 		
-		$("#biddingBidUrl").val(window.location.href);
-		$("#biddingBidForm").submit();;
+		//$("#biddingBidUrl").val(window.location.href);
+		//$("#biddingBidForm").submit();
+		alert('todo ajax ');
 	});
 	
 	

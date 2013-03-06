@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.charitybuzz.cache.SidebarService;
+import com.charitybuzz.common.web.ReturnBean;
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.service.BidderService;
@@ -91,15 +92,15 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
-	public @ResponseBody String ajaxLogin(BidderLoginForm form, BindingResult result,
-			HttpSession session, RedirectAttributes redirectAttributes) {
+	public @ResponseBody ReturnBean ajaxLogin(BidderLoginForm form, BindingResult result,
+			HttpSession session) {
 		log.debug("[LOG][ajaxLogin]");
 
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			log.debug("[LOG][LoginForm]" + form);
 			mav.setViewName("redirect:" + "/login.do");
-			return "";
+			return new ReturnBean(false, "fail");
 		}
 
 		String email = form.getEmail();
@@ -108,7 +109,9 @@ public class LoginController {
 		log.debug("[LOG][passWord]" + passWord);
 		Bidder bidder = bidderService.findByEmail(email);
 		if (bidder == null) {
+			return new ReturnBean(false, "email error");
 		} else if (!(bidder.getPassWord()).equals(passWord)) {
+			return new ReturnBean(false, "passWord error");
 		} else {
 			/*
 			 * success
@@ -116,16 +119,16 @@ public class LoginController {
 			session.setAttribute("bidder", bidder);
 			mav.setViewName("redirect:/");
 		}
-		return "";
+		return new ReturnBean(true, "success");
 
 	}
 
 	@RequestMapping(value = "/ajaxLoginOut", method = RequestMethod.POST)
 	public @ResponseBody
-	String ajaxLoginOut(HttpSession session) {
+	ReturnBean ajaxLoginOut(HttpSession session) {
 		log.debug("[LOG][ajaxLoginOut]");
 		session.removeAttribute("bidder");
-		return "success";
+		return new ReturnBean(true, "success");
 	}
 
 }

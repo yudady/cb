@@ -73,8 +73,8 @@
 <script type="text/javascript">
 $(function(){
 	var loc = window.location.href ;
-	$.log(loc);
-	$.log(loc.search("displayClosed"));
+	//$.log(loc);
+	//$.log(loc.search("displayClosed"));
 	
 	
 	
@@ -123,17 +123,22 @@ $(function(){
 			$(function(){
 				
 				var loc = window.location.href;
-				$.log(loc);
+				//$.log(loc);
 				var path = loc.split("/");
-				$.log(path);
+				//$.log(path);
 				$.each(path,function(i,v){
 					if(path[i] == 'categories'){
 						var a = $('<a>'+path[i]+'</a>').attr('href',cb.getSafeUrl('categories/'+path[i+1]+'/index.do')) ;
 						$("#crumbs").append('<b> » </b>').append(a);
 					}
 					if(path[i] == 'subcategories'){
-						var val = decodeURIComponent(path[i+2]).replace('.do','');
-						$("#crumbs").append('<b> » </b>').append(val);
+						var pa = decodeURIComponent(path[i+2]);
+						var len = pa.search('.do');
+						pa = pa.substr(0,len);
+						$("#crumbs").append('<b> » </b>').append(pa);
+					}
+					if(path[i] == 'items'){
+						$("#crumbs").append('<b> » </b>').append('Active Lots');
 					}
 				});
 			});

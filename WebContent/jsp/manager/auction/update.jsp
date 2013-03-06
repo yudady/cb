@@ -15,9 +15,9 @@ $(function(){
 <div id="content">
 <form method="post" enctype="multipart/form-data">
 	<input type="hidden" name="id" value="${auction.id}" /><br/>
-	主題<input type="text" name="title" value="${auction.title}"  /><br/>
-	描述<input type="text" name="brief" value="${auction.brief}"  /><br/>
-	網址<input type="text" name="webSite" value="${auction.webSite}"  /><br/>
+	主題<input type="text" name="title" size="100" value="${auction.title}"  /><br/>
+	描述<textarea rows="10" cols="80" name="brief" >${auction.brief}</textarea><br/>
+	網址<input type="text" name="webSite" size="100" value="${auction.webSite}"  /><br/>
 	logo
 	<input type="hidden" id="auctionLogoPath" name="auctionLogoPath" value="${auction.auctionLogoPath}" />
 	<input type="hidden" id="auctionLogoPathAction" name="auctionLogoPathAction" />

@@ -18,7 +18,6 @@
 
 .indexDown {
 	margin-top:20px;
-	background-color: #FFFFFF;
 	padding: 2px;
 }
 
@@ -29,6 +28,7 @@
 #liveAuctions {
 	width: 600px;
 	margin-bottom: 20px;
+	background-color: #FFFFFF;
 }
 
 #liveAuctions hr {
@@ -64,7 +64,7 @@
 	position:absolute;
 	left:760px;*/
 	float:right;
-	width: 370px;
+	width: 365px;
 	background-color: gray;
 }
 
@@ -121,7 +121,7 @@
 	<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
 	<%@ include file="/jsp/include/tabs4.txt" %>
 </div>
-<div id="liveAuctions">
+<div id="liveAuctions"><!-- liveAuctions -->
 	<h1>Current Auctions</h1>
 	
 	<c:forEach items="${auctions.datas}" var="auction">
@@ -135,12 +135,14 @@
 			</dl>
 		</div>
 	</c:forEach>
+	
+	TODO使用假分頁
 	<jsp:include page="/jsp/include/pager.jsp">
 		<jsp:param value="${auctions.totalRecord}" name="totalRecord" />
 		<jsp:param value="${auctions.pageSize}" name="pageSize" />
 		<jsp:param value="" name="url" />
 	</jsp:include>
-</div>
+</div><!-- liveAuctions -->
 
 </div>
 <%@ include file="/jsp/include/footer.txt" %>

@@ -19,7 +19,7 @@ import com.charitybuzz.dto.Bidlog;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
-import com.charitybuzz.web.cb.form.BidForm;
+import com.charitybuzz.web.form.BidForm;
 
 @Controller
 @SessionAttributes({ "bidder" })

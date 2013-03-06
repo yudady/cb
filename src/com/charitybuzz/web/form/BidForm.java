@@ -1,4 +1,4 @@
-package com.charitybuzz.web.cb.form;
+package com.charitybuzz.web.form;
 
 public class BidForm {
 

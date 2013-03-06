@@ -1,18 +1,35 @@
-package com.charitybuzz.web.manager.form;
+package com.charitybuzz.web.form;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * manager login
  * 
  * @author Administrator
  * 
  */
-public class LoginForm {
+public class OperatorForm {
 
+	/**
+	 * 拍賣商家ID
+	 */
+	private Long id;
+	/**
+	 * 公司名稱
+	 */
 	private String name;
+	/**
+	 * 密碼
+	 */
 	private String passWord;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

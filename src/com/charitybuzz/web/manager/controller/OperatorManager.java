@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.dto.Operator;
 import com.charitybuzz.service.OperatorService;
-import com.charitybuzz.web.manager.form.OperatorForm;
+import com.charitybuzz.web.form.OperatorForm;
 
 @Controller
 @RequestMapping(value = "/manager/operator")

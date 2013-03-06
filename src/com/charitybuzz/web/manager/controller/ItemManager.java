@@ -39,7 +39,7 @@ import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.service.SubcategoryItemService;
-import com.charitybuzz.web.manager.form.ItemForm;
+import com.charitybuzz.web.form.ItemForm;
 
 @Controller
 @RequestMapping(value = "/manager/item")

@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.charitybuzz.common.Constant;
 import com.charitybuzz.dto.Auction;
 import com.charitybuzz.service.AuctionService;
-import com.charitybuzz.web.manager.form.AuctionForm;
+import com.charitybuzz.web.form.AuctionForm;
 
 @Controller
 @RequestMapping(value = "/manager/auction")

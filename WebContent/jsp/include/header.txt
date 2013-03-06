@@ -125,7 +125,7 @@ $(function() {
 		<a class="cssButton loginLink" id="loginBtn">login</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a class="cssButton" id="registerBtn">register</a>
 		<div>
-		<form id="loginForm" action="<c:url value='/login/form.do' />" method='post'>
+		<form id="loginForm" action="<c:url value='/login/ajaxLogin.do' />" method='post'>
 			<table>
 				<tr>
 					<td>Email Address:</td>
@@ -152,7 +152,7 @@ $(function() {
         <div>
         	You are logged in as ${bidder.email} | 
         	<a href="#" >Account info</a> | 
-			<form id="loginOutForm" action="<c:url value='/login/loginOut.do' />" method='post'>
+			<form id="loginOutForm" action="<c:url value='/login/ajaxLoginOut.do' />" method='post'>
 				<input type='hidden' id='loginOutFormEmail' value="${bidder.email}" />
 				<input type='hidden' id='loginOutFormItemId' value="${item.id}" />
 				<input type='hidden' name='url' id='url' value=""/>

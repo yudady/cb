@@ -1,4 +1,4 @@
-package com.charitybuzz.web.manager.form;
+package com.charitybuzz.web.form;
 
 import java.util.Date;
 

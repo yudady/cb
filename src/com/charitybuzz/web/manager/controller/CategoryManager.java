@@ -16,7 +16,7 @@ import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.CategoryService;
 import com.charitybuzz.service.SubCategoryService;
-import com.charitybuzz.web.manager.form.CategoryForm;
+import com.charitybuzz.web.form.CategoryForm;
 
 @Controller
 @RequestMapping(value = "/manager/category")

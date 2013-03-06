@@ -1,10 +1,10 @@
-package com.charitybuzz.web.cb.form;
+package com.charitybuzz.web.form;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class LoginForm {
+public class BidderLoginForm {
 	
 	@NotEmpty(message = "Contact cannot be left empty.")
 	private String email;

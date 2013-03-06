@@ -20,7 +20,7 @@ import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.CategoryService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.SubCategoryService;
-import com.charitybuzz.web.manager.form.SubCategoryForm;
+import com.charitybuzz.web.form.SubCategoryForm;
 
 @Controller
 @RequestMapping(value = "/manager/subcategory")

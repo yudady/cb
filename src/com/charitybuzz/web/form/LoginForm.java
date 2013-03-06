@@ -1,32 +1,18 @@
-package com.charitybuzz.web.manager.form;
+package com.charitybuzz.web.form;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * 第一級目錄
+ * manager login
  * 
  * @author Administrator
  * 
  */
-public class CategoryForm {
+public class LoginForm {
 
-	/**
-	 * 第一級目錄id
-	 */
-	private Long id;
-	/**
-	 * 第一級目錄名稱分類種類
-	 */
 	private String name;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	private String passWord;
 
 	public String getName() {
 		return name;
@@ -34,6 +20,14 @@ public class CategoryForm {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
 
 	@Override

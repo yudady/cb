@@ -16,6 +16,13 @@ import com.charitybuzz.dto.Item;
 
 public class ItemDao extends BaseDao<Item> {
 
+	/**
+	 * create Item by ResultSet
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
 	private static Item newItem(ResultSet rs) throws SQLException {
 		return new Item(rs.getLong("id"), rs.getLong("auctionId"),
 				rs.getString("title"), rs.getDouble("currentBid"),
@@ -25,6 +32,23 @@ public class ItemDao extends BaseDao<Item> {
 				rs.getString("legalTerms"), rs.getString("shipping"),
 				rs.getLong("winningBidderId"), rs.getDate("createdDate"),
 				rs.getDate("updatedDate"));
+
+	}
+
+	/**
+	 * create list by ResultSet
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	private static List<Item> getList(ResultSet rs) throws SQLException {
+		List<Item> list = new ArrayList<Item>();
+		while (rs.next()) {
+			Item it = ItemDao.newItem(rs);
+			list.add(it);
+		}
+		return list;
 
 	}
 
@@ -42,13 +66,7 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -72,13 +90,7 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -98,13 +110,7 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -141,18 +147,18 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
 	}
 
+	/**
+	 * 2級目錄找商品
+	 * 
+	 * @param subCategoryId
+	 * @return
+	 */
 	public Pager<Item> findPagerBySubCategoryId(final Long subCategoryId) {
 		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
 		return this.queryPager(sql, new QueryPager<Item>() {
@@ -163,13 +169,30 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
+				return ItemDao.getList(rs);
+			}
 
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+		});
+	}
+
+	/**
+	 * 分頁-2級目錄找結標商品
+	 * 
+	 * @param subcategoryId
+	 * @return
+	 */
+	public Pager<Item> findPagerCloseItemsBySubCategoryId(
+			final Long subCategoryId) {
+		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '0' AND A.subCategoryId = ? AND b.id = a.itemid ";
+		return this.queryPager(sql, new QueryPager<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, subCategoryId);
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -191,13 +214,7 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -219,13 +236,7 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -247,13 +258,7 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -275,13 +280,7 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -334,13 +333,7 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
@@ -515,18 +508,18 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
-
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+				return ItemDao.getList(rs);
 			}
 
 		});
 	}
 
+	/**
+	 * 分頁 拍賣會登錄商品列表
+	 * 
+	 * @param auctionId
+	 * @return
+	 */
 	public Pager<Item> findPagerByAuctionId(final Long auctionId) {
 		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate and auctionId = ? ";
 		return this.queryPager(sql, new QueryPager<Item>() {
@@ -537,13 +530,29 @@ public class ItemDao extends BaseDao<Item> {
 
 			@Override
 			public List<Item> doResultSet() throws SQLException {
+				return ItemDao.getList(rs);
+			}
 
-				List<Item> itemList = new ArrayList<Item>();
-				while (rs.next()) {
-					Item it = ItemDao.newItem(rs);
-					itemList.add(it);
-				}
-				return itemList;
+		});
+	}
+
+	/**
+	 * 分頁 拍賣會登錄結標商品列表
+	 * 
+	 * @param auctionId
+	 * @return
+	 */
+	public Pager<Item> findPagerCloseItemsByAuctionId(final Long auctionId) {
+		String sql = " SELECT * FROM item WHERE status = '0' AND STARTDATE <= SYSDATE and closedate >= sysdate and auctionId = ? ";
+		return this.queryPager(sql, new QueryPager<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, auctionId);
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+				return ItemDao.getList(rs);
 			}
 
 		});

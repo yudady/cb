@@ -35,7 +35,7 @@ public abstract class QueryPager<T> extends JdbcObject<T> {
 		 * query count
 		 */
 		String totalRecordSQL = OracleUtils.getTotalRecord(this.getSql());
-		log.debug("[LOG][totalRecordSQL]" + totalRecordSQL);
+		//log.debug("[LOG][totalRecordSQL]" + totalRecordSQL);
 		this.setPreparedStatement(conn.prepareStatement(totalRecordSQL));
 		this.doPreparedStatement();
 		rs = this.getPreparedStatement().executeQuery();
@@ -49,7 +49,7 @@ public abstract class QueryPager<T> extends JdbcObject<T> {
 		String namedPageSQL = OracleUtils.getNamedPageSQL(this.getSql(),
 				pager.getPageIndex(),
 				pager.getPageIndex() + pager.getPageSize());
-		log.debug("[LOG][namedPageSQL]" + namedPageSQL);
+		//log.debug("[LOG][namedPageSQL]" + namedPageSQL);
 		this.setPreparedStatement(conn.prepareStatement(namedPageSQL));
 		this.doPreparedStatement();
 		rs = this.getPreparedStatement().executeQuery();

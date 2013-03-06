@@ -87,12 +87,12 @@ $(function(){
 	 //action="displayClosed.do"
 	$("#ftr-displayClosed").on('click',function(event){
 		var src = window.location.href  ;
-		src = src.substr(0,src.lastIndexOf("/"));
+		src = src.replace("?displayClosed=true","");
 		var _this = $(this);
 		if(_this.prop("checked")){
-			window.location.href = src + "/index.do?displayClosed=true";
+			window.location.href = src + "?displayClosed=true";
 		}else{
-			window.location.href = src + "/index.do";
+			window.location.href = src + "";
 		}
 		event.preventDefault();
 		event.stopPropagation();

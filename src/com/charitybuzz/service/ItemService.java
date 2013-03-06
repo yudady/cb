@@ -49,6 +49,17 @@ public class ItemService {
 	}
 
 	/**
+	 * 分頁-2級目錄找結標商品
+	 * 
+	 * @param subcategoryId
+	 * @return
+	 */
+	public Pager<Item> findPagerCloseItemsBySubCategoryId(Long subCategoryId) {
+		System.out.println("[LOG]1");
+		return itemDao.findPagerCloseItemsBySubCategoryId(subCategoryId);
+	}
+
+	/**
 	 * 找出全部商品
 	 * 
 	 * @return
@@ -222,7 +233,7 @@ public class ItemService {
 	}
 
 	/**
-	 * 分頁 拍賣者登錄商品列表
+	 * 分頁 拍賣會登錄商品列表
 	 * 
 	 * @param auctioneerId
 	 * @return
@@ -231,5 +242,14 @@ public class ItemService {
 		return itemDao.findPagerByAuctionId(auctionId);
 	}
 
+	/**
+	 * 分頁 拍賣會登錄結標商品列表
+	 * 
+	 * @param auctionId
+	 * @return
+	 */
+	public Pager<Item> findPagerCloseItemsByAuctionId(Long auctionId) {
+		return itemDao.findPagerCloseItemsByAuctionId(auctionId);
+	}
 
 }

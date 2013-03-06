@@ -136,6 +136,7 @@
 #biddingBidNowBtn {
 	position: absolute;
 	left: 200px;
+	top: 85px;
 }
 
 

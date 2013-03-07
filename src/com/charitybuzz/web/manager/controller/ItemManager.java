@@ -126,7 +126,7 @@ public class ItemManager {
 
 		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
 
-		this.pictures(form);
+		this.pictures(itemId,form);
 
 		return mav;
 	}
@@ -185,13 +185,14 @@ public class ItemManager {
 	 */
 	@RequestMapping(value = "/auctionId/{auctionId}/item/{itemId}/update", method = RequestMethod.POST)
 	public ModelAndView itemUpdate(@PathVariable Long auctionId,
+			@PathVariable Long itemId,
 			@ModelAttribute("itemForm") ItemForm form) throws IOException {
 
 		ModelAndView mav = new ModelAndView("redirect:/manager/auctionId/"
 				+ auctionId + "/item/list.do");
 
 		log.debug("[LOG]ItemForm=" + form);
-		this.pictures(form);
+		this.pictures(itemId,form);
 		Item it = new Item();
 		BeanUtils.copyProperties(form, it);
 
@@ -213,7 +214,7 @@ public class ItemManager {
 		return mav;
 	}
 
-	private void pictures(ItemForm form) throws IOException {
+	private void pictures(Long itemId,ItemForm form) throws IOException {
 
 		List<CommonsMultipartFile> files = form.getFiles();
 		List<Integer> priorities = form.getPriorities();
@@ -250,12 +251,12 @@ public class ItemManager {
 					} else {
 						fileName = "";
 					}
-					updatePictures.add(new Picture(picId, form.getId(),
+					updatePictures.add(new Picture(picId, itemId,
 							priority, fileName));
 
 				}
 				if ("c".equals(crud)) {
-					insertPictures.add(new Picture(form.getId(), priority,
+					insertPictures.add(new Picture(itemId, priority,
 							fileName));
 					FileUtils.copyInputStreamToFile(multipartFile
 							.getInputStream(), new File(

@@ -362,8 +362,8 @@ public class ItemDao extends BaseDao<Item> {
 
 		String sql = "insert into item (id,auctionId,title,currentbid,startdate,closedate,"
 				+ "estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,"
-				+ "winningbidderid,createddate,updateddate,auctionId) values (?,?,"
-				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate,?)";
+				+ "winningbidderid,createddate,updateddate) values (?,?,"
+				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -382,7 +382,6 @@ public class ItemDao extends BaseDao<Item> {
 				this.preparedStatement.setString(11, item.getLegalTerms());
 				this.preparedStatement.setString(12, item.getShipping());
 				this.preparedStatement.setLong(13, item.getWinningBidderId());
-				this.preparedStatement.setLong(14, item.getAuctionId());
 			}
 
 		});

@@ -6,6 +6,7 @@
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>' />
 <style>
 table {
+	width:100%;
     border-top: 1px solid black;
     border-left: 1px solid black;
 }
@@ -13,13 +14,18 @@ th, td {
     border-right: 1px solid black;
     border-bottom: 1px solid black;
 }
+#content img {
+	vertical-align:text-top;
+    width: 50px;
+    height: 50px;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
 
 	});
 </script>
-<div id="content">
+<div id="content"><!-- content -->
 	<div>
 		<a href='<c:url value="/manager/auction/add.do"/>'>
 			<input type="button" id="add" value="add">
@@ -45,22 +51,22 @@ th, td {
 				<td>${auction.title}</td>
 				<td>${auction.brief}</td>
 				<td>${auction.webSite}</td>
-				<td>${auction.auctionLogoPath}</td>
+				<td><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' /></td>
 				<td><fmt:formatDate value="${auction.startDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 				<td><fmt:formatDate value="${auction.closeDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 				<c:choose>
 					<c:when test="${auction.closeDate.time < nowDate}">
-						<td><a href='<c:url value="/manager/item/auctionId/${auction.id}/list.do" />'>拍賣會結束Item List</a></td>
+						<td><a href='<c:url value="/manager/auctionId/${auction.id}/item/list.do" />'>拍賣會結束Item List</a></td>
 						<td>拍賣會結束</td>
 						<td>拍賣會結束</td>
 					</c:when>
 					<c:when test="${auction.startDate.time > nowDate}">
-						<td><a href='<c:url value="/manager/item/auctionId/${auction.id}/list.do" />'>拍賣會尚未開始Item List</a></td>
+						<td><a href='<c:url value="/manager/auctionId/${auction.id}/item/list.do" />'>拍賣會尚未開始Item List</a></td>
 						<td><a href='<c:url value="/manager/auction/${auction.id}/update.do"/>'>拍賣會尚未開始update</a></td>
 						<td><a href='<c:url value="/manager/auction/${auction.id}/delete.do"/>'>拍賣會尚未開始delete</a></td>
 					</c:when>
 					<c:otherwise>
-						<td><a href='<c:url value="/manager/item/auctionId/${auction.id}/list.do" />'>拍賣中Item List</a></td>
+						<td><a href='<c:url value="/manager/auctionId/${auction.id}/item/list.do" />'>拍賣中Item List</a></td>
 						<td><a href='<c:url value="/manager/auction/${auction.id}/update.do"/>'>拍賣中update</a></td>
 						<td>拍賣中</td>
 					</c:otherwise>
@@ -68,5 +74,5 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-</div>
+</div><!-- content -->
 <%@ include file="/jsp/include/footer_manager.txt"%>

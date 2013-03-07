@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
@@ -17,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,7 +40,7 @@ import com.charitybuzz.service.SubcategoryItemService;
 import com.charitybuzz.web.form.ItemForm;
 
 @Controller
-@RequestMapping(value = "/manager/item")
+@RequestMapping(value = "/manager")
 @SessionAttributes(value = { "operator" })
 public class ItemManager {
 
@@ -77,28 +75,28 @@ public class ItemManager {
 	}
 
 	/**
-	 * 拿到列表
-	 * 當商品開始拍賣，則不能刪除
+	 * 拿到列表 當商品開始拍賣，則不能刪除
 	 * 
 	 * @param form
 	 * @param sessionObject
 	 * @return
 	 */
-	@RequestMapping(value = "/auctionId/{auctionId}/list")
+	@RequestMapping(value = "/auctionId/{auctionId}/item/list")
 	public ModelAndView itemList(@PathVariable Long auctionId) {
 		ModelAndView mav = new ModelAndView("manager/item/list");
 		Pager<Item> items = itemService.findPagerByAuctionId(auctionId);
 		mav.addObject("items", items);
 		return mav;
 	}
+
 	/**
 	 * 拿到add page
 	 * 
 	 * @param sessionObject
 	 * @return
 	 */
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView itemAddPage() {
+	@RequestMapping(value = "/auctionId/{auctionId}/item/add", method = RequestMethod.GET)
+	public ModelAndView itemAddPage(@PathVariable Long auctionId) {
 		ModelAndView mav = new ModelAndView("manager/item/add");
 		List<SubCategory> subCategories = subCategoryService.findAll();
 		mav.addObject("subCategories", subCategories);
@@ -114,21 +112,22 @@ public class ItemManager {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView itemAdd(ItemForm form, BindingResult result,
-			HttpSession session) throws IOException {
+	@RequestMapping(value = "/auctionId/{auctionId}/item/add", method = RequestMethod.POST)
+	public ModelAndView itemAdd(@PathVariable Long auctionId, ItemForm form)
+			throws IOException {
+		ModelAndView mav = new ModelAndView("redirect:/manager/auctionId/"
+				+ auctionId + "/item/list.do");
 
 		log.debug("[LOG]ItemForm=" + form);
 		Item it = new Item();
 		BeanUtils.copyProperties(form, it);
-
+		it.setAuctionId(auctionId);
 		Long itemId = itemService.insert(it);
 
 		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
 
 		this.pictures(form);
 
-		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
 	}
 
@@ -139,8 +138,9 @@ public class ItemManager {
 	 * @param itemId
 	 * @return
 	 */
-	@RequestMapping(value = "{itemId}/update", method = RequestMethod.GET)
-	public ModelAndView itemUpdatePage(@PathVariable Long itemId) {
+	@RequestMapping(value = "/auctionId/{auctionId}/item/{itemId}/update", method = RequestMethod.GET)
+	public ModelAndView itemUpdatePage(@PathVariable Long auctionId,
+			@PathVariable Long itemId) {
 		ModelAndView mav = new ModelAndView("manager/item/update");
 
 		List<SubCategory> subCategories = subCategoryService.findAll();
@@ -183,9 +183,13 @@ public class ItemManager {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "{itemId}/update", method = RequestMethod.POST)
-	public ModelAndView itemUpdate(@ModelAttribute("itemForm") ItemForm form)
-			throws IOException {
+	@RequestMapping(value = "/auctionId/{auctionId}/item/{itemId}/update", method = RequestMethod.POST)
+	public ModelAndView itemUpdate(@PathVariable Long auctionId,
+			@ModelAttribute("itemForm") ItemForm form) throws IOException {
+
+		ModelAndView mav = new ModelAndView("redirect:/manager/auctionId/"
+				+ auctionId + "/item/list.do");
+
 		log.debug("[LOG]ItemForm=" + form);
 		this.pictures(form);
 		Item it = new Item();
@@ -197,14 +201,15 @@ public class ItemManager {
 
 		subcategoryItemService.update(form.getId(), form.getSubCategoryIds());
 
-		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
 		return mav;
 	}
 
-	@RequestMapping(value = "{itemId}/delete", method = RequestMethod.GET)
-	public ModelAndView itemDelete(@PathVariable Long itemId) {
+	@RequestMapping(value = "/auctionId/{auctionId}/item/{itemId}/delete", method = RequestMethod.GET)
+	public ModelAndView itemDelete(@PathVariable Long auctionId,
+			@PathVariable Long itemId) {
 		itemService.delete(itemId);
-		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
+		ModelAndView mav = new ModelAndView("redirect:/manager/auctionId/"
+				+ auctionId + "/item/list.do");
 		return mav;
 	}
 

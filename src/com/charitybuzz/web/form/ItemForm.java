@@ -99,7 +99,12 @@ public class ItemForm implements java.io.Serializable {
 
 	private List<Integer> priorities;
 
+	private List<String> oldPhotoPath;
 	private List<Long> picIds;
+
+
+
+
 
 	private List<String> cruds;
 
@@ -216,12 +221,12 @@ public class ItemForm implements java.io.Serializable {
 		this.priorities = priorities;
 	}
 
-	public List<Long> getPicIds() {
-		return picIds;
+	public List<String> getOldPhotoPath() {
+		return oldPhotoPath;
 	}
 
-	public void setPicIds(List<Long> picIds) {
-		this.picIds = picIds;
+	public void setOldPhotoPath(List<String> oldPhotoPath) {
+		this.oldPhotoPath = oldPhotoPath;
 	}
 
 	public List<String> getCruds() {
@@ -231,7 +236,13 @@ public class ItemForm implements java.io.Serializable {
 	public void setCruds(List<String> cruds) {
 		this.cruds = cruds;
 	}
+	public List<Long> getPicIds() {
+		return picIds;
+	}
 
+	public void setPicIds(List<Long> picIds) {
+		this.picIds = picIds;
+	}
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this,

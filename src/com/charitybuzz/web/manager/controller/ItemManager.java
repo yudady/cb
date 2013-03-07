@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -126,7 +128,7 @@ public class ItemManager {
 
 		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
 
-		this.pictures(itemId,form);
+		this.pictures(itemId, form);
 
 		return mav;
 	}
@@ -185,14 +187,14 @@ public class ItemManager {
 	 */
 	@RequestMapping(value = "/auctionId/{auctionId}/item/{itemId}/update", method = RequestMethod.POST)
 	public ModelAndView itemUpdate(@PathVariable Long auctionId,
-			@PathVariable Long itemId,
-			@ModelAttribute("itemForm") ItemForm form) throws IOException {
-
+			@PathVariable Long itemId, @ModelAttribute("itemForm") ItemForm form)
+			throws IOException {
+		// TODO
 		ModelAndView mav = new ModelAndView("redirect:/manager/auctionId/"
 				+ auctionId + "/item/list.do");
 
 		log.debug("[LOG]ItemForm=" + form);
-		this.pictures(itemId,form);
+		this.pictures(itemId, form);
 		Item it = new Item();
 		BeanUtils.copyProperties(form, it);
 
@@ -214,55 +216,53 @@ public class ItemManager {
 		return mav;
 	}
 
-	private void pictures(Long itemId,ItemForm form) throws IOException {
+	private void pictures(Long itemId, ItemForm form) throws IOException {
 
 		List<CommonsMultipartFile> files = form.getFiles();
 		List<Integer> priorities = form.getPriorities();
-		List<Long> picIds = form.getPicIds();
+		List<String> oldPhotoPaths = form.getOldPhotoPath();
 		List<String> cruds = form.getCruds();
+		List<Long> pics = form.getPicIds();
 
 		List<Picture> insertPictures = new ArrayList<Picture>();
 		List<Picture> updatePictures = new ArrayList<Picture>();
 		List<Long> deletePictures = new ArrayList<Long>();
-		if (null != files && files.size() > 0) {
-			for (int i = 0; i < files.size(); i++) {
-				CommonsMultipartFile multipartFile = files.get(i);
-				Integer priority = priorities.get(i);
-				String crud = cruds.get(i);
-				Long picId = picIds.get(i);
 
-				if ("d".equals(crud)) {
-					deletePictures.add(picId);
-				}
+		log.debug("[LOG][priorities]" + priorities.size());
+		log.debug("[LOG][oldPhotoPaths]" + oldPhotoPaths.size());
+		log.debug("[LOG][cruds]" + cruds.size());
+		log.debug("[LOG][priorities]" + priorities);
+		log.debug("[LOG][oldPhotoPaths]" + oldPhotoPaths);
+		log.debug("[LOG][cruds]" + cruds);
+		log.debug("[LOG][pics]" + pics);
 
+		for (int i = 0; i < cruds.size(); i++) {
+			CommonsMultipartFile multipartFile = files.get(i);
+			Integer priority = priorities.get(i);
+			String oldPhotoPath = oldPhotoPaths.get(i);
+			String crud = cruds.get(i);
+			Long picId = pics.get(i);
+
+			if ("c".equals(crud)) {
 				String fileName = multipartFile.getOriginalFilename();
-
-				if (StringUtils.isNotBlank(fileName)) {
-					fileName = new Date().getTime()
-							+ fileName.substring(fileName.indexOf("."));
+				if(StringUtils.isNotBlank(fileName)){
+					log.debug("[LOG][pics]" + pics);
+					insertPictures.add(new Picture(itemId, priority, fileName));
+					FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
+							new File(Constant.UPLOAD_FOLDER_ITEM + fileName));
 				}
-
-				if ("u".equals(crud)) {
-
-					if (StringUtils.isNotBlank(fileName)) {
-						FileUtils.copyInputStreamToFile(multipartFile
-								.getInputStream(), new File(
-								Constant.UPLOAD_FOLDER_ITEM + fileName));
-					} else {
-						fileName = "";
-					}
-					updatePictures.add(new Picture(picId, itemId,
-							priority, fileName));
-
-				}
-				if ("c".equals(crud)) {
-					insertPictures.add(new Picture(itemId, priority,
+			}
+			if ("d".equals(crud)) {
+				deletePictures.add(picId);
+			}
+			if ("u".equals(crud) && StringUtils.isNotBlank(oldPhotoPath)) {
+				String fileName = multipartFile.getOriginalFilename();
+				if(StringUtils.isNotBlank(fileName)){
+					FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
+							new File(Constant.UPLOAD_FOLDER_ITEM + fileName));
+					updatePictures.add(new Picture(picId, itemId, priority,
 							fileName));
-					FileUtils.copyInputStreamToFile(multipartFile
-							.getInputStream(), new File(
-							Constant.UPLOAD_FOLDER_ITEM + fileName));
 				}
-
 			}
 		}
 		// 圖片處理
@@ -270,4 +270,13 @@ public class ItemManager {
 		pictureService.delete(deletePictures);
 		pictureService.update(updatePictures);
 	}
+
+	@RequestMapping(value = "/pictures", method = RequestMethod.POST)
+	public @ResponseBody
+	List<Picture> getPictures(
+			@RequestParam(value = "itemId", required = true) Long itemId) {
+		List<Picture> pictures = pictureService.findByItemId(itemId);
+		return pictures;
+	}
+
 }

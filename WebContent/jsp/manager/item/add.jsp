@@ -26,18 +26,75 @@
 clear: both;
 }
 </style>
-<script type="text/javascript" src='<c:url value="/js/manager/item.js"/>'></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('.cleditor').cleditor({
-			width:        700, // width not including margins, borders or padding
-	        height:       150 // height not including margins, borders or padding});
-		});
+$(function() {
+
+    function addHtml(obj){
+        var uploadPicsSize = $(".uploadPics").size() ;
+        var imgSrc = cb.getSafeUrl() + '/pic/upload/item/' + obj.photoPath;
+        var picId = obj.id || "";
+        var html = '<li class="uploadPics">' ;
+        html = html + '<span>Picture ' + uploadPicsSize + ' : </span>';
+        html = html + '<input class="deleteBtn" type="button" value="delete" />' ; 
+        html = html + '<input type="hidden" value="'+picId+'" name="picIds[' + uploadPicsSize + ']">' ; 
+        html = html + '<span>order<input class="indexPriorities" type="text" name="priorities[' + uploadPicsSize + ']" value="' + uploadPicsSize + '" size="3" /></span>' ; 
+        if(obj.photoPath != ''){
+        	html = html + '<input type="hidden" name="oldPhotoPath[' + uploadPicsSize + ']" value="'+obj.photoPath+'" />' ; 
+        	html = html + '<img src="'+imgSrc+'" />' ; 
+        	html = html + '<input class="crud" type="hidden" value="r" name="cruds[' + uploadPicsSize + ']" />' ; 
+        }else {
+        	html = html + '<input type="hidden" name="oldPhotoPath[' + uploadPicsSize + ']" value="" />' ; 
+        	html = html + '<img src="" />' ; 
+        	html = html + '<input class="crud" type="hidden" value="c" name="cruds[' + uploadPicsSize + ']" />' ; 
+        }
+        html = html + '<input class="uploadPicsFile" type="file" name="files['+uploadPicsSize+']" /> ' ; 
+        html = html + '</li>'; 
+
+        return html;
+    }
 	
-	});
+	
+$('#itemForm').on('click','.deleteBtn',function(){
+	var li = $(this).parent();
+	var crudInput = li.find('.crud') ;
+	var val = crudInput.val();
+	if(val == 'r' || val == 'u'){
+		crudInput.val('d');
+	}
+	if(val == 'c'){
+		crudInput.val('');
+	}
+	li.hide();
+});
+$('#itemForm').on('click','.uploadPicsFile',function(){
+	var li = $(this).parent();
+	var crudInput = li.find('.crud') ;
+	var val = crudInput.val();
+	if(val == 'r'){
+		crudInput.val('u');
+	}
+	var img = li.find('img') ;
+	img.attr('src','');
+});
+$("#addPicBtn").on('click',function(){
+    var target = $(this).parent();
+    target.append(addHtml({
+    	photoPath : ''
+    }));
+    return false;
+});
+
+
+
+$('.cleditor').cleditor({
+	width:        700, // width not including margins, borders or padding
+	height:       150 // height not including margins, borders or padding});
+});	
+
+});
 </script>
 <div id="content">
-<form method="post" enctype="multipart/form-data">
+<form id="itemForm" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="itemIdForm" value="${item.id}"/>
 	第二級目錄
 	<dl>
@@ -71,8 +128,3 @@ clear: both;
 </form>
 </div>
 <%@ include file="/jsp/include/footer_manager.txt" %>
-
-
-
-
-

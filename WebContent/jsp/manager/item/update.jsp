@@ -4,8 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"  %>  
 <%@ include file="/jsp/include/header_manager.txt" %>
 <%@ include file="/jsp/include/menu_manager.txt" %>
-<%@ page import="java.util.*" %>
-<%@ page import="com.charitybuzz.dto.*" %>
 
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/jquery/CLEditor1_3_0/jquery.cleditor.min.js"/>'></script>
@@ -51,38 +49,86 @@
 clear: both;
 }
 </style>
-<script type="text/javascript" src='<c:url value="/js/manager/item.js"/>'></script>
 <script type="text/javascript">
-	$(function() {
-		
-		$('.cleditor').cleditor({
-			width:        700, // width not including margins, borders or padding
-	        height:       150 // height not including margins, borders or padding});
-		});
-	
+$(function() {
 
-	
-		<%
-			Item item = (Item)request.getAttribute("item");
-			List<Picture> pictures = item.getPictures();
-			for(int i = 0 ;i < pictures.size() ; i ++){
-		%>
-				picCount = <%= i %> ;
-				addPic(picCount , <%= pictures.get(i).getPriority() %> ,'r',<%= pictures.get(i).getId() %> ,'<c:url value="/pic/upload/item/"/><%=pictures.get(i).getPhotoPath()%>');
-		<%
-			}	
-					
-		%>
-		
+    function addHtml(obj){
+        var uploadPicsSize = $(".uploadPics").size() ;
+        var imgSrc = cb.getSafeUrl() + '/pic/upload/item/' + obj.photoPath;
+        var picId = obj.id || "";
+        var html = '<li class="uploadPics">' ;
+        html = html + '<span>Picture ' + uploadPicsSize + ' : </span>';
+        html = html + '<input class="deleteBtn" type="button" value="delete" />' ; 
+        html = html + '<input type="hidden" value="'+picId+'" name="picIds[' + uploadPicsSize + ']">' ; 
+        html = html + '<span>order<input class="indexPriorities" type="text" name="priorities[' + uploadPicsSize + ']" value="' + uploadPicsSize + '" size="3" /></span>' ; 
+        if(obj.photoPath != ''){
+        	html = html + '<input type="hidden" name="oldPhotoPath[' + uploadPicsSize + ']" value="'+obj.photoPath+'" />' ; 
+        	html = html + '<img src="'+imgSrc+'" />' ; 
+        	html = html + '<input class="crud" type="hidden" value="r" name="cruds[' + uploadPicsSize + ']" />' ; 
+        }else {
+        	html = html + '<input type="hidden" name="oldPhotoPath[' + uploadPicsSize + ']" value="" />' ; 
+        	html = html + '<img src="" />' ; 
+        	html = html + '<input class="crud" type="hidden" value="c" name="cruds[' + uploadPicsSize + ']" />' ; 
+        }
+        html = html + '<input class="uploadPicsFile" type="file" name="files['+uploadPicsSize+']" /> ' ; 
+        html = html + '</li>'; 
 
+        return html;
+    }
+	$.ajax({
+		type : "POST",
+		url : cb.getSafeUrl('manager/pictures.do'),
+		data : {itemId:'${itemId}'}, 
+		dataType: "json",
+		success : function(data) {
+			$.each(data,function(){
+				$("#addPicBtn").parent().append(addHtml(this));
+			});
+		}
 	});
 	
 	
+$('#itemForm').on('click','.deleteBtn',function(){
+	var li = $(this).parent();
+	var crudInput = li.find('.crud') ;
+	var val = crudInput.val();
+	if(val == 'r' || val == 'u'){
+		crudInput.val('d');
+	}
+	if(val == 'c'){
+		crudInput.val('');
+	}
+	li.hide();
+});
+$('#itemForm').on('click','.uploadPicsFile',function(){
+	var li = $(this).parent();
+	var crudInput = li.find('.crud') ;
+	var val = crudInput.val();
+	if(val == 'r'){
+		crudInput.val('u');
+	}
+	var img = li.find('img') ;
+	img.attr('src','');
+});
+$("#addPicBtn").on('click',function(){
+    var target = $(this).parent();
+    target.append(addHtml({
+    	photoPath : ''
+    }));
+    return false;
+});
 
 
+
+$('.cleditor').cleditor({
+	width:        700, // width not including margins, borders or padding
+	height:       150 // height not including margins, borders or padding});
+});	
+
+});
 </script>
 <div id="content">
-<form method="post" enctype="multipart/form-data">
+<form id="itemForm" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="id" value="${item.id}"/>
 	<p>第二級目錄</p>
 	<dl>

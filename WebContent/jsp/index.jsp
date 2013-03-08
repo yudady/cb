@@ -86,8 +86,8 @@
 	});
 });
 </script>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/slideshow.css"/>'/>
-<script type="text/javascript" src='<c:url value="/js/slideshow.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.css"/>'/>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.js"/>'></script>
 
 <div class="indexTop">
 <%@ include file="/jsp/include/menu.txt" %>

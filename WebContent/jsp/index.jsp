@@ -86,30 +86,30 @@
 	        });
 	    }
 	});
-	$(".slideshow").slideshow();
+	$("#contentSlideshow").slideshow({"timer": 2000 });
 });
 </script>
 
 <div class="indexTop">
 <%@ include file="/jsp/include/menu.txt" %>
 <div class="content">
-	<div class="slideshow">
-		<div class="slideshow-top">
-			<div class="picMsg">
+	<div id="contentSlideshow">
+		<div>
+			<div>
 					<span>&nbsp;</span>
 					<br/>
 					<input class="cssButton" type="button" value="Bid NOW" /><br/>
 			</div>
         	<img src="" alt="" />
-			<div class="direction">
+			<div>
                 <i class="icon-double-angle-left" id="left" >&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;
                 <i class="icon-double-angle-right" id="right" >&nbsp;</i>
 			</div>
 		</div>
-		<div class="slideshow-button">
+		<div>
 			<ul>
 				<c:forEach items="${topPics}" var="pic">
-					<li><a href="#"><img src='<c:url value="/pic/upload/item/${pic.photoPath}"/>' alt="Flowing Rock" /></a></li>
+					<li><img src='<c:url value="/pic/upload/item/${pic.photoPath}"/>' alt="Flowing Rock" /></li>
 				</c:forEach>
 			</ul>
 		</div>

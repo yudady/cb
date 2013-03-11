@@ -1,21 +1,17 @@
 @CHARSET "UTF-8";
-.slideshow {
+.ui-widget-slideshow {
 	width: 750px;
 	height: 500px;
 	background-color: #CCC;
 	position: relative;
 }
 
-.slideshow img {
-	cursor: pointer;
-}
-
-.slideshow-top {
+.ui-widget-slideshow-topDiv {
 	height: 400px;
 	margin-bottom: 10px;
 
 }
-.slideshow-top .picMsg {
+.ui-widget-slideshow-picMsg {
 	width: 730px;
 	height: 200px;
 	font-size: 24px;
@@ -28,7 +24,7 @@
 /**
  * 	Bid NOW
  */
-.slideshow-top .picMsg input{
+.ui-widget-slideshow-bidNow{
 	width: 100px;
 	position: absolute;
 	top: 150px;
@@ -37,7 +33,7 @@
 /**
  * 	大圖片
  */
-.slideshow-top img {
+.ui-widget-slideshow-bigPic {
 	width: 730px;
 	height: 400px;
 	padding-left: 10px;
@@ -48,7 +44,7 @@
 /**
  * alt文字
  */
-.slideshow-top .picMsg span {
+.ui-widget-slideshow-altMsg {
 	color: white;
     position: absolute;
     top: 10px;
@@ -57,7 +53,7 @@
 /**
  * 	左右方向
  */
-.slideshow-top div.direction {
+.ui-widget-slideshow-direction {
 	width: 100px;
 	line-height: 30px;
 	height: 30px;
@@ -69,34 +65,38 @@
 	left: 620px;
 	top: 360px;
 }
-.slideshow-top div.direction i {
+.ui-widget-slideshow-direction i {
     padding: 10px;
 	width: 30px;
 	cursor: pointer;
 }
-.slideshow-button {
+.ui-widget-slideshow-downDiv {
 	width: 730px;
 	overflow: hidden;
 }
 
-.slideshow-button ul {
+.ui-widget-slideshow-downDiv ul {
 	width: 9999px;
 }
 
-.slideshow-button ul li {
+.ui-widget-slideshow-downDiv ul li {
 	height: 100%;
 	float: left;
 }
 /**
  * 	小圖片
  */
-.slideshow-button img {
+.ui-widget-slideshow-smallPics {
+    cursor: pointer;
 	margin: 2px;
 	padding: 10px;
 	width: 70px;
 	height: 60px;
 }
-.slideshow-button-click {
+/**
+ *  小圖片點擊
+ */
+.ui-widget-slideshow-click {
 	background-color: red;
 }
 

@@ -98,13 +98,15 @@
         $(".picMsg span").html(pic.alt);
     };
 
-    //var myTimer = window.setInterval(findNextPic, 1000);
-    // $(".slideshow").on("mouseenter",function(){
-    // window.clearInterval(myTimer);
-    // });
-    // $(".slideshow").on("mouseleave",function(){
-    // myTimer = window.setInterval(findNextPic, 1000);
-    // });
-    //
+
+    var myTimer = window.setInterval(findNextPic, 1000);
+    $(".slideshow").on("mouseenter", function() {
+        window.clearInterval(myTimer);
+    });
+    $(".slideshow").on("mouseleave", function() {
+        myTimer = window.setInterval(findNextPic, 1000);
+    }); 
+
+    
 });
 

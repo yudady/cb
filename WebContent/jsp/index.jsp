@@ -147,11 +147,6 @@
 	$('.auctionsNum').first().triggerHandler('click');
 	//======Auctions 分頁end
 	
-	
-	
-	
-	
-	
 });
 </script>
 

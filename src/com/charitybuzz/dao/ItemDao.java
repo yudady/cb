@@ -138,7 +138,7 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public List<Item> findBySubCategoryId(final Long subCategoryId) {
-		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
+		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '1' AND b.STARTDATE <= SYSDATE and b.closedate >= sysdate AND A.subCategoryId = ? AND b.id = a.itemid ";
 		return this.queryList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -205,7 +205,7 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public List<Item> findByCategoryId(final Long categoryId) {
-		String sql = "SELECT x.* FROM ITEM x WHERE x.id in(SELECT d.itemid FROM subcategory_item d WHERE d.subcategoryid IN (SELECT A.ID FROM subcategory A where a.categoryid = ?)) ";
+		String sql = "SELECT x.* FROM ITEM x WHERE x.startDate <= SYSDATE and x.closedate >= sysdate and x.id in(SELECT d.itemid FROM subcategory_item d WHERE d.subcategoryid IN (SELECT A.ID FROM subcategory A where a.categoryid = ?)) ";
 		return this.queryList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {

@@ -32,7 +32,7 @@ public class Constant {
 	/**
 	 * 選多少個圖片 10 (SlideshowService)
 	 */
-	public static  int SEARCH_PICTURES = 10; 
+	public static  int SEARCH_PICTURES = 20; 
 	/**
 	 * 選多少個一級目錄 5 (TopItemsCategoryService)
 	 */

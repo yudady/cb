@@ -86,7 +86,7 @@
 	        });
 	    }
 	});
-	$("#contentSlideshow").slideshow({"timer": 1000 });
+	$("#contentSlideshow").slideshow();
 });
 </script>
 
@@ -95,10 +95,8 @@
 <div class="content">
 	<div id="contentSlideshow">
 		<div>
-			<input id="BidNOW" class="cssButton" type="button" value="Bid NOW" /><br/>
-			<div>
-					<span>&nbsp;</span>
-			</div>
+			<input class="cssButton" type="button" value="Bid NOW" /><br/>
+			<div><span>&nbsp;</span></div>
         	<img src="" alt="" />
 			<div>
                 <i class="icon-double-angle-left" >&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -107,8 +105,8 @@
 		</div>
 		<div>
 			<ul>
-				<c:forEach items="${topPics}" var="pic">
-					<li><img src='<c:url value="/pic/upload/item/${pic.photoPath}"/>' alt="Flowing Rock" /></li>
+				<c:forEach items="${topItems}" var="it">
+					<li><img src='<c:url value="/pic/upload/item/${it.mainPicturePath}"/>' alt="${it.title}" /></li>
 				</c:forEach>
 			</ul>
 		</div>

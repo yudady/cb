@@ -252,4 +252,8 @@ public class ItemService {
 		return itemDao.findPagerCloseItemsByAuctionId(auctionId);
 	}
 
+	public List<Item> findSlideShow(int count) {
+		return itemDao.findPopular(0, count);
+	}
+
 }

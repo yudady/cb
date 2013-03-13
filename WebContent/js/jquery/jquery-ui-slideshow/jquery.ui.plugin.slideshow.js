@@ -91,6 +91,7 @@
                 var img = $(clickImg).addClass(hightLight);
                 bigImg.attr("src", img.attr("src"));
                 bigImg.attr("alt", img.attr("alt"));
+                altMsg.text(img.attr("alt"));
                 
             });
             /**

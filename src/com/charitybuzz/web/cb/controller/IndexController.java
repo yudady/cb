@@ -56,11 +56,7 @@ public class IndexController {
 		 */
 		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
-		/**
-		 * top輪動圖片
-		 */
-		List<Picture> topPics = slideshowService.getPictures();
-		mav.addObject("topPics", topPics);
+
 
 		/**
 		 * Current Auctions
@@ -80,6 +76,15 @@ public class IndexController {
 		}
 		mav.addObject("items", items);
 
+		
+		/**
+		 * top輪動圖片(20個商品)
+		 */
+		List<Item> topItems = slideshowService.getSlideShows();
+		mav.addObject("topItems", topItems);
+		
+		
+		
 		return mav;
 
 	}

@@ -34,6 +34,10 @@ public class Constant {
 	 */
 	public static  int SEARCH_PICTURES = 20; 
 	/**
+	 * index 拍賣會顯示多少筆
+	 */
+	public static  int AUCTIONS_PAGESIZE = 8; 
+	/**
 	 * 選多少個一級目錄 5 (TopItemsCategoryService)
 	 */
 	public static  int CATEGORY_SIZE = 5; 

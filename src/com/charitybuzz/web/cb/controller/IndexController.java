@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.charitybuzz.cache.SidebarService;
 import com.charitybuzz.cache.SlideshowService;
 import com.charitybuzz.common.Constant;
-import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Auction;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
@@ -61,8 +60,9 @@ public class IndexController {
 		/**
 		 * Current Auctions
 		 */
-		Pager<Auction> auctions = auctionService.findPagerStartAuctions();
+		List<Auction> auctions = auctionService.findStartAuctions();
 		mav.addObject("auctions", auctions);
+		mav.addObject("auctionsPageSize", Constant.AUCTIONS_PAGESIZE);
 
 		/**
 		 * tabs 4

@@ -27,33 +27,37 @@
 
 #liveAuctions {
 	width: 600px;
-	margin-bottom: 20px;
 	background-color: #FFFFFF;
 }
 
-#liveAuctions hr {
-	/*
-	clear: both;*/
-}
-
-#liveAuctions .item {
+#liveAuctions .auction {
 	height: 120px;
 	padding: 20px;
+	margin-bottom: 10px;
 }
 
-#liveAuctions .item img {
+#liveAuctions .auction img {
 	width: 159px;
 	height: 116px;
 	margin-right: 20px;
+	float: left;
 }
 
-#liveAuctions .item dl a {
+#liveAuctions .auction dl {
 	margin-top: 20px;
 	margin-left: 20px;
 }
-
-
-
+#liveAuctions .auction dl a {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+#auctionsPager {
+	margin-left: 400px;
+}
+#auctionsPager .auctionsActive{
+	color:white;
+	background-color: #C52100;
+}
 
 
 /**
@@ -78,6 +82,8 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.js"/>'></script>
 <script type="text/javascript">
 ;$(function() {
+	//輪播
+	$("#contentSlideshow").slideshow();
 	$('#tabs4').tabs({
 	    load: function(event, ui) {
 	        $(ui.panel).on('click', 'a', function(event) {
@@ -86,7 +92,66 @@
 	        });
 	    }
 	});
-	$("#contentSlideshow").slideshow();
+	
+	
+	
+	//======Auctions 分頁start
+	function currentAuctions(){
+		var num = $("#auctionsPager").data("num") ;
+		
+		if(num == 1){
+			$('#prevPager').css({visibility:"hidden"});
+		}else{
+			$('#prevPager').css({visibility:"visible"});
+		}
+		
+		if(num == $('.auctionsNum').size()){
+			$('#nextPager').css({visibility:"hidden"});
+		}else{
+			$('#nextPager').css({visibility:"visible"});
+		}
+		
+		
+		var currentA = $('.auctionsNum').removeClass('auctionsActive').get(parseInt(num) -1);
+		$(currentA).addClass('auctionsActive');
+		
+		var cou = ${auctionsPageSize} ;
+		var start = (parseInt(num) - 1) * cou;
+		var end = start + cou ;
+		$('.auction').hide().each(function(index,value){
+			if(index >= start && index < end){
+				$(this).show();
+			}
+		});
+	}
+	
+	$('.auctionsNum').on('click',function(event){
+		var num = $(this).text();
+		$("#auctionsPager").data("num",num);
+		currentAuctions();
+		event.preventDefault();
+	});
+	
+	$('#prevPager').on('click',function(event){
+		var num = $("#auctionsPager").data("num");
+		$("#auctionsPager").data("num",parseInt(num) -1);
+		currentAuctions();
+		event.preventDefault();
+	});
+	$('#nextPager').on('click',function(event){
+		var num = $("#auctionsPager").data("num") || 1;
+		$("#auctionsPager").data("num",parseInt(num) + 1);
+		currentAuctions();
+		event.preventDefault();
+	});
+	$('.auctionsNum').first().triggerHandler('click');
+	//======Auctions 分頁end
+	
+	
+	
+	
+	
+	
 });
 </script>
 
@@ -122,8 +187,8 @@
 <div id="liveAuctions"><!-- liveAuctions -->
 	<h1>Current Auctions</h1>
 	
-	<c:forEach items="${auctions.datas}" var="auction">
-		<div class="item">
+	<c:forEach items="${auctions}" var="auction">
+		<div class="auction">
 			<a href='<c:url value="/auctions/${auction.id}/index.do"/>'><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' /></a>
 			<dl>
 				<dt>${auction.title}</dt>
@@ -133,13 +198,13 @@
 			</dl>
 		</div>
 	</c:forEach>
-	
-	TODO使用假分頁
-	<jsp:include page="/jsp/include/pager.jsp">
-		<jsp:param value="${auctions.totalRecord}" name="totalRecord" />
-		<jsp:param value="${auctions.pageSize}" name="pageSize" />
-		<jsp:param value="" name="url" />
-	</jsp:include>
+		<div id="auctionsPager">
+			<a id="prevPager" href="#" >« previous </a>
+				<c:forEach items="${auctions}" begin="0" step="${auctionsPageSize}" varStatus="status" >
+					<a class="auctionsNum" href="#">&nbsp;<c:out value="${status.count}"/>&nbsp;</a>
+				</c:forEach>
+			<a id="nextPager" href="#">next » </a>
+		</div>
 </div><!-- liveAuctions -->
 
 </div>

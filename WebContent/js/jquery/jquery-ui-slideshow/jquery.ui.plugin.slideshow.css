@@ -24,11 +24,13 @@
 /**
  * 	Bid NOW
  */
-.ui-widget-slideshow-bidNow{
+.ui-widget-slideshow-topDiv .ui-widget-slideshow-bidNow{
 	width: 100px;
 	position: absolute;
 	top: 150px;
 	left: 600px;
+	float:right;
+	z-index: 100;
 }
 /**
  * 	大圖片
@@ -59,19 +61,23 @@
 	height: 30px;
 	font-size: 18px;
 	background-color: black;
-	color: white;
 	position: absolute;
 	z-index: 1;
 	left: 620px;
 	top: 360px;
 }
-.ui-widget-slideshow-direction i {
-    padding: 10px;
+.ui-widget-slideshow-topDiv .ui-widget-slideshow-direction i {
+	color: white;
+    padding: 15px;
 	width: 30px;
 	cursor: pointer;
 }
 .ui-widget-slideshow-downDiv {
-	width: 730px;
+    position: absolute;
+    left: 15px;
+    top: 430px;
+    /*background-color: red;*/
+    width: 720px; /* 90*8=720 */
 	overflow: hidden;
 }
 
@@ -88,9 +94,7 @@
  */
 .ui-widget-slideshow-smallPics {
     cursor: pointer;
-	margin: 2px;
-	padding: 10px;
-	width: 70px;
+	width: 90px;/* 90*8=720 */
 	height: 60px;
 }
 /**
@@ -99,16 +103,4 @@
 .ui-widget-slideshow-click {
 	background-color: red;
 }
-
-
-#rerunOut {
-    width: 200px;
-    background-color: pink;
-}
-#select {
-}
-#catcompleteDiv {
-    clear: both;
-}
-
 

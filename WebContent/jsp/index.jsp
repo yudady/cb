@@ -86,7 +86,7 @@
 	        });
 	    }
 	});
-	$("#contentSlideshow").slideshow({"timer": 2000 });
+	$("#contentSlideshow").slideshow({"timer": 1000 });
 });
 </script>
 
@@ -95,15 +95,14 @@
 <div class="content">
 	<div id="contentSlideshow">
 		<div>
+			<input id="BidNOW" class="cssButton" type="button" value="Bid NOW" /><br/>
 			<div>
 					<span>&nbsp;</span>
-					<br/>
-					<input class="cssButton" type="button" value="Bid NOW" /><br/>
 			</div>
         	<img src="" alt="" />
 			<div>
-                <i class="icon-double-angle-left" id="left" >&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;
-                <i class="icon-double-angle-right" id="right" >&nbsp;</i>
+                <i class="icon-double-angle-left" >&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="icon-double-angle-right">&nbsp;</i>
 			</div>
 		</div>
 		<div>

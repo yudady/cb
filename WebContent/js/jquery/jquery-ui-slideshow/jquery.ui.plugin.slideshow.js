@@ -1,15 +1,11 @@
 (function($) {
     "use strict";
-    //常量
-    var active = "move-activity";
-    var moveLength = 0;
-    
-
     $.widget("ui.slideshow", {
         //1、options
         options : {
             className : "slideshow",
             opacity : 0.4,
+            moveLength : 90,
             timer : 10000,
             showPicsNumber : 8
         },
@@ -18,11 +14,12 @@
             // this.options --  the merged options hash
             var op = this.options;
             var ele = this.element.addClass( "ui-widget-" + op.className );
+            var _this = this;
             // Cache references to collections the widget needs to access regularly
             /**
              *2個div 
              */
-            var partsDiv = this.element.children();
+            var partsDiv = ele.children();
             /**
              *top div 
              */
@@ -54,11 +51,11 @@
             /**
              *bid now 
              */
-            var bidNow = bigImgMsg.find('input').addClass("ui-widget-" + op.className +"-bidNow");;
+            var bidNow = topDiv.find('input').addClass("ui-widget-" + op.className +"-bidNow");
             /**
              * 大圖片上方文字
              */
-            var altMsg = bigImgMsg.find('span').addClass("ui-widget-" + op.className +"-altMsg");;
+            var altMsg = bigImgMsg.find('span').addClass("ui-widget-" + op.className +"-altMsg");
             
             /**
              *小圖片 
@@ -68,23 +65,40 @@
             /**
              * 初始化第一次可移動的圖片
              */
-            var showPicsNumber = (op.showPicsNumber <= imgs.size()) ? op.showPicsNumber : imgs.size();
-            this._addMoveActivity(imgs,0, showPicsNumber);
-
+            ele.data('index',0);
+            ele.data('lastIndex',(imgs.size() - 1 ));
 
             /**
              *小圖片 
              */
             imgs.each(function(index,value){
                 $(this).data('index',index);
+                $(this).data('positionRelative', parseInt(index/op.showPicsNumber));
+            });
+            imgs.on('click',function(){
+                var index = $(this).data('index') ;
+                ele.data('index',index);
+                _this.move(op.moveLength, $(this).data('positionRelative') * op.showPicsNumber );
             });
             /**
-             *第一小圖片to大圖片
+             *小圖片to大圖片
              */
-            bigImg.attr("src", imgs.first().attr("src"));
-            bigImg.attr("alt", imgs.first().attr("alt"));
-            imgs.first().addClass("ui-widget-" + op.className +"-click");
-            //$.log(this);
+            ele.on('click',function(event){
+                //var hightLight = 'ui-widget-slideshow-click';
+                var hightLight = '';
+                var index = ele.data('index');
+                var clickImg = imgs.removeClass(hightLight).get(index);
+                var img = $(clickImg).addClass(hightLight);
+                bigImg.attr("src", img.attr("src"));
+                bigImg.attr("alt", img.attr("alt"));
+                
+            });
+            /**
+             *第一張圖片 
+             */
+            imgs.first().trigger('click');
+            
+            
             /**
              * Opacity
              */
@@ -95,83 +109,69 @@
                 "opacity" : op.opacity
             });
             /**
-             *小圖片點擊事件 
-             *當小圖形click大圖形change
+             *左右方向 
              */
-            imgs.on('click',this.element,function(){
-                imgs.removeClass("ui-widget-" + op.className +"-click");
-                $(this).addClass("ui-widget-" + op.className +"-click");
-                bigImg.attr("src", $(this).attr("src"));
-                bigImg.attr("alt", $(this).attr("alt"));
-            })
-            
+            rightDirection.position({
+                my: "left top",
+                at: "right top",
+                of: leftDirection
+            });
             /**
              * timer 下一張圖片
              */
-            var myTimer = this._setIntervalWithContext(function() {
+            var myTimer = _this._setIntervalWithContext(function() {
                 //下一張圖片active
-                this.activeNextPic(op);
-            }, op.timer, this);
-            /**
-             *暫停 
-             */
+                _this.activeNextPic();
+            }, op.timer, _this);
             bigImgDirection.on("mouseenter", function() {
-                $.log('mouseenter');
                 clearInterval(myTimer);
             }).on("mouseleave", function() {
-                $.log('mouseleave');
-                myTimer = this._setIntervalWithContext(function() {
-                    //下一張圖片active
-                    this.activeNextPic(op);
-                }, op.timer, this);
+                myTimer = _this._setIntervalWithContext(function() {
+                                //下一張圖片active
+                                _this.activeNextPic();
+                            }, op.timer, _this);
             });
 
-            /**
-             * 
-             */
-            $("#left").on("click",this.activePrePic);
-            $("#right").on("click",this.activeNextPic);
-            
 
+
+
+            leftDirection.on('click', function() {
+                _this.activePrePic();
+            });
+            rightDirection.on('click', function() {
+                _this.activeNextPic();
+            });
+        },
+        activePrePic: function() {
+            var index = this.element.data('index');
+            var lastIndex = this.element.data('lastIndex');
+            var showPicsNumber = this.options.showPicsNumber;
+            var preIndex = ((index - 1) < 0 )? lastIndex : (index - 1);
+            var preImg = this.element.find("li img").get(preIndex);
+            $(preImg).trigger('click');
+            
+        },
+        activeNextPic: function() {
+            var index = this.element.data('index');
+            var lastIndex = this.element.data('lastIndex');
+            var showPicsNumber = this.options.showPicsNumber;
+            var nextIndex = ((index + 1) > lastIndex )? 0 : (index + 1);
+            var nextImg = this.element.find("li img").get(nextIndex);
+            $(nextImg).trigger('click');
+        },
+        move: function(moveLength,positionRelative) {
+            var imgs = this.element.find('li img');
+            positionRelative = (imgs.size() - this.options.showPicsNumber ) < positionRelative ? (imgs.size() - this.options.showPicsNumber ) : positionRelative ; 
+            imgs.css({
+                "position" : "relative"
+            }).animate({
+                left : -(moveLength * positionRelative ) + "px"
+            }, 500);
         },
         _setIntervalWithContext: function (code, delay, context) {
             return setInterval(function () {
                 code.call(context);
             }, delay);
-        },
-        activePrePic: function(op) {
-            var cl = "ui-widget-" + op.className +"-click";
-            var p = $("." + cl).removeClass(cl);
-            var q = p.parent().prev().find("."+active);
-            if (q.size() > 0) {
-                q.addClass(cl);
-            } else {
-                $("."+active).removeClass(cl);
-                $("."+active).last().addClass(cl);
-            }
-            // 觸發小圖形click
-            $("."+cl).trigger('click');
-        },
-        activeNextPic: function(op) {
-            var cl = "ui-widget-" + op.className +"-click";
-            var p = $("." + cl).removeClass(cl);
-            var q = p.parent().next().find("."+active);
-            if (q.size() > 0) {
-                q.addClass(cl);
-            } else {
-                $("."+active).removeClass(cl);
-                $("."+active).first().addClass(cl);
-            }
-            // 觸發小圖形click
-            $("."+cl).trigger('click');
-        },
-        _addMoveActivity: function(imgs,start, end) {
-            $("."+active).removeClass(active);
-            imgs.each(function(i, value) {
-                if (i < end && i >= start) {
-                    $(this).addClass(active);
-                }
-            });
         },
         _destroy : function() {
         }

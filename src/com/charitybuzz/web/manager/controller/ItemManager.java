@@ -224,13 +224,6 @@ public class ItemManager {
 		List<Picture> updatePictures = new ArrayList<Picture>();
 		List<Long> deletePictures = new ArrayList<Long>();
 
-		log.debug("[LOG][priorities]" + priorities.size());
-		log.debug("[LOG][oldPhotoPaths]" + oldPhotoPaths.size());
-		log.debug("[LOG][cruds]" + cruds.size());
-		log.debug("[LOG][priorities]" + priorities);
-		log.debug("[LOG][oldPhotoPaths]" + oldPhotoPaths);
-		log.debug("[LOG][cruds]" + cruds);
-		log.debug("[LOG][pics]" + pics);
 
 		for (int i = 0; i < cruds.size(); i++) {
 			CommonsMultipartFile multipartFile = files.get(i);
@@ -242,7 +235,7 @@ public class ItemManager {
 			if ("c".equals(crud)) {
 				String fileName = multipartFile.getOriginalFilename();
 				if (StringUtils.isNotBlank(fileName)) {
-					log.debug("[LOG][pics]" + pics);
+					fileName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
 					insertPictures.add(new Picture(itemId, priority, fileName));
 					FileUtils.copyInputStreamToFile(multipartFile
 							.getInputStream(), new File(
@@ -250,11 +243,20 @@ public class ItemManager {
 				}
 			}
 			if ("d".equals(crud)) {
+				/**
+				 * 刪除舊圖片
+				 */
+				FileUtils.deleteQuietly(new File(Constant.UPLOAD_FOLDER_ITEM + oldPhotoPath));
 				deletePictures.add(picId);
 			}
 			if ("u".equals(crud) && StringUtils.isNotBlank(oldPhotoPath)) {
 				String fileName = multipartFile.getOriginalFilename();
 				if (StringUtils.isNotBlank(fileName)) {
+					/**
+					 * 刪除舊圖片
+					 */
+					FileUtils.deleteQuietly(new File(Constant.UPLOAD_FOLDER_ITEM + oldPhotoPath));
+					fileName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
 					FileUtils.copyInputStreamToFile(multipartFile
 							.getInputStream(), new File(
 							Constant.UPLOAD_FOLDER_ITEM + fileName));

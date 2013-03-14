@@ -27,7 +27,7 @@ public class Constant {
 	/**
 	 * 日期格式
 	 */
-	public static final String DATE_STYLE = "yyyy-MM-dd";
+	public static final String DATE_STYLE = "yyyy-MM-dd hh:mm";
 	
 	/**
 	 * 選多少個圖片 10 (SlideshowService)

@@ -1,6 +1,8 @@
 package com.charitybuzz.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +14,29 @@ import com.charitybuzz.common.dao.QueryPager;
 import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Auction;
 
-
 /**
  * 拍賣會
+ * 
  * @author Administrator
- *
+ * 
  */
 public class AuctionDao extends BaseDao<Auction> {
+
+	/**
+	 * create Item by ResultSet
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	private static Auction newAuction(ResultSet rs) throws SQLException {
+		return new Auction(rs.getLong("id"), rs.getString("title"),
+				rs.getString("brief"), rs.getString("webSite"),
+				rs.getString("auctionLogoPath"), rs.getTimestamp("startDate"),
+				rs.getTimestamp("closeDate"));
+
+	}
+
 	/**
 	 * bidderId and itemId find Auction
 	 */
@@ -34,12 +52,7 @@ public class AuctionDao extends BaseDao<Auction> {
 			public Auction doResultSet() throws SQLException {
 				Auction auction = null;
 				if (rs.next()) {
-
-					auction = new Auction(rs.getLong("id"), rs
-							.getString("title"), rs.getString("brief"), rs
-							.getString("webSite"), rs
-							.getString("auctionLogoPath"), rs
-							.getDate("startDate"), rs.getDate("closeDate"));
+					auction = AuctionDao.newAuction(rs);
 				}
 				return auction;
 			}
@@ -52,33 +65,30 @@ public class AuctionDao extends BaseDao<Auction> {
 	 * 
 	 * @return
 	 */
-	private List<Auction> findList(String sql ) {
+	private List<Auction> findList(String sql) {
 		return this.queryList(sql, new QueryList<Auction>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 			}
-			
+
 			@Override
 			public List<Auction> doResultSet() throws SQLException {
 				List<Auction> list = new ArrayList<Auction>();
 				while (rs.next()) {
-					list.add(new Auction(rs.getLong("id"), rs
-							.getString("title"), rs.getString("brief"), rs
-							.getString("webSite"), rs
-							.getString("auctionLogoPath"), rs
-							.getDate("startDate"), rs.getDate("closeDate")));
+					list.add(AuctionDao.newAuction(rs));
 				}
 				return list;
 			}
-			
+
 		});
 	}
+
 	/**
 	 * find List<Auction>
 	 * 
 	 * @return
 	 */
-	private Pager<Auction> findPager(String sql ) {
+	private Pager<Auction> findPager(String sql) {
 		return this.queryPager(sql, new QueryPager<Auction>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -88,17 +98,14 @@ public class AuctionDao extends BaseDao<Auction> {
 			public List<Auction> doResultSet() throws SQLException {
 				List<Auction> list = new ArrayList<Auction>();
 				while (rs.next()) {
-					list.add(new Auction(rs.getLong("id"), rs
-							.getString("title"), rs.getString("brief"), rs
-							.getString("webSite"), rs
-							.getString("auctionLogoPath"), rs
-							.getDate("startDate"), rs.getDate("closeDate")));
+					list.add(AuctionDao.newAuction(rs));
 				}
 				return list;
 			}
 
 		});
 	}
+
 	/**
 	 * find all
 	 * 
@@ -108,31 +115,37 @@ public class AuctionDao extends BaseDao<Auction> {
 		String sql = "SELECT * FROM AUCTION ";
 		return this.findList(sql);
 	}
+
 	/**
 	 * 已經開始的拍賣會
+	 * 
 	 * @return
 	 */
 	public List<Auction> findStartAuctions() {
 		String sql = "SELECT * FROM AUCTION where closeDate >= sysdate and startDate <= sysdate";
 		return this.findList(sql);
 	}
+
 	/**
 	 * 已經開始的拍賣會
+	 * 
 	 * @return
 	 */
 	public Pager<Auction> findPagerStartAuctions() {
 		String sql = " SELECT * FROM AUCTION where closeDate >= sysdate and startDate <= sysdate ";
 		return this.findPager(sql);
 	}
+
 	/**
 	 * 尚未開始的拍賣會
+	 * 
 	 * @return
 	 */
 	public List<Auction> findWillAuctions() {
 		String sql = "SELECT * FROM AUCTION where startDate >= sysdate";
 		return this.findList(sql);
 	}
-	
+
 	public void update(final Auction auction) {
 		String sql = "update auction set title = ? ,brief = ? ,webSite = ? ,auctionLogoPath = ? "
 				+ " ,startDate = ?  ,closeDate = ?  where id = ?";
@@ -145,9 +158,9 @@ public class AuctionDao extends BaseDao<Auction> {
 				this.preparedStatement.setString(3, auction.getWebSite());
 				this.preparedStatement.setString(4,
 						auction.getAuctionLogoPath());
-				this.preparedStatement.setDate(5, new java.sql.Date(auction
+				this.preparedStatement.setTimestamp(5, new Timestamp(auction
 						.getStartDate().getTime()));
-				this.preparedStatement.setDate(6, new java.sql.Date(auction
+				this.preparedStatement.setTimestamp(6, new Timestamp(auction
 						.getCloseDate().getTime()));
 				this.preparedStatement.setLong(7, auction.getId());
 			}
@@ -166,10 +179,11 @@ public class AuctionDao extends BaseDao<Auction> {
 				this.preparedStatement.setString(3, auction.getWebSite());
 				this.preparedStatement.setString(4,
 						auction.getAuctionLogoPath());
-				this.preparedStatement.setDate(5, new java.sql.Date(auction
+				this.preparedStatement.setTimestamp(5, new Timestamp(auction
 						.getStartDate().getTime()));
-				this.preparedStatement.setDate(6, new java.sql.Date(auction
+				this.preparedStatement.setTimestamp(6, new Timestamp(auction
 						.getCloseDate().getTime()));
+
 			}
 
 		});
@@ -188,9 +202,5 @@ public class AuctionDao extends BaseDao<Auction> {
 		});
 
 	}
-
-
-
-
 
 }

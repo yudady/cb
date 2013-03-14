@@ -23,8 +23,8 @@ $(function(){
 	<input type="hidden" id="auctionLogoPathAction" name="auctionLogoPathAction" />
 	<img id="auctionLogoPathPic" src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' />
 	<input type="file" name="file" /><br/>
-	開始日期<input class="datepicker" type="text" name="startDate" value="${auction.startDate}" /><br/>
-	結束日期<input class="datepicker" type="text" name="closeDate" value="${auction.closeDate}" /><br/>
+	開始日期<input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.startDate}" />' /><br/>
+	結束日期<input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.closeDate}" />' /><br/>
 	<input type="reset" name="reset"/><br/>
 	<input type="submit" name="submit"/><br/>
 </form>

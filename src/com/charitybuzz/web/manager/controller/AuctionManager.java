@@ -146,7 +146,6 @@ public class AuctionManager {
 		Auction auction = new Auction();
 		BeanUtils.copyProperties(form, auction);
 		log.debug("[LOG][auction]" + auction);
-
 		String fileName = null;
 		if (StringUtils.isNotBlank(form.getAuctionLogoPathAction())) {
 			CommonsMultipartFile file = form.getFile();

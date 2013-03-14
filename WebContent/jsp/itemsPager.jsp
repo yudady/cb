@@ -5,69 +5,96 @@
 <style type="text/css">
 .counter {
 	padding: 10px;
-	
 }
+
 .itemList {
 	width: 680px;
-	padding: 30px; 
+	padding: 30px;
 	margin-left: 220px;
-	margin-bottom : 20px;
+	margin-bottom: 20px;
 	background-color: white;
 }
+
 .auction {
 	width: 680px;
-	padding: 30px; 
-	padding-bottom:0px;
+	padding: 30px;
+	padding-bottom: 0px;
 	margin-left: 220px;
 	background-color: white;
 }
+
 .auctionPic {
-	float:left;
+	float: left;
 	width: 250px;
 }
-.auctionPic img{
+
+.auctionPic img {
 	width: 250px;
 	height: 200px;
 }
-.auctionDetail{
+
+.auctionDetail {
 	width: 350px;
 	height: 230px;
-	margin-left:300px;
+	margin-left: 300px;
 }
 
 .item {
 	width: 680px;
 	height: 200px;
-	padding: 30px; 
+	padding: 30px;
 	margin-left: 220px;
-	margin-bottom : 20px;
+	margin-bottom: 20px;
 	background-color: white;
 }
+
 .pic {
-	float:left;
+	float: left;
 	width: 250px;
 	height: 200px;
 }
-.pic img{
+
+.pic img {
 	width: 250px;
 	height: 200px;
 }
+
 .detail {
-	float:right;
+	float: right;
 	width: 360px;
 	height: 160px;
-	padding:20px;
+	padding: 20px;
 }
+
 .detail a {
 	font-size: 18px;
-	color:red;
+	color: red;
 }
+/**
+* bid now
+*/
+.detail a.cssButton {
+float:right;
+	font-size: 24px;
+	color: white;
+}
+
 #crumbs {
-	font-size:18px;
+	font-size: 18px;
 }
+
 #pager {
-	clear:right;
+	clear: right;
 	text-align: center;
+}
+
+.lotClosed {
+	background-color: #C52200;
+	color: #FFFFFF;
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 1.3em;
+	padding: 0.4em 0.5em;
 }
 </style>
 <script type="text/javascript">
@@ -76,7 +103,9 @@ $(function(){
 	
 	if(loc.search("displayClosed") > 0){
 		$("#ftr-displayClosed").prop("checked",true);
+		$('.bidNow').hide();
 	}else{
+		$('.lotClosed').hide();
 		$("#ftr-displayClosed").prop("checked",false);
 	}
 	
@@ -101,14 +130,16 @@ $(function(){
 <c:choose>
 	<c:when test="${!empty auc}">
 		<div>
-			<div id="crumbs">1111111111111
-				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auction.title}
+			<div id="crumbs">
+				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auc.title}
 			</div>
-			<div class="auctionPic"><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}" />'></div>
+			<div class="auctionPic">
+				<img src='<c:url value="/pic/upload/auction/${auc.auctionLogoPath}" />'>
+			</div>
 			<div class="auctionDetail">
-				<div>${auction.brief}</div>
+				<div>${auc.brief}</div>
 				<div>&nbsp;</div>
-				<div>${auction.webSite}</div>
+				<div>${auc.webSite}</div>
 			</div>
 		</div>
 	</c:when>
@@ -153,7 +184,8 @@ $(function(){
 
 <c:forEach items="${pager.datas}" var="item">
 	<div class="item">
-		<span class="pic"> 
+		<span class="pic">
+			<div class="lotClosed">This item is now closed</div>
 			<a href='<c:url value="/item/${item.id}/index.do" />'>
 				<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 			</a>
@@ -185,7 +217,8 @@ $(function(){
 					<th>Lot Closes:</th>
 					<td>${item.closeDate}</td>
 				</tr>
-			</table> <a href="#"><span>Bid now</span></a>
+			</table>
+			<a class="cssButton bidNow" href="<c:url value="/item/${item.id}/index.do" />">Bid NOW</a>
 		</span>
 	</div>
 </c:forEach>

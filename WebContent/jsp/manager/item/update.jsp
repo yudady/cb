@@ -140,8 +140,8 @@ $('.cleditor').cleditor({
 	<ul>
 		<li>商品訊息<input type="text" name="title" value="${item.title}"/></li>
 		<li>當前標價<input type="text" name="currentBid" value="${item.currentBid}"/></li>
-		<li>商品 開始日期<input class="datepicker" type="text" name="startDate" value="${item.startDate}"/></li>
-		<li>商品結束日期<input class="datepicker" type="text" name="closeDate" value="${item.closeDate}"/></li>
+		<li>商品 開始日期<input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.startDate}" />' /></li>
+		<li>商品結束日期<input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.closeDate}" />' /></li>
 		<li>估計價值<input type="text" name="estimatedValue" value="${item.estimatedValue}"/></li>
 		<li>下次最小標價<input type="text" name="incrementPrice" value="${item.incrementPrice}"/></li>
 		<li>0.結標 1.拍賣中<input type="text" name="status" value="${item.status}"/></li>

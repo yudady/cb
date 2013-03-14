@@ -370,7 +370,7 @@ $(function() {
 			<span>??? days left to bid</span>
 		</div>
 		<div>
-			<span>${item.closeDate}<i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
+			<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.closeDate}" /><i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
 		</div>
 		
 		

@@ -2,6 +2,7 @@ package com.charitybuzz.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,12 +27,12 @@ public class ItemDao extends BaseDao<Item> {
 	private static Item newItem(ResultSet rs) throws SQLException {
 		return new Item(rs.getLong("id"), rs.getLong("auctionId"),
 				rs.getString("title"), rs.getDouble("currentBid"),
-				rs.getDate("startDate"), rs.getDate("closeDate"),
+				rs.getTimestamp("startDate"), rs.getTimestamp("closeDate"),
 				rs.getDouble("estimatedValue"), rs.getDouble("incrementPrice"),
 				rs.getInt("status"), rs.getString("lotDetails"),
 				rs.getString("legalTerms"), rs.getString("shipping"),
-				rs.getLong("winningBidderId"), rs.getDate("createdDate"),
-				rs.getDate("updatedDate"));
+				rs.getLong("winningBidderId"), rs.getTimestamp("createdDate"),
+				rs.getTimestamp("updatedDate"));
 
 	}
 
@@ -374,10 +375,8 @@ public class ItemDao extends BaseDao<Item> {
 				this.preparedStatement.setLong(2, item.getAuctionId());
 				this.preparedStatement.setString(3, item.getTitle());
 				this.preparedStatement.setDouble(4, item.getCurrentBid());
-				this.preparedStatement.setDate(5, new java.sql.Date(item
-						.getStartDate().getTime()));
-				this.preparedStatement.setDate(6, new java.sql.Date(item
-						.getCloseDate().getTime()));
+				this.preparedStatement.setTimestamp(5, new Timestamp(item.getStartDate().getTime()));
+				this.preparedStatement.setTimestamp(6, new Timestamp(item.getCloseDate().getTime()));
 				this.preparedStatement.setDouble(7, item.getEstimatedValue());
 				this.preparedStatement.setDouble(8, item.getIncrementPrice());
 				this.preparedStatement.setInt(9, 1);
@@ -406,10 +405,8 @@ public class ItemDao extends BaseDao<Item> {
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, item.getTitle());
 				this.preparedStatement.setDouble(2, item.getCurrentBid());
-				this.preparedStatement.setDate(3, new java.sql.Date(item
-						.getStartDate().getTime()));
-				this.preparedStatement.setDate(4, new java.sql.Date(item
-						.getCloseDate().getTime()));
+				this.preparedStatement.setTimestamp(3, new Timestamp(item.getStartDate().getTime()));
+				this.preparedStatement.setTimestamp(4, new Timestamp(item.getCloseDate().getTime()));
 				this.preparedStatement.setDouble(5, item.getEstimatedValue());
 				this.preparedStatement.setDouble(6, item.getIncrementPrice());
 				this.preparedStatement.setInt(7, item.getStatus());

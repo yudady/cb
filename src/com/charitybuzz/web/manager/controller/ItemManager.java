@@ -41,9 +41,15 @@ import com.charitybuzz.service.SubCategoryService;
 import com.charitybuzz.service.SubcategoryItemService;
 import com.charitybuzz.web.form.ItemForm;
 
+/**
+ * TODO 商品 add時，須使用拍賣會的startDate，endDate
+ * 
+ * @author Administrator
+ * 
+ */
 @Controller
 @RequestMapping(value = "/manager")
-@SessionAttributes(value = { "operator" })
+@SessionAttributes(value = { "auction", "operator" })
 public class ItemManager {
 
 	/** logger. */
@@ -86,6 +92,7 @@ public class ItemManager {
 	@RequestMapping(value = "/auctionId/{auctionId}/item/list")
 	public ModelAndView itemList(@PathVariable Long auctionId) {
 		ModelAndView mav = new ModelAndView("manager/item/list");
+		mav.addObject("auction", auctionService.findById(auctionId));
 		Pager<Item> items = itemService.findPagerByAuctionId(auctionId);
 		mav.addObject("items", items);
 		return mav;
@@ -106,7 +113,7 @@ public class ItemManager {
 	}
 
 	/**
-	 * 新增
+	 * 新增 日期使用拍賣會的日期
 	 * 
 	 * @param sessionObject
 	 * @param form
@@ -115,16 +122,18 @@ public class ItemManager {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/auctionId/{auctionId}/item/add", method = RequestMethod.POST)
-	public ModelAndView itemAdd(@PathVariable Long auctionId, ItemForm form)
-			throws IOException {
+	public ModelAndView itemAdd(@PathVariable Long auctionId, ItemForm form,
+			@ModelAttribute("auction") Auction auction) throws IOException {
 		ModelAndView mav = new ModelAndView("redirect:/manager/auctionId/"
 				+ auctionId + "/item/list.do");
 
 		log.debug("[LOG]ItemForm=" + form);
-		Item it = new Item();
-		BeanUtils.copyProperties(form, it);
-		it.setAuctionId(auctionId);
-		Long itemId = itemService.insert(it);
+		Item item = new Item();
+		BeanUtils.copyProperties(form, item);
+		item.setAuctionId(auctionId);
+		item.setStartDate(auction.getStartDate());
+		item.setCloseDate(auction.getCloseDate());
+		Long itemId = itemService.insert(item);
 
 		subcategoryItemService.insert(itemId, form.getSubCategoryIds());
 
@@ -149,17 +158,6 @@ public class ItemManager {
 		mav.addObject("subCategories", subCategories);
 		Item item = itemService.findById(itemId);
 		mav.addObject("item", item);
-
-		/**
-		 * 拍賣會
-		 */
-		List<Auction> auctions = auctionService.findAll();
-		mav.addObject("auctions", auctions);
-		for (Auction auction : auctions) {
-			if (auction.getId() == item.getAuctionId()) {
-				auction.setAuctionCheckedMark("checked");
-			}
-		}
 
 		List<SubCategory> subCas = subCategoryService.findByItemd(itemId);
 		for (SubCategory subCategory : subCategories) {
@@ -187,20 +185,18 @@ public class ItemManager {
 	 */
 	@RequestMapping(value = "/auctionId/{auctionId}/item/{itemId}/update", method = RequestMethod.POST)
 	public ModelAndView itemUpdate(@PathVariable Long auctionId,
-			@PathVariable Long itemId, @ModelAttribute("itemForm") ItemForm form)
-			throws IOException {
-		// TODO
+			@PathVariable Long itemId,
+			@ModelAttribute("itemForm") ItemForm form,
+			@ModelAttribute("auction") Auction auction) throws IOException {
 		ModelAndView mav = new ModelAndView("redirect:/manager/auctionId/"
 				+ auctionId + "/item/list.do");
 
 		log.debug("[LOG]ItemForm=" + form);
 		this.pictures(itemId, form);
-		Item it = new Item();
-		BeanUtils.copyProperties(form, it);
+		Item item = new Item();
+		BeanUtils.copyProperties(form, item);
 
-		log.debug("[LOG]" + it.getId());
-
-		itemService.update(it);
+		itemService.update(item);
 
 		subcategoryItemService.update(form.getId(), form.getSubCategoryIds());
 
@@ -245,11 +241,12 @@ public class ItemManager {
 
 			if ("c".equals(crud)) {
 				String fileName = multipartFile.getOriginalFilename();
-				if(StringUtils.isNotBlank(fileName)){
+				if (StringUtils.isNotBlank(fileName)) {
 					log.debug("[LOG][pics]" + pics);
 					insertPictures.add(new Picture(itemId, priority, fileName));
-					FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
-							new File(Constant.UPLOAD_FOLDER_ITEM + fileName));
+					FileUtils.copyInputStreamToFile(multipartFile
+							.getInputStream(), new File(
+							Constant.UPLOAD_FOLDER_ITEM + fileName));
 				}
 			}
 			if ("d".equals(crud)) {
@@ -257,9 +254,10 @@ public class ItemManager {
 			}
 			if ("u".equals(crud) && StringUtils.isNotBlank(oldPhotoPath)) {
 				String fileName = multipartFile.getOriginalFilename();
-				if(StringUtils.isNotBlank(fileName)){
-					FileUtils.copyInputStreamToFile(multipartFile.getInputStream(),
-							new File(Constant.UPLOAD_FOLDER_ITEM + fileName));
+				if (StringUtils.isNotBlank(fileName)) {
+					FileUtils.copyInputStreamToFile(multipartFile
+							.getInputStream(), new File(
+							Constant.UPLOAD_FOLDER_ITEM + fileName));
 					updatePictures.add(new Picture(picId, itemId, priority,
 							fileName));
 				}

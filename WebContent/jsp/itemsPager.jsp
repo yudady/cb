@@ -73,10 +73,6 @@
 <script type="text/javascript">
 $(function(){
 	var loc = window.location.href ;
-	//$.log(loc);
-	//$.log(loc.search("displayClosed"));
-	
-	
 	
 	if(loc.search("displayClosed") > 0){
 		$("#ftr-displayClosed").prop("checked",true);
@@ -105,7 +101,7 @@ $(function(){
 <c:choose>
 	<c:when test="${!empty auction}">
 		<div>
-			<div id="crumbs">
+			<div id="crumbs">1111111111111
 				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auction.title}
 			</div>
 			<div class="auctionPic"><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}" />'></div>
@@ -137,7 +133,7 @@ $(function(){
 						pa = pa.substr(0,len);
 						$("#crumbs").append('<b> » </b>').append(pa);
 					}
-					if(path[i] == 'items'){
+					if(path[i] == 'tabs'){
 						$("#crumbs").append('<b> » </b>').append('Active Lots');
 					}
 				});

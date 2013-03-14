@@ -31,7 +31,7 @@
 		</div>
 	</c:forEach>
 	<div>
-		<span id="linkAll"><a class="tabUrl" class="cssButton" href='<c:url value="/items/1/index.do"/>'>view all</a></span>
+		<span id="linkAll"><a class="tabUrl" class="cssButton" href='<c:url value="/tabs/1/list.do"/>'>view all</a></span>
 		<span id="rss">Subscribe to the Feed</span>
 	</div>
 </body>

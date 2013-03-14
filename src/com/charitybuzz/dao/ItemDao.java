@@ -160,7 +160,7 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public Pager<Item> findPagerBySubCategoryId(final Long subCategoryId) {
-		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '1' AND A.subCategoryId = ? AND b.id = a.itemid ";
+		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '1' and b.startDate <= SYSDATE and b.closedate >= sysdate AND A.subCategoryId = ? AND b.id = a.itemid ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -183,7 +183,7 @@ public class ItemDao extends BaseDao<Item> {
 	 */
 	public Pager<Item> findPagerCloseItemsBySubCategoryId(
 			final Long subCategoryId) {
-		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '0' AND A.subCategoryId = ? AND b.id = a.itemid ";
+		String sql = "SELECT b.* FROM subcategory_item A ,item b WHERE b.status = '0' and b.closedate < sysdate AND A.subCategoryId = ? AND b.id = a.itemid ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -358,12 +358,17 @@ public class ItemDao extends BaseDao<Item> {
 		});
 	}
 
+	/**
+	 * 新增
+	 * 
+	 * @param item
+	 */
 	public void insert(final Item item) {
 
 		String sql = "insert into item (id,auctionId,title,currentbid,startdate,closedate,"
 				+ "estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,"
-				+ "winningbidderid,createddate,updateddate) values (?,?,"
-				+ "?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
+				+ "createddate,updateddate) values (?,?,"
+				+ "?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -377,41 +382,44 @@ public class ItemDao extends BaseDao<Item> {
 						.getCloseDate().getTime()));
 				this.preparedStatement.setDouble(7, item.getEstimatedValue());
 				this.preparedStatement.setDouble(8, item.getIncrementPrice());
-				this.preparedStatement.setInt(9, item.getStatus());
+				this.preparedStatement.setInt(9, 1);
 				this.preparedStatement.setString(10, item.getLotDetails());
 				this.preparedStatement.setString(11, item.getLegalTerms());
 				this.preparedStatement.setString(12, item.getShipping());
-				this.preparedStatement.setLong(13, item.getWinningBidderId());
 			}
 
 		});
 
 	}
 
+	/**
+	 * 更新
+	 * 
+	 * @param item
+	 */
 	public void update(final Item item) {
-		String sql = "update item set auctionId = ? , title = ? ,currentBid = ? ,startDate = ? ,"
-				+ " closeDate = ? , estimatedValue = ? , incrementPrice = ? ,"
+		String sql = "update item set title = ? , currentBid = ?  , startdate = ? , closedate = ? "
+				+ " , estimatedValue = ? , incrementPrice = ? ,"
 				+ " status = ? , lotDetails = ? , legalTerms = ? , "
 				+ " shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ?";
 
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.preparedStatement.setLong(1, item.getAuctionId());
-				this.preparedStatement.setString(2, item.getTitle());
-				this.preparedStatement.setDouble(3, item.getCurrentBid());
-				this.preparedStatement.setDate(4, new java.sql.Date(item
+				this.preparedStatement.setString(1, item.getTitle());
+				this.preparedStatement.setDouble(2, item.getCurrentBid());
+				this.preparedStatement.setDate(3, new java.sql.Date(item
 						.getStartDate().getTime()));
-				this.preparedStatement.setDate(5, new java.sql.Date(item
+				this.preparedStatement.setDate(4, new java.sql.Date(item
 						.getCloseDate().getTime()));
-				this.preparedStatement.setDouble(6, item.getEstimatedValue());
-				this.preparedStatement.setDouble(7, item.getIncrementPrice());
-				this.preparedStatement.setInt(8, item.getStatus());
-				this.preparedStatement.setString(9, item.getLotDetails());
-				this.preparedStatement.setString(10, item.getLegalTerms());
-				this.preparedStatement.setString(11, item.getShipping());
-				this.preparedStatement.setLong(12, item.getWinningBidderId());
-				this.preparedStatement.setLong(13, item.getId());
+				this.preparedStatement.setDouble(5, item.getEstimatedValue());
+				this.preparedStatement.setDouble(6, item.getIncrementPrice());
+				this.preparedStatement.setInt(7, item.getStatus());
+				this.preparedStatement.setString(8, item.getLotDetails());
+				this.preparedStatement.setString(9, item.getLegalTerms());
+				this.preparedStatement.setString(10, item.getShipping());
+				this.preparedStatement.setLong(11, item.getWinningBidderId());
+				this.preparedStatement.setLong(12, item.getId());
 			}
 
 		});

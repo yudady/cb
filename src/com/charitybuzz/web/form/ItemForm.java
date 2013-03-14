@@ -27,6 +27,7 @@ public class ItemForm implements java.io.Serializable {
 	 * id
 	 */
 	private Long id;
+
 	public Long getId() {
 		return id;
 	}
@@ -85,15 +86,6 @@ public class ItemForm implements java.io.Serializable {
 	 * 當前贏家id winningBidderId
 	 */
 	private Long winningBidderId;
-	private Long auctionId;
-
-	public Long getAuctionId() {
-		return auctionId;
-	}
-
-	public void setAuctionId(Long auctionId) {
-		this.auctionId = auctionId;
-	}
 
 	private List<CommonsMultipartFile> files;
 
@@ -101,10 +93,6 @@ public class ItemForm implements java.io.Serializable {
 
 	private List<String> oldPhotoPath;
 	private List<Long> picIds;
-
-
-
-
 
 	private List<String> cruds;
 
@@ -115,7 +103,6 @@ public class ItemForm implements java.io.Serializable {
 	public void setSubCategoryIds(List<Long> subCategoryIds) {
 		this.subCategoryIds = subCategoryIds;
 	}
-
 
 	public String getTitle() {
 		return title;
@@ -236,6 +223,7 @@ public class ItemForm implements java.io.Serializable {
 	public void setCruds(List<String> cruds) {
 		this.cruds = cruds;
 	}
+
 	public List<Long> getPicIds() {
 		return picIds;
 	}
@@ -243,6 +231,7 @@ public class ItemForm implements java.io.Serializable {
 	public void setPicIds(List<Long> picIds) {
 		this.picIds = picIds;
 	}
+
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this,

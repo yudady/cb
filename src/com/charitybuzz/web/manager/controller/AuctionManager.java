@@ -28,7 +28,11 @@ import com.charitybuzz.common.Constant;
 import com.charitybuzz.dto.Auction;
 import com.charitybuzz.service.AuctionService;
 import com.charitybuzz.web.form.AuctionForm;
-
+/**
+ * 更新需要更新商品的startDate，endDAte
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping(value = "/manager/auction")
 @SessionAttributes({ "auction" })

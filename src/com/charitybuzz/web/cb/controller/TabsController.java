@@ -29,10 +29,10 @@ import com.charitybuzz.service.PictureService;
  *
  */
 @Controller
-@RequestMapping("/items")
-public class TabsItemsListController {
+@RequestMapping("/tabs")
+public class TabsController {
 	/** logger. */
-	private Logger log = LoggerFactory.getLogger(TabsItemsListController.class);
+	private Logger log = LoggerFactory.getLogger(TabsController.class);
 
 	@Resource
 	private SidebarService sidebarService;
@@ -138,7 +138,7 @@ public class TabsItemsListController {
 
 	}
 
-	@RequestMapping(value = "/{tabIndex}/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/{tabIndex}/list", method = RequestMethod.GET)
 	public ModelAndView index(@PathVariable int tabIndex) {
 		
 		log.debug("[LOG][tabIndex]");

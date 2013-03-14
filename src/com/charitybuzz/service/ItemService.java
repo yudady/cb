@@ -55,7 +55,6 @@ public class ItemService {
 	 * @return
 	 */
 	public Pager<Item> findPagerCloseItemsBySubCategoryId(Long subCategoryId) {
-		System.out.println("[LOG]1");
 		return itemDao.findPagerCloseItemsBySubCategoryId(subCategoryId);
 	}
 

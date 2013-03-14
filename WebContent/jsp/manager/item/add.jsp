@@ -106,11 +106,8 @@ $('.cleditor').cleditor({
 	<ul>
 		<li>商品訊息<input type="text" name="title" /></li>
 		<li>當前標價<input type="text" name="currentBid" /></li>
-		<li>商品 開始日期<input class="datepicker" type="text" name="startDate" /></li>
-		<li>商品結束日期<input class="datepicker" type="text" name="closeDate" /></li>
 		<li>估計價值<input type="text" name="estimatedValue" /></li>
 		<li>下次最小標價<input type="text" name="incrementPrice" /></li>
-		<li>0.結標 1.拍賣中<input type="text" name="status" /></li>
 		<li>LOTDETAILS訊息
 			<textarea class="cleditor" name="lotDetails" id="lotDetails"></textarea>
 		</li>
@@ -120,11 +117,10 @@ $('.cleditor').cleditor({
 		<li>SHIPPING訊息
 			<textarea class="cleditor" name="shipping" id="shipping"></textarea>
 		</li>
-		<li>當前贏家id<input type="text" name="winningBidderId" /></li>
 		<li><input type="button" id="addPicBtn" value="add pic"/></li>
 	</ul>
-	<input type="reset" name="reset" "/>
-	<input type="submit" name="submit" "/>
+	<input type="reset" name="reset" value="reset"/>
+	<input type="submit" name="submit" value="add"/>
 </form>
 </div>
 <%@ include file="/jsp/include/footer_manager.txt" %>

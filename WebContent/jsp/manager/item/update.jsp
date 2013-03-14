@@ -136,12 +136,6 @@ $('.cleditor').cleditor({
 			<dd><span><label for="subCategoryIds-${subCategory.id}">${subCategory.name}</label><input type="checkbox" id="subCategoryIds-${subCategory.id}" name="subCategoryIds" value="${subCategory.id}" ${subCategory.itemCheckedMark }/></span></dd>
 		</c:forEach>
 	</dl>
-	<p>拍賣會</p>
-	<dl>
-		<c:forEach	items="${auctions}" var="auction" >
-			<dd><span><label for="auctionIds-${auction.id}">${auction.title}</label><input type="radio" id="auctionIds-${auction.id}" name="auctionId" value="${auction.id}" ${auction.auctionCheckedMark }/></span></dd>
-		</c:forEach>
-	</dl>
 	<p></p>
 	<ul>
 		<li>商品訊息<input type="text" name="title" value="${item.title}"/></li>

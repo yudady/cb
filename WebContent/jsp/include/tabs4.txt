@@ -4,10 +4,10 @@
 <script type="text/javascript" src='<c:url value="/js/tabs.js"/>'></script>
 <div id="tabs4">
 	<ul>
-		<li><a href='<c:url value="/items/closingNext.do"/>'><span>Closing Next</span></a></li>
+		<li><a href='<c:url value="/tabs/closingNext.do"/>'><span>Closing Next</span></a></li>
         <li><a href='#fragment-2'><span>Deals</span></a></li>
-        <li><a href='<c:url value="/items/popular.do"/>'><span>Most Popular</span></a></li>
-        <li><a href='<c:url value="/items/recentAdd.do"/>'><span>Recently Added</span></a></li>
+        <li><a href='<c:url value="/tabs/popular.do"/>'><span>Most Popular</span></a></li>
+        <li><a href='<c:url value="/tabs/recentAdd.do"/>'><span>Recently Added</span></a></li>
 	</ul>
 	<div id="fragment-2">
 	<c:forEach	items="${items}" var="item">

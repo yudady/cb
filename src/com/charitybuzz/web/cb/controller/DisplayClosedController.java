@@ -69,7 +69,7 @@ public class DisplayClosedController {
 	 */
 	@RequestMapping(value = { "/categories/{id}/subcategories/{subcategoryId}/{subCategoryName}" }, method = RequestMethod.GET, params = "displayClosed=true")
 	public ModelAndView subCategoryDisplayClosed(
-			@RequestParam(value = "displayClosed", required = true ) boolean displayClosed,
+			@RequestParam(value = "displayClosed", required = true) boolean displayClosed,
 			@PathVariable Long subcategoryId) {
 
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
@@ -85,7 +85,8 @@ public class DisplayClosedController {
 		 * 分頁結標商品
 		 */
 		System.out.println("[LOG]subCategoryDisplayClosed");
-		Pager<Item> pager = itemService.findPagerCloseItemsBySubCategoryId(subcategoryId);
+		Pager<Item> pager = itemService
+				.findPagerCloseItemsBySubCategoryId(subcategoryId);
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {
 
@@ -97,7 +98,6 @@ public class DisplayClosedController {
 		return mav;
 	}
 
-
 	/**
 	 * 
 	 * @param auctionId
@@ -106,13 +106,12 @@ public class DisplayClosedController {
 	// http://localhost:8080/cb/auctions/1/index.do?displayClosed=true
 	@RequestMapping(value = "/auctions/{auctionId}/index", method = RequestMethod.GET, params = "displayClosed=true")
 	public ModelAndView index(
-			@RequestParam(value = "displayClosed", required = true ) boolean displayClosed,
+			@RequestParam(value = "displayClosed", required = true) boolean displayClosed,
 			@PathVariable Long auctionId) {
-		
+
 		log.debug("[LOG][auctionId]" + auctionId);
 		log.debug("[LOG][displayClosed]" + displayClosed);
-		
-		
+
 		ModelAndView mav = new ModelAndView("itemsPager");
 
 		/**
@@ -127,7 +126,8 @@ public class DisplayClosedController {
 		/**
 		 * 分頁結標商品
 		 */
-		Pager<Item> pager = itemService.findPagerCloseItemsByAuctionId(auctionId);
+		Pager<Item> pager = itemService
+				.findPagerCloseItemsByAuctionId(auctionId);
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {
 			Long itemId = item.getId();
@@ -139,6 +139,54 @@ public class DisplayClosedController {
 			item.setPictures(pictures);
 		}
 		mav.addObject("pager", pager);
+		return mav;
+	}
+
+	/**
+	 * 
+	 * @param displayClosed
+	 * @param auctionId
+	 * @return
+	 */
+	// http://localhost:8080/cb/tabs/1/list.do?displayClosed=true
+	@RequestMapping(value = "/tabs/{tabIndex}/list", method = RequestMethod.GET, params = "displayClosed=true")
+	public ModelAndView tabsList(@PathVariable int tabIndex) {
+
+		log.debug("[LOG][tabIndex]");
+		ModelAndView mav = new ModelAndView("itemsPager");
+		mav.addObject("tabIndex", tabIndex);
+
+		List<Category> categories = sidebarService.getCategories();
+		mav.addObject("categories", categories);
+		/**
+		 * 全部商品
+		 */
+		Pager<Item> pager = null;
+		switch (tabIndex) {
+		case 1:
+			pager = itemService.findPagerCloseItemsByClosingNext();
+			break;
+		case 2:
+			pager = itemService.findPagerCloseItemsByHotDeals();
+			break;
+		case 3:
+			pager = itemService.findPagerCloseItemsByPopular();
+			break;
+		case 4:
+			pager = itemService.findPagerCloseItemsByRecentAdd();
+			break;
+		default:
+			break;
+		}
+		List<Item> items = pager.getDatas();
+		mav.addObject("pager", pager);
+
+		for (Item item : items) {
+
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
 		return mav;
 	}
 }

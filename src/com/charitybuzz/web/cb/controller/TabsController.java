@@ -152,7 +152,6 @@ public class TabsController {
 		 * 全部商品
 		 */
 		Pager<Item> pager = null;
-		// TODO pager
 		switch (tabIndex) {
 		case 1:
 			pager = itemService.findPagerByClosingNext();

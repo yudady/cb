@@ -113,8 +113,8 @@ public class AuctionsController {
 		mav.addObject("categories", categories);
 
 		
-		Auction auction = auctionService.findById(auctionId);
-		mav.addObject("auction", auction);
+		Auction auc = auctionService.findById(auctionId);
+		mav.addObject("auc", auc);
 		
 		
 		

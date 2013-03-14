@@ -323,12 +323,10 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public List<Item> findByCloseDateLessTargetDate(final Date date) {
-		String sql = "SELECT a.* FROM item a WHERE a.status = 1 and (a.closeDate - ? ) <= 0";
+		String sql = "SELECT a.* FROM item a WHERE a.status = 1 and a.closeDate <= sysdate";
 		return this.queryList(sql, new QueryList<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
-				this.preparedStatement.setDate(1,
-						new java.sql.Date(date.getTime()));
 			}
 
 			@Override
@@ -568,6 +566,26 @@ public class ItemDao extends BaseDao<Item> {
 	public Pager<Item> findAllPager() {
 		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate ";
 		return this.findPager(sql);
+	}
+
+	public Pager<Item> findPagerCloseItemsByClosingNext() {
+		String sql = " Select * from ( SELECT ( SYSDATE  - closedate ) diff , it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by diff ) WHERE diff > 0  ";
+		return this.findPager(sql);
+	}
+
+	public Pager<Item> findPagerCloseItemsByHotDeals() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Pager<Item> findPagerCloseItemsByPopular() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Pager<Item> findPagerCloseItemsByRecentAdd() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

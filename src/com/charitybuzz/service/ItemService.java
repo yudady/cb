@@ -187,7 +187,6 @@ public class ItemService {
 	 * @return
 	 */
 	public Pager<Item> findPagerByClosingNext() {
-		log.debug("findPagerByClosingNext");
 		return itemDao.findPagerByClosingNext();
 	}
 
@@ -253,6 +252,22 @@ public class ItemService {
 
 	public List<Item> findSlideShow(int count) {
 		return itemDao.findPopular(0, count);
+	}
+
+	public Pager<Item> findPagerCloseItemsByClosingNext() {
+		return itemDao.findPagerCloseItemsByClosingNext();
+	}
+
+	public Pager<Item> findPagerCloseItemsByHotDeals() {
+		return itemDao.findPagerCloseItemsByHotDeals();
+	}
+
+	public Pager<Item> findPagerCloseItemsByPopular() {
+		return itemDao.findPagerCloseItemsByPopular();
+	}
+
+	public Pager<Item> findPagerCloseItemsByRecentAdd() {
+		return itemDao.findPagerCloseItemsByRecentAdd();
 	}
 
 }

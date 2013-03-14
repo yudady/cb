@@ -99,7 +99,7 @@ $(function(){
 <%@ include file="/jsp/include/menu.txt" %>
 <div class="auction">
 <c:choose>
-	<c:when test="${!empty auction}">
+	<c:when test="${!empty auc}">
 		<div>
 			<div id="crumbs">1111111111111
 				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auction.title}

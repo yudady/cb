@@ -18,15 +18,13 @@
 	<!-- spring 3.0 定時調度器-->
 	<task:annotation-driven />
 	<bean id="schedulerItem" class="com.charitybuzz.scheduler.SchedulerItem" >
-		<property name="openScheduler" value="false" />
+		<property name="openScheduler" value="true" />
 		<property name="itemService" ref="itemService" />
 		<property name="bidderService" ref="bidderService" />
 	</bean>
 	<task:scheduled-tasks>
-	<!-- 
-		<task:scheduled ref="schedulerItem" method="endBidding" cron="*/5 * * * * ?" />
-	 -->
-		<task:scheduled ref="schedulerItem" method="endBidding" cron="0 */1 * * * ?" />
+	 	<!-- 表示從第0分鐘開始，每10分鐘 (0,10,20,30,40,50) 執行一次-->
+		<task:scheduled ref="schedulerItem" method="endBidding" cron="0 */10 * * * ?" />
 	</task:scheduled-tasks>
 
 	<!-- util -->

@@ -1,10 +1,14 @@
 package com.charitybuzz.scheduler;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.charitybuzz.common.context.ConnectionContext;
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.service.BidderService;
@@ -33,22 +37,33 @@ public class SchedulerItem {
 		this.bidderService = bidderService;
 	}
 
-	public void endBidding() {
+	public void endBidding() throws SQLException {
 		if (!openScheduler) {
 			return;
 		}
-		log.debug("[LOG]endBidding open");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		log.debug("[LOG][Time]" + sdf.format(new Date()));
 		List<Item> items = itemService.findEndBiddingByCloseDate();
-		for (Item item : items) {
-			log.debug("[LOG][item]" + item);
-			// 把商品更新為結標
-			itemService.updateClosingBidding(item.getId());
+		if (items.size() == 0) {
+			return;
+		}
+		log.debug("[LOG][item]" + items.size());
+		try {
+			for (Item item : items) {
+				log.debug("[LOG][item]" + item);
+				// 把商品更新為結標
+				itemService.updateClosingBidding(item.getId());
 
-			// 通知得標者 : winning bidder
-			Bidder bidder = bidderService.findById(item.getWinningBidderId());
+				// 通知得標者 : winning bidder
+				Bidder bidder = bidderService.findById(item
+						.getWinningBidderId());
 
-			log.debug("[LOG][winning bidder]" + bidder);
-			// TODO email to winning
+				log.debug("[LOG][winning bidder]" + bidder);
+				// TODO email to winning
+			}
+			ConnectionContext.commitWriteConnection();
+		} finally {
+			ConnectionContext.removeWriteConnection();
 		}
 	}
 

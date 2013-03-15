@@ -27,7 +27,7 @@
 					<strong>Time Left:</strong>${item.closeDate}
 				</p>
 			</div>
-			<hr />
+			<hr class="clearBoth"/>
 		</div>
 	</c:forEach>
 	<div>

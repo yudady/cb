@@ -54,8 +54,8 @@
             var bidNow = topDiv.find('input').addClass("ui-widget-" + op.className +"-bidNow");
             /**
              * 大圖片上方文字
-             */
             var altMsg = bigImgMsg.find('span').addClass("ui-widget-" + op.className +"-altMsg");
+             */
             
             /**
              *小圖片 
@@ -91,8 +91,7 @@
                 var img = $(clickImg).addClass(hightLight);
                 bigImg.attr("src", img.attr("src"));
                 bigImg.attr("alt", img.attr("alt"));
-                altMsg.text(img.attr("alt"));
-                
+                bigImgMsg.empty().append(img.next().clone().css('display','block'));
             });
             /**
              *第一張圖片 

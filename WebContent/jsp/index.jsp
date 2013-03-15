@@ -156,7 +156,7 @@
 	<div id="contentSlideshow">
 		<div>
 			<input class="cssButton" type="button" value="Bid NOW" /><br/>
-			<div><span>&nbsp;</span></div>
+			<div></div>
         	<img src="" alt="" />
 			<div>
                 <i class="icon-double-angle-left" >&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -166,7 +166,13 @@
 		<div>
 			<ul>
 				<c:forEach items="${topItems}" var="it">
-					<li><img src='<c:url value="/pic/upload/item/${it.mainPicturePath}"/>' alt="${it.title}" /></li>
+					<li>
+						<img src='<c:url value="/pic/upload/item/${it.mainPicturePath}"/>' alt="${it.title}" />
+						<div style="display: none">
+							<div>${it.title}</div>
+							<div>${it.title}</div>
+						</div>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>

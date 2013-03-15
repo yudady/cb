@@ -14,28 +14,21 @@
     color: white;;
 }
 
-.item img {
-	width: 85px;
-	height: 60px;
-	float: left;
-}
-.item div {
-	padding:20px;
-	float: left;
-}
-.item hr {
-	clear: both;
-}
-
-.item span a {
-	float: right;
-}
-
 /**
  * 定位
  */
 .item {
     position: relative;
+}
+.item>a{
+    float: left;
+}
+.item>a>img{
+    width: 85px;
+    height: 60px;
+}
+.item>div{
+    padding:20px;
 }
 /**
  * 先移動
@@ -50,7 +43,7 @@
  */
 .item .dealhidetopborder a img{
     position: absolute;
-    left: 0px;
+    left: 10px;
     top: 0px;
 }
 /**

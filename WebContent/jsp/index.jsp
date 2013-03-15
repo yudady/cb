@@ -165,12 +165,12 @@
 		</div>
 		<div>
 			<ul>
-				<c:forEach items="${topItems}" var="it">
+				<c:forEach items="${slideItems}" var="slideItem">
 					<li>
-						<img src='<c:url value="/pic/upload/item/${it.mainPicturePath}"/>' alt="${it.title}" />
+						<img src='<c:url value="/pic/upload/item/${slideItem.mainPicturePath}"/>'  />
 						<div style="display: none">
-							<div>${it.title}</div>
-							<div>${it.title}</div>
+							<div>${slideItem.auctionTitle}</div>
+							<div>${slideItem.itemTitle}</div>
 						</div>
 					</li>
 				</c:forEach>

@@ -18,6 +18,7 @@ import com.charitybuzz.dto.Auction;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
+import com.charitybuzz.dto.SlideItem;
 import com.charitybuzz.service.AuctionService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
@@ -80,8 +81,8 @@ public class IndexController {
 		/**
 		 * top輪動圖片(20個商品)
 		 */
-		List<Item> topItems = slideshowService.getSlideShows();
-		mav.addObject("topItems", topItems);
+		List<SlideItem> slideItems = slideshowService.getSlideItems();
+		mav.addObject("slideItems", slideItems);
 		
 		
 		

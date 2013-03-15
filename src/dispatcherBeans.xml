@@ -87,6 +87,7 @@
 	<bean id="slideshowService" class="com.charitybuzz.cache.SlideshowService">
 		<property name="pictureService" ref="pictureService" />
 		<property name="itemService" ref="itemService" />
+		<property name="auctionService" ref="auctionService" />
 	</bean>
 	<bean id="topItemsCategoryService" class="com.charitybuzz.cache.TopItemsCategoryService">
 		<property name="categoryService" ref="categoryService" />

@@ -35,7 +35,7 @@
             /**
              *大圖片msgDiv
              */
-            var bigImgMsg = bigImg.prev().addClass("ui-widget-" + op.className +"-picMsg");
+            var bigImgOpacity = bigImg.prev().addClass("ui-widget-" + op.className +"-picMsg");
             /**
              *大圖片方向div
              */
@@ -52,9 +52,12 @@
              *bid now 
              */
             var bidNow = topDiv.find('input').addClass("ui-widget-" + op.className +"-bidNow");
+            
+            var msgDiv = bidNow.prev().addClass("ui-widget-" + op.className +"-msgDiv");;
+            
             /**
              * 大圖片上方文字
-            var altMsg = bigImgMsg.find('span').addClass("ui-widget-" + op.className +"-altMsg");
+            var altMsg = bigImgOpacity.find('span').addClass("ui-widget-" + op.className +"-altMsg");
              */
             
             /**
@@ -68,6 +71,19 @@
             ele.data('index',0);
             ele.data('lastIndex',(imgs.size() - 1 ));
 
+
+
+            /**
+             *bidNow 
+             */
+            bidNow.mouseenter(function(){
+                $(this).css("color","black");
+            }).mouseleave(function() {
+                $(this).css("color","white");
+            }).on('click',function(){
+                var link = $(this).prev().find('a').first();
+                window.location.href = link.attr('href');
+            });
             /**
              *小圖片 
              */
@@ -91,7 +107,7 @@
                 var img = $(clickImg).addClass(hightLight);
                 bigImg.attr("src", img.attr("src"));
                 bigImg.attr("alt", img.attr("alt"));
-                bigImgMsg.empty().append(img.next().clone().css('display','block'));
+                msgDiv.empty().append(img.next().clone().css('display','block').addClass('ui-widget-slideshow-divMsg'));
             });
             /**
              *第一張圖片 
@@ -102,7 +118,7 @@
             /**
              * Opacity
              */
-            bigImgMsg.css({
+            bigImgOpacity.css({
                 "opacity" : op.opacity
             });
             bigImgDirection.css({
@@ -174,6 +190,7 @@
             }, delay);
         },
         _destroy : function() {
+            //TODO
         }
     });
 })(jQuery); 

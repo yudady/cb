@@ -12,15 +12,43 @@
 
 }
 .ui-widget-slideshow-picMsg {
-	width: 730px;
+	width: 750px;
 	height: 200px;
-	font-size: 24px;
 	background-color: gray;
     position: absolute;
 	z-index: 1;
-	left:10px;
-	top: 5px;
+	left:0px;
+	top: 0px;
 }
+/**
+ * append div
+*/
+.ui-widget-slideshow-msgDiv {
+    padding-left: 20px;
+	position: absolute;
+    z-index: 100;
+} 
+.ui-widget-slideshow-msgDiv span {
+    color: white;
+    font-size: 12px;
+} 
+.ui-widget-slideshow-msgDiv span a{
+    color: white;
+} 
+.ui-widget-slideshow-msgDiv span a:hover{
+    color: red;
+} 
+.ui-widget-slideshow-msgDiv div {
+    margin-top: 10px;
+    color: white;
+    font-size: 36px;
+} 
+.ui-widget-slideshow-msgDiv div a{
+    color: white;
+} 
+.ui-widget-slideshow-msgDiv div a:hover{
+    color: red;
+} 
 /**
  * 	Bid NOW
  */
@@ -43,15 +71,7 @@
 	top: 5px;
 	left: 0px;
 }
-/**
- * alt文字
 
-.ui-widget-slideshow-altMsg {
-	color: white;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-} */
 /**
  * 	左右方向
  */

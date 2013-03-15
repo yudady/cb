@@ -155,6 +155,7 @@
 <div class="content">
 	<div id="contentSlideshow">
 		<div>
+			<div></div>
 			<input class="cssButton" type="button" value="Bid NOW" /><br/>
 			<div></div>
         	<img src="" alt="" />
@@ -169,8 +170,8 @@
 					<li>
 						<img src='<c:url value="/pic/upload/item/${slideItem.mainPicturePath}"/>'  />
 						<div style="display: none">
-							<div>${slideItem.auctionTitle}</div>
-							<div>${slideItem.itemTitle}</div>
+							<span><a href='<c:url value="/item/${slideItem.itemId}/index.do"/>'>${slideItem.auctionTitle}</a></span>
+							<div><a href='<c:url value="/item/${slideItem.itemId}/index.do"/>'>${slideItem.itemTitle}</a></div>
 						</div>
 					</li>
 				</c:forEach>

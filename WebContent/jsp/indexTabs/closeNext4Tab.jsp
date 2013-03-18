@@ -14,6 +14,14 @@
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
 <script type="text/javascript">
 $(function(){
+	$("a.tabUrl").on('click',function(){
+		window.parent.document.location = this.href;
+		return false;
+	});
+
+	$(".item a").on('click', function() {
+		window.parent.location.href = this.href;
+	}); 
     $(".timeLeftTab1").timeLeft({split:" ",style:"detail"});
 });
 </script>

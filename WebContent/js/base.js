@@ -16,7 +16,6 @@
         of: $(".subscribeemails")
     });
     
-    $(".timeLeft").timeLeft();
 });
 
 

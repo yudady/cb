@@ -8,9 +8,14 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-1.10.0/jquery-ui-1.10.0.custom.min.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-1.10.0/smoothness/jquery-ui-1.10.0.custom.min.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery.timeLeft.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
-<script type="text/javascript" src='<c:url value="/js/tabs.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
+<script type="text/javascript">
+$(function(){
+    $(".timeLeftTab3").timeLeft();
+});
+</script>
 </head>
 <body>
 	<c:forEach	items="${items}" var="item">
@@ -24,7 +29,7 @@
 					<strong>Bid:</strong>${item.currentBid}&nbsp;(&nbsp;${item.bidTimes}&nbsp;)&nbsp;
 				</p>
 				<p>
-					<strong>Time Left:</strong>${item.closeDate}
+					<span class="timeLeftTab3">${item.closeDate.time}</span>
 				</p>
 			</div>
 			<hr class="clearBoth"/>

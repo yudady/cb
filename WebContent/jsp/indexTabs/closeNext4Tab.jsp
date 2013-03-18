@@ -11,8 +11,12 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.timeLeft.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
-<script type="text/javascript" src='<c:url value="/js/tabs.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
+<script type="text/javascript">
+$(function(){
+    $(".timeLeftTab1").timeLeft({split:" ",style:"detail"});
+});
+</script>
 </head>
 <body>
 	<c:forEach	items="${items}" var="item">
@@ -27,7 +31,7 @@
         			<fmt:formatNumber value="${item.currentBid}" type="currency" currencySymbol="$" />
 				</p>
 				<p>
-					<span class="timeLeft">${item.closeDate.time}</span>
+					<span class="timeLeftTab1">${item.closeDate.time}</span>
 				</p>
 			</div>
 			<hr class="clearBoth"/>

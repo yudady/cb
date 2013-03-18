@@ -7,8 +7,8 @@ id NUMBER(10) NOT NULL PRIMARY KEY,
 auctionId NUMBER(10) NOT NULL ,
 title NVARCHAR2(2000) NOT NULL ,
 currentBid NUMBER(10) NULL ,
-startDate DATE NOT NULL ,
-closeDate DATE NOT NULL ,
+startDate dateTime NOT NULL ,
+closeDate dateTime NOT NULL ,
 estimatedValue NUMBER(10) NOT NULL ,
 incrementPrice NUMBER(10) NULL ,
 status NUMBER(1) NOT NULL ,
@@ -16,8 +16,8 @@ lotDetails NVARCHAR2(2000) NOT NULL ,
 legalTerms NVARCHAR2(2000) NOT NULL ,
 shipping NVARCHAR2(2000) NOT NULL ,
 winningBidderId NUMBER(10) NULL ,
-createdDate DATE NOT NULL ,
-updatedDate DATE NOT NULL
+createdDate dateTime NOT NULL ,
+updatedDate dateTime NOT NULL
 )
 ;
 commit;
@@ -164,7 +164,7 @@ id NUMBER(10)  NOT NULL PRIMARY KEY,
 itemId NUMBER(10)  NOT NULL ,
 priority NUMBER(10)  NOT NULL ,
 photoPath NVARCHAR2(200) NOT NULL ,
-createdDate DATE NOT NULL 
+createdDate dateTime NOT NULL 
 )
 ;
 commit;
@@ -187,7 +187,7 @@ id NUMBER(10) PRIMARY KEY NOT NULL,
 bidderId NUMBER(10) NOT NULL ,
 itemId NUMBER(10) NOT NULL ,
 price NUMBER(10) NOT NULL ,
-bidtime DATE NOT NULL 
+bidtime dateTime NOT NULL 
 )
 ;
 COMMENT ON COLUMN bidlog.id IS 'bid歷史紀錄id';

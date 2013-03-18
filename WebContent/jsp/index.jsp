@@ -27,6 +27,7 @@
 
 #liveAuctions {
 	width: 600px;
+	height:1375px;
 	background-color: #FFFFFF;
 }
 #liveAuctions h1{
@@ -100,7 +101,7 @@
 	    }
 	});
 	
-	
+    $(".timeLeft").timeLeft({split:", ",style:"detail"});
 	
 	//======Auctions 分頁start
 	function currentAuctions(){

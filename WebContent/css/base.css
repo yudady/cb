@@ -58,6 +58,22 @@ hr {
     dotted 2px black
 }
 
+
+.cb-corner-all, .cb-corner-top, .cb-corner-left, .cb-corner-tl {
+    border-top-left-radius: 20px
+}
+.cb-corner-all, .cb-corner-top, .cb-corner-right, .cb-corner-tr {
+    border-top-right-radius: 20px
+}
+.cb-corner-all, .cb-corner-bottom, .cb-corner-left, .cb-corner-bl {
+    border-bottom-left-radius: 20px
+}
+.cb-corner-all, .cb-corner-bottom, .cb-corner-right, .cb-corner-br {
+    border-bottom-right-radius: 20px
+}
+
+
+
 #header {
     height: 80px;
 }
@@ -283,14 +299,20 @@ hr {
  */
 #menu {
     font-size: 14px;
-    width: 200px;
+    width: 240px;
+    margin-left: 10px;
+    margin-top: 10px;
     float: left;
 }
 #menu li {
+    /*
     background-color: #F2F1EE;
+    */
 }
 #menu .sec-sidebar-li {
+    /*
     background-color: #FFFFFF;
+    */
 }
 #menu a {
     text-decoration: none;

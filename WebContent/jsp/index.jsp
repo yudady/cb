@@ -5,15 +5,16 @@
 <style type="text/css">
 
 .indexTop {
+	width: 960px;
+	height:550px;
 	background-color: #FFFFFF;
-	padding: 2px;
+	margin-left: 10px;
 }
 .content {
-	width: 760px;
-	margin-bottom: 20px;
+	width: 680px;
 	position:relative;
-	left: 210px;
-	margin-right:5px;
+	left: 260px;
+	top: 10px;
 }
 
 .indexDown {
@@ -158,7 +159,7 @@
 });
 </script>
 
-<div class="indexTop">
+<div class="indexTop cb-corner-top">
 <%@ include file="/jsp/include/menu.txt" %>
 <div class="content">
 	<div id="contentSlideshow">

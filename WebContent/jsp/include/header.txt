@@ -178,7 +178,7 @@ $(function() {
 	</form>
 </div>
 </div>
-<div class="mainBody"><!-- mainBody start -->
+<div class="mainBody cb-corner-all"><!-- mainBody start -->
 <div class="top-menu">
 	<div id="nav">
 		<ul>

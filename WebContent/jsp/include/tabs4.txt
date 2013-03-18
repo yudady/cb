@@ -51,8 +51,9 @@
  */
 .item .dealhidetopborder a img{
     position: absolute;
+    z-index:1;
     left: 10px;
-    top: 0px;
+    top: 10px;
 }
 /**
  * 微調
@@ -127,7 +128,7 @@
 					<span class="timeLeftTab2">${item.closeDate.time}</span>
 				</p>
 				<div class="dealhidetopborder">
-					<a href="">
+					<a >
 						<img src='<c:url value="/pic/site/deals_bg_vector_round-small.gif"/>' />
 						<span>-82%</span>
 					</a>

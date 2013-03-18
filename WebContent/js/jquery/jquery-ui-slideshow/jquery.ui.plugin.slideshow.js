@@ -5,7 +5,7 @@
         options : {
             className : "slideshow",
             opacity : 0.4,
-            moveLength : 90,
+            moveLength : 85,
             timer : 10000,
             showPicsNumber : 8
         },
@@ -13,7 +13,7 @@
             // this.element -- a jQuery object of the element the widget was invoked on.
             // this.options --  the merged options hash
             var op = this.options;
-            var ele = this.element.addClass( "ui-widget-" + op.className );
+            var ele = this.element.addClass( "ui-widget-" + op.className ).addClass('ui-corner-all');
             var _this = this;
             // Cache references to collections the widget needs to access regularly
             /**
@@ -120,7 +120,7 @@
              */
             bigImgOpacity.css({
                 "opacity" : op.opacity
-            });
+            }).addClass('ui-corner-top');
             bigImgDirection.css({
                 "opacity" : op.opacity
             });

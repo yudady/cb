@@ -29,11 +29,18 @@
 	width: 600px;
 	background-color: #FFFFFF;
 }
+#liveAuctions h1{
+	padding:20px;
+	text-align: left;
+	font-size: 36px;
+}
 
 #liveAuctions .auction {
-	height: 120px;
+	height: 100px;
 	padding: 20px;
-	margin-bottom: 10px;
+}
+#liveAuctions .auctionTitle {
+	font-size: 18px;
 }
 
 #liveAuctions .auction img {
@@ -146,7 +153,7 @@
 	});
 	$('.auctionsNum').first().triggerHandler('click');
 	//======Auctions 分頁end
-	
+
 });
 </script>
 
@@ -188,14 +195,14 @@
 </div>
 <div id="liveAuctions"><!-- liveAuctions -->
 	<h1>Current Auctions</h1>
-	
 	<c:forEach items="${auctions}" var="auction">
 		<div class="auction">
+			<div class="auctionSpilt"><hr /></div>
 			<a href='<c:url value="/auctions/${auction.id}/index.do"/>'><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' /></a>
 			<dl>
-				<dt>${auction.title}</dt>
-				<dd>${auction.startDate}</dd>
-				<dd>${auction.closeDate}</dd>
+				<dt class="auctionTitle">${auction.title}</dt>
+				<dd><fmt:formatDate value="${auction.closeDate}" dateStyle="full" /></dd>
+				<dd class="timeLeft">${auction.closeDate.time}</dd>
 				<dd><a class="cssButton" href='<c:url value="/auctions/${auction.id}/index.do"/>'>view items</a></dd>
 			</dl>
 		</div>

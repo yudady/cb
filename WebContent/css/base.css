@@ -52,6 +52,12 @@ a:hover {
     color: #F00;
 }
 
+hr {
+    border:none;
+    border-top:
+    dotted 2px black
+}
+
 #header {
     height: 80px;
 }

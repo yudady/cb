@@ -36,7 +36,7 @@ $(function(){
 				<h3><a href='<c:url value="/item/${item.id}/index.do"/>'>${item.title}</a></h3>
 				<p>
 					<strong>Bid:</strong>
-        			<fmt:formatNumber value="${item.currentBid}" type="currency" currencySymbol="$" />
+        			<fmt:formatNumber value="${item.currentBid}" type="currency" pattern="$#,##0"/>
 				</p>
 				<p>
 					<span class="timeLeftTab1">${item.closeDate.time}</span>

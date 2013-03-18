@@ -107,10 +107,12 @@ public class Item {
 	 */
 	private boolean watch;
 
+	/**
+	 * 差多少%
+	 */
+	private Long diffPercent;
 
 	// ====================================================
-
-
 
 	public Item() {
 	}
@@ -138,8 +140,6 @@ public class Item {
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -311,6 +311,16 @@ public class Item {
 
 	public void setWatch(boolean watch) {
 		this.watch = watch;
+	}
+
+	public Long getDiffPercent() {
+		Double d = this.getCurrentBid() / this.getEstimatedValue();
+		d = Math.ceil(d * 100);
+		return 100L - d.longValue();
+	}
+
+	public void setDiffPercent(Long diffPercent) {
+		this.diffPercent = diffPercent;
 	}
 
 	@Override

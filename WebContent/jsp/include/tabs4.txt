@@ -70,6 +70,9 @@
 .item div h3 a {
     color: red;
 }
+.itemEstimated {
+    text-decoration: line-through;
+}
 
 
 #linkAll {
@@ -119,10 +122,14 @@
 			<div>
 				<h3><a href='<c:url value="/item/${item.id}/index.do"/>'>${item.title}</a></h3>
 				<p>
-					<strong>Estimated:</strong>${item.estimatedValue}
+					<strong>Estimated:</strong>
+					<span class="itemEstimated">
+						<fmt:formatNumber value="${item.estimatedValue}" type="currency" pattern="$#,##0"/>
+					</span>
 				</p>
 				<p>
-					<strong>Bid:</strong>${item.currentBid}
+					<strong>Bid:</strong>
+					<fmt:formatNumber value="${item.currentBid}" type="currency" pattern="$#,##0"/>
 				</p>
 				<p>
 					<span class="timeLeftTab2">${item.closeDate.time}</span>
@@ -130,7 +137,7 @@
 				<div class="dealhidetopborder">
 					<a >
 						<img src='<c:url value="/pic/site/deals_bg_vector_round-small.gif"/>' />
-						<span>-82%</span>
+						<span>-${item.diffPercent}%</span>
 					</a>
 				</div>
 				

@@ -155,11 +155,12 @@
 	});
 	$('.auctionsNum').first().triggerHandler('click');
 	//======Auctions 分頁end
-
+	
+	$(".indexTop").corner('top 30px');
 });
 </script>
 
-<div class="indexTop cb-corner-top">
+<div class="indexTop">
 <%@ include file="/jsp/include/menu.txt" %>
 <div class="content">
 	<div id="contentSlideshow">

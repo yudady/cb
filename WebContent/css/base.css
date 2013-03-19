@@ -69,7 +69,7 @@ hr {
     border-bottom-left-radius: 20px
 }
 .cb-corner-all, .cb-corner-bottom, .cb-corner-right, .cb-corner-br {
-    border-bottom-right-radius: 20px
+    border-bottom-right-radius: 20px;
 }
 
 

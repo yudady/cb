@@ -152,7 +152,7 @@ hr {
     width: 400px;
     position: relative;
     top: -40px;
-    left: 600px;
+    left: 550px;
 }
 .sprite-social span {
     display: none;
@@ -229,6 +229,7 @@ hr {
     border: 1px solid #C2B49A;
     margin-top: 7px;
     /*
+     */
      -moz-border-radius-topleft: 25px;
      -moz-border-radius-topright: 0;
      -moz-border-radius-bottomright: 0;
@@ -236,7 +237,7 @@ hr {
      -webkit-border-top-left-radius: 25px;
      -webkit-border-top-right-radius: 0;
      -webkit-border-bottom-right-radius: 0;
-     -webkit-border-bottom-left-radius: 25px;*/
+     -webkit-border-bottom-left-radius: 25px;
     padding-top: 7px;
     height: 20px;
     padding-top: 7px;
@@ -258,6 +259,7 @@ hr {
     outline: none;
     -webkit-border-radius: 0;
     /*
+     */
      -moz-border-radius-topleft: 0;
      -moz-border-radius-topright: 13px;
      -moz-border-radius-bottomright: 0;
@@ -266,8 +268,9 @@ hr {
      -webkit-border-top-right-radius: 13px;
      -webkit-border-bottom-right-radius: 0;
      -webkit-border-bottom-left-radius: 0;
-     */
     border-radius: 0 13px 0 0;
+    top: 0px;
+    left: 300px;
 }
 .sprite-social input:focus {
     outline: none;
@@ -332,7 +335,6 @@ hr {
  */
 #footer {
     clear: both;
-    margin-top: 10px;
     height: 200px;
     background-color: #F3F2EF;
 }
@@ -354,7 +356,7 @@ hr {
     margin-top: 15px;
     border-top: #00686b 1px dashed;
     overflow: hidden;
-    height: 1px "
+    height: 1px;
 }
 
 /**

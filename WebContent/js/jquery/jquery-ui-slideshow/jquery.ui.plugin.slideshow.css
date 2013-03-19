@@ -16,9 +16,14 @@
 	height: 200px;
 	background-color: gray;
     position: absolute;
-	z-index: 1;
+    z-index: 0;
 	left:0px;
 	top: 0px;
+	/* 透明度 */
+    filter: alpa(opacity=40); /* old IE */
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40,FinishOpacity=15, Style=3, StartX=0, FinishX=100, StartY=0,FinishY=16); /*supported by current IE*/
+    -moz-opacity: 0.4; /* Moz + FF */
+    opacity: 0.4; /* 支持新版瀏覽器 */
 }
 /**
  * append div
@@ -80,17 +85,38 @@
 	line-height: 30px;
 	height: 30px;
 	font-size: 18px;
-	background-color: black;
+	background-color: gray;
 	position: absolute;
-	z-index: 1;
+	z-index: 0;
 	left: 570px;
 	top: 360px;
+    /* 透明度 */
+    filter: alpa(opacity=80); /* old IE */
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40,FinishOpacity=15, Style=3, StartX=0, FinishX=100, StartY=0,FinishY=16); /*supported by current IE*/
+    -moz-opacity: 0.4; /* Moz + FF */
+    opacity: 0.1; /* 支持新版瀏覽器 */
 }
-.ui-widget-slideshow-topDiv .ui-widget-slideshow-direction i {
+#icon-left {
+    font-size: 18px;
 	color: white;
     padding: 15px;
 	width: 30px;
 	cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    left: 570px;
+    top: 350px;
+}
+#icon-right{
+    font-size: 18px;
+	color: white;
+    padding: 15px;
+	width: 30px;
+	cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    left: 620px;
+    top: 350px;
 }
 .ui-widget-slideshow-downDiv {
     position: absolute;

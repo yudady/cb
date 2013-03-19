@@ -15,6 +15,7 @@
 	position:relative;
 	left: 260px;
 	top: 10px;
+	*left: 10px;/*IE7*/
 }
 
 .indexDown {
@@ -157,6 +158,15 @@
 	//======Auctions 分頁end
 	
 	$(".indexTop").corner('top 30px');
+	$(".mainBody").corner('top 30px');
+	
+	//TODO
+	//$(".mainBody").wrap('<div>').parent().corner();
+	
+    //$(".NewEmailSubBtn").wrap('<div>').parent().corner('top');
+	
+	
+	
 });
 </script>
 
@@ -169,10 +179,9 @@
 			<input class="cssButton" type="button" value="Bid NOW" /><br/>
 			<div></div>
         	<img src="" alt="" />
-			<div>
-                <i class="icon-double-angle-left" >&nbsp;</i>&nbsp;&nbsp;&nbsp;&nbsp;
-                <i class="icon-double-angle-right">&nbsp;</i>
-			</div>
+			<div></div>
+            <i id="icon-left">&lt;&lt;</i>
+            <i id="icon-right">&gt;&gt;</i>
 		</div>
 		<div>
 			<ul>

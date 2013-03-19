@@ -13,7 +13,7 @@
             // this.element -- a jQuery object of the element the widget was invoked on.
             // this.options --  the merged options hash
             var op = this.options;
-            var ele = this.element.addClass( "ui-widget-" + op.className ).addClass('ui-corner-all');
+            var ele = this.element.addClass( "ui-widget-" + op.className );
             var _this = this;
             // Cache references to collections the widget needs to access regularly
             /**
@@ -43,11 +43,11 @@
             /**
              *左邊<<
              */
-            var leftDirection = bigImgDirection.children().first().addClass("ui-widget-" + op.className +"-leftDirection");
+            var leftDirection = bigImgDirection.next().addClass("ui-widget-" + op.className +"-leftDirection");
             /**
              *右邊>>
              */
-            var rightDirection = bigImgDirection.children().last().addClass("ui-widget-" + op.className +"-rightDirection");
+            var rightDirection = bigImgDirection.next().next().addClass("ui-widget-" + op.className +"-rightDirection");
             /**
              *bid now 
              */
@@ -117,21 +117,21 @@
             
             /**
              * Opacity
-             */
             bigImgOpacity.css({
                 "opacity" : op.opacity
-            }).addClass('ui-corner-top');
+            });
             bigImgDirection.css({
                 "opacity" : op.opacity
             });
+             */
             /**
              *左右方向 
-             */
             rightDirection.position({
                 my: "left top",
                 at: "right top",
                 of: leftDirection
             });
+             */
             /**
              * timer 下一張圖片
              */

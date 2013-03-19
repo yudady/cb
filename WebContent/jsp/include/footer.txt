@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+</div><!-- mainBody end -->
 <div id="footer"><!-- footer start -->
 <div class="footer-dl">
 	<dl>
@@ -38,6 +39,6 @@
 <div class="clearBoth">© 2013 Charitybuzz Inc. All rights reserved.   |   Privacy Policy</div>
 </div><!-- footer end -->
 <div id="dialog"></div>
-</div><!-- mainBody end -->
+
 </body>
 </html>

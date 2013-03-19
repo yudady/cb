@@ -4,7 +4,6 @@
 @CHARSET "UTF-8";
 #tabs4 {
     font-size: 12px;
-    height:1200px;
 }
 #tabs4 .ui-tabs-active a{
     color: white;

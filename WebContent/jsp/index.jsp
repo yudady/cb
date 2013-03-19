@@ -19,8 +19,7 @@
 }
 
 .indexDown {
-	margin-top:20px;
-	padding: 2px;
+	margin-top:10px;
 }
 
 /**
@@ -28,8 +27,9 @@
  */
 
 #liveAuctions {
-	width: 600px;
-	height:1375px;
+	margin-left:10px;
+	width: 550px;
+	height:1300px;
 	background-color: #FFFFFF;
 }
 #liveAuctions h1{
@@ -77,12 +77,15 @@
 	/*
 	position:absolute;
 	left:760px;*/
+	margin-right:10px;
+	height:1300px;
 	float:right;
-	width: 365px;
-	background-color: gray;
+	width: 400px;
+	background-color: white;
 }
 
-#itemsClosing img {
+#itemsClosing>img {
+	width: 380px;
 	margin: 10px;
 }
 
@@ -159,13 +162,8 @@
 	
 	$(".indexTop").corner('top 30px');
 	$(".mainBody").corner('top 30px');
-	
-	//TODO
-	//$(".mainBody").wrap('<div>').parent().corner();
-	
-    //$(".NewEmailSubBtn").wrap('<div>').parent().corner('top');
-	
-	
+	$("#sidebar").corner('top');
+	$("#menu").corner();
 	
 });
 </script>

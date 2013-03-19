@@ -306,6 +306,7 @@ hr {
     margin-left: 10px;
     margin-top: 10px;
     float: left;
+    background-color: #F2F1EE;
 }
 #menu li {
     /*
@@ -324,6 +325,15 @@ hr {
 #menu a:hover {
     text-decoration: none;
     color: #F00;
+}
+#sidebar {
+    background-color: #F2F1EE;
+}
+#sidebar>li>a{
+    background-color: #F2F1EE;
+}
+#menu-select {
+    margin-left:25px;
 }
 
 .menuToggle {

@@ -17,7 +17,9 @@
 	top: 10px;
 	*left: 10px;/*IE7*/
 }
-
+#menu {
+    width: 240px;
+}
 .indexDown {
 	margin-top:10px;
 }

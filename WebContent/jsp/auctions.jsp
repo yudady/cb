@@ -11,9 +11,13 @@
 	left: 210px;
 	margin-right:5px;
 }
+#menu {
+	width: 220px;
+	background-color: white;
+}
 #contenta {
-	width: 750px;
-	float: right;
+	width: 740px;
+	float:right;
 	margin-bottom: 20px;
 }
 #fragment-1 {
@@ -73,16 +77,19 @@
 
 
 .down {
+	clear:both;
+	margin-top:10px;
 	height: 500px;
 }
 
 .downLeft {
-	width: 400px;
+	width: 360px;
+	background-color:white;
 	float: left;
 }
 
 .downRight {
-	float: left;
+	float: right;
 }
 dl.topItem {
 }
@@ -106,8 +113,6 @@ $(function(){
 	        });
 	    }
 	});
-	
-	
 	
 });
 </script>
@@ -201,6 +206,7 @@ $(function(){
 	        </div>
 		</div>
 	</div>
+	<div class="clearBoth"></div>
 	<div class="down">
 		<div class="downLeft">
 			<c:forEach items="${topItemsCategories}" var="topItem">
@@ -217,5 +223,6 @@ $(function(){
 		</div>
 	</div>
 </div>	
+<div class="clearBoth"></div>
 </div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>

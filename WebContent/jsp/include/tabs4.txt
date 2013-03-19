@@ -108,11 +108,11 @@
 <div id="tabs4">
 	<ul>
 		<li><a href='<c:url value="/tabs/closingNext.do"/>'><span>Closing Next</span></a></li>
-        <li><a href='#fragment-2'><span>Deals</span></a></li>
+        <li><a href='#Deals'><span>Deals</span></a></li>
         <li><a href='<c:url value="/tabs/popular.do"/>'><span>Most Popular</span></a></li>
         <li><a href='<c:url value="/tabs/recentAdd.do"/>'><span>Recently Added</span></a></li>
 	</ul>
-	<div id="fragment-2">
+	<div id="Deals">
 	<c:forEach	items="${items}" var="item">
 		<div class="item">
 			<a href='<c:url value="/item/${item.id}/index.do"/>'>

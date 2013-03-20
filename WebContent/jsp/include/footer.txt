@@ -39,6 +39,3 @@
 <div class="clearBoth">© 2013 Charitybuzz Inc. All rights reserved.   |   Privacy Policy</div>
 </div><!-- footer end -->
 <div id="dialog"></div>
-
-</body>
-</html>

@@ -2,7 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
 <%@ include file="/jsp/include/header.txt" %>
+<title>itemsPager</title>
+</head>
+<body>
+<%@ include file="/jsp/include/bodyTop.txt" %>
 <style type="text/css">
 .counter {
 	padding: 10px;
@@ -27,3 +34,5 @@ doGoodDreamBig<br/>
 <div class="clearBoth"></div>
 </div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>
+</body>
+</html>

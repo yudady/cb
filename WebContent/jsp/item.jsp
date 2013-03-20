@@ -10,19 +10,19 @@
 	float: left;
 	width: 230px;
 	margin-left:10px;
-	background-color: red;
+	background-color: white;
 }
 .counter2 {
 	width: 390px;
 	float: left;
 	margin-left:5px;
 	margin-right:5px;
-	background-color: pink;
+	background-color: white;
 }
 .counter3 {
 	width: 330px;
 	float: left;
-	background-color: yellow;
+	background-color: white;
 }
 
 /**

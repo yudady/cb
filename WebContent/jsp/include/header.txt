@@ -12,6 +12,9 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.timeLeft.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/prettify.css"/>'/>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/font-awesome.css"/>'/>
+<!--[if IE 7]>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/font-awesome-ie7.min.css"/>'/>
+<![endif]-->
 <script type="text/javascript">
 
 	/**

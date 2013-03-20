@@ -231,5 +231,6 @@ $(function(){
 			<label for="ftr-displayClosed">Display closed items only</label>
 		</form>
 	</div>
+<div class="clearBoth"></div>
 </div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>

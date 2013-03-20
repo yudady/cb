@@ -24,5 +24,6 @@ doGoodDreamBig<br/>
 doGoodDreamBig<br/>
 doGoodDreamBig<br/>
 </div>
+<div class="clearBoth"></div>
 </div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>

@@ -47,9 +47,8 @@ public class ItemService {
 	public Pager<Item> findPagerBySubCategoryId(Long subcategoryId) {
 		return itemDao.findPagerBySubCategoryId(subcategoryId);
 	}
-
 	/**
-	 * 分頁-2級目錄找結標商品
+	 * 分頁，2級目錄找結標商品
 	 * 
 	 * @param subcategoryId
 	 * @return
@@ -95,7 +94,14 @@ public class ItemService {
 	public Pager<Item> findPagerByCategoryId(Long categoryId) {
 		return itemDao.findPagerByCategoryId(categoryId);
 	}
-
+	/**
+	 * 分頁，1級目錄找結標商品
+	 * @param categoryId
+	 * @return
+	 */
+	public Pager<Item> findPagerCloseItemsByCategoryId(Long categoryId) {
+		return itemDao.findPagerCloseItemsByCategoryId(categoryId);
+	}
 	/**
 	 * pk find object
 	 * 
@@ -269,5 +275,7 @@ public class ItemService {
 	public Pager<Item> findPagerCloseItemsByRecentAdd() {
 		return itemDao.findPagerCloseItemsByRecentAdd();
 	}
+
+
 
 }

@@ -162,8 +162,8 @@
 	$('.auctionsNum').first().triggerHandler('click');
 	//======Auctions 分頁end
 	
-	$(".indexTop").corner('top 30px');
 	$(".mainBody").corner('top 30px');
+	$(".indexTop").corner('top 20px');
 	$("#sidebar").corner('top');
 	$("#menu").corner();
 	

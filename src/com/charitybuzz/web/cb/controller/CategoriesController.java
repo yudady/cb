@@ -24,7 +24,6 @@ import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 
 @Controller
-@RequestMapping("/categories")
 public class CategoriesController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(CategoriesController.class);
@@ -46,14 +45,14 @@ public class CategoriesController {
 	private BidlogService bidlogService;
 
 	/**
-	 * categories/2
 	 * 
 	 * @param id
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}/index", method = RequestMethod.GET)
-	public ModelAndView category(@PathVariable Long id) {
+	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/index", method = RequestMethod.GET)
+	public ModelAndView category(@PathVariable Long categoryId,
+			@PathVariable String categoryName) {
 		ModelAndView mav = new ModelAndView("itemsPager");
 
 		/**
@@ -65,7 +64,7 @@ public class CategoriesController {
 		/**
 		 * 分頁商品
 		 */
-		Pager<Item> pager = itemService.findPagerByCategoryId(id);
+		Pager<Item> pager = itemService.findPagerByCategoryId(categoryId);
 		List<Item> items = pager.getDatas();
 		for (Item item : items) {
 			Long itemId = item.getId();
@@ -82,8 +81,11 @@ public class CategoriesController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/{id}/subcategories/{subcategoryId}/{subCategoryName}", method = RequestMethod.GET)
-	public ModelAndView subCategory(@PathVariable Long subcategoryId) {
+	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/subcategories/{subcategoryId}/{subCategoryName}/index", method = RequestMethod.GET)
+	public ModelAndView subCategory(@PathVariable Long categoryId,
+			@PathVariable String categoryName,
+			@PathVariable Long subcategoryId,
+			@PathVariable String subCategoryName) {
 
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
 

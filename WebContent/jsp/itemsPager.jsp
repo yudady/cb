@@ -4,22 +4,31 @@
 <%@ include file="/jsp/include/header.txt" %>
 <style type="text/css">
 .counter {
-	padding: 10px;
+	
+}
+
+.counterLeft {
+	width: 220px;
+	float: left;
+	background-color: red;
+}
+
+.counterRight {
+	margin-left:10px;
+	width: 730px;
+	float: left;
+	background-color: blue;
 }
 
 .itemList {
-	width: 680px;
 	padding: 30px;
-	margin-left: 220px;
 	margin-bottom: 20px;
 	background-color: white;
 }
 
 .auction {
-	width: 680px;
 	padding: 30px;
 	padding-bottom: 0px;
-	margin-left: 220px;
 	background-color: white;
 }
 
@@ -40,10 +49,8 @@
 }
 
 .item {
-	width: 680px;
 	height: 200px;
 	padding: 30px;
-	margin-left: 220px;
 	margin-bottom: 20px;
 	background-color: white;
 }
@@ -74,7 +81,7 @@
 * bid now
 */
 .detail a.cssButton {
-float:right;
+	float: right;
 	font-size: 24px;
 	color: white;
 }
@@ -124,54 +131,28 @@ $(function(){
 	});
 });
 </script>
-<div class="counter"><!-- counter -->
-<%@ include file="/jsp/include/menu.txt" %>
+<div class="counter"><!-- counter start-->
+<div class="counterLeft"><%@ include file="/jsp/include/menu.txt" %></div>
+<div class="counterRight">
 <div class="auction">
 <c:choose>
-	<c:when test="${!empty auc}">
-		<div>
-			<div id="crumbs">
-				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auc.title}
-			</div>
-			<div class="auctionPic">
-				<img src='<c:url value="/pic/upload/auction/${auc.auctionLogoPath}" />'>
-			</div>
-			<div class="auctionDetail">
-				<div>${auc.brief}</div>
-				<div>&nbsp;</div>
-				<div>${auc.webSite}</div>
-			</div>
-		</div>
+	<c:when test="${!empty auctionId}">
+		<a href='<c:url value="/auctionId/${auctionId}/item/${item.id}/index.do" />'>
+			<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+		</a>
 	</c:when>
-	<c:otherwise>
-		<div id="crumbs">
-			<a href='<c:url value="/" />'><i class="icon-home"></i></a>
-			<script type="text/javascript">
-			$(function(){
-				
-				var loc = window.location.href;
-				//$.log(loc);
-				var path = loc.split("/");
-				//$.log(path);
-				$.each(path,function(i,v){
-					if(path[i] == 'categories'){
-						var a = $('<a>'+path[i]+'</a>').attr('href',cb.getSafeUrl('categories/'+path[i+1]+'/index.do')) ;
-						$("#crumbs").append('<b> » </b>').append(a);
-					}
-					if(path[i] == 'subcategories'){
-						var pa = decodeURIComponent(path[i+2]);
-						var len = pa.search('.do');
-						pa = pa.substr(0,len);
-						$("#crumbs").append('<b> » </b>').append(pa);
-					}
-					if(path[i] == 'tabs'){
-						$("#crumbs").append('<b> » </b>').append('Active Lots');
-					}
-				});
-			});
-			</script>
-		</div>
-	</c:otherwise>
+	<c:when test="${!empty subcategoryId}">
+		<a href='<c:url value="/" />'><i class="icon-home"></i></a>
+		<b> » </b>
+		<a href='<c:url value="/categories/${categoryId}/${categoryName}/index.do" />'>${categoryName}</a>
+		<b> » </b>
+		${subCategoryName}
+	</c:when>
+	<c:when test="${!empty categoryId}">
+		<a href='<c:url value="/" />'><i class="icon-home"></i></a>
+		<b> » </b>
+		${categoryName}
+	</c:when>
 </c:choose>
 </div>
 <div class="itemList">
@@ -186,9 +167,23 @@ $(function(){
 	<div class="item">
 		<span class="pic">
 			<div class="lotClosed">This item is now closed</div>
-			<a href='<c:url value="/item/${item.id}/index.do" />'>
-				<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
-			</a>
+			<c:choose>
+				<c:when test="${!empty auctionId}">
+					<a href='<c:url value="/auctionId/${auctionId}/item/${item.id}/index.do" />'>
+						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+					</a>
+				</c:when>
+				<c:when test="${!empty subcategoryId}">
+					<a href='<c:url value="/categories/${categoryId}/${categoryName}/subcategories/${subcategoryId}/${subCategoryName}/item/${item.id}/index.do" />'>
+						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+					</a>
+				</c:when>
+				<c:when test="${!empty categoryId}">
+					<a href='<c:url value="/categories/${categoryId}/${categoryName}/item/${item.id}/index.do" />'>
+						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+					</a>
+				</c:when>
+			</c:choose>
 		</span> 
 		<span class="detail"> 
 			<a href='<c:url value="/item/${item.id}/index.do" />'>${item.title}</a>
@@ -231,6 +226,8 @@ $(function(){
 			<label for="ftr-displayClosed">Display closed items only</label>
 		</form>
 	</div>
+
+</div>
 <div class="clearBoth"></div>
-</div><!-- counter -->
+</div><!-- counter end-->
 <%@ include file="/jsp/include/footer.txt" %>

@@ -6,20 +6,20 @@
 <style type="text/css">
 .counter {
 }
-.counter1 {
+.counterLeft {
 	float: left;
 	width: 230px;
 	margin-left:10px;
 	background-color: white;
 }
-.counter2 {
+.counterMiddle {
 	width: 390px;
 	float: left;
 	margin-left:5px;
 	margin-right:5px;
 	background-color: white;
 }
-.counter3 {
+.counterRight {
 	width: 330px;
 	float: left;
 	background-color: white;
@@ -29,8 +29,13 @@
  *	左邊
  */
 #menu {
+	background-color:white;
 	width: 220px;
 }
+#sidebar {
+	background-color:white;
+}
+
 /**
  *	中間
  */
@@ -71,12 +76,19 @@
  *右邊
  */
 .bidding {
+	width:300px;
 }
 
+.biddingStart {
+	/*
+	background-color: pink;
+	*/
+}
 .biddingIitem {
-	background-color: white;
 }
-
+.biddingIitem h2{
+	font-size: 24px;
+}
 
 .biddingProceedsBenefit {
 	margin-bottom: 10px;
@@ -287,12 +299,12 @@ $(function() {
 	
 	//以下是頁面資訊=============================================
 	$("#itemTabs").tabs();
-	var a = $(".counter1").height();
-	var b = $(".counter2").height();
-	var c = $(".counter3").height();
+	var a = $(".counterLeft").height();
+	var b = $(".counterMiddle").height();
+	var c = $(".counterRight").height();
 	var hei = (a > b)? a : b ;
 	hei = hei > c ? hei : c ;
-	$('.counter1,.counter2,.counter3').height(hei);
+	$('.counterLeft,.counterMiddle,.counterRight').height(hei);
 	
 	
 	
@@ -319,16 +331,22 @@ $(function() {
 		event.preventDefault();
 		event.stopPropagation();
 	});
+	//$(".indexTop").corner('top 30px');
+	$(".mainBody").corner('top 30px');
+	$(".counterLeft").corner('tl 20px');
+	$(".counterRight").corner('tr 20px');
 	
+	//$("#sidebar").corner('top');
+	//$("#menu").corner();
 });
 </script>
-<div class="counter"><!-- counter -->
-<div class="clearBoth"><div>
-<div class="counter1">
+<div class="counter"><!-- counter start-->
+<div class="clearBoth"></div>
+<div class="counterLeft"><!-- counterLeft start-->
 	<%@ include file="/jsp/include/menu.txt" %>
 	<div class="clearBoth"></div>
-</div>
-<div class="counter2">
+</div><!-- counterLeft end-->
+<div class="counterMiddle"><!-- counterMiddle start-->
 	<div id="itemDetail">
 		<div class="itemLargePic">
 			<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
@@ -358,14 +376,32 @@ $(function() {
 		</div>
 	</div>
 	<div class="clearBoth"></div>
-</div>
-<div class="counter3">
+</div><!-- counterMiddle end-->
+<div class="counterRight"><!-- counterRight start-->
+	<div class="biddingStart">&nbsp;</div>
 	<div class="bidding">
 		<div class="biddingIitem">
 			<h2>${item.title}</h2>
 			<div>
-				<a href='<c:url value="/" />'><i><span>Home</span></i></a> » <a
-					href='#" />'>麵包屑</a>
+				<c:choose>
+					<c:when test="${!empty auctionId}">
+						<a href='<c:url value="/auctionId/${auctionId}/item/${item.id}/index.do" />'>
+							<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+						</a>
+					</c:when>
+					<c:when test="${!empty subcategoryId}">
+						<a href='<c:url value="/" />'><i class="icon-home"></i></a>
+						<b> » </b>
+						<a href='<c:url value="/categories/${categoryId}/${categoryName}/index.do" />'>category</a>
+						<b> » </b>
+						<a href='<c:url value="/categories/${categoryId}/${categoryName}/subcategories/${subcategoryId}/${subCategoryName}/index.do" />'>${subCategoryName}</a>
+					</c:when>
+					<c:when test="${!empty categoryId}">
+						<a href='<c:url value="/" />'><i class="icon-home"></i></a>
+						<b> » </b>
+						<a href='<c:url value="/categories/${categoryId}/${categoryName}/index.do" />'>${categoryName}</a>
+					</c:when>
+				</c:choose>
 			</div>
 	
 			<div>
@@ -465,7 +501,7 @@ $(function() {
 		</div>
 	</div>
 	<div class="clearBoth"></div>
-</div>
+</div><!-- counterRight end-->
 <div class="clearBoth">&nbsp;</div>
-</div><!-- counter -->
+</div><!-- counter end-->
 <%@ include file="/jsp/include/footer.txt" %>

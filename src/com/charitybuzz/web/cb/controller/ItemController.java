@@ -26,7 +26,6 @@ import com.charitybuzz.service.PictureService;
 import com.charitybuzz.service.WatchingService;
 
 @Controller
-@RequestMapping("/item")
 public class ItemController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(ItemController.class);
@@ -55,8 +54,25 @@ public class ItemController {
 	@Resource
 	private PictureService pictureService;
 
-	@RequestMapping(value = "/{itemId}/index", method = RequestMethod.GET)
-	public ModelAndView index(@PathVariable Long itemId, HttpSession session) {
+	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/item/{itemId}/index", method = RequestMethod.GET)
+	public ModelAndView index(@PathVariable Long categoryId,
+			@PathVariable String categoryName, @PathVariable Long itemId,
+			HttpSession session) {
+
+		return getItem(itemId, session);
+	}
+
+	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/subcategories/{subcategoryId}/{subCategoryName}/item/{itemId}/index", method = RequestMethod.GET)
+	public ModelAndView index2(@PathVariable Long categoryId,
+			@PathVariable String categoryName,
+			@PathVariable Long subcategoryId,
+			@PathVariable String subCategoryName, @PathVariable Long itemId,
+			HttpSession session) {
+
+		return getItem(itemId, session);
+	}
+
+	private ModelAndView getItem(Long itemId, HttpSession session) {
 		ModelAndView mav = new ModelAndView("item");
 		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
@@ -77,7 +93,7 @@ public class ItemController {
 		if (session.getAttribute("bidder") != null) {
 			Bidder bidder = (Bidder) session.getAttribute("bidder");
 			Watching watching = watchingService.isWatch(bidder.getId(), itemId);
-			if(watching != null){
+			if (watching != null) {
 				item.setWatch(true);
 			}
 		}
@@ -90,5 +106,4 @@ public class ItemController {
 		item.setPictures(pictures);
 		return mav;
 	}
-
 }

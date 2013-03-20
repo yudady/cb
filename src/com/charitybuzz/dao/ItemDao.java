@@ -585,4 +585,20 @@ public class ItemDao extends BaseDao<Item> {
 		return null;
 	}
 
+	public Pager<Item> findPagerCloseItemsByCategoryId(final Long categoryId) {
+		String sql = "SELECT distinct b.* FROM subcategory_item A ,item b ,subCATEGORY  sub WHERE b.status = '0' and b.closedate < sysdate AND b.id = a.itemid and sub.id = a.SUBCATEGORYID and sub.CATEGORYID = ? ";
+		return this.queryPager(sql, new QueryPager<Item>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+				this.preparedStatement.setLong(1, categoryId);
+			}
+
+			@Override
+			public List<Item> doResultSet() throws SQLException {
+				return ItemDao.getList(rs);
+			}
+
+		});
+	}
+
 }

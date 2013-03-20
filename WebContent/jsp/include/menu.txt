@@ -5,7 +5,7 @@
 $(function() {
     $("#sidebar").toggleClass("menuToggle").menu();
     //
-
+/*
     var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
     $("#rerun").button();
 
@@ -47,17 +47,17 @@ $(function() {
         delay : 0,
         source : availableTags
     });
-
+*/
 });
 </script>
 <ul id="sidebar">
 	<c:forEach items="${categories}" var="category">
-		<li><a href='<c:url value="/categories/${category.id}/index.do" />'>${category.name}(${category.subCategoriesItemsCount})</a>
+		<li><a href='<c:url value="/categories/${category.id}/${category.name}/index.do" />'>${category.name}(${category.subCategoriesItemsCount})</a>
 			<c:if test="${not empty category.subCategories}">
 				<ul>
 					<c:forEach items="${category.subCategories}" var="subCategory">
 						<li class="sec-sidebar-li"><a
-							href='<c:url value="/categories/${category.id}/subcategories/${subCategory.id}/${subCategory.name}.do" />'>${subCategory.name}(${subCategory.itemsCount})</a></li>
+							href='<c:url value="/categories/${category.id}/${category.name}/subcategories/${subCategory.id}/${subCategory.name}/index.do" />'>${subCategory.name}(${subCategory.itemsCount})</a></li>
 					</c:forEach>
 				</ul>
 			</c:if>

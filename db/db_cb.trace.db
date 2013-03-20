@@ -3374,3 +3374,30 @@ update ITEM set status = '1' where ststus = '0' [42122-169]
 03-14 14:12:04 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE FROM[*] ITEM SET STATUS = '1' WHERE STATUS = '0' "; expected "identifier"; SQL statement:
 update from item set status = '1' where status = '0' [42001-169]
+03-20 16:29:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "DISTANCE" not found; SQL statement:
+SELECT distance b.* FROM subcategory_item A ,item b ,subCATEGORY  sub
+WHERE 
+b.status = '0' and b.closedate < sysdate 
+ AND b.id = a.itemid
+and sub.id = a.SUBCATEGORYID
+and sub.CATEGORYID = '1' [42122-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:138)
+	at org.h2.expression.Alias.optimize(Alias.java:47)
+	at org.h2.command.dml.Select.prepare(Select.java:799)
+	at org.h2.command.Parser.prepareCommand(Parser.java:218)
+	at org.h2.engine.Session.prepareLocal(Session.java:415)
+	at org.h2.engine.Session.prepareCommand(Session.java:364)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1114)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:164)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Thread.java:662)

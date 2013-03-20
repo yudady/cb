@@ -63,14 +63,59 @@ public class DisplayClosedController {
 
 	/**
 	 * displayClosed 查結標商品
+	 * @param displayClosed
+	 * @param categoryId
+	 * @param categoryName
+	 * @return
+	 */
+	@RequestMapping(value = { "/categories/{categoryId}/{categoryName}/index" }, method = RequestMethod.GET, params = "displayClosed=true")
+	public ModelAndView categoryDisplayClosed(
+			@RequestParam(value = "displayClosed", required = true) boolean displayClosed,
+			@PathVariable Long categoryId,
+			@PathVariable String categoryName) {
+		
+		
+		log.debug("[LOG][categoryId]" + categoryId);
+		log.debug("[LOG][displayClosed]" + displayClosed);
+		
+		
+		
+		ModelAndView mav = new ModelAndView("itemsPager");
+
+		/**
+		 * 目錄
+		 */
+		List<Category> categories = sidebarService.getCategories();
+		mav.addObject("categories", categories);
+
+		/**
+		 * 分頁結標商品
+		 */
+		Pager<Item> pager = itemService
+				.findPagerCloseItemsByCategoryId(categoryId);
+		List<Item> items = pager.getDatas();
+		for (Item item : items) {
+
+			Long itemId = item.getId();
+			List<Picture> pictures = pictureService.findByItemId(itemId);
+			item.setPictures(pictures);
+		}
+		mav.addObject("pager", pager);
+		return mav;
+	}
+
+	/**
+	 * displayClosed 查結標商品
 	 * 
 	 * @param subcategoryId
 	 * @return
 	 */
-	@RequestMapping(value = { "/categories/{id}/subcategories/{subcategoryId}/{subCategoryName}" }, method = RequestMethod.GET, params = "displayClosed=true")
+	@RequestMapping(value = { "/categories/{categoryId}/{categoryName}/subcategories/{subcategoryId}/{subCategoryName}/index" }, method = RequestMethod.GET, params = "displayClosed=true")
 	public ModelAndView subCategoryDisplayClosed(
 			@RequestParam(value = "displayClosed", required = true) boolean displayClosed,
-			@PathVariable Long subcategoryId) {
+			@PathVariable Long categoryId, @PathVariable String categoryName,
+			@PathVariable Long subcategoryId,
+			@PathVariable String subCategoryName) {
 
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
 		log.debug("[LOG][displayClosed]" + displayClosed);
@@ -84,7 +129,6 @@ public class DisplayClosedController {
 		/**
 		 * 分頁結標商品
 		 */
-		System.out.println("[LOG]subCategoryDisplayClosed");
 		Pager<Item> pager = itemService
 				.findPagerCloseItemsBySubCategoryId(subcategoryId);
 		List<Item> items = pager.getDatas();

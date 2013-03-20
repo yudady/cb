@@ -3,29 +3,41 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/jsp/include/header.txt" %>
-<script type='text/javascript' src='<c:url value="/dwr/engine.js"/>'></script>
-<script type='text/javascript' src='<c:url value="/dwr/util.js"/>'></script>
-<script type='text/javascript' src='<c:url value="/dwr/interface/watch.js"/>'></script>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/time-tag.css"/>'/>
 <style type="text/css">
-
 .counter {
-	padding: 10px;
-	background-color: white;
-
+}
+.counter1 {
+	float: left;
+	width: 230px;
+	margin-left:10px;
+	background-color: red;
+}
+.counter2 {
+	width: 390px;
+	float: left;
+	margin-left:5px;
+	margin-right:5px;
+	background-color: pink;
+}
+.counter3 {
+	width: 330px;
+	float: left;
+	background-color: yellow;
 }
 
-
+/**
+ *	左邊
+ */
+#menu {
+	width: 220px;
+}
 /**
  *	中間
  */
 #itemDetail {
-	margin-left:5px;
-	width: 400px;
-	padding: 5px;
-	background-color:#CCC;
-	float: left;
-	position: relative;
+}
+.itemLargePic>img{
+	width: 350px;
 }
 #itemDetail img{
 	cursor: pointer;
@@ -42,7 +54,6 @@
  *  大圖
  */
 #itemDetail .itemLargePic img {
-	width: 400px;
 }
 /**
  *  小圖
@@ -60,11 +71,6 @@
  *右邊
  */
 .bidding {
-	margin-left:620px;
-	width: 330px;
-	padding: 5px;
-	background-color: #CCC;
-	position: relative;
 }
 
 .biddingIitem {
@@ -133,13 +139,6 @@
 .bidNowSpan input{
 	text-align: right;
 }
-#biddingBidNowBtn {
-	position: absolute;
-	left: 200px;
-	top: 85px;
-}
-
-
 </style>
 <script type="text/javascript">
 $(function() {
@@ -261,7 +260,6 @@ $(function() {
 		$(".icon-eye-open,.icon-check").parent().toggleClass("displayNone");
 		/**
 		 * call dwr
-		 */
 		watch.item( itemId , watchStatus , {
 			callback : function(data){
 				$.log(data);
@@ -270,12 +268,35 @@ $(function() {
 				ch.openAlertDialog("We can't add those values!");
 			}
 		});
+		 */
+		$.ajax({
+			type: "POST",
+			url: '<c:url value="/watch/index.do" />',
+			dataType: "json",
+			data: {
+				"itemId":itemId,
+				"watchStatus":watchStatus
+			},
+			success: function(msg){
+				$.log(data);
+			}
+		});
 	});
 	
 
 	
 	//以下是頁面資訊=============================================
 	$("#itemTabs").tabs();
+	var a = $(".counter1").height();
+	var b = $(".counter2").height();
+	var c = $(".counter3").height();
+	var hei = (a > b)? a : b ;
+	hei = hei > c ? hei : c ;
+	$('.counter1,.counter2,.counter3').height(hei);
+	
+	
+	
+	
 	$("#link-currency").on('click',function(event){
 		cb.openAlertDialog(" money ");
 		event.preventDefault();
@@ -300,25 +321,17 @@ $(function() {
 	});
 	
 });
-
-
 </script>
 <div class="counter"><!-- counter -->
+<div class="clearBoth"><div>
+<div class="counter1">
 	<%@ include file="/jsp/include/menu.txt" %>
+	<div class="clearBoth"></div>
+</div>
+<div class="counter2">
 	<div id="itemDetail">
 		<div class="itemLargePic">
-			<!-- time-tag -->
-			<div class="time-tag">
-				<!-- rotate-clock -->
-				<div class="rotate-clock">8 days</div>
-			</div>
-			<a href="#">
-				<div>
-					<i>&nbsp;</i>
-				</div>
-				<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
-				<div id="itemLargePicDialog"></div>
-			</a>
+			<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 		</div>
 
 		<div class="itemSmallPic">
@@ -344,111 +357,115 @@ $(function() {
 			<div id="shipping">${item.shipping}</div>
 		</div>
 	</div>
-<div class="bidding">
-	<div class="biddingIitem">
-		<h2>${item.title}</h2>
-		<div>
-			<a href='<c:url value="/" />'><i><span>Home</span></i></a> » <a
-				href='#" />'>麵包屑</a>
-		</div>
-
-		<div>
-			<div>
-				Current Bid: <span id="currentPrice">${item.currentBid}</span> <span>
-					( <a href='<c:url value="/item/${item.id}/bidlog.do" />'>${item.bidTimes}</a>
-					)
-				</span>
-			</div>
-			<div id="placedBy">
-				placed by: <b>jaimervelasco</b>
-			</div>
-			<div>
-				Estimated Value: <b> ${item.estimatedValue} </b>
-			</div>
-		</div>
-		<div>
-			<span>??? days left to bid</span>
-		</div>
-		<div>
-			<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.closeDate}" /><i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
-		</div>
-		
-		
-		
-		<div><!-- Bid Now -->
-			<form id="biddingBidForm" action='<c:url value="/bid/${item.id}/index.do" />'>
-				<span  class="bidNowSpan ui-corner-all">
-					<a id="link-currency" href="#">$<small>▾</small></a>
-					<input id="biddingBidUrl" name="biddingBidUrl" type="hidden" />
-					<input class="inputBorderHide" id="biddingBidNowPrice" name="biddingBidNowPrice" type="text" />
-					&nbsp;&nbsp;&nbsp;&nbsp;
-				</span>
-				<input id="biddingBidNowBtn" name="biddingBidNowBtn" type="button" class="cssButton" value="Bid Now" />
-			</form>
-		</div>
-		<div>
-			<span>you must bid at least ${item.incrementPrice}
-				<input id="incrementPrice" type="hidden" value="${item.incrementPrice}"/>
-				<i class="icon-question-sign" id="biddingIncrementPriceBtn">&nbsp;</i>
-			</span>
-		</div>
-
-
-	</div>
-	<div class="biddingProceedsBenefit">
- Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
- 這裡是一個超連結，連到其他商品網站
-	</div>
-	<div class="biddingWatchQuestion">
-		<div id="biddingWatchThisItem">
-			<c:choose>
-				<c:when test="${item.watch}">
-					<span class="displayNone"><i class="icon-eye-open">&nbsp;</i></span>
-					<span><i class="icon-check">&nbsp;</i></span>
-					<a href="#" class="biddingWatchThisItemLink">Watching</a>
-				</c:when>
-				<c:otherwise>
-					<span><i class="icon-eye-open">&nbsp;</i></span>
-					<span class="displayNone"><i class="icon-check">&nbsp;</i></span>
-					<a href="#" class="biddingWatchThisItemLink">Watch This Item</a>
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<div id="biddingAskQuestion">
-			<i class="icon-comments-alt">&nbsp;</i>
-			<a href='<c:url value="/contact_us/item/${item.id}/index.do" />'>Ask a Question </a>
-		</div>
-	</div>
-	<div class="biddingMoreDetails">
-		<a href="#">
-			<span><i class="icon-angle-right">&nbsp;</i></span>
-			<span class="displayNone"><i class="icon-angle-down">&nbsp;</i></span>
-			More Details
-		</a>
-		<table>
-			<tr>
-				<th>Lot Number:</th><td>${item.id}</td>
-			</tr>
-			<tr>
-				<th>Estimated Value:</th><td>${item.estimatedValue}</td>
-			</tr>
-			<tr>
-				<th>Open Date</th><td>${item.startDate}</td>
-			</tr>
-			<tr>
-				<th>Close Date:</th><td>${item.closeDate}</td>
-			</tr>
-		</table>
-	</div>
-	<div class="shareItem">
-		<h3>Share this item:</h3>
-		<div>
-			 tweet
-			 fasebook
-		</div>
-	</div>
+	<div class="clearBoth"></div>
 </div>
-
-
+<div class="counter3">
+	<div class="bidding">
+		<div class="biddingIitem">
+			<h2>${item.title}</h2>
+			<div>
+				<a href='<c:url value="/" />'><i><span>Home</span></i></a> » <a
+					href='#" />'>麵包屑</a>
+			</div>
+	
+			<div>
+				<div>
+					Current Bid: <span id="currentPrice">${item.currentBid}</span> <span>
+						( <a href='<c:url value="/item/${item.id}/bidlog.do" />'>${item.bidTimes}</a>
+						)
+					</span>
+				</div>
+				<div id="placedBy">
+					placed by: <b>jaimervelasco</b>
+				</div>
+				<div>
+					Estimated Value: <b> ${item.estimatedValue} </b>
+				</div>
+			</div>
+			<div>
+				<span>??? days left to bid</span>
+			</div>
+			<div>
+				<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.closeDate}" /><i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
+			</div>
+			
+			
+			
+			<div><!-- Bid Now -->
+				<form id="biddingBidForm" action='<c:url value="/bid/${item.id}/index.do" />'>
+					<span  class="bidNowSpan ui-corner-all">
+						<a id="link-currency" href="#">$<small>▾</small></a>
+						<input id="biddingBidUrl" name="biddingBidUrl" type="hidden" />
+						<input class="inputBorderHide" id="biddingBidNowPrice" name="biddingBidNowPrice" type="text" />
+						&nbsp;&nbsp;&nbsp;&nbsp;
+					</span>
+					<input id="biddingBidNowBtn" name="biddingBidNowBtn" type="button" class="cssButton" value="Bid Now" />
+				</form>
+			</div>
+			<div>
+				<span>you must bid at least ${item.incrementPrice}
+					<input id="incrementPrice" type="hidden" value="${item.incrementPrice}"/>
+					<i class="icon-question-sign" id="biddingIncrementPriceBtn">&nbsp;</i>
+				</span>
+			</div>
+	
+	
+		</div>
+		<div class="biddingProceedsBenefit">
+	 Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
+	 這裡是一個超連結，連到其他商品網站
+		</div>
+		<div class="biddingWatchQuestion">
+			<div id="biddingWatchThisItem">
+				<c:choose>
+					<c:when test="${item.watch}">
+						<span class="displayNone"><i class="icon-eye-open">&nbsp;</i></span>
+						<span><i class="icon-check">&nbsp;</i></span>
+						<a href="#" class="biddingWatchThisItemLink">Watching</a>
+					</c:when>
+					<c:otherwise>
+						<span><i class="icon-eye-open">&nbsp;</i></span>
+						<span class="displayNone"><i class="icon-check">&nbsp;</i></span>
+						<a href="#" class="biddingWatchThisItemLink">Watch This Item</a>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div id="biddingAskQuestion">
+				<i class="icon-comments-alt">&nbsp;</i>
+				<a href='<c:url value="/contact_us/item/${item.id}/index.do" />'>Ask a Question </a>
+			</div>
+		</div>
+		<div class="biddingMoreDetails">
+			<a href="#">
+				<span><i class="icon-angle-right">&nbsp;</i></span>
+				<span class="displayNone"><i class="icon-angle-down">&nbsp;</i></span>
+				More Details
+			</a>
+			<table>
+				<tr>
+					<th>Lot Number:</th><td>${item.id}</td>
+				</tr>
+				<tr>
+					<th>Estimated Value:</th><td>${item.estimatedValue}</td>
+				</tr>
+				<tr>
+					<th>Open Date</th><td>${item.startDate}</td>
+				</tr>
+				<tr>
+					<th>Close Date:</th><td>${item.closeDate}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="shareItem">
+			<h3>Share this item:</h3>
+			<div>
+				 tweet
+				 fasebook
+			</div>
+		</div>
+	</div>
+	<div class="clearBoth"></div>
+</div>
+<div class="clearBoth">&nbsp;</div>
 </div><!-- counter -->
 <%@ include file="/jsp/include/footer.txt" %>

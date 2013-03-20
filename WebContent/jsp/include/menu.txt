@@ -1,7 +1,55 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div id="menu"><!-- menu start -->
-<script type="text/javascript" src='<c:url value="/js/include/sidebar.js"/>'></script>
+<script type="text/javascript">
+$(function() {
+    $("#sidebar").toggleClass("menuToggle").menu();
+    //
+
+    var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
+    $("#rerun").button();
+
+    $("#select").button({
+        text : false,
+        icons : {
+            primary : "ui-icon-triangle-1-s"
+        }
+    }).position({
+        my: "left top",
+        at: "right top",
+        of: $("#rerun")
+    });
+    $("#select").toggle(function() {
+        $("#catcompleteDiv").show();
+        $("#catcomplete").focus();
+        $(this).button({
+            icons : {
+                primary : "ui-icon-triangle-1-n"
+            }
+        });
+    }, function() {
+        $("#catcompleteDiv").hide();
+        $(this).button({
+            icons : {
+                primary : "ui-icon-triangle-1-s"
+            }
+        });
+    });
+
+    $("#catcomplete").on('blur', function() {
+        $("#select").trigger('click');
+        //TODO href
+        $.log('do search data');
+
+    });
+
+    $("#catcomplete").autocomplete({
+        delay : 0,
+        source : availableTags
+    });
+
+});
+</script>
 <ul id="sidebar">
 	<c:forEach items="${categories}" var="category">
 		<li><a href='<c:url value="/categories/${category.id}/index.do" />'>${category.name}(${category.subCategoriesItemsCount})</a>

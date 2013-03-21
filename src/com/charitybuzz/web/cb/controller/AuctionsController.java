@@ -102,8 +102,8 @@ public class AuctionsController {
 	 * @param auctionId
 	 * @return
 	 */
-	@RequestMapping(value = "/{auctionId}/{auctionTitle}/index", method = RequestMethod.GET)
-	public ModelAndView index(@PathVariable Long auctionId,@PathVariable String auctionTitle) {
+	@RequestMapping(value = "/{auctionId}/index", method = RequestMethod.GET)
+	public ModelAndView index(@PathVariable Long auctionId) {
 		ModelAndView mav = new ModelAndView("itemsPager");
 
 		/**

@@ -54,10 +54,7 @@
 		
 		<div class="counterRight-right"><!-- counterRight-right start-->
 			<div class="bidding">
-				<div class="counterRight-right-empty">
-					<br />
-					<br />
-				</div>
+				<div class="counterRight-right-empty"></div>
 				<div class="biddingIitem">
 					<h2>${item.title}</h2>
 					<div>
@@ -83,6 +80,7 @@
 					</div>
 			
 					<div>
+						<div>&nbsp;</div>
 						<div>
 							Current Bid: 
 							<span class="fontWeight">
@@ -92,22 +90,22 @@
 							 	( <a href='<c:url value="/item/${item.id}/bidlog.do" />'>${item.bidTimes} bids</a> )
 							</span>
 						</div>
+						<div>&nbsp;</div>
 						<div id="placedBy">
-							placed by: <b>jaimervelasco</b>
+							placed by: <b class="fontWeight">得標者</b>
 						</div>
+						<div>&nbsp;</div>
 						<div>
 							Estimated Value: <b class="fontWeight"><fmt:formatNumber value="${item.estimatedValue}" type="currency" pattern="$#,##0"/></b>
 						</div>
+						<div>&nbsp;</div>
+						<div>??? days left to bid</div>
+						<div>&nbsp;</div>
+						<div>
+							<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.closeDate}" /><i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
+						</div>
+						<div>&nbsp;</div>
 					</div>
-					<div>
-						<span>??? days left to bid</span>
-					</div>
-					<div>
-						<span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.closeDate}" /><i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
-					</div>
-					
-					
-					
 					<div><!-- Bid Now -->
 						<form id="biddingBidForm" action='<c:url value="/bid/${item.id}/index.do" />'>
 							<span  class="bidNowSpan ui-corner-all">
@@ -125,9 +123,8 @@
 							<i class="icon-question-sign" id="biddingIncrementPriceBtn">&nbsp;</i>
 						</span>
 					</div>
-			
-			
 				</div>
+				
 				<div class="biddingProceedsBenefit">
 					 Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
 					 這裡是一個超連結，連到其他商品網站

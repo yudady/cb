@@ -10,6 +10,12 @@
     margin-left: 10px;
     background-color: white;
 }
+#menu {
+    margin-top: 20px;
+}
+#sidebar {
+    margin-right: 10px;
+}
 .counterRight {
     width: 720px;
     float: right;
@@ -20,7 +26,8 @@
  *    counterRight 有 counterRight-left + counterRight-right
  */
 .counterRight-left {
-    padding: 5px;
+    margin-top: 20px;
+    margin-left: 5px;
     float: left;
     width: 350px;
     background-color: white;
@@ -32,6 +39,7 @@
 }
 .counterRight-right-empty {
     width: 325px;
+    height: 20px;
     background-color: white;
 }
 
@@ -120,7 +128,7 @@
     margin-bottom: 5px;
 }
 .biddingWatchQuestion div {
-    width: 135px;
+    width: 157px;
     height: 50px;
     line-height: 50px;
     background-color: white;

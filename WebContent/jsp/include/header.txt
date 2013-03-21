@@ -10,6 +10,8 @@
 <!--[if IE 7]>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/font-awesome-ie7.min.css"/>'/>
 <![endif]-->
+<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.css"/>'/>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.js"/>'></script>
 <script type="text/javascript">
 
 	/**
@@ -54,68 +56,5 @@
 		};
 	}();
 </script>
-<script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
-<script type="text/javascript">
-$(function() {
-	$("#loginBtn").click(function(){
-		
-		$("#loginForm").dialog({ 
-			resizable: false,
-			position: { of: $( "#loginBtn" ) , my: "center top", at: "left bottom"  },
-			draggable: false,
-			height: 300,
-			width:400,
-			title: "Account Login"
-		
-		});
-	});
-	
-	$("#loginFormBtn").on('click',function(){
-		$("#url").val(window.location.href);
-		var form = $("#loginForm");
-		var url = form.attr('action');
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : form.serialize(), 
-			success : function(data) {
-				if(data.success){
-					window.location.reload(true);
-				}else{
-					cb.openAlertDialog(data.msg);
-				}
-			}
-		});
-		return false;
-	});
-
-	$("#loginOutFormBtn").on('click', function() {
-		$("#url").val(window.location.href);
-		var form = $("#loginOutForm");
-		var url = form.attr('action');
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : form.serialize(), 
-			success : function(data) {
-				if(data.success){
-					window.location.reload(true);
-				}else{
-					cb.openAlertDialog(data.msg);
-				}
-			}
-		});
-		return false;
-	});
-
-	$("#emailsubscribe input.subscribeemails").on('focusin', function() {
-		$(this).val('');
-	});
-	$("#searchItem a").on('click', function(event) {
-		$("#searchItem").submit();
-		event.preventDefault();
-	});
-
-});
-</script>
+<script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>

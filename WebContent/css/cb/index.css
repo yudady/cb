@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+
+.indexTop {
+    width: 960px;
+    height: 550px;
+    background-color: #FFFFFF;
+    margin-left: 10px;
+}
+.content {
+    width: 680px;
+    position: relative;
+    left: 260px;
+    top: 10px;
+    *left: 10px;/*IE7*/
+}
+#menu {
+    width: 240px;
+}
+.indexDown {
+    margin-top: 10px;
+}
+
+/**
+ *  下左
+ */
+
+#liveAuctions {
+    margin-left: 10px;
+    width: 550px;
+    height: 1300px;
+    background-color: #FFFFFF;
+}
+#liveAuctions h1 {
+    padding: 20px;
+    text-align: left;
+    font-size: 36px;
+}
+
+#liveAuctions .auction {
+    height: 100px;
+    padding: 20px;
+}
+#liveAuctions .auctionTitle {
+    font-size: 18px;
+}
+
+#liveAuctions .auction img {
+    width: 159px;
+    height: 116px;
+    margin-right: 20px;
+    float: left;
+}
+
+#liveAuctions .auction dl {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#liveAuctions .auction dl a {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+#auctionsPager {
+    margin-left: 400px;
+}
+#auctionsPager .auctionsActive {
+    color: white;
+    background-color: #C52100;
+}
+
+/**
+ *  下右邊
+ */
+#itemsClosing {
+    /*
+     position:absolute;
+     left:760px;*/
+    margin-right: 10px;
+    height: 1300px;
+    float: right;
+    width: 400px;
+    background-color: white;
+}
+
+#itemsClosing > img {
+    width: 380px;
+    margin: 10px;
+}
+

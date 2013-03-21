@@ -1,0 +1,101 @@
+@CHARSET "UTF-8";
+.counter {
+
+}
+
+.counterLeft {
+    width: 220px;
+    float: left;
+    background-color: white;
+}
+
+.counterRight {
+    margin-left: 10px;
+    width: 730px;
+    float: left;
+    background-color: white;
+}
+
+.itemList {
+    padding: 30px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.auction {
+    padding: 30px;
+    padding-bottom: 0px;
+    background-color: white;
+}
+
+.auctionPic {
+    float: left;
+    width: 250px;
+}
+
+.auctionPic img {
+    width: 250px;
+    height: 200px;
+}
+
+.auctionDetail {
+    width: 350px;
+    height: 230px;
+    margin-left: 300px;
+}
+
+.item {
+    height: 200px;
+    padding: 30px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.pic {
+    float: left;
+    width: 250px;
+    height: 200px;
+}
+
+.pic img {
+    width: 250px;
+    height: 200px;
+}
+
+.detail {
+    float: right;
+    width: 360px;
+    height: 160px;
+    padding: 20px;
+}
+
+.detail a {
+    font-size: 18px;
+    color: red;
+}
+/**
+ * bid now
+ */
+.detail a.cssButton {
+    float: right;
+    font-size: 24px;
+    color: white;
+}
+
+#crumbs {
+    font-size: 18px;
+}
+
+#pager {
+    clear: right;
+    text-align: center;
+}
+
+.lotClosed {
+    background-color: #C52200;
+    color: #FFFFFF;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.3em;
+    padding: 0.4em 0.5em;
+}

@@ -1,0 +1,143 @@
+@CHARSET "UTF-8";
+.counter {
+}
+.counterLeft {
+    float: left;
+    width: 230px;
+    margin-left: 10px;
+    background-color: white;
+}
+.counterMiddle {
+    width: 390px;
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: white;
+}
+.counterRight {
+    width: 330px;
+    float: left;
+    background-color: white;
+}
+
+/**
+ *  左邊
+ */
+#menu {
+    background-color: white;
+    width: 220px;
+}
+#sidebar {
+    background-color: white;
+}
+
+/**
+ *  中間
+ */
+#itemDetail {
+}
+.itemLargePic > img {
+    width: 350px;
+}
+#itemDetail img {
+    cursor: pointer;
+}
+#itemDetail a {
+    text-decoration: none;
+    color: #B5121B;
+}
+#itemDetail a:hover {
+    color: red;
+}
+
+/**
+ *  大圖
+ */
+#itemDetail .itemLargePic img {
+}
+/**
+ *  小圖
+ */
+#itemDetail .itemSmallPic img {
+    width: 75px;
+    height: 50px;
+    padding: 2px;
+}
+#itemTabs a {
+    color: black;
+}
+
+/**
+ *右邊
+ */
+.bidding {
+    width: 300px;
+}
+
+.biddingStart {
+    /*
+     background-color: pink;
+     */
+}
+.biddingIitem {
+}
+.biddingIitem h2 {
+    font-size: 24px;
+}
+
+.biddingProceedsBenefit {
+    margin-bottom: 10px;
+    background-color: purple;
+}
+
+.biddingWatchQuestion {
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.biddingWatchQuestion div {
+    width: 164px;
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+    cursor: pointer;
+}
+#biddingWatchThisItem {
+    float: left;
+}
+#biddingAskQuestion {
+    float: right;
+}
+
+/**
+ * detail
+ */
+.biddingMoreDetails {
+    background-color: white;
+}
+.biddingMoreDetails a {
+    font-size: 18px;
+}
+.biddingMoreDetails table {
+    display: none;
+}
+.shareItem {
+    background-color: olive;
+}
+
+.imgHighLight {
+    background-color: red;
+}
+
+.bidNowSpan {
+    font-size: 20px;
+    margin-left: 10px;
+    width: 130px;
+    border-color: red;
+    border: 1px solid red;
+}
+.bidNowSpan input {
+    text-align: right;
+}

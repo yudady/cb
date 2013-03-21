@@ -1,0 +1,100 @@
+@CHARSET "UTF-8";
+.counter {
+}
+.counterLeft {
+    width: 230px;
+    float: left;
+    background-color: white;
+}
+.counterRight {
+    width: 730px;
+    float: left;
+    margin-left: 10px;
+    background-color: white;
+}
+.top {
+    margin-top: 10px;
+}
+#menu {
+    /*
+     width: 200px;
+     background-color: white;
+     */
+}
+
+#fragment-1 {
+}
+
+.fragment-1-right {
+    float: right;
+}
+
+.fragment-1-left {
+
+}
+
+.auction {
+    border: #0000FF 1px dotted;
+    position: relative;
+    padding-top: 20px;
+    width: 340px;
+    height: 170px;
+    margin: 2px;
+    padding-top: 20px;
+}
+
+.auction h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.auction h6 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.auctionDetails a span {
+    color: #B5121B;
+}
+
+.auctionDetails a:hover span {
+    color: #F00;
+}
+
+.auction img {
+    width: 150px;
+    height: 150px;
+    padding-left: 20px;
+}
+
+.auctionDetails {
+    width: 150px;
+    position: absolute;
+    top: 20px;
+    left: 180px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.down {
+    clear: both;
+    margin-top: 10px;
+    height: 500px;
+}
+
+.downLeft {
+    width: 360px;
+    background-color: white;
+    float: left;
+}
+
+.downRight {
+    float: right;
+}
+dl.topItem {
+}
+
+dl.topItem dd {
+    color: red;
+}
+

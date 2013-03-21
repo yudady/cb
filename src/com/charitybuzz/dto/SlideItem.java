@@ -7,6 +7,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author Administrator
  * 
  */
+@SuppressWarnings("unused")
 public class SlideItem {
 
 	private Auction auction;
@@ -16,9 +17,7 @@ public class SlideItem {
 	 * auction描述
 	 */
 	private String auctionTitle;
-	public String getAuctionTitle() {
-		return auction.getTitle();
-	}
+
 	/**
 	 * itemId
 	 */
@@ -27,15 +26,11 @@ public class SlideItem {
 	 * item 商品訊息
 	 */
 	private String itemTitle;
-	
-	public String getItemTitle() {
-		return item.getTitle();
-	}
+
 	/**
 	 * item 主要圖片路徑
 	 */
 	private String mainPicturePath;
-
 
 	public SlideItem(Auction auction, Item item) {
 		this.auction = auction;
@@ -65,6 +60,15 @@ public class SlideItem {
 	public String getMainPicturePath() {
 		return item.getMainPicturePath();
 	}
+
+	public String getAuctionTitle() {
+		return auction.getTitle();
+	}
+
+	public String getItemTitle() {
+		return item.getTitle();
+	}
+
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this,

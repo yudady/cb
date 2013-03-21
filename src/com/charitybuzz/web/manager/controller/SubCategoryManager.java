@@ -57,7 +57,8 @@ public class SubCategoryManager {
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
-	public ModelAndView SubCategoryList(SubCategoryForm form) {
+	public ModelAndView subCategoryList(SubCategoryForm form) {
+		log.debug("[LOG][subCategoryList]");
 		ModelAndView mav = new ModelAndView("manager/subcategory/list");
 		List<SubCategory> subCategories = subCategoryService.findAll();
 		mav.addObject("subCategories", subCategories);

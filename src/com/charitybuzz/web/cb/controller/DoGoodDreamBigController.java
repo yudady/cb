@@ -17,7 +17,7 @@ public class DoGoodDreamBigController {
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
 		ModelAndView mav = new ModelAndView("doGoodDreamBig");
-		
+		log.debug("[LOG][dogooddreambig]");
 		return mav;
 	}
 	

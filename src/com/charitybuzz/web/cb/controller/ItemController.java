@@ -54,12 +54,28 @@ public class ItemController {
 	@Resource
 	private PictureService pictureService;
 
+	/**
+	 * tabs4 click url
+	 * 
+	 * @param itemId
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/item/{itemId}/index", method = RequestMethod.GET)
-	public ModelAndView item(@PathVariable Long itemId,
-			HttpSession session) {
-		
+	public ModelAndView item(@PathVariable Long itemId, HttpSession session) {
+
 		return getItem(itemId, session);
 	}
+
+	/**
+	 * 拍賣會click url
+	 * 
+	 * @param auctionId
+	 * @param auctionTitle
+	 * @param itemId
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/auctions/{auctionId}/{auctionTitle}/item/{itemId}/index", method = RequestMethod.GET)
 	public ModelAndView auctions(@PathVariable Long auctionId,
 			@PathVariable String auctionTitle, @PathVariable Long itemId,
@@ -68,6 +84,15 @@ public class ItemController {
 		return getItem(itemId, session);
 	}
 
+	/**
+	 * 一級目錄，click url
+	 * 
+	 * @param categoryId
+	 * @param categoryName
+	 * @param itemId
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/item/{itemId}/index", method = RequestMethod.GET)
 	public ModelAndView categories(@PathVariable Long categoryId,
 			@PathVariable String categoryName, @PathVariable Long itemId,
@@ -76,6 +101,17 @@ public class ItemController {
 		return getItem(itemId, session);
 	}
 
+	/**
+	 * 二級目錄，click url
+	 * 
+	 * @param categoryId
+	 * @param categoryName
+	 * @param subcategoryId
+	 * @param subCategoryName
+	 * @param itemId
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/subcategories/{subcategoryId}/{subCategoryName}/item/{itemId}/index", method = RequestMethod.GET)
 	public ModelAndView subcategories(@PathVariable Long categoryId,
 			@PathVariable String categoryName,

@@ -12,6 +12,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author Administrator
  * 
  */
+@SuppressWarnings("unused")
 public class Item {
 
 	private Long id;

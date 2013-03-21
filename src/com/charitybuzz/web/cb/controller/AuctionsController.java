@@ -61,6 +61,7 @@ public class AuctionsController {
 
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
+		log.debug("[LOG][auctions]");
 		ModelAndView mav = new ModelAndView("auctions");
 		/**
 		 * 目錄

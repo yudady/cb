@@ -4,27 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src='<c:url value="/js/jquery/jquery-1.8.3.min.js"/>'></script>
-<script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-1.10.0/jquery-ui-1.10.0.custom.min.js"/>'></script>
-<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-1.10.0/smoothness/jquery-ui-1.10.0.custom.min.css"/>'/>
-<script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
-<script type="text/javascript" src='<c:url value="/js/jquery/jquery.timeLeft.js"/>'></script>
-<script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
-<script type="text/javascript">
-$(function(){
-	$("a.tabUrl").on('click',function(){
-		window.parent.document.location = this.href;
-		return false;
-	});
-
-	$(".item a").on('click', function() {
-		window.parent.location.href = this.href;
-	}); 
-    $(".timeLeftTab3").timeLeft();
-});
-</script>
+<%@ include file="/jsp/include/header.txt" %>
+<title>popular4Tab</title>
+<script type="text/javascript" src='<c:url value="/js/indexTabs/popular4Tab.js"/>'></script>
 </head>
 <body>
 	<c:forEach	items="${items}" var="item">

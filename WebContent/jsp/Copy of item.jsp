@@ -53,11 +53,8 @@
 		
 		
 		<div class="counterRight-right"><!-- counterRight-right start-->
+		<div class="counterRight-right-wrap"><!-- counterRight-right-wrap start-->
 			<div class="bidding">
-				<div class="counterRight-right-empty">
-					<br />
-					<br />
-				</div>
 				<div class="biddingIitem">
 					<h2>${item.title}</h2>
 					<div>
@@ -129,8 +126,8 @@
 			
 				</div>
 				<div class="biddingProceedsBenefit">
-					 Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
-					 這裡是一個超連結，連到其他商品網站
+			 Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
+			 這裡是一個超連結，連到其他商品網站
 				</div>
 				<div class="biddingWatchQuestion">
 					<div id="biddingWatchThisItem">
@@ -172,6 +169,8 @@
 							<th>Close Date:</th><td>${item.closeDate}</td>
 						</tr>
 					</table>
+				</div>
+				<div class="shareItem">
 					<h3>Share this item:</h3>
 					<div>
 						 tweet
@@ -180,6 +179,7 @@
 				</div>
 			</div>
 			<div class="clearBoth"></div>
+		</div><!-- counterRight-right-wrap end-->
 		</div><!-- counterRight-right end-->
 	</div><!-- counterRight end-->
 	<div class="clearBoth">&nbsp;</div>

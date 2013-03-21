@@ -143,14 +143,13 @@ $(function() {
     
     //以下是頁面資訊=============================================
     $("#itemTabs").tabs();
+    /*    
     var a = $(".counterLeft").height();
-    var b = $(".counterMiddle").height();
-    var c = $(".counterRight").height();
+    var b = $(".counterRight").height();
     var hei = (a > b)? a : b ;
-    hei = hei > c ? hei : c ;
-    $('.counterLeft,.counterMiddle,.counterRight').height(hei);
-    
-    
+    $('.counterLeft,.counterRight').height(hei);
+
+    */
     
     
     $("#link-currency").on('click',function(event){
@@ -178,7 +177,7 @@ $(function() {
     //$(".indexTop").corner('top 30px');
     $(".mainBody").corner('top 30px');
     $(".counterLeft").corner('tl 20px');
-    $(".counterRight").corner('tr 20px');
+    $(".counterRight,.counterRight-right,.counterRight-right-empty").corner('tr 20px');
     
     //$("#sidebar").corner('top');
     //$("#menu").corner();

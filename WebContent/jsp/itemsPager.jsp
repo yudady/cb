@@ -16,7 +16,7 @@
 <div class="counterRight">
 <div class="auction">
 <c:choose>
-	<c:when test="${!empty auctionId}">
+	<c:when test="${!empty auctionId}"><%-- 拍賣會 --%>
 		<div>
 			<div id="crumbs">
 				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auc.title}
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 	</c:when>
-	<c:when test="${!empty subcategoryId}">
+	<c:when test="${!empty subcategoryId}"><%-- 二級目錄 --%>
 		<div>
 			<div id="crumbs">
 				<a href='<c:url value="/" />'><i class="icon-home"></i></a>
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 	</c:when>
-	<c:when test="${!empty categoryId}">
+	<c:when test="${!empty categoryId}"><%-- 一級目錄 --%>
 		<div>
 			<div id="crumbs">
 				<a href='<c:url value="/" />'><i class="icon-home"></i></a>
@@ -51,6 +51,12 @@
 			</div>
 		</div>
 	</c:when>
+	<c:otherwise><%-- view all --%>
+		<div>
+			<div id="crumbs">
+			</div>
+		</div>
+	</c:otherwise>
 </c:choose>
 </div>
 <div class="itemList">
@@ -67,21 +73,25 @@
 			<div class="lotClosed">This item is now closed</div>
 			<c:choose>
 				<c:when test="${!empty auctionId}">
+					<%-- 拍賣會 --%>
 					<a href='<c:url value="/auctions/${auctionId}/${auc.title}/item/${item.id}/index.do" />'>
 						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 					</a>
 				</c:when>
 				<c:when test="${!empty subcategoryId}">
+					<%-- 二級目錄 --%>
 					<a href='<c:url value="/categories/${categoryId}/${categoryName}/subcategories/${subcategoryId}/${subCategoryName}/item/${item.id}/index.do" />'>
 						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 					</a>
 				</c:when>
 				<c:when test="${!empty categoryId}">
+					<%-- 一級目錄 --%>
 					<a href='<c:url value="/categories/${categoryId}/${categoryName}/item/${item.id}/index.do" />'>
 						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 					</a>
 				</c:when>
 				<c:otherwise>
+					<%-- view all --%>
 					<a href='<c:url value="/item/${item.id}/index.do" />'>
 						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 					</a>
@@ -118,15 +128,19 @@
 			</table>
 			<c:choose>
 				<c:when test="${!empty auctionId}">
+					<%-- 拍賣會 --%>
 					<a class="cssButton bidNow" href="<c:url value="/auctions/${auctionId}/item/${item.id}/index.do" />">Bid NOW</a>
 				</c:when>
 				<c:when test="${!empty subcategoryId}">
+					<%-- 二級目錄 --%>
 					<a class="cssButton bidNow" href="<c:url value="/categories/${categoryId}/${categoryName}/subcategories/${subcategoryId}/${subCategoryName}/item/${item.id}/index.do" />">Bid NOW</a>
 				</c:when>
 				<c:when test="${!empty categoryId}">
+					<%-- 一級目錄 --%>
 					<a class="cssButton bidNow" href="<c:url value="/categories/${categoryId}/${categoryName}/item/${item.id}/index.do" />">Bid NOW</a>
 				</c:when>
 				<c:otherwise>
+					<%-- view all --%>
 					<a class="cssButton bidNow" href="<c:url value="/item/${item.id}/index.do" />">Bid NOW</a>
 				</c:otherwise>
 			</c:choose>

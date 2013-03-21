@@ -1,25 +1,43 @@
 @CHARSET "UTF-8";
 .counter {
 }
+/**
+ *     counter 有counterLeft + counterRight
+ */
 .counterLeft {
     float: left;
     width: 230px;
     margin-left: 10px;
     background-color: white;
 }
-.counterMiddle {
-    width: 390px;
-    float: left;
-    margin-left: 5px;
-    margin-right: 5px;
+.counterRight {
+    width: 720px;
+    float: right;
+    margin-right: 10px;
     background-color: white;
 }
-.counterRight {
-    width: 330px;
+/**
+ *    counterRight 有 counterRight-left + counterRight-right
+ */
+.counterRight-left {
+    padding: 5px;
     float: left;
+    width: 350px;
+    background-color: white;
+}
+.counterRight-right {
+    width: 330px;
+    float: right;
+    background-color: #CCCCCC;
+}
+.counterRight-right-empty {
+    width: 325px;
     background-color: white;
 }
 
+/**
+ * ===============================================================    
+ */
 /**
  *  左邊
  */
@@ -66,28 +84,32 @@
 #itemTabs a {
     color: black;
 }
+#itemTabs div {
+    width: 300px;
+    overflow: auto;
+    word-wrap:normal;
+}
 
 /**
  *右邊
  */
 .bidding {
-    width: 300px;
+    margin-left: 5px;
+    margin-bottom: 5px;
 }
 
-.biddingStart {
-    /*
-     background-color: pink;
-     */
-}
 .biddingIitem {
+    font-size: 14px;
+    margin-bottom: 5px;
+    background-color: white;
 }
 .biddingIitem h2 {
     font-size: 24px;
 }
 
 .biddingProceedsBenefit {
-    margin-bottom: 10px;
-    background-color: purple;
+    margin-bottom: 5px;
+    background-color: white;
 }
 
 .biddingWatchQuestion {
@@ -95,10 +117,10 @@
     height: 50px;
     line-height: 50px;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 .biddingWatchQuestion div {
-    width: 164px;
+    width: 135px;
     height: 50px;
     line-height: 50px;
     background-color: white;
@@ -123,8 +145,11 @@
 .biddingMoreDetails table {
     display: none;
 }
-.shareItem {
-    background-color: olive;
+.biddingMoreDetails h3 {
+    font-size: 18px;
+}
+.biddingMoreDetails div {
+    font-size: 14px;
 }
 
 .imgHighLight {

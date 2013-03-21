@@ -21,8 +21,8 @@
 				<div></div>
 	        	<img src="" alt="" />
 				<div></div>
-	            <i id="icon-left">&lt;&lt;</i>
-	            <i id="icon-right">&gt;&gt;</i>
+	            <i id="icon-left" class="icon-double-angle-left"></i>
+	            <i id="icon-right" class="icon-double-angle-right"></i>
 			</div>
 			<div>
 				<ul>

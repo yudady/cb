@@ -22,4 +22,12 @@ $(function(){
         event.preventDefault();
         event.stopPropagation();
     });
+    
+    
+    //以下是頁面資訊=============================================
+    $("#itemTabs").tabs();
+    var a = $(".counterLeft").height();
+    var b = $(".counterRight").height();
+    var hei = (a > b)? a : b ;
+    $('.counterLeft,.counterRight').height(hei);
 });

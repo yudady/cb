@@ -3401,3 +3401,6 @@ and sub.CATEGORYID = '1' [42122-169]
 	at org.h2.server.web.WebThread.process(WebThread.java:166)
 	at org.h2.server.web.WebThread.run(WebThread.java:93)
 	at java.lang.Thread.run(Thread.java:662)
+03-21 14:14:58 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "STRINGDECODE('<p class=\""expandme\"" style=\""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-family: futura-pt... (2082)"; SQL statement:
+update item set title = ? , currentBid = ?  , startdate = ? , closedate = ?  , estimatedValue = ? , incrementPrice = ? , status = ? , lotDetails = ? , legalTerms = ? ,  shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ? [22001-169]

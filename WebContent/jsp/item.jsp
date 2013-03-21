@@ -392,9 +392,9 @@ $(function() {
 			<div>
 				<c:choose>
 					<c:when test="${!empty auctionId}">
-						<a href='<c:url value="/auctionId/${auctionId}/item/${item.id}/index.do" />'>
-							<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
-						</a>
+						<a href='<c:url value="/" />'><i class="icon-home"></i></a>
+						<b> » </b>
+						<a href='<c:url value="/auctions/${auctionId}/${auctionTitle}/index.do" />'>${auctionTitle}</a>
 					</c:when>
 					<c:when test="${!empty subcategoryId}">
 						<a href='<c:url value="/" />'><i class="icon-home"></i></a>

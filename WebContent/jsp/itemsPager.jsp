@@ -144,21 +144,39 @@ $(function(){
 <div class="auction">
 <c:choose>
 	<c:when test="${!empty auctionId}">
-		<a href='<c:url value="/auctionId/${auctionId}/item/${item.id}/index.do" />'>
-			<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
-		</a>
+		<div>
+			<div id="crumbs">
+				<a href='<c:url value="/" />'><i class="icon-home"></i></a><b> » </b>${auc.title}
+			</div>
+			<div class="auctionPic">
+				<img src='<c:url value="/pic/upload/auction/${auc.auctionLogoPath}" />'>
+			</div>
+			<div class="auctionDetail">
+				<div>${auc.brief}</div>
+				<div>&nbsp;</div>
+				<div>${auc.webSite}</div>
+			</div>
+		</div>
 	</c:when>
 	<c:when test="${!empty subcategoryId}">
-		<a href='<c:url value="/" />'><i class="icon-home"></i></a>
-		<b> » </b>
-		<a href='<c:url value="/categories/${categoryId}/${categoryName}/index.do" />'>${categoryName}</a>
-		<b> » </b>
-		${subCategoryName}
+		<div>
+			<div id="crumbs">
+				<a href='<c:url value="/" />'><i class="icon-home"></i></a>
+				<b> » </b>
+				<a href='<c:url value="/categories/${categoryId}/${categoryName}/index.do" />'>${categoryName}</a>
+				<b> » </b>
+				${subCategoryName}
+			</div>
+		</div>
 	</c:when>
 	<c:when test="${!empty categoryId}">
-		<a href='<c:url value="/" />'><i class="icon-home"></i></a>
-		<b> » </b>
-		${categoryName}
+		<div>
+			<div id="crumbs">
+				<a href='<c:url value="/" />'><i class="icon-home"></i></a>
+				<b> » </b>
+				${categoryName}
+			</div>
+		</div>
 	</c:when>
 </c:choose>
 </div>
@@ -176,7 +194,7 @@ $(function(){
 			<div class="lotClosed">This item is now closed</div>
 			<c:choose>
 				<c:when test="${!empty auctionId}">
-					<a href='<c:url value="/auctionId/${auctionId}/item/${item.id}/index.do" />'>
+					<a href='<c:url value="/auctions/${auctionId}/${auc.title}/item/${item.id}/index.do" />'>
 						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 					</a>
 				</c:when>

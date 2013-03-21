@@ -54,8 +54,16 @@ public class ItemController {
 	@Resource
 	private PictureService pictureService;
 
+	@RequestMapping(value = "/auctions/{auctionId}/{auctionTitle}/item/{itemId}/index", method = RequestMethod.GET)
+	public ModelAndView auctions(@PathVariable Long auctionId,
+			@PathVariable String auctionTitle, @PathVariable Long itemId,
+			HttpSession session) {
+
+		return getItem(itemId, session);
+	}
+
 	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/item/{itemId}/index", method = RequestMethod.GET)
-	public ModelAndView index(@PathVariable Long categoryId,
+	public ModelAndView categories(@PathVariable Long categoryId,
 			@PathVariable String categoryName, @PathVariable Long itemId,
 			HttpSession session) {
 
@@ -63,7 +71,7 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/subcategories/{subcategoryId}/{subCategoryName}/item/{itemId}/index", method = RequestMethod.GET)
-	public ModelAndView index2(@PathVariable Long categoryId,
+	public ModelAndView subcategories(@PathVariable Long categoryId,
 			@PathVariable String categoryName,
 			@PathVariable Long subcategoryId,
 			@PathVariable String subCategoryName, @PathVariable Long itemId,

@@ -132,11 +132,10 @@ $(function(){
 		         <li><a href='#fragment-2'><span>Upcoming Auctions</span></a></li>
 		     </ul>
 	        <div id="fragment-1">
-	        
 	        	<div class="fragment-1-right">
 				<c:forEach items="${auctions}" var="auction" begin="1" step="2" >
 	        		<div class="auction">
-						<a href="#"> 
+						<a href='<c:url value="/auctions/${auction.id}/${auction.title}/index.do"/>'> 
 							<img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' />
 						</a>
 						<div class="auctionDetails">
@@ -144,7 +143,7 @@ $(function(){
 							<h6>
 								<strong> Time Left:</strong>${auction.startDate}
 							</h6>
-							<a href='<c:url value="/auctions/${auction.id}/index.do"/>'> 
+							<a href='<c:url value="/auctions/${auction.id}/${auction.title}/index.do"/>'> 
 								<span>view items</span>
 							</a>
 						</div>
@@ -155,7 +154,7 @@ $(function(){
 	        	<div class="fragment-1-left">
 				<c:forEach items="${auctions}" var="auction" begin="0" step="2">
 	        		<div class="auction">
-						<a href="#"> 
+						<a href='<c:url value="/auctions/${auction.id}/${auction.title}/index.do"/>'> 
 							<img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' />
 						</a>
 						<div  class="auctionDetails">
@@ -163,7 +162,7 @@ $(function(){
 							<h6>
 								<strong> Time Left:</strong>${auction.startDate}
 							</h6>
-							<a href='<c:url value="/auctions/${auction.id}/index.do"/>'> 
+							<a href='<c:url value="/auctions/${auction.id}/${auction.title}/index.do"/>'> 
 								<span>view items</span>
 							</a>
 						</div>
@@ -175,7 +174,7 @@ $(function(){
 	        	<div class="fragment-1-right">
 				<c:forEach items="${willAuctions}" var="auction" begin="1" step="2" >
 	        		<div class="auction">
-						<a href="#"> 
+						<a href='<c:url value="/auctions/${auction.id}/${auction.title}/index.do"/>'> 
 							<img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' />
 						</a>
 						<div class="auctionDetails">
@@ -194,7 +193,7 @@ $(function(){
 	        	<div class="fragment-1-left">
 				<c:forEach items="${willAuctions}" var="auction" begin="0" step="2">
 	        		<div class="auction">
-						<a href="#"> 
+						<a href='<c:url value="/auctions/${auction.id}/${auction.title}/index.do"/>'> 
 							<img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' />
 						</a>
 						<div  class="auctionDetails">
@@ -202,7 +201,7 @@ $(function(){
 							<h6>
 								<strong> Time Left:</strong>${auction.startDate}
 							</h6>
-							<a href='<c:url value="/auctions/${auction.id}/index.do"/>'> 
+							<a href='<c:url value="/auctions/${auction.id}/${auction.title}/index.do"/>'> 
 								<span>view items</span>
 							</a>
 						</div>

@@ -9,6 +9,8 @@
 <title>item</title>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/cb/item.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/cb/item.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery.countdown-1.6.1/jquery.countdown.css"/>'/>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery.countdown-1.6.1/jquery.countdown.min.js"/>'></script>
 </head>
 <body>
 <%@ include file="/jsp/include/bodyTop.txt" %>
@@ -92,17 +94,19 @@
 						</div>
 						<div>&nbsp;</div>
 						<div id="placedBy">
-							placed by: <b class="fontWeight">得標者</b>
+							<c:if test="${!empty winner}">
+								placed by: <b class="fontWeight">得標者${winner.lastName}</b>
+							</c:if>
 						</div>
 						<div>&nbsp;</div>
 						<div>
 							Estimated Value: <b class="fontWeight"><fmt:formatNumber value="${item.estimatedValue}" type="currency" pattern="$#,##0"/></b>
 						</div>
 						<div>&nbsp;</div>
-						<div>??? days left to bid</div>
-						<div>&nbsp;</div>
 						<div>
-							<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.closeDate}" /><i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
+							<span class="defaultCountdown displayNone">${item.closeDate.time}</span>
+							<div id="defaultCountdown"></div>
+							<i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
 						</div>
 						<div>&nbsp;</div>
 					</div>

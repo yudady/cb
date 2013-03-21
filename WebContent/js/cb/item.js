@@ -143,13 +143,11 @@ $(function() {
     
     //以下是頁面資訊=============================================
     $("#itemTabs").tabs();
-    /*    
-    var a = $(".counterLeft").height();
-    var b = $(".counterRight").height();
-    var hei = (a > b)? a : b ;
-    $('.counterLeft,.counterRight').height(hei);
-
-    */
+    
+    
+    var austDay = new Date(parseInt($('.defaultCountdown').html()));
+    //austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
+    $('#defaultCountdown').countdown({until: austDay});
     
     
     $("#link-currency").on('click',function(event){

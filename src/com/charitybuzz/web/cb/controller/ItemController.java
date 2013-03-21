@@ -20,6 +20,7 @@ import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.dto.Watching;
+import com.charitybuzz.service.BidderService;
 import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
@@ -53,6 +54,11 @@ public class ItemController {
 	 */
 	@Resource
 	private PictureService pictureService;
+	/**
+	 * 商品圖片
+	 */
+	@Resource
+	private BidderService bidderService;
 
 	/**
 	 * tabs4 click url
@@ -138,6 +144,9 @@ public class ItemController {
 		mav.addObject("item", item);
 		List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
 		item.setBidlogs(bidlogs);
+		
+		Bidder winner = bidderService.findById(item.getWinningBidderId());
+		mav.addObject("winner", winner);
 
 		//
 		if (session.getAttribute("bidder") != null) {

@@ -17,7 +17,7 @@ public class BidlogDao extends BaseDao<Bidlog> {
 	 * @return
 	 */
 	public List<Bidlog> findBidlogByitemId(final Long itemId) {
-		String sql = "select * from Bidlog where itemId = ? order by bidTime";
+		String sql = "select * from Bidlog where itemId = ? order by bidTime desc";
 		return this.queryList(sql, new QueryList<Bidlog>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {

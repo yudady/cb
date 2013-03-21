@@ -81,6 +81,11 @@
 						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
 					</a>
 				</c:when>
+				<c:otherwise>
+					<a href='<c:url value="/item/${item.id}/index.do" />'>
+						<img src='<c:url value="/pic/upload/item/${item.mainPicturePath}" />' />
+					</a>
+				</c:otherwise>
 			</c:choose>
 		</span> 
 		<span class="detail"> 
@@ -111,7 +116,20 @@
 					<td>${item.closeDate}</td>
 				</tr>
 			</table>
-			<a class="cssButton bidNow" href="<c:url value="/item/${item.id}/index.do" />">Bid NOW</a>
+			<c:choose>
+				<c:when test="${!empty auctionId}">
+					<a class="cssButton bidNow" href="<c:url value="/auctions/${auctionId}/item/${item.id}/index.do" />">Bid NOW</a>
+				</c:when>
+				<c:when test="${!empty subcategoryId}">
+					<a class="cssButton bidNow" href="<c:url value="/categories/${categoryId}/${categoryName}/subcategories/${subcategoryId}/${subCategoryName}/item/${item.id}/index.do" />">Bid NOW</a>
+				</c:when>
+				<c:when test="${!empty categoryId}">
+					<a class="cssButton bidNow" href="<c:url value="/categories/${categoryId}/${categoryName}/item/${item.id}/index.do" />">Bid NOW</a>
+				</c:when>
+				<c:otherwise>
+					<a class="cssButton bidNow" href="<c:url value="/item/${item.id}/index.do" />">Bid NOW</a>
+				</c:otherwise>
+			</c:choose>
 		</span>
 	</div>
 </c:forEach>

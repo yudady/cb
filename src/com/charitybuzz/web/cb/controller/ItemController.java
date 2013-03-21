@@ -54,6 +54,12 @@ public class ItemController {
 	@Resource
 	private PictureService pictureService;
 
+	@RequestMapping(value = "/item/{itemId}/index", method = RequestMethod.GET)
+	public ModelAndView item(@PathVariable Long itemId,
+			HttpSession session) {
+		
+		return getItem(itemId, session);
+	}
 	@RequestMapping(value = "/auctions/{auctionId}/{auctionTitle}/item/{itemId}/index", method = RequestMethod.GET)
 	public ModelAndView auctions(@PathVariable Long auctionId,
 			@PathVariable String auctionTitle, @PathVariable Long itemId,

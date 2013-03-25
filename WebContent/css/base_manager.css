@@ -37,6 +37,34 @@ body {
     margin: 0 auto;
     padding-top: 20px;
 }
+fieldset {
+    padding: 10px;
+    margin: 10px;
+    border: #06c solid 1px;
+}
+legend {
+    color: #06c;
+    font-weight:bold;
+    font-size: 18px;
+}
+
+table {
+    margin:0 auto;
+    width:95%;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+thead {
+    font-size: 14px;
+    text-align: center;
+}
+th, td {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+
+
 
 #header {
     height: 100px;
@@ -78,7 +106,7 @@ body {
 
 #footer {
     clear: both;
-    height: 200px;
-    background-color: green;
+    height: 50px;
+    background-color: #CCCCCC;
 }
 

@@ -11,15 +11,19 @@
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
-<div id="content">
-add
-<form method="post">
-	<input type="hidden" name="id" value="${category.id}"/><br/>
-	name<input type="text" name="name" value="${category.name}"/><br/>
-	<input type="reset" name="reset" "/><br/>
-	<input type="submit" name="submit" "/><br/>
-</form>
-</div>
+	<div id="content">
+		<div>
+			<a href='<c:url value="/manager/category/list.do"/>'>
+				<input type="button" value="category list">
+			</a>
+		</div>
+		<form method="post">
+			<input type="hidden" name="id" value="${category.id}"/><br/>
+			name<input type="text" name="name" value="${category.name}"/><br/>
+			<input type="reset" name="reset" "/><br/>
+			<input type="submit" name="submit" "/><br/>
+		</form>
+	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>
 </body>
 </html>

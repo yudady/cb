@@ -6,7 +6,7 @@
 <html>
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
-<title>index</title>
+<title>item</title>
 <style type="text/css">
 #content dl {
 	color: green;
@@ -88,46 +88,62 @@ $(function() {
 	
 	
 	$('.cleditor').cleditor({
-		width:        700, // width not including margins, borders or padding
-		height:       150 // height not including margins, borders or padding});
+		width:        780, // width not including margins, borders or padding
+		height:       250 // height not including margins, borders or padding});
 	});	
 	
-	});
+});
 </script>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
-<div id="content">
-<form id="itemForm" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="itemIdForm" value="${item.id}"/>
-	第二級目錄
-	<dl>
-		<c:forEach	items="${subCategories}" var="subCategory" >
-			<dd><span><label for="subCategoryIds-${subCategory.id}">${subCategory.name}</label><input type="checkbox" id="subCategoryIds-${subCategory.id}" name="subCategoryIds" value="${subCategory.id}" /></span></dd>
-		</c:forEach>
-	</dl>
-	<p></p>
-	<ul>
-		<li>商品訊息<input type="text" name="title" /></li>
-		<li>當前標價<input type="text" name="currentBid" /></li>
-		<li>估計價值<input type="text" name="estimatedValue" /></li>
-		<li>下次最小標價<input type="text" name="incrementPrice" /></li>
-		<li>LOTDETAILS訊息
-			<textarea class="cleditor" name="lotDetails" id="lotDetails"></textarea>
-		</li>
-		<li>LOTDETAILS訊息
-			<textarea class="cleditor" name="legalTerms" id="legalTerms"></textarea>
-		</li>
-		<li>SHIPPING訊息
-			<textarea class="cleditor" name="shipping" id="shipping"></textarea>
-		</li>
-		<li><input type="button" id="addPicBtn" value="add pic"/></li>
-	</ul>
-	<input type="reset" name="reset" value="reset"/>
-	<input type="submit" name="submit" value="add"/>
-</form>
-</div>
+	<div id="content">
+		<div>
+			<a href='<c:url value="/manager/auctionId/${auctionId}/item/list.do" />'>
+				<input type="button" value="item list">
+			</a>
+		</div>
+		<form id="itemForm" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="itemIdForm" value="${item.id}"/>
+			<fieldset>
+  				<legend>第二級目錄</legend>
+				<dl>
+					<c:forEach	items="${subCategories}" var="subCategory" >
+						<dd><span><label for="subCategoryIds-${subCategory.id}">${subCategory.name}</label><input type="checkbox" id="subCategoryIds-${subCategory.id}" name="subCategoryIds" value="${subCategory.id}" ${subCategory.itemCheckedMark }/></span></dd>
+					</c:forEach>
+				</dl>
+ 			</fieldset>
+			<p></p>
+			<ul>
+				<li>商品訊息<input type="text" name="title" /></li>
+				<li>當前標價<input type="text" name="currentBid" /></li>
+				<li>估計價值<input type="text" name="estimatedValue" /></li>
+				<li>下次最小標價<input type="text" name="incrementPrice" /></li>
+				<li>
+					<fieldset>
+  						<legend>LOTDETAILS訊息</legend>
+						<textarea class="cleditor" name="lotDetails" id="lotDetails"></textarea>
+					</fieldset>
+				</li>
+				<li>
+					<fieldset>
+  						<legend>LOTDETAILS訊息</legend>
+						<textarea class="cleditor" name="legalTerms" id="legalTerms"></textarea>
+					</fieldset>
+				</li>
+				<li>
+					<fieldset>
+  						<legend>SHIPPING訊息</legend>
+						<textarea class="cleditor" name="shipping" id="shipping"></textarea>
+					</fieldset>
+				</li>
+				<li><input type="button" id="addPicBtn" value="add pic"/></li>
+			</ul>
+			<input type="reset" name="reset" value="reset"/>
+			<input type="submit" name="submit" value="add"/>
+		</form>
+	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>
 </body>
 </html>

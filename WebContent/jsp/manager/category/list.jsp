@@ -7,11 +7,6 @@
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
 <title>category</title>
-<script type="text/javascript">
-	$(function() {
-
-	});
-</script>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
@@ -22,26 +17,30 @@
 				type="button" id="add" value="add"></a>
 		</div>
 		<table>
-			<tr>
-				<th>id</th>
-				<th>name</th>
-				<th>update</th>
-				<th>delete</th>
-			</tr>
-			<c:forEach items="${categories}" var="category">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>name</th>
+					<th>update</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${categories}" var="category">
 				<tr>
 					<td>${category.id}</td>
 					<td>${category.name}</td>
-					<td><a
-						href='<c:url value="/manager/category/${category.id}/update.do"/>'>update</a></td>
 					<td>
+						<a href='<c:url value="/manager/category/${category.id}/update.do"/>'>update</a>
+					</td>
 					<td>
 						<c:if test="${fn:length(category.subCategories) == 0}">
 							<a href='<c:url value="/manager/category/${category.id}/delete.do"/>'>delete</a>
 						</c:if>				
 					</td>
 				</tr>
-			</c:forEach>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

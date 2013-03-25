@@ -18,20 +18,6 @@
 			path = path || "";
 			return "" + '<c:url value="/"/>' + path;
 		}
-		
-
-		function dialog(message) {
-			var setting = message || "dialog need text message";
-				
-			$("#dialog").html("<br/><br/><br/><div>" + setting + "</div><br/>").dialog({
-				buttons : {
-					"OK" : function() {
-						$(this).dialog("close");
-					}
-				}
-			});
-			$(".ui-dialog-titlebar").hide();
-		}
 
 		//=============		
 		return {

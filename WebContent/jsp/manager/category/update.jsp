@@ -12,7 +12,11 @@
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content">
-	update
+		<div>
+			<a href='<c:url value="/manager/category/list.do"/>'>
+				<input type="button" value="category list">
+			</a>
+		</div>
 		<form method="post">
 			<input type="text" name="id" value="${category.id}"/>
 			<input type="text" name="name" value="${category.name}"/>

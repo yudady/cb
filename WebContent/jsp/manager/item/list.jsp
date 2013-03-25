@@ -8,21 +8,8 @@
 <%@ include file="/jsp/include/header_manager.txt" %>
 <title>item</title>
 <style type="text/css">
-table {
-	width:100%;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-}
-th, td {
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-}
-</style>
-<script type="text/javascript">
-	$(function() {
 
-	});
-</script>
+</style>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
@@ -34,20 +21,24 @@ th, td {
 			</a>
 		</div>
 		<table>
-			<tr>
-				<th>id</th>
-				<th>title</th>
-				<th>update</th>
-				<th>delete</th>
-			</tr>
-			<c:forEach items="${items.datas}" var="item">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>title</th>
+					<th>update</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${items.datas}" var="item">
 				<tr>
 					<td>${item.id}</td>
 					<td>${item.title}</td>
 					<td><a href='<c:url value="/manager/auctionId/${auctionId}/item/${item.id}/update.do" />'>update</a></td>
 					<td><a href='<c:url value="/manager/auctionId/${auctionId}/item/${item.id}/delete.do" />'>delete</a></td>
 				</tr>
-			</c:forEach>
+				</c:forEach>
+			</tbody>
 		</table>
 		
 		<jsp:include page="/jsp/include/pager.jsp">

@@ -26,7 +26,13 @@ public class AuctionService {
 	public List<Auction> findAll() {
 		return auctionDao.findAll();
 	}
-
+	/**
+	 * 分頁
+	 * @return
+	 */
+	public Pager<Auction> findPager() {
+		return auctionDao.findPager();
+	}
 	/**
 	 * 已經開始的拍賣會
 	 * 
@@ -57,6 +63,8 @@ public class AuctionService {
 		auctionDao.delete(auctionId);
 
 	}
+
+
 
 
 

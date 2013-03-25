@@ -28,7 +28,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${categories}" var="category">
+				<c:forEach items="${categories.datas}" var="category">
 				<tr>
 					<td>${category.id}</td>
 					<td>${category.name}</td>
@@ -44,6 +44,11 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<jsp:include page="/jsp/include/pager.jsp">
+			<jsp:param value="${categories.totalRecord}" name="totalRecord" />
+			<jsp:param value="${categories.pageSize}" name="pageSize" />
+			<jsp:param value="" name="url" />
+		</jsp:include>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>
 </body>

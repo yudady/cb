@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.SubCategory;
 import com.charitybuzz.service.CategoryService;
@@ -44,11 +45,15 @@ public class CategoryManager {
 	@RequestMapping(value = "/list")
 	public ModelAndView categoryList(CategoryForm form) {
 		ModelAndView mav = new ModelAndView("manager/category/list");
-		List<Category> categories = categoryService.findAll();
+		
+		
+		
+		Pager<Category> categories = categoryService.findPager();
 		mav.addObject("categories", categories);
 
-		for (int i = 0; i < categories.size(); i++) {
-			Category category = categories.get(i);
+		List<Category> datas = categories.getDatas();
+		for (int i = 0; i < datas.size(); i++) {
+			Category category = datas.get(i);
 			Long categoryId = category.getId();
 			List<SubCategory> subCategories = subCategoryService
 					.findByCategoryId(categoryId);

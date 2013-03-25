@@ -62,7 +62,7 @@
 			<a href="${pageUrl}&pageSize=${param.pageSize}">尾頁</a>
 		</pg:last>
 	</pg:pager>
-
+<%--
 	<label for="sortBy-select">Sort by:</label> 
 	<select id="sortBy-select">
 		<option value="close">Close Date</option>
@@ -74,5 +74,6 @@
 		<option value="priority">Priority</option>
 		<option value="bids">Number of Bids</option>
 	</select>
+ --%>
 
 </div>

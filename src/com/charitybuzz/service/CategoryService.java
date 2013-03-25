@@ -2,6 +2,7 @@ package com.charitybuzz.service;
 
 import java.util.List;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.CategoryDao;
 import com.charitybuzz.dto.Category;
 
@@ -21,7 +22,13 @@ public class CategoryService {
 	public List<Category> findAll() {
 		return categoryDao.findAll();
 	}
-
+	/**
+	 * 分頁
+	 * @return
+	 */
+	public Pager<Category> findPager() {
+		return categoryDao.findPager();
+	}
 	/**
 	 * 用id找object
 	 * 
@@ -49,5 +56,7 @@ public class CategoryService {
 	public void delete(Long categoryId) {
 		categoryDao.delete(categoryId);
 	}
+
+
 
 }

@@ -48,7 +48,7 @@ th, td {
 				<th></th>
 			</tr>
 			<c:set var="nowDate" value="<%=System.currentTimeMillis()%>"></c:set>
-			<c:forEach items="${auctions}" var="auction">
+			<c:forEach items="${auctions.datas}" var="auction">
 				<tr>
 					<td>${auction.id}</td>
 					<td>${auction.title}</td>
@@ -77,6 +77,11 @@ th, td {
 				</tr>
 			</c:forEach>
 		</table>
+		<jsp:include page="/jsp/include/pager.jsp">
+			<jsp:param value="${auctions.totalRecord}" name="totalRecord" />
+			<jsp:param value="${auctions.pageSize}" name="pageSize" />
+			<jsp:param value="" name="url" />
+		</jsp:include>
 	</div><!-- content -->
 	<%@ include file="/jsp/include/footer_manager.txt" %>
 </body>

@@ -203,4 +203,9 @@ public class AuctionDao extends BaseDao<Auction> {
 
 	}
 
+	public Pager<Auction> findPager() {
+		String sql = "SELECT * FROM AUCTION ";
+		return this.findPager(sql);
+	}
+
 }

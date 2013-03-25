@@ -42,7 +42,7 @@ import com.charitybuzz.service.SubcategoryItemService;
 import com.charitybuzz.web.form.ItemForm;
 
 /**
- * TODO 商品 add時，須使用拍賣會的startDate，endDate
+ * 商品 add時，須使用拍賣會的startDate，endDate
  * 
  * @author Administrator
  * 

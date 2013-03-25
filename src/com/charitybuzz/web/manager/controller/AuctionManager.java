@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -25,6 +24,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.common.Constant;
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Auction;
 import com.charitybuzz.service.AuctionService;
 import com.charitybuzz.web.form.AuctionForm;
@@ -64,8 +64,9 @@ public class AuctionManager {
 	@RequestMapping(value = "/list")
 	public ModelAndView auctionList(AuctionForm form) {
 		ModelAndView mav = new ModelAndView("manager/auction/list");
-		List<Auction> auctions = auctionService.findAll();
+		Pager<Auction> auctions = auctionService.findPager();
 		mav.addObject("auctions", auctions);
+		
 		return mav;
 	}
 	

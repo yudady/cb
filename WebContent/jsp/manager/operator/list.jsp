@@ -12,32 +12,37 @@
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
-<div id="content">
-	<div>
-		<a href='<c:url value="/manager/operator/add.do"/>'><input
-			type="button" id="add" value="add"></a>
+	<div id="content">
+		<div>
+			<a href='<c:url value="/manager/operator/add.do"/>'>
+				<input type="button" id="add" value="add" />
+			</a>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>公司名稱</th>
+					<th>密碼</th>
+					<th>update</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${operators}" var="operator">
+				<tr>
+					<td>${operator.id}</td>
+					<td>${operator.name}</td>
+					<td>${operator.passWord}</td>
+					<td>
+						<a href='<c:url value="/manager/operator/${operator.id}/update.do"/>'>update</a>
+					</td>
+					<td><a href='<c:url value="/manager/operator/${operator.id}/delete.do"/>'>delete</a></td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
-	<table>
-		<tr>
-			<th>id</th>
-			<th>公司名稱</th>
-			<th>密碼</th>
-			<th>update</th>
-			<th>delete</th>
-		</tr>
-		<c:forEach items="${operators}" var="operator">
-			<tr>
-				<td>${operator.id}</td>
-				<td>${operator.name}</td>
-				<td>${operator.passWord}</td>
-				<td><a
-					href='<c:url value="/manager/operator/${operator.id}/update.do"/>'>update</a></td>
-				<td>
-				<td><a href='<c:url value="/manager/operator/${operator.id}/delete.do"/>'>delete</a></td>
-			</tr>
-		</c:forEach>
-	</table>
-</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>
 </body>
 </html>

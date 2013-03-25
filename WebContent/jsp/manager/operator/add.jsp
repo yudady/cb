@@ -12,14 +12,19 @@
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
-<div id="content">
-	<form method="post">
-		name<input type="text" name="name" /><br/>
-		passWord<input type="text" name="passWord" /><br/>
-		<input type="reset" name="reset" "/><br/>
-		<input type="submit" name="submit" "/><br/>
-	</form>
-</div>
+	<div id="content">
+		<div>
+			<a href='<c:url value="/manager/operator/list.do"/>'>
+				<input type="button" value="operator list" />
+			</a>
+		</div>
+		<form method="post">
+			name<input type="text" name="name" /><br/>
+			passWord<input type="text" name="passWord" /><br/>
+			<input type="reset" name="reset" "/><br/>
+			<input type="submit" name="submit" "/><br/>
+		</form>
+	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>
 </body>
 </html>

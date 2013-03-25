@@ -34,29 +34,31 @@ clear: both;
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
-<div id="content">
-<form method="post">
-	<input type="hidden" name="subCaId" value="${subCategory.id}"/>
-	第一級目錄
-	<dl>
-		<c:forEach	items="${categories}" var="category" >
-			<c:choose>
-				<c:when test="${category.id == subCategory.categoryId}">
-					<dd><span>${category.name}<input type="radio" name="categoryId" value="${category.id}" checked="checked" /></span></dd>
-				</c:when>
-				<c:otherwise>
-					<dd><span>${category.name}<input type="radio" name="categoryId" value="${category.id}" /></span></dd>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-	</dl>
-	<p></p>
-	第二級目錄<input type="text" name="name" value="${subCategory.name}" /><br/>
-	description<input type="text" name="descript" value="${subCategory.descript}" /><br/>
-	<input type="reset" name="reset" "/>
-	<input type="submit" name="submit" "/>
-</form>
-</div>
+	<div id="content">
+		<form method="post">
+			<input type="hidden" name="subCaId" value="${subCategory.id}"/>
+			<fieldset>
+				<legend>第一級目錄</legend>
+				<dl>
+					<c:forEach	items="${categories}" var="category" >
+						<c:choose>
+							<c:when test="${category.id == subCategory.categoryId}">
+								<dd><span>${category.name}<input type="radio" name="categoryId" value="${category.id}" checked="checked" /></span></dd>
+							</c:when>
+							<c:otherwise>
+								<dd><span>${category.name}<input type="radio" name="categoryId" value="${category.id}" /></span></dd>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</dl>
+			</fieldset>
+			<p></p>
+			第二級目錄<input type="text" name="name" value="${subCategory.name}" /><br/>
+			description<input type="text" name="descript" value="${subCategory.descript}" /><br/>
+			<input type="reset" name="reset" "/>
+			<input type="submit" name="submit" "/>
+		</form>
+	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>
 </body>
 </html>

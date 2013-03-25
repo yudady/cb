@@ -15,7 +15,7 @@
 	<div id="content">
 		<div>
 			<a href='<c:url value="/manager/category/list.do"/>'>
-				<input type="button" value="category list">
+				<input type="button" value="category list" />
 			</a>
 		</div>
 		<form method="post">

@@ -37,7 +37,7 @@ clear: both;
 	<div id="content">
 		<div>
 			<a href='<c:url value="/manager/subcategory/list.do"/>'>
-				<input type="button" value="subcategory list">
+				<input type="button" value="subcategory list" />
 			</a>
 		</div>
 		<form method="post">

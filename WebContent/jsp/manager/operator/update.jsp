@@ -13,7 +13,11 @@
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content">
-		update
+		<div>
+			<a href='<c:url value="/manager/operator/list.do"/>'>
+				<input type="button" value="operator list" />
+			</a>
+		</div>
 		<form method="post">
 			<input type="hidden" name="id" value="${operatorObj.id}" /><br/>
 			name<input type="text" name="name" value="${operatorObj.name}" /><br/>

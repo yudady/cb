@@ -34,8 +34,8 @@
 					<td><input type='passWord' name='passWord' /></td>
 				</tr>
 				<tr>
+					<td><input name="reset" type="reset" value="reset"/></td>
 					<td><input name="submit" type="submit" value="login" /></td>
-					<td><input name="reset" type="reset" /></td>
 				</tr>
 			</table>
 		</form>

@@ -23,7 +23,7 @@ $(function(){
 	<div id="content">
 		<div>
 			<a href='<c:url value="/manager/auction/list.do"/>'>
-				<input type="button" value="auction list">
+				<input type="button" value="auction list" />
 			</a>
 		</div>
 		<form method="post" enctype="multipart/form-data">

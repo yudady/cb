@@ -18,7 +18,7 @@
 	<div id="content">
 		<div>item
 			<a href='<c:url value="/manager/auctionId/${auctionId}/item/add.do" />'>
-				<input type="button" id="add" value="add">
+				<input type="button" value="add" />
 			</a>
 		</div>
 		<table>

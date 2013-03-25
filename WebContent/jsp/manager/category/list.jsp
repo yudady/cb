@@ -14,8 +14,9 @@
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content">
 		<div>
-			<a href='<c:url value="/manager/category/add.do"/>'><input
-				type="button" id="add" value="add"></a>
+			<a href='<c:url value="/manager/category/add.do"/>'>
+				<input type="button" id="add" value="add" />
+			</a>
 		</div>
 		<table>
 			<thead>

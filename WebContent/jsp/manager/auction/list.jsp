@@ -31,7 +31,7 @@ th, td {
 	<div id="content"><!-- content -->
 		<div>
 			<a href='<c:url value="/manager/auction/add.do"/>'>
-				<input type="button" id="add" value="add">
+				<input type="button" value="add" />
 			</a>
 		</div>
 		<table>

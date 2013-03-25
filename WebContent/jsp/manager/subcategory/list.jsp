@@ -15,7 +15,7 @@
 	<div id="content">
 		<div>
 			<a href='<c:url value="/manager/subcategory/add.do"/>'>
-				<input type="button" id="add" value="add">
+				<input type="button" value="add" />
 			</a>
 		</div>
 		<table>

@@ -37,5 +37,21 @@
 	</dl>
 </div>
 <div class="clearBoth">© 2013 Charitybuzz Inc. All rights reserved.   |   Privacy Policy</div>
+
+
+<hr />
+<h1>i18n</h1>
+Language : <a href="?language=en_US">English</a>|
+<a href="?language=zh_CN">China</a>|
+<a href="?language=zh_TW ">Taiwan</a>
+<h3>
+	welcome.springmvc : <spring:message code="welcome.springmvc" text="default text" />
+</h3>
+Current Locale : ${pageContext.response.locale}
+
+
+
+
+
 </div><!-- footer end -->
 <div id="dialog"></div>

@@ -38,8 +38,8 @@ $(function(){
 			<input type="file" name="file" /><br/>
 			開始日期<input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.startDate}" />' /><br/>
 			結束日期<input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.closeDate}" />' /><br/>
-			<input type="reset" name="reset"/><br/>
-			<input type="submit" name="submit"/><br/>
+			<input type="reset" name="reset" /><br/>
+			<input type="submit" name="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

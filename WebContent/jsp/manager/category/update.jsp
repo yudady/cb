@@ -21,8 +21,8 @@
 		<form method="post">
 			<input type="text" name="id" value="${category.id}"/>
 			<input type="text" name="name" value="${category.name}"/>
-			<input type="reset" name="reset" "/>
-			<input type="submit" name="submit" "/>
+			<input type="reset" name="reset" />
+			<input type="submit" name="submit" />
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

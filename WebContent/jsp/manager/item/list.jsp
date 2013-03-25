@@ -8,15 +8,15 @@
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
 <title>item</title>
-<style type="text/css">
-
-</style>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content">
-		<div>item
+		<div>
+			<a href='<c:url value="/manager/auction/list.do" />'>
+				<input type="button" value="auction list" />
+			</a>
 			<a href='<c:url value="/manager/auctionId/${auctionId}/item/add.do" />'>
 				<input type="button" value="add" />
 			</a>

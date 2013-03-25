@@ -26,8 +26,8 @@
 			<input type="file" name="file" /><br/>
 			開始日期<input class="datepicker" type="text" name="startDate" /><br/>
 			結束日期<input class="datepicker" type="text" name="closeDate" /><br/>
-			<input type="reset" name="reset" "/><br/>
-			<input type="submit" name="submit" "/><br/>
+			<input type="reset" name="reset" /><br/>
+			<input type="submit" name="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

@@ -21,8 +21,8 @@
 		<form method="post">
 			name<input type="text" name="name" /><br/>
 			passWord<input type="text" name="passWord" /><br/>
-			<input type="reset" name="reset" "/><br/>
-			<input type="submit" name="submit" "/><br/>
+			<input type="reset" name="reset" /><br/>
+			<input type="submit" name="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

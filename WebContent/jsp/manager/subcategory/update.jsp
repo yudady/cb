@@ -55,8 +55,8 @@ clear: both;
 			<p></p>
 			第二級目錄<input type="text" name="name" value="${subCategory.name}" /><br/>
 			description<input type="text" name="descript" value="${subCategory.descript}" /><br/>
-			<input type="reset" name="reset" "/>
-			<input type="submit" name="submit" "/>
+			<input type="reset" name="reset" />
+			<input type="submit" name="submit" />
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

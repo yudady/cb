@@ -21,8 +21,8 @@
 		<form method="post">
 			<input type="hidden" name="id" value="${category.id}"/><br/>
 			name<input type="text" name="name" value="${category.name}"/><br/>
-			<input type="reset" name="reset" "/><br/>
-			<input type="submit" name="submit" "/><br/>
+			<input type="reset" name="reset" /><br/>
+			<input type="submit" name="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

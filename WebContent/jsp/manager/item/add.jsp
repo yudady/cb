@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
 <%@ include file="/jsp/include/header_manager.txt" %>
-<%@ include file="/jsp/include/menu_manager.txt" %>
-<link type="text/css" rel="stylesheet" href='<c:url value="/css/base_manager.css"/>'/>
-<script type="text/javascript" src='<c:url value="/js/jquery/CLEditor1_3_0/jquery.cleditor.min.js"/>'></script>
-<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/CLEditor1_3_0/jquery.cleditor.css"/>'/>
+<title>index</title>
 <style type="text/css">
 #content dl {
 	color: green;
@@ -54,45 +55,49 @@ $(function() {
     }
 	
 	
-$('#itemForm').on('click','.deleteBtn',function(){
-	var li = $(this).parent();
-	var crudInput = li.find('.crud') ;
-	var val = crudInput.val();
-	if(val == 'r' || val == 'u'){
-		crudInput.val('d');
-	}
-	if(val == 'c'){
-		crudInput.val('');
-	}
-	li.hide();
-});
-$('#itemForm').on('click','.uploadPicsFile',function(){
-	var li = $(this).parent();
-	var crudInput = li.find('.crud') ;
-	var val = crudInput.val();
-	if(val == 'r'){
-		crudInput.val('u');
-	}
-	var img = li.find('img') ;
-	img.attr('src','');
-});
-$("#addPicBtn").on('click',function(){
-    var target = $(this).parent();
-    target.append(addHtml({
-    	photoPath : ''
-    }));
-    return false;
-});
-
-
-
-$('.cleditor').cleditor({
-	width:        700, // width not including margins, borders or padding
-	height:       150 // height not including margins, borders or padding});
-});	
-
-});
+	$('#itemForm').on('click','.deleteBtn',function(){
+		var li = $(this).parent();
+		var crudInput = li.find('.crud') ;
+		var val = crudInput.val();
+		if(val == 'r' || val == 'u'){
+			crudInput.val('d');
+		}
+		if(val == 'c'){
+			crudInput.val('');
+		}
+		li.hide();
+	});
+	$('#itemForm').on('click','.uploadPicsFile',function(){
+		var li = $(this).parent();
+		var crudInput = li.find('.crud') ;
+		var val = crudInput.val();
+		if(val == 'r'){
+			crudInput.val('u');
+		}
+		var img = li.find('img') ;
+		img.attr('src','');
+	});
+	$("#addPicBtn").on('click',function(){
+	    var target = $(this).parent();
+	    target.append(addHtml({
+	    	photoPath : ''
+	    }));
+	    return false;
+	});
+	
+	
+	
+	$('.cleditor').cleditor({
+		width:        700, // width not including margins, borders or padding
+		height:       150 // height not including margins, borders or padding});
+	});	
+	
+	});
 </script>
+</head>
+<body>
+	<%@ include file="/jsp/include/logo_manager.txt" %>
+	<%@ include file="/jsp/include/menu_manager.txt"%>
 <div id="content">
 <form id="itemForm" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="itemIdForm" value="${item.id}"/>
@@ -123,4 +128,6 @@ $('.cleditor').cleditor({
 	<input type="submit" name="submit" value="add"/>
 </form>
 </div>
-<%@ include file="/jsp/include/footer_manager.txt" %>
+	<%@ include file="/jsp/include/footer_manager.txt" %>
+</body>
+</html>

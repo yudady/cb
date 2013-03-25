@@ -2,46 +2,48 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ include file="/jsp/include/header_manager.txt"%>
-<%@ include file="/jsp/include/menu_manager.txt"%>
-<link type="text/css" rel="stylesheet"
-	href='<c:url value="/css/base_manager.css"/>' />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<%@ include file="/jsp/include/header_manager.txt" %>
+<title>category</title>
 <script type="text/javascript">
 	$(function() {
 
 	});
 </script>
-<div id="content">
-	<div>
-		<a href='<c:url value="/manager/category/add.do"/>'><input
-			type="button" id="add" value="add"></a>
-	</div>
-	<table>
-		<tr>
-			<th>id</th>
-			<th>name</th>
-			<th>update</th>
-			<th>delete</th>
-		</tr>
-		<c:forEach items="${categories}" var="category">
+</head>
+<body>
+	<%@ include file="/jsp/include/logo_manager.txt" %>
+	<%@ include file="/jsp/include/menu_manager.txt"%>
+	<div id="content">
+		<div>
+			<a href='<c:url value="/manager/category/add.do"/>'><input
+				type="button" id="add" value="add"></a>
+		</div>
+		<table>
 			<tr>
-				<td>${category.id}</td>
-				<td>${category.name}</td>
-				<td><a
-					href='<c:url value="/manager/category/${category.id}/update.do"/>'>update</a></td>
-				<td>
-				<td>
-					<c:if test="${fn:length(category.subCategories) == 0}">
-						<a href='<c:url value="/manager/category/${category.id}/delete.do"/>'>delete</a>
-					</c:if>				
-				</td>
+				<th>id</th>
+				<th>name</th>
+				<th>update</th>
+				<th>delete</th>
 			</tr>
-		</c:forEach>
-	</table>
-</div>
-<%@ include file="/jsp/include/footer_manager.txt"%>
-
-
-
-
-
+			<c:forEach items="${categories}" var="category">
+				<tr>
+					<td>${category.id}</td>
+					<td>${category.name}</td>
+					<td><a
+						href='<c:url value="/manager/category/${category.id}/update.do"/>'>update</a></td>
+					<td>
+					<td>
+						<c:if test="${fn:length(category.subCategories) == 0}">
+							<a href='<c:url value="/manager/category/${category.id}/delete.do"/>'>delete</a>
+						</c:if>				
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
+	<%@ include file="/jsp/include/footer_manager.txt" %>
+</body>
+</html>

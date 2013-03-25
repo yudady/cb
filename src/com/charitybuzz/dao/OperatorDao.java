@@ -1,5 +1,6 @@
 package com.charitybuzz.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,79 @@ import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.InsertUpdateDelete;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
+import com.charitybuzz.common.dao.QueryPager;
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Operator;
 
 public class OperatorDao extends BaseDao<Operator> {
+
+	/**
+	 * create Item by ResultSet
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	private static Operator newOperator(ResultSet rs) throws SQLException {
+		return new Operator(rs.getLong("id"), rs.getString("name"),
+				rs.getString("passWord"));
+	}
+
+	/**
+	 * create list by ResultSet
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	private static List<Operator> getList(ResultSet rs) throws SQLException {
+		List<Operator> list = new ArrayList<Operator>();
+		while (rs.next()) {
+			Operator it = OperatorDao.newOperator(rs);
+			list.add(it);
+		}
+		return list;
+
+	}
+
+	/**
+	 * find List<Auction>
+	 * 
+	 * @return
+	 */
+	private List<Operator> findList(String sql) {
+		return this.queryList(sql, new QueryList<Operator>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Operator> doResultSet() throws SQLException {
+				return OperatorDao.getList(rs);
+			}
+
+		});
+	}
+
+	/**
+	 * find List<Auction>
+	 * 
+	 * @return
+	 */
+	private Pager<Operator> findPager(String sql) {
+		return this.queryPager(sql, new QueryPager<Operator>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<Operator> doResultSet() throws SQLException {
+				return OperatorDao.getList(rs);
+			}
+
+		});
+	}
+
 	/**
 	 * id find object
 	 * 
@@ -59,26 +130,23 @@ public class OperatorDao extends BaseDao<Operator> {
 		});
 	}
 
+	/**
+	 * find all
+	 * @return
+	 */
 	public List<Operator> findAll() {
 		String sql = "select * from operator ";
-		return this.queryList(sql, new QueryList<Operator>() {
-			@Override
-			public void doPreparedStatement() throws SQLException {
-			}
+		return this.findList(sql);
+	}
 
-			@Override
-			public List<Operator> doResultSet() throws SQLException {
-
-				List<Operator> operatorList = new ArrayList<Operator>();
-				while (rs.next()) {
-					Operator it = new Operator(rs.getLong("id"), rs.getString("name"),
-							rs.getString("passWord"));
-					operatorList.add(it);
-				}
-				return operatorList;
-			}
-
-		});
+	/**
+	 * 分頁
+	 * 
+	 * @return
+	 */
+	public Pager<Operator> findPager() {
+		String sql = "select * from operator ";
+		return this.findPager(sql);
 	}
 
 	public void insert(final Operator operator) {

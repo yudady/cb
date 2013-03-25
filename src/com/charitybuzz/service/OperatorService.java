@@ -2,6 +2,7 @@ package com.charitybuzz.service;
 
 import java.util.List;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.OperatorDao;
 import com.charitybuzz.dto.Operator;
 
@@ -27,8 +28,22 @@ public class OperatorService {
 		return operatorDao.findByName(name);
 	}
 
+	/**
+	 * find all
+	 * 
+	 * @return
+	 */
 	public List<Operator> findAll() {
 		return operatorDao.findAll();
+	}
+
+	/**
+	 * 分頁
+	 * 
+	 * @return
+	 */
+	public Pager<Operator> findPager() {
+		return operatorDao.findPager();
 	}
 
 	public void insert(Operator operator) {

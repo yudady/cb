@@ -1,7 +1,5 @@
 package com.charitybuzz.web.manager.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Operator;
 import com.charitybuzz.service.OperatorService;
 import com.charitybuzz.web.form.OperatorForm;
@@ -43,7 +42,8 @@ public class OperatorManager {
 	@RequestMapping(value = "/list")
 	public ModelAndView operatorList(OperatorForm form) {
 		ModelAndView mav = new ModelAndView("manager/operator/list");
-		List<Operator> operators = operatorService.findAll();
+		
+		Pager<Operator> operators = operatorService.findPager();
 		mav.addObject("operators", operators);
 		return mav;
 	}

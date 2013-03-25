@@ -29,7 +29,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${operators}" var="operator">
+				<c:forEach items="${operators.datas}" var="operator">
 				<tr>
 					<td>${operator.id}</td>
 					<td>${operator.name}</td>
@@ -42,6 +42,11 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<jsp:include page="/jsp/include/pager.jsp">
+			<jsp:param value="${operators.totalRecord}" name="totalRecord" />
+			<jsp:param value="${operators.pageSize}" name="pageSize" />
+			<jsp:param value="" name="url" />
+		</jsp:include>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>
 </body>

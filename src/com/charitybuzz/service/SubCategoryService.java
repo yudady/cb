@@ -2,6 +2,7 @@ package com.charitybuzz.service;
 
 import java.util.List;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.SubCategoryDao;
 import com.charitybuzz.dto.SubCategory;
 
@@ -22,8 +23,22 @@ public class SubCategoryService {
 		return subCategoryDao.findByCategoryId(categoryId);
 	}
 
+	/**
+	 * 找出全部二級目錄
+	 * 
+	 * @return
+	 */
 	public List<SubCategory> findAll() {
 		return subCategoryDao.findAll();
+	}
+
+	/**
+	 * 分頁
+	 * 
+	 * @return
+	 */
+	public Pager<SubCategory> findPager() {
+		return subCategoryDao.findPager();
 	}
 
 	public void insert(SubCategory subCategory) {
@@ -45,9 +60,9 @@ public class SubCategoryService {
 
 	}
 
-	
 	/**
 	 * 用商品id找出此商品在哪些SubCategory中
+	 * 
 	 * @param itemId
 	 * @return
 	 */

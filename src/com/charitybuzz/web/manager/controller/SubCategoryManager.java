@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.SubCategory;
@@ -60,14 +61,16 @@ public class SubCategoryManager {
 	public ModelAndView subCategoryList(SubCategoryForm form) {
 		log.debug("[LOG][subCategoryList]");
 		ModelAndView mav = new ModelAndView("manager/subcategory/list");
-		List<SubCategory> subCategories = subCategoryService.findAll();
+		
+		
+		Pager<SubCategory> subCategories = subCategoryService.findPager();
 		mav.addObject("subCategories", subCategories);
-
+		List<SubCategory> datas = subCategories.getDatas();
 		/**
 		 * 第二級目錄
 		 */
-		for (int j = 0; j < subCategories.size(); j++) {
-			SubCategory subs = subCategories.get(j);
+		for (int j = 0; j < datas.size(); j++) {
+			SubCategory subs = datas.get(j);
 			List<Item> items = itemService.findBySubCategoryId(subs.getId());
 			subs.setItems(items);
 		}

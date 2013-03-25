@@ -1,5 +1,6 @@
 package com.charitybuzz.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +9,30 @@ import com.charitybuzz.common.dao.BaseDao;
 import com.charitybuzz.common.dao.InsertUpdateDelete;
 import com.charitybuzz.common.dao.QueryList;
 import com.charitybuzz.common.dao.QueryObject;
+import com.charitybuzz.common.dao.QueryPager;
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.SubCategory;
 
 public class SubCategoryDao extends BaseDao<SubCategory> {
+
 	/**
-	 * find all
+	 * create Item by ResultSet
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	private static SubCategory newSubCategory(ResultSet rs) throws SQLException {
+		return new SubCategory(rs.getLong("id"), rs.getLong("categoryId"),
+				rs.getString("name"), rs.getString("descript"));
+	}
+
+	/**
+	 * find List<Auction>
 	 * 
 	 * @return
 	 */
-	public List<SubCategory> findAll() {
-		String sql = "select * from SubCategory ";
+	private List<SubCategory> findList(String sql) {
 		return this.queryList(sql, new QueryList<SubCategory>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -25,17 +40,61 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 
 			@Override
 			public List<SubCategory> doResultSet() throws SQLException {
-				List<SubCategory> subCategoryList = new ArrayList<SubCategory>();
-				while (rs.next()) {
-					SubCategory it = new SubCategory();
-					it.setId(rs.getLong("id"));
-					it.setName(rs.getString("name"));
-					subCategoryList.add(it);
-				}
-				return subCategoryList;
+				return SubCategoryDao.getList(rs);
 			}
 
 		});
+	}
+
+	/**
+	 * find List<Auction>
+	 * 
+	 * @return
+	 */
+	private Pager<SubCategory> findPager(String sql) {
+		return this.queryPager(sql, new QueryPager<SubCategory>() {
+			@Override
+			public void doPreparedStatement() throws SQLException {
+			}
+
+			@Override
+			public List<SubCategory> doResultSet() throws SQLException {
+				return SubCategoryDao.getList(rs);
+			}
+
+		});
+	}
+
+	/**
+	 * create list by ResultSet
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	private static List<SubCategory> getList(ResultSet rs) throws SQLException {
+		List<SubCategory> list = new ArrayList<SubCategory>();
+		while (rs.next()) {
+			SubCategory it = SubCategoryDao.newSubCategory(rs);
+			list.add(it);
+		}
+		return list;
+
+	}
+
+	/**
+	 * find all
+	 * 
+	 * @return
+	 */
+	public List<SubCategory> findAll() {
+		String sql = "select * from SubCategory ";
+		return this.findList(sql);
+	}
+
+	public Pager<SubCategory> findPager() {
+		String sql = "select * from SubCategory ";
+		return this.findPager(sql);
 	}
 
 	/**
@@ -54,16 +113,7 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 
 			@Override
 			public List<SubCategory> doResultSet() throws SQLException {
-				List<SubCategory> subCategoryList = new ArrayList<SubCategory>();
-				while (rs.next()) {
-					SubCategory it = new SubCategory();
-					it.setId(rs.getLong("id"));
-					it.setCategoryId(rs.getLong("categoryId"));
-					it.setName(rs.getString("name"));
-					it.setDescript(rs.getString("descript"));
-					subCategoryList.add(it);
-				}
-				return subCategoryList;
+				return SubCategoryDao.getList(rs);
 			}
 
 		});
@@ -144,16 +194,7 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 
 			@Override
 			public List<SubCategory> doResultSet() throws SQLException {
-				List<SubCategory> subCategoryList = new ArrayList<SubCategory>();
-				while (rs.next()) {
-					SubCategory it = new SubCategory();
-					it.setId(rs.getLong("id"));
-					it.setCategoryId(rs.getLong("categoryId"));
-					it.setName(rs.getString("name"));
-					it.setDescript(rs.getString("descript"));
-					subCategoryList.add(it);
-				}
-				return subCategoryList;
+				return SubCategoryDao.getList(rs);
 			}
 
 		});

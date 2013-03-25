@@ -147,7 +147,7 @@ $(function() {
     
     var austDay = new Date(parseInt($('.defaultCountdown').html()));
     //austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
-    $('#defaultCountdown').countdown({until: austDay});
+    $('#biddingItemCountdown').countdown({until: austDay,compact: true, description: ''});
     
     
     $("#link-currency").on('click',function(event){
@@ -155,7 +155,7 @@ $(function() {
         event.preventDefault();
         event.stopPropagation();
     });
-    $("#biddingIitemWhat").on('click',function(event){
+    $("#biddingItemWhat").on('click',function(event){
         cb.openAlertDialog("This is the time the auction will end, but \"Popcorn Bidding\" could add 10 minutes to the closing time. If a bid is placed within 10 minutes of the closing time, the auction will extend by 10 minutes. This allows competing bidders a chance to stay in the race.");
         event.preventDefault();
         event.stopPropagation();

@@ -9,8 +9,6 @@
 <title>item</title>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/cb/item.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/cb/item.js"/>'></script>
-<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery.countdown-1.6.1/jquery.countdown.css"/>'/>
-<script type="text/javascript" src='<c:url value="/js/jquery/jquery.countdown-1.6.1/jquery.countdown.min.js"/>'></script>
 </head>
 <body>
 <%@ include file="/jsp/include/bodyTop.txt" %>
@@ -57,7 +55,7 @@
 		<div class="counterRight-right"><!-- counterRight-right start-->
 			<div class="bidding">
 				<div class="counterRight-right-empty"></div>
-				<div class="biddingIitem">
+				<div class="biddingIitem"><!-- biddingIitem start-->
 					<h2>${item.title}</h2>
 					<div>
 						<c:choose>
@@ -95,7 +93,7 @@
 						<div>&nbsp;</div>
 						<div id="placedBy">
 							<c:if test="${!empty winner}">
-								placed by: <b class="fontWeight">得標者${winner.lastName}</b>
+								placed by: <b class="fontWeight">${winner.lastName}</b>
 							</c:if>
 						</div>
 						<div>&nbsp;</div>
@@ -105,34 +103,40 @@
 						<div>&nbsp;</div>
 						<div>
 							<span class="defaultCountdown displayNone">${item.closeDate.time}</span>
-							<div id="defaultCountdown"></div>
-							<i class="icon-question-sign" id="biddingIitemWhat">&nbsp;</i>
+							<span id="biddingItemCountdown"></span>
+							<i class="icon-question-sign" id="biddingItemWhat">&nbsp;</i>
 						</div>
 						<div>&nbsp;</div>
 					</div>
-					<div><!-- Bid Now -->
+					<div><!-- Bid Now start-->
 						<form id="biddingBidForm" action='<c:url value="/bid/${item.id}/index.do" />'>
 							<span  class="bidNowSpan ui-corner-all">
-								<a id="link-currency" href="#">$<small>▾</small></a>
+								<a id="link-currency" href="#">$<i class="icon-sort-down"></i></a>
 								<input id="biddingBidUrl" name="biddingBidUrl" type="hidden" />
-								<input class="inputBorderHide" id="biddingBidNowPrice" name="biddingBidNowPrice" type="text" />
+								<input id="biddingBidNowPrice" class="inputBorderHide" name="biddingBidNowPrice" type="text" />
 								&nbsp;&nbsp;&nbsp;&nbsp;
 							</span>
 							<input id="biddingBidNowBtn" name="biddingBidNowBtn" type="button" class="cssButton" value="Bid Now" />
 						</form>
-					</div>
+					</div><!-- Bid Now end-->
 					<div>
-						<span>you must bid at least ${item.incrementPrice}
+						<span>
+							you must bid at least 
+							<fmt:formatNumber value="${item.incrementPrice}" type="currency" pattern="$#,##0"/>
 							<input id="incrementPrice" type="hidden" value="${item.incrementPrice}"/>
 							<i class="icon-question-sign" id="biddingIncrementPriceBtn">&nbsp;</i>
 						</span>
 					</div>
+				</div><!-- biddingIitem end-->
+				
+				<div class="biddingProceedsBenefit"><!-- 連結到拍賣會網站 -->
+					<i class="icon-heart"></i>Proceeds Benefit:
+					<a target="_blank" href="${auction.webSite}">
+						${auction.title}
+					</a>
 				</div>
 				
-				<div class="biddingProceedsBenefit">
-					 Proceeds Benefit: Steven J. Ross Scholarship Fund at Ross School
-					 這裡是一個超連結，連到其他商品網站
-				</div>
+				
 				<div class="biddingWatchQuestion">
 					<div id="biddingWatchThisItem">
 						<c:choose>
@@ -175,8 +179,23 @@
 					</table>
 					<h3>Share this item:</h3>
 					<div>
-						 tweet
-						 fasebook
+						<%-- fix it start --%>
+						<div class="shareItem">
+							<iframe class="twitter-share-button twitter-count-vertical" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.1363148939.html#_=1364176683481&count=vertical&id=twitter-widget-0&lang=en&original_referer=http%3A%2F%2Fwww.charitybuzz.com%2Fauctions%2Fonedrop%2Fcatalog_items%2F339936%3Fref%3Darea&size=m&text=6-Night%20Stay%20at%20a%20Private%20Compound%20on%20Kona%2C%20Hawaii%20for%20Up%20to%2030%20Guests&url=http%3A%2F%2Fwww.charitybuzz.com%2Fauctions%2Fonedrop%2Fcatalog_items%2F339936%3Fref%3Darea" style="width: 55px; height: 62px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+						</div>
+						<div class="shareItem">
+							<span>Facebook</span>
+						</a>
+						</div>
+						<div class="shareItem">
+							<iframe id="I0_1364176683706" width="100%" scrolling="no" frameborder="0" hspace="0" marginheight="0" marginwidth="0" style="position: static; top: 0px; width: 50px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 60px;" tabindex="0" vspace="0" name="I0_1364176683706" src="https://plusone.google.com/_/+1/fastbutton?bsv&size=tall&hl=en-US&origin=http%3A%2F%2Fwww.charitybuzz.com&url=http%3A%2F%2Fwww.charitybuzz.com%2Fauctions%2Fonedrop%2Fcatalog_items%2F339936%3Fref%3Darea&ic=1&jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.zh_TW.BJ49Ir2ODhE.O%2Fm%3D__features__%2Fam%3DQQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAItRSTO_QqGUOsZIIfUtfDIIj2wAdQwK8Q#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled&id=I0_1364176683706&parent=http%3A%2F%2Fwww.charitybuzz.com&rpctoken=7963905" allowtransparency="true" data-gapiattached="true" title="+1"/>
+							</iframe>
+						</div>
+						<div class="clearBoth"></div>
+						<input type="button" value="email">
+						<input type="button" value="reddit this">
+						<input type="button" value="pinit">
+						<%-- fix it end --%>
 					</div>
 				</div>
 			</div>

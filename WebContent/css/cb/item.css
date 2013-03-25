@@ -114,6 +114,14 @@
 .biddingIitem h2 {
     font-size: 24px;
 }
+#biddingItemCountdown {
+    background-color: white;
+    border: 0px;
+    width: 200px;
+}
+#biddingItemWhat {
+    width: 50px;
+}
 
 .biddingProceedsBenefit {
     margin-bottom: 5px;
@@ -169,8 +177,17 @@
     margin-left: 10px;
     width: 130px;
     border-color: red;
+/*
+ */
     border: 1px solid red;
 }
 .bidNowSpan input {
+    width: 0px;
     text-align: right;
+}
+#biddingBidNowPrice {
+    width: 100px;
+}
+.shareItem {
+    float: left;
 }

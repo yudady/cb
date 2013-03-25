@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.cache.SidebarService;
+import com.charitybuzz.dto.Auction;
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.dto.Bidlog;
 import com.charitybuzz.dto.Category;
 import com.charitybuzz.dto.Item;
 import com.charitybuzz.dto.Picture;
 import com.charitybuzz.dto.Watching;
+import com.charitybuzz.service.AuctionService;
 import com.charitybuzz.service.BidderService;
 import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
@@ -55,10 +57,16 @@ public class ItemController {
 	@Resource
 	private PictureService pictureService;
 	/**
-	 * 商品圖片
+	 * 投標者
 	 */
 	@Resource
 	private BidderService bidderService;
+	
+	/**
+	 * 拍賣會
+	 */
+	@Resource
+	private AuctionService auctionService;
 
 	/**
 	 * tabs4 click url
@@ -136,12 +144,21 @@ public class ItemController {
 		log.debug("[itemId]=" + itemId);
 		Item item = itemService.findById(itemId);
 
+
+
 		mav.setViewName("item");
 		if (item == null) {
 			log.warn("商品不存在");
 			return mav;
 		}
 		mav.addObject("item", item);
+		
+		
+		Auction auction = auctionService.findById(item.getAuctionId());
+		mav.addObject("auction", auction);
+		
+		
+		
 		List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
 		item.setBidlogs(bidlogs);
 		

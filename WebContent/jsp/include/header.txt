@@ -12,6 +12,8 @@
 <![endif]-->
 <link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery.countdown-1.6.1/jquery.countdown.css"/>'/>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery.countdown-1.6.1/jquery.countdown.min.js"/>'></script>
 <script type="text/javascript">
 
 	/**
@@ -32,7 +34,8 @@
 				modal: true,
 				buttons : {
 					"OK" : function() {
-						$(this).dialog("close");
+						//$(this).dialog("close");
+						$(this).dialog( "destroy" );
 					}
 				}
 			});

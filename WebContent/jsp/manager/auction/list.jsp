@@ -35,20 +35,23 @@ th, td {
 			</a>
 		</div>
 		<table>
-			<tr>
-				<th>id</th>
-				<th>主題</th>
-				<th>描述</th>
-				<th>網址</th>
-				<th>logo</th>
-				<th>拍賣會 開始日期 startDate</th>
-				<th>拍賣會 結束日期 closeDate</th>
-				<th>商品</th>
-				<th></th>
-				<th></th>
-			</tr>
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>主題</th>
+					<th>描述</th>
+					<th>網址</th>
+					<th>logo</th>
+					<th>拍賣會 開始日期 startDate</th>
+					<th>拍賣會 結束日期 closeDate</th>
+					<th>商品</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
 			<c:set var="nowDate" value="<%=System.currentTimeMillis()%>"></c:set>
-			<c:forEach items="${auctions.datas}" var="auction">
+			<tbody>
+				<c:forEach items="${auctions.datas}" var="auction">
 				<tr>
 					<td>${auction.id}</td>
 					<td>${auction.title}</td>
@@ -75,7 +78,8 @@ th, td {
 						</c:otherwise>
 					</c:choose>
 				</tr>
-			</c:forEach>
+				</c:forEach>
+			</tbody>
 		</table>
 		<jsp:include page="/jsp/include/pager.jsp">
 			<jsp:param value="${auctions.totalRecord}" name="totalRecord" />

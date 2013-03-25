@@ -57,6 +57,7 @@ table {
 thead {
     font-size: 14px;
     text-align: center;
+    font-weight:bold;
 }
 th, td {
     border-right: 1px solid black;

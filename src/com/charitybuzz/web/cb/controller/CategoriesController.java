@@ -23,11 +23,20 @@ import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 
+/**
+ * 點擊menu bar
+ * 
+ * @author Administrator
+ * 
+ */
 @Controller
 public class CategoriesController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(CategoriesController.class);
 
+	/**
+	 * 左邊menu bar
+	 */
 	@Resource
 	private SidebarService sidebarService;
 	/**
@@ -40,14 +49,17 @@ public class CategoriesController {
 	 */
 	@Resource
 	private PictureService pictureService;
-
+	/**
+	 * 歷史紀錄
+	 */
 	@Resource
 	private BidlogService bidlogService;
 
 	/**
+	 * 第一層目錄
 	 * 
-	 * @param id
-	 * @param model
+	 * @param categoryId
+	 * @param categoryName
 	 * @return
 	 */
 	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/index", method = RequestMethod.GET)
@@ -81,6 +93,15 @@ public class CategoriesController {
 		return mav;
 	}
 
+	/**
+	 * 第二層目錄
+	 * 
+	 * @param categoryId
+	 * @param categoryName
+	 * @param subcategoryId
+	 * @param subCategoryName
+	 * @return
+	 */
 	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/subcategories/{subcategoryId}/{subCategoryName}/index", method = RequestMethod.GET)
 	public ModelAndView subCategory(@PathVariable Long categoryId,
 			@PathVariable String categoryName,
@@ -110,7 +131,12 @@ public class CategoriesController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/viewall", method = RequestMethod.GET)
+	/**
+	 * 全部商品
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/categories/viewall", method = RequestMethod.GET)
 	public ModelAndView viewAll() {
 
 		ModelAndView mav = new ModelAndView("itemsPager");
@@ -134,6 +160,12 @@ public class CategoriesController {
 		return mav;
 	}
 
+	/**
+	 * 尋找商品
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/searchItems", method = RequestMethod.POST)
 	public ModelAndView searchItems(HttpServletRequest request) {
 

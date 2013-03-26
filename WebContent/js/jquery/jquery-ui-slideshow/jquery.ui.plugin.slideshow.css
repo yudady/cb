@@ -16,7 +16,7 @@
 	height: 200px;
 	background-color: gray;
     position: absolute;
-    z-index: 0;
+    z-index: 1;
 	left:0px;
 	top: 0px;
 	/* 透明度 */
@@ -31,7 +31,7 @@
 .ui-widget-slideshow-msgDiv {
     padding-left: 20px;
 	position: absolute;
-    z-index: 1;
+    z-index: 2;
 } 
 .ui-widget-slideshow-msgDiv span {
     color: white;
@@ -63,7 +63,7 @@
 	top: 150px;
 	left: 570px;
 	float:right;
-	z-index: 1;
+	z-index: 2;
 }
 /**
  * 	大圖片
@@ -71,8 +71,8 @@
 .ui-widget-slideshow-bigPic {
 	width: 680px;
 	height: 400px;
-	padding-left: 10px;
 	position: absolute;
+	z-index: 0;
 	top: 5px;
 	left: 0px;
 }

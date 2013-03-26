@@ -30,4 +30,9 @@ $(function(){
     var b = $(".counterRight").height();
     var hei = (a > b)? a : b ;
     $('.counterLeft,.counterRight').height(hei);
+    
+    
+    $(".mainBody").corner('top 30px');
+    $(".counterLeft").corner('tl 20px');
+    $(".counterRight,.auction").corner('tr 20px');
 });

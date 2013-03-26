@@ -1,9 +1,9 @@
-<div id="menu">
-	<ul id="sidebar">
-		<li><a href='<c:url value="/manager/index.do" />'>index</a></li>
-		<li><a href='<c:url value="/manager/category/list.do" />'>Category</a></li>
-		<li><a href='<c:url value="/manager/subcategory/list.do" />'>SubCategory</a></li>
-		<li><a href='<c:url value="/manager/auction/list.do" />'>Auction</a></li>
+<div id="nav">
+	<ul>
+		<li><a href='<c:url value="/manager/index.do" />'>index</a><span>&nbsp;|&nbsp;</span></li>
+		<li><a href='<c:url value="/manager/category/list.do" />'>Category</a><span>&nbsp;|&nbsp;</span></li>
+		<li><a href='<c:url value="/manager/subcategory/list.do" />'>SubCategory</a><span>&nbsp;|&nbsp;</span></li>
+		<li><a href='<c:url value="/manager/auction/list.do" />'>Auction</a><span>&nbsp;|&nbsp;</span></li>
 		<li><a href='<c:url value="/manager/operator/list.do" />'>Operator</a></li>
 	</ul>
 </div>

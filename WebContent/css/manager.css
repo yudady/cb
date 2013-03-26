@@ -38,16 +38,15 @@ ul {
 }
 
 #content {
-	width:1024px;
-	height: 500px;
-	background-color: red;
-	margin-bottom: 20px;
+    padding-top: 100px;
+    width:1024px;
+    height: 500px;
+    background-color: #EEE;
+    margin-bottom: 20px;
 }
-
 #footer {
-	clear: both;
-	height: 200px;
-	background-color: green;
+    clear: both;
+    height: 50px;
+    background-color: #CCCCCC;
 }
-
 

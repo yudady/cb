@@ -1,3 +1,4 @@
+<div class="clearBoth"></div>
 <div id="footer">
 		footer
 </div>

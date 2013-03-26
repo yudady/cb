@@ -4,8 +4,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -35,7 +33,6 @@ body {
     text-align: left;
     width: 1024px;
     margin: 0 auto;
-    padding-top: 20px;
 }
 fieldset {
     padding: 10px;
@@ -44,65 +41,75 @@ fieldset {
 }
 legend {
     color: #06c;
-    font-weight:bold;
+    font-weight: bold;
     font-size: 18px;
 }
 
 table {
-    margin:0 auto;
-    width:95%;
+    margin: 0 auto;
+    width: 95%;
     border-top: 1px solid black;
     border-left: 1px solid black;
 }
 thead {
     font-size: 14px;
     text-align: center;
-    font-weight:bold;
+    font-weight: bold;
 }
 th, td {
     border-right: 1px solid black;
     border-bottom: 1px solid black;
 }
 
-
-
-
 #header {
-    height: 100px;
-    margin-bottom: 10px;
+    background-color: #CCCBBB;
 }
 
-#header .logo {
+.logo {
+    float: left;
     width: 500px;
 }
 
-#header .logo a {
+.logo a {
     display: block;
     width: 500px;
 }
 
-#header .logo a img {
+.logo a img {
     display: block;
     width: 500px;
     height: 67px;
 }
 
 #login {
-    width: 300px;
-    position: relative;
-    top: -70px;
-    left: 650px;
+    float: right;
+}
+#nav {
+    font-size: 18px;
+    background-color: #CCCDDD;
+}
+#nav ul {
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+}
+#nav ul li {
+    display: inline;
+}
+#nav ul li span{
+    color: white;
+}
+#nav ul li a {
+    text-decoration: none;
+}
+#nav ul li a:hover {
+    color: red;
 }
 
-#menu {
-    width: 150px;
-    float: left;
-}
 #content {
-    width: 850px;
-    float: right;
     background-color: #EEE;
-    margin-bottom: 20px;
+}
+#content>div{
 }
 
 #footer {
@@ -111,3 +118,9 @@ th, td {
     background-color: #CCCCCC;
 }
 
+/**
+ * 其他
+ */
+.clearBoth {
+    clear: both;
+}

@@ -18,6 +18,10 @@ public class Constant {
 	 * auction上傳圖片的位置
 	 */
 	public static String UPLOAD_FOLDER_AUCTION = Constant.UPLOAD_FOLDER + "auction/";
+	/**
+	 * INDEX_RIGHT 圖片的位置
+	 */
+	public static String UPLOAD_FOLDER_INDEX_RIGHT = Constant.UPLOAD_FOLDER + "indexright/";
 
 	/**
 	 * index頁面中tabs裡面items數量

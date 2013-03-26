@@ -7,17 +7,8 @@
 <html>
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
-<title>auction</title>
+<title>manager|auction</title>
 <style type="text/css">
-table {
-	width:100%;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-}
-th, td {
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-}
 #content img {
 	vertical-align:text-top;
     width: 50px;

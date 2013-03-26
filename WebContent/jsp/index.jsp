@@ -45,7 +45,7 @@
 
 <div class="indexDown">
 	<div id="itemsClosing">
-		<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>'>
+		<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>' />
 		<%@ include file="/jsp/include/tabs4.txt" %>
 	</div>
 	<div id="liveAuctions"><!-- liveAuctions -->

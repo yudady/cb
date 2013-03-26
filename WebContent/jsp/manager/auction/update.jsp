@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
-<title>auction</title>
+<title>manager|auction</title>
 <script type="text/javascript">
 $(function(){
 	$("input[type='file']").on('change',function(){

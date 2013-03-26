@@ -1,4 +1,4 @@
 <div class="clearBoth"></div>
 <div id="footer">
-		footer
+2013 Charitybuzz Inc. All rights reserved.   |   Privacy Policy
 </div>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
-<title>category</title>
+<title>manager|category</title>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>

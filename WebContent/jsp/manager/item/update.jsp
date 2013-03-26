@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
-<title>item</title>
+<title>manager|item</title>
 <style type="text/css">
 #content dl {
 	color: green;

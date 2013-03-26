@@ -7,7 +7,22 @@
 <html>
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
-<title>index</title>
+<title>manager|index</title>
+<style type="text/css">
+.index-right-tabs4-top-pic{
+}
+.index-right-tabs4-top-pic img{
+	height: 100px;
+	float: right;
+}
+</style>
+<script type="text/javascript">
+$(function(){
+	$("input[type='file']").on('change',function(){
+		$(this).prev().attr('src','');
+	});
+});
+</script>
 </head>
 <body>
 <%@ include file="/jsp/include/logo_manager.txt" %>
@@ -44,7 +59,19 @@
 		<div id="crumbs">
 			<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
 		</div>
-		login ok 
+		<div>&nbsp;</div>
+		<div class="index-right-tabs4-top-pic">
+			<form action='<c:url value="/manager/indexPic.do" />' method="post" enctype="multipart/form-data">
+				<fieldset>
+					<legend>index right tabs top pic</legend>
+					<img src='<c:url value="/pic/upload/indexright/sharethelove_banner.jpg"/>' />
+					<input type="file" name="file" /><br/>
+					<input type="reset" name="reset" value="reset" />
+					<input type="submit" name="submit" value="submit" />
+				</fieldset>
+			</form>
+		</div>
+		<div class="clearBoth"></div>
 	</c:otherwise>
 </c:choose>
 

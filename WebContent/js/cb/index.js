@@ -2,13 +2,28 @@ $(function() {
     //輪播
     $("#contentSlideshow").slideshow();
     $('#tabs4').tabs({
+        beforeActivate: function( event, ui ) {
+            $('#tabs4').block({
+                theme: true, 
+                css: { border: '3px solid #a00' }  
+            }); 
+        },
         load: function(event, ui) {
             $(ui.panel).on('click', 'a', function(event) {
                 $(ui.panel).load(this.href);
                 event.preventDefault();
             });
+            $('#tabs4').unblock(); 
         }
     });
+    
+         /**
+     *全局 unblock
+    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+     */
+    
+    
+    
     
     $(".timeLeft").timeLeft({split:", ",style:"detail"});
     

@@ -4,7 +4,7 @@
      /**
      *全局 unblock
      */
-    //$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    $(document).ajaxStop($.unblockUI);
     
     $("#loginBtn").click(function(){
         

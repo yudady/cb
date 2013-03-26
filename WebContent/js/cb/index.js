@@ -2,7 +2,7 @@ $(function() {
     //輪播
     $("#contentSlideshow").slideshow();
     $('#tabs4').tabs({
-        beforeActivate: function( event, ui ) {
+        beforeLoad: function( event, ui ) {
             $('#tabs4').block({
                 theme: true, 
                 css: { border: '3px solid #a00' }  

@@ -11,6 +11,7 @@
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.corner.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.blockUI.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery.twitter.search.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.timeLeft.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-slideshow/jquery.ui.plugin.slideshow.js"/>'></script>

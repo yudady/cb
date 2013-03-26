@@ -17,10 +17,8 @@ $(function() {
         }
     });
     
-         /**
-     *全局 unblock
-    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
-     */
+
+
     
     
     

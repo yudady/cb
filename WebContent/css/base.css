@@ -399,3 +399,17 @@ a.cssButton:hover {
 .breakWord {
     word-wrap:break-word
 }
+
+/**
+ *     twitter
+ */
+div.twitter {
+    margin-top: 50px;
+    margin-left: 5px;
+    width: 300px
+}
+#twitter3 {
+    float: left;
+    height: 400px;
+    width: 200px;
+} 

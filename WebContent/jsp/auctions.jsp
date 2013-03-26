@@ -16,6 +16,7 @@
 <div class="counter"><!-- counter start-->
 	<div class="counterLeft">
 		<%@ include file="/jsp/include/menu.txt" %>
+		<div id="twitter3" class="twitter" title="Mouse away to resume scrolling tweets"></div>
 	</div>
 	<div class="counterRight">
 		<div class="top">

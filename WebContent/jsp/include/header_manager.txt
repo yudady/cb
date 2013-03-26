@@ -6,6 +6,11 @@
 <link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/CLEditor1_3_0/jquery.cleditor.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery-ui-timepicker/jquery-ui-timepicker-addon.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/js/jquery/jquery-ui-timepicker/jquery-ui-timepicker-addon.css"/>'/>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/prettify.css"/>'/>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/font-awesome.css"/>'/>
+<!--[if IE 7]>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/font-awesome-ie7.min.css"/>'/>
+<![endif]-->
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
 <script type="text/javascript">
 

@@ -41,7 +41,10 @@
 		</form>
 	</c:when>
 	<c:otherwise>
-login ok 
+		<div id="crumbs">
+			<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+		</div>
+		login ok 
 	</c:otherwise>
 </c:choose>
 

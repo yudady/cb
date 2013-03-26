@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
-<title>category</title>
+<title>auction</title>
 <style type="text/css">
 table {
 	width:100%;
@@ -29,6 +29,11 @@ th, td {
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content"><!-- content -->
+		<div id="crumbs">
+			<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+			<b> » </b>
+			auction
+		</div>
 		<div>
 			<a href='<c:url value="/manager/auction/add.do"/>'>
 				<input type="button" value="add" />

@@ -109,7 +109,8 @@ th, td {
 #content {
     background-color: #EEE;
 }
-#content>div{
+#crumbs{
+    float: right;
 }
 
 #footer {

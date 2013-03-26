@@ -21,6 +21,13 @@ $(function(){
 	<%@ include file="/jsp/include/logo_manager.txt" %>
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content">
+		<div id="crumbs">
+			<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+			<b> » </b>
+			<a href='<c:url value="/manager/auction/list.do" />'>auction list</a>
+			<b> » </b>
+			update
+		</div>
 		<div>
 			<a href='<c:url value="/manager/auction/list.do"/>'>
 				<input type="button" value="auction list" />

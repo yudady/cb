@@ -8,6 +8,11 @@
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
 <title>manager|item</title>
+<script type="text/javascript">
+	$(function() {
+		$(".formatShortHtml").formatShortHtml();
+	});
+</script>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
@@ -21,9 +26,6 @@
 			item
 		</div>
 		<div>
-			<a href='<c:url value="/manager/auction/list.do" />'>
-				<input type="button" value="auction list" />
-			</a>
 			<a href='<c:url value="/manager/auctionId/${auctionId}/item/add.do" />'>
 				<input type="button" value="add" />
 			</a>
@@ -41,7 +43,7 @@
 				<c:forEach items="${items.datas}" var="item">
 				<tr>
 					<td>${item.id}</td>
-					<td>${item.title}</td>
+					<td class="formatShortHtml" >${item.title}</td>
 					<td><a href='<c:url value="/manager/auctionId/${auctionId}/item/${item.id}/update.do" />'>update</a></td>
 					<td><a href='<c:url value="/manager/auctionId/${auctionId}/item/${item.id}/delete.do" />'>delete</a></td>
 				</tr>

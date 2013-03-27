@@ -26,25 +26,6 @@
 }
 
 
-#content li.picture {
-	clear:both;
-	height: 100px;
-}
-#content li.picture div{
-	line-height:75px;
-	height: 75px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-#content li.picture div span{
-}
-#content li.picture div input{
-}
-#content li.picture div img {
-	width: 100px;
-	height: 75px;
-}
-
 #content p {
 clear: both;
 }
@@ -124,7 +105,6 @@ $(function() {
 		width:        780, // width not including margins, borders or padding
 		height:       250 // height not including margins, borders or padding});
 	});	
-
 });
 </script>
 </head>
@@ -147,7 +127,7 @@ $(function() {
 			</a>
 		</div>
 		<form id="itemForm" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="id" value="${item.id}"/>
+			<input type="hidden" name="id" value="${item.id}"/><br/>
 			<fieldset>
   				<legend>第二級目錄</legend>
 				<dl>
@@ -156,40 +136,33 @@ $(function() {
 					</c:forEach>
 				</dl>
  			</fieldset>
-			<p></p>
-			<ul>
-				<li>商品訊息<input type="text" name="title" value="${item.title}"/></li>
-				<li>當前標價<input type="text" name="currentBid" value="${item.currentBid}"/></li>
-				<li>商品 開始日期<input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.startDate}" />' /></li>
-				<li>商品結束日期<input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.closeDate}" />' /></li>
-				<li>估計價值<input type="text" name="estimatedValue" value="${item.estimatedValue}"/></li>
-				<li>下次最小標價<input type="text" name="incrementPrice" value="${item.incrementPrice}"/></li>
-				<li>0.結標 1.拍賣中<input type="text" name="status" value="${item.status}"/></li>
-				<li>
-					<fieldset>
-  						<legend>LOTDETAILS訊息</legend>
-						<textarea class="cleditor" name="lotDetails" id="lotDetails">${item.lotDetails}</textarea>
-					</fieldset>
-				</li>
-				<li>
-					<fieldset>
-  						<legend>LOTDETAILS訊息</legend>
-						<textarea class="cleditor" name="legalTerms" id="legalTerms">${item.legalTerms}</textarea>
-					</fieldset>
-				</li>
-				<li>
-					<fieldset>
-  						<legend>SHIPPING訊息</legend>
-						<textarea class="cleditor" name="shipping" id="shipping">${item.shipping}</textarea>
-					</fieldset>
-				</li>
-				<li>當前贏家id<input type="text" name="winningBidderId" value="${item.winningBidderId}"/></li>
-				<li><input type="button" id="addPicBtn" value="add pic"/></li>
-			</ul>
+ 			商品訊息<input type="text" name="title" value="${item.title}"/><br/>
+ 			當前標價<input type="text" name="currentBid" value="${item.currentBid}"/><br/>
+			商品 開始日期<input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.startDate}" />' /> <br/>
+			商品結束日期<input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.closeDate}" />' /> <br/>
+			估計價值<input type="text" name="estimatedValue" value="${item.estimatedValue}"/><br/>
+			下次最小標價<input type="text" name="incrementPrice" value="${item.incrementPrice}"/><br/>
+			0.結標 1.拍賣中<input type="text" name="status" value="${item.status}"/><br/>
+			<fieldset>
+				<legend>LOTDETAILS訊息</legend>
+				<textarea class="cleditor" name="lotDetails" id="lotDetails">${item.lotDetails}</textarea>
+			</fieldset>
+			
+			<fieldset>
+				<legend>LOTDETAILS訊息</legend>
+				<textarea class="cleditor" name="legalTerms" id="legalTerms">${item.legalTerms}</textarea>
+			</fieldset>
+			
+			<fieldset>
+				<legend>SHIPPING訊息</legend>
+				<textarea class="cleditor" name="shipping" id="shipping">${item.shipping}</textarea>
+			</fieldset>
+			當前贏家id<input type="text" name="winningBidderId" value="${item.winningBidderId}"/><br/>
+			<input type="button" id="addPicBtn" value="add pic"/><br/>
 			<hr/>
 			
 			<input type="reset" name="reset" />
-			<input type="submit" name="submit" value="update"/>
+			<input type="submit" id="submit" value="update"/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

@@ -3407,3 +3407,24 @@ update item set title = ? , currentBid = ?  , startdate = ? , closedate = ?  , e
 03-25 13:36:00 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "AUCTION1" not found; SQL statement:
 SELECT * FROM AUCTION1  [42102-169]
+03-27 11:29:37 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (4936)"; SQL statement:
+insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,createddate,updateddate) values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate) [22001-169]
+03-27 11:47:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (3961)"; SQL statement:
+insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,createddate,updateddate) values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate) [22001-169]
+03-27 11:47:56 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (3961)"; SQL statement:
+insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,createddate,updateddate) values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate) [22001-169]
+03-27 11:48:24 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (3961)"; SQL statement:
+insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,createddate,updateddate) values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate) [22001-169]
+03-27 11:48:43 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (3076)"; SQL statement:
+insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,createddate,updateddate) values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate) [22001-169]
+03-27 11:48:50 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (3076)"; SQL statement:
+insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,createddate,updateddate) values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate) [22001-169]
+03-27 11:48:58 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (3076)"; SQL statement:
+insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,createddate,updateddate) values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate) [22001-169]

@@ -4,6 +4,7 @@
 }
 
 .counterLeft {
+    margin-left: 10px;
     width: 220px;
     float: left;
     background-color: white;
@@ -44,10 +45,13 @@
     margin-left: 300px;
 }
 
+.itemspice {
+    height: 10px;
+    background-color: #CCCCCC;
+}
 .item {
     height: 200px;
     padding: 30px;
-    margin-bottom: 20px;
     background-color: white;
 }
 

@@ -70,6 +70,7 @@
 </div>
 
 <c:forEach items="${pager.datas}" var="item">
+	<div class="itemspice">&nbsp;</div>
 	<div class="item">
 		<span class="pic">
 			<div class="lotClosed">This item is now closed</div>
@@ -148,6 +149,7 @@
 			</c:choose>
 		</span>
 	</div>
+	<div class="itemspice">&nbsp;</div>
 </c:forEach>
 
 

@@ -51,18 +51,27 @@
 	</div>
 	<div id="liveAuctions"><!-- liveAuctions -->
 		<h1>Current Auctions</h1>
-		<c:forEach items="${auctions}" var="auction">
+		<div id="auctions">
+			<c:forEach items="${auctions}" var="auction">
 			<div class="auction">
 				<div class="auctionSpilt"><hr /></div>
-				<a href='<c:url value="/auctions/${auction.id}/index.do"/>'><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' /></a>
-				<dl>
-					<dt class="auctionTitle">${auction.title}</dt>
-					<dd><fmt:formatDate value="${auction.closeDate}" dateStyle="full" /></dd>
-					<dd class="timeLeft">${auction.closeDate.time}</dd>
-					<dd><a class="cssButton" href='<c:url value="/auctions/${auction.id}/index.do"/>'>view items</a></dd>
-				</dl>
+				<div>&nbsp;</div>
+				<div class="auctionLeft">
+					<a href='<c:url value="/auctions/${auction.id}/index.do"/>'><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' /></a>
+				</div>
+				<div class="auctionRight">
+					<dl>
+						<dt class="auctionTitle">${auction.title}</dt>
+						<dd><fmt:formatDate value="${auction.closeDate}" dateStyle="full" /></dd>
+						<dd class="timeLeft">${auction.closeDate.time}</dd>
+						<dd><a class="cssButton" href='<c:url value="/auctions/${auction.id}/index.do"/>'>view items</a></dd>
+					</dl>
+				</div>
+				<div class="clearBoth">&nbsp;</div>
 			</div>
-		</c:forEach>
+			</c:forEach>
+			<div class="clearBoth">&nbsp;</div>
+		</div>
 			<input type="hidden" id="auctionsPageSize" value="${auctionsPageSize}" />
 			<div id="auctionsPager">
 				<a id="prevPager" href="#" >« previous </a>

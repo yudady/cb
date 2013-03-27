@@ -99,12 +99,7 @@ $(function() {
 	    return false;
 	});
 	
-	
-	
-	$('.cleditor').cleditor({
-		width:        780, // width not including margins, borders or padding
-		height:       250 // height not including margins, borders or padding});
-	});	
+	$('.cleditor').cleditor();	
 });
 </script>
 </head>

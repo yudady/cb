@@ -27,7 +27,6 @@
 #liveAuctions {
     margin-left: 10px;
     width: 550px;
-    height: 1300px;
     background-color: #FFFFFF;
 }
 #liveAuctions h1 {
@@ -36,46 +35,38 @@
     font-size: 36px;
 }
 
-#liveAuctions .auction {
-    height: 100px;
-    padding: 20px;
+#auctions{
 }
-#liveAuctions .auctionTitle {
-    font-size: 18px;
-}
-
-#liveAuctions .auction img {
-    width: 159px;
-    height: 116px;
-    margin-right: 20px;
+.auction {
+    width: 540px;
     float: left;
 }
+.auctionLeft {
+    margin-left: 20px;
+    width: 200px;
+    float: left;
+}
+.auctionLeft img{
+    width: 159px;
+    height: 116px;
+}
 
-#liveAuctions .auction dl {
-    margin-top: 20px;
-    margin-left: 20px;
+.auctionRight {
+    width: 300px;
+    float: left;
 }
-#liveAuctions .auction dl a {
-    margin-top: 20px;
-    margin-left: 20px;
+.auctionTitle {
+    font-size: 18px;
 }
-#auctionsPager {
-    margin-left: 400px;
-}
-#auctionsPager .auctionsActive {
+.auctionsActive {
     color: white;
     background-color: #C52100;
 }
-
 /**
  *  下右邊
  */
 #itemsClosing {
-    /*
-     position:absolute;
-     left:760px;*/
     margin-right: 10px;
-    height: 1300px;
     float: right;
     width: 400px;
     background-color: white;

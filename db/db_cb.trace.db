@@ -3428,3 +3428,9 @@ insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedval
 03-27 11:48:58 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (3076)"; SQL statement:
 insert into item (id,auctionId,title,currentbid,startdate,closedate,estimatedvalue,incrementprice,status,lotdetails,legalterms,shipping,createddate,updateddate) values (?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate) [22001-169]
+03-27 14:49:05 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p class=""expandme"" style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-f... (3961)"; SQL statement:
+update item set title = ? , currentBid = ?  , startdate = ? , closedate = ?  , estimatedValue = ? , incrementPrice = ? , status = ? , lotDetails = ? , legalTerms = ? ,  shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ? [22001-169]
+03-27 15:01:40 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-family: futura-pt,... (3230)"; SQL statement:
+update item set title = ? , currentBid = ?  , startdate = ? , closedate = ?  , estimatedValue = ? , incrementPrice = ? , status = ? , lotDetails = ? , legalTerms = ? ,  shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ? [22001-169]

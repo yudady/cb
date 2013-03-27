@@ -20,29 +20,32 @@
     background-color:red;
     color: white;;
 }
-
 /**
  * 定位
  */
 .item {
     position: relative;
 }
-.item>a{
+.item>a {
+	display:block;
+	width:100px;
+	height:80px;
     float: left;
 }
 .item>a>img{
     width: 85px;
     height: 60px;
 }
-.item>div{
-    padding:20px;
+.item>div {
+	width:250px;
+    float: left;
 }
 /**
- * 先移動
+ * 先移動 紅色旗
  */
 .item .dealhidetopborder {
     position: absolute;
-    left: 270px;
+    left: 315px;
     top: 10px;
 }
 /**
@@ -55,15 +58,15 @@
     top: 10px;
 }
 /**
- * 微調
+ * 微調 字(XX %)
  */
 .item .dealhidetopborder a span {
     text-align: center;
     color: white;
     position: absolute;
     z-index: 1;
-    left: 30px;
-    top: 25px;
+    left: 25px;
+    top: 15px;
 }
 
 .item div h3 a {

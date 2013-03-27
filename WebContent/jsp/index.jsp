@@ -26,6 +26,7 @@
 	            <i id="icon-left" class="icon-double-angle-left"></i>
 	            <i id="icon-right" class="icon-double-angle-right"></i>
 			</div>
+			<hr/>
 			<div>
 				<ul>
 					<c:forEach items="${slideItems}" var="slideItem">

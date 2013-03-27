@@ -118,13 +118,15 @@
     left: 620px;
     top: 350px;
 }
+
 .ui-widget-slideshow-downDiv {
     position: absolute;
     top: 430px;
+    left: 60px;
     /*
      background-color: red;
      */
-    width: 680px; /* 85*8=680 */
+    width: 560px; /* 70*8=560 */
 	overflow: hidden;
 }
 
@@ -141,7 +143,7 @@
  */
 .ui-widget-slideshow-smallPics {
     cursor: pointer;
-	width: 85px;/* 85*8=680 */
+	width: 70px;/* 70*8=560 */
 	height: 60px;
 }
 /**

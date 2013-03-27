@@ -81,5 +81,4 @@ $(function() {
     $(".indexTop").corner('top 20px');
     $("#sidebar").corner('top');
     $("#menu").corner();
-    
 });

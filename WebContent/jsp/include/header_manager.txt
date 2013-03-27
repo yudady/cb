@@ -22,6 +22,7 @@
 <![endif]-->
 
 <script type="text/javascript" src='<c:url value="/js/jquery/jquery.log.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/jquery/jquery.cb.util.js"/>'></script>
 <script type="text/javascript">
 
 	/**

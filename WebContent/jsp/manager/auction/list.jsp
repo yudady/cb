@@ -15,6 +15,11 @@
     height: 50px;
 }
 </style>
+<script type="text/javascript">
+	$(function() {
+		$(".formatShortHtml").formatShortHtml();
+	});
+</script>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
@@ -34,15 +39,16 @@
 			<thead>
 				<tr>
 					<th>id</th>
+					<th>商品</th>
+					<th></th>
+					<th>拍賣會狀態</th>
 					<th>主題</th>
 					<th>描述</th>
 					<th>網址</th>
 					<th>logo</th>
 					<th>拍賣會 開始日期 startDate</th>
 					<th>拍賣會 結束日期 closeDate</th>
-					<th>商品</th>
-					<th></th>
-					<th></th>
+
 				</tr>
 			</thead>
 			<c:set var="nowDate" value="<%=System.currentTimeMillis()%>"></c:set>
@@ -50,12 +56,6 @@
 				<c:forEach items="${auctions.datas}" var="auction">
 				<tr>
 					<td>${auction.id}</td>
-					<td>${auction.title}</td>
-					<td>${auction.brief}</td>
-					<td>${auction.webSite}</td>
-					<td><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' /></td>
-					<td><fmt:formatDate value="${auction.startDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-					<td><fmt:formatDate value="${auction.closeDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 					<c:choose>
 						<c:when test="${auction.closeDate.time < nowDate}">
 							<td><a href='<c:url value="/manager/auctionId/${auction.id}/item/list.do" />'>拍賣會結束Item List</a></td>
@@ -73,6 +73,13 @@
 							<td>拍賣中</td>
 						</c:otherwise>
 					</c:choose>
+					<td class="formatShortHtml">${auction.title}</td>
+					<td class="formatShortHtml">${auction.brief}</td>
+					<td class="formatShortHtml">${auction.webSite}</td>
+					<td><img src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' /></td>
+					<td><fmt:formatDate value="${auction.startDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+					<td><fmt:formatDate value="${auction.closeDate}" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+
 				</tr>
 				</c:forEach>
 			</tbody>

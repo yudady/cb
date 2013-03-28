@@ -26,8 +26,8 @@
 			</a>
 		</div>
 		<form method="post">
-			<input type="text" name="id" value="${category.id}"/>
-			<input type="text" name="name" value="${category.name}"/>
+			<input type="hidden" name="id" value="${category.id}"/>
+			<input class="required" type="text" name="name" value="${category.name}"/>
 			<input type="reset" name="reset" />
 			<input type="submit" name="submit" />
 		</form>

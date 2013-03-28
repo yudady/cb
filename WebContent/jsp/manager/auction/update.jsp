@@ -41,16 +41,16 @@ $(function(){
 		</div>
 		<form method="post" enctype="multipart/form-data">
 			<input type="hidden" name="id" value="${auction.id}" /><br/>
-			主題<input type="text" name="title" size="100" value="${auction.title}"  /><br/>
-			描述<textarea class="cleditor" rows="10" cols="80" name="brief" id="brief" >${auction.brief}</textarea><br/>
-			網址<input type="text" name="webSite" size="100" value="${auction.webSite}"  /><br/>
+			主題<input class="required" type="text" name="title" size="100" value="${auction.title}"  /><br/>
+			描述<textarea class="cleditor required" rows="10" cols="80" name="brief" id="brief" >${auction.brief}</textarea><br/>
+			網址<input class="required" type="text" name="webSite" size="100" value="${auction.webSite}"  /><br/>
 			logo
 			<input type="hidden" id="auctionLogoPath" name="auctionLogoPath" value="${auction.auctionLogoPath}" />
 			<input type="hidden" id="auctionLogoPathAction" name="auctionLogoPathAction" />
 			<img id="auctionLogoPathPic" src='<c:url value="/pic/upload/auction/${auction.auctionLogoPath}"/>' />
 			<input type="file" name="file" /><br/>
-			開始日期<input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.startDate}" />' /><br/>
-			結束日期<input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.closeDate}" />' /><br/>
+			開始日期<input class="datepicker required" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.startDate}" />' /><br/>
+			結束日期<input class="datepicker required" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.closeDate}" />' /><br/>
 			<hr/>
 			<input type="reset" name="reset" /><input type="submit" name="submit" id="submit"/><br/>
 		</form>

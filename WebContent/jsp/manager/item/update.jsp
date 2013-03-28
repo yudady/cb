@@ -25,7 +25,7 @@
 	width: 200px;
 }
 
-.itemInput {
+.formInput {
 	margin-left: 10px;
 }
 #pics img {
@@ -143,21 +143,21 @@ $(function() {
 					</c:forEach>
 				</dl>
  			</fieldset>
- 			<div class="itemInput"><span>商品訊息</span><input type="text" name="title" value="${item.title}" size="100" /></div>
- 			<div class="itemInput"><span>當前標價</span><input type="text" name="currentBid" value="${item.currentBid}" /></div>
- 			<div class="itemInput"><span>商品 開始日期</span><input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.startDate}" />' /></div>
- 			<div class="itemInput"><span>商品結束日期</span><input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.closeDate}" />' /></div>
- 			<div class="itemInput"><span>估計價值</span><input type="text" name="estimatedValue" value="${item.estimatedValue}" /></div>
- 			<div class="itemInput"><span>下次最小標價</span><input type="text" name="incrementPrice" value="${item.incrementPrice}" /></div>
+ 			<div class="formInput"><span>商品訊息</span><input type="text" name="title" value="${item.title}" size="100" /></div>
+ 			<div class="formInput"><span>當前標價</span><input type="text" name="currentBid" value="${item.currentBid}" /></div>
+ 			<div class="formInput"><span>商品 開始日期</span><input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.startDate}" />' /></div>
+ 			<div class="formInput"><span>商品結束日期</span><input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.closeDate}" />' /></div>
+ 			<div class="formInput"><span>估計價值</span><input type="text" name="estimatedValue" value="${item.estimatedValue}" /></div>
+ 			<div class="formInput"><span>下次最小標價</span><input type="text" name="incrementPrice" value="${item.incrementPrice}" /></div>
 			<c:choose>
 				<c:when test="${item.status == 0}">
-					<div class="itemInput">
+					<div class="formInput">
 						<span>結標</span><input type="radio" name="status" value="0" checked="checked" />
 						<span>拍賣中</span><input type="radio" name="status" value="1" />
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div class="itemInput">
+					<div class="formInput">
 						<span>結標</span><input type="radio" name="status" value="0"/>
 						<span>拍賣中</span><input type="radio" name="status" value="1" checked="checked "/>
 					</div>
@@ -178,7 +178,7 @@ $(function() {
 				<legend>SHIPPING訊息</legend>
 				<textarea class="cleditor" name="shipping" id="shipping">${item.shipping}</textarea>
 			</fieldset>
-			<div class="itemInput"><span>當前贏家id</span><input type="text" name="winningBidderId" value="${item.winningBidderId}" /></div>
+			<div class="formInput"><span>當前贏家id</span><input type="text" name="winningBidderId" value="${item.winningBidderId}" /></div>
 			<input type="button" id="addPicBtn" value="add pic"/><br/>
 			<hr/>
 			<ul id="pics"></ul>

@@ -8,6 +8,11 @@
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
 <title>manager|category</title>
+<style type="text/css">
+.formInput {
+	margin-left: 10px;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
@@ -26,10 +31,11 @@
 			</a>
 		</div>
 		<form method="post">
-			<input type="hidden" name="id" value="${category.id}"/><br/>
-			name<input type="text" name="name" value="${category.name}"/><br/>
-			<input type="reset" name="reset" /><br/>
-			<input type="submit" name="submit" /><br/>
+			<div class="formInput">
+				<label id="fname">name<input class="required" type="text" id="fname" name="name" /></label>
+			</div>
+			<input type="reset" name="reset" value="reset" />
+			<input type="submit" name="submit" value="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

@@ -84,9 +84,9 @@ $(function() {
             return;
         }
         
-        //$("#biddingBidUrl").val(window.location.href);
-        //$("#biddingBidForm").submit();
-        alert('todo ajax ');
+        $("#biddingBidUrl").val(window.location.href);
+        $("#biddingBidForm").submit();
+        //alert('todo ajax ');
     });
     
     

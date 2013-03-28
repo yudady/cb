@@ -1,4 +1,4 @@
-package com.charitybuzz.web.cb.controller;
+package com.charitybuzz.web.cb;
 
 import java.util.List;
 
@@ -62,7 +62,7 @@ public class AuctionsController {
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
 		log.debug("[LOG][auctions]");
-		ModelAndView mav = new ModelAndView("auctions");
+		ModelAndView mav = new ModelAndView("cb/auctions");
 		/**
 		 * 目錄
 		 */
@@ -105,7 +105,7 @@ public class AuctionsController {
 	 */
 	@RequestMapping(value = "/{auctionId}/index", method = RequestMethod.GET)
 	public ModelAndView index(@PathVariable Long auctionId) {
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 
 		/**
 		 * 目錄

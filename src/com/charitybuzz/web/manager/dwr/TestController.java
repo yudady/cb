@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.service.WatchingService;
-import com.charitybuzz.web.cb.controller.WatchController;
+import com.charitybuzz.web.cb.WatchController;
 
 @Controller
 @RemoteProxy(name = "watch")

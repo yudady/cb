@@ -1,4 +1,4 @@
-package com.charitybuzz.web.cb.controller;
+package com.charitybuzz.web.cb;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

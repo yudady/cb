@@ -25,6 +25,12 @@ import com.charitybuzz.dto.Category;
 import com.charitybuzz.service.BidderService;
 import com.charitybuzz.web.form.BidderLoginForm;
 
+/**
+ * 登入
+ * 
+ * @author Administrator
+ * 
+ */
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -38,6 +44,12 @@ public class LoginController {
 	@Resource
 	private BidderService bidderService;
 
+	/**
+	 * index
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView page(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("cb/login");
@@ -52,6 +64,15 @@ public class LoginController {
 		return mav;
 	}
 
+	/**
+	 * form 登入
+	 * 
+	 * @param form
+	 * @param result
+	 * @param session
+	 * @param redirectAttributes
+	 * @return
+	 */
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	public ModelAndView loginForm(BidderLoginForm form, BindingResult result,
 			HttpSession session, RedirectAttributes redirectAttributes) {
@@ -91,15 +112,24 @@ public class LoginController {
 
 	}
 
+	/**
+	 * ajax 登入
+	 * 
+	 * @param form
+	 * @param result
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
-	public @ResponseBody ReturnBean ajaxLogin(BidderLoginForm form, BindingResult result,
+	public @ResponseBody
+	ReturnBean ajaxLogin(BidderLoginForm form, BindingResult result,
 			HttpSession session) {
 		log.debug("[LOG][ajaxLogin]");
 
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			log.debug("[LOG][LoginForm]" + form);
-			mav.setViewName("redirect:" + "/login.do");
+			mav.setViewName("redirect:/login.do");
 			return new ReturnBean(false, "fail");
 		}
 
@@ -123,6 +153,12 @@ public class LoginController {
 
 	}
 
+	/**
+	 * ajax 登出
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/ajaxLoginOut", method = RequestMethod.POST)
 	public @ResponseBody
 	ReturnBean ajaxLoginOut(HttpSession session) {

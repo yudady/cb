@@ -3,7 +3,11 @@ package com.charitybuzz.service;
 import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.BidderDao;
 import com.charitybuzz.dto.Bidder;
-
+/**
+ * 投標者
+ * @author Administrator
+ *
+ */
 public class BidderService {
 
 	private BidderDao bidderDao;

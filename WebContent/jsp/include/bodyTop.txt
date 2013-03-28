@@ -8,7 +8,7 @@
 <c:choose>
     <c:when test="${empty bidder}">
 		<a class="cssButton loginLink" id="loginBtn">login</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a class="cssButton" id="registerBtn">register</a>
+		<a class="cssButton" id="registerBtn" href='<c:url value='/register/index.do' />'>register</a>
 		<div>
 		<form id="loginForm" action="<c:url value='/login/ajaxLogin.do' />" method='post'>
 			<table>

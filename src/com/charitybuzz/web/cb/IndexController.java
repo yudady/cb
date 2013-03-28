@@ -26,6 +26,10 @@ import com.charitybuzz.service.PictureService;
 @Controller
 @RequestMapping(value = "/index")
 public class IndexController {
+	
+	/**
+	 * 目錄
+	 */
 	@Resource
 	private SidebarService sidebarService;
 	/**

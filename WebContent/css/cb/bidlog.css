@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+.counter {
+    background-color: white;
+}
+
+.counterLeft {
+    float: left;
+    width: 230px;
+    margin-left: 10px;
+    background-color: red;
+}
+#menu {
+    margin-top: 20px;
+}
+#sidebar {
+    margin-right: 10px;
+}
+.counterRight {
+    width: 720px;
+    float: right;
+    margin-right: 10px;
+    background-color: pink;
+}
+
+.mainRightTop {
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+.mainRightDown {
+    padding: 20px;
+    background-color: white;
+}
+#returnToItem {
+    float: right;
+    cursor: pointer;
+}

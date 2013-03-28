@@ -1,26 +1,27 @@
 @CHARSET "UTF-8";
 
 .counter {
-    background-color: white;
 }
 
 .counterLeft {
     float: left;
     width: 230px;
     margin-left: 10px;
-    background-color: red;
+    background-color: white;
 }
+
 #menu {
     margin-top: 20px;
 }
+
 #sidebar {
     margin-right: 10px;
 }
+
 .counterRight {
     width: 720px;
-    float: right;
-    margin-right: 10px;
-    background-color: pink;
+    float: left;
+    margin-left: 10px;
 }
 
 .mainRightTop {
@@ -28,10 +29,16 @@
     margin-bottom: 10px;
     background-color: white;
 }
+
 .mainRightDown {
     padding: 20px;
     background-color: white;
 }
+
+.mainRightDown table {
+    width: 98%;
+}
+
 #returnToItem {
     float: right;
     cursor: pointer;

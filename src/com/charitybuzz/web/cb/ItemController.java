@@ -33,6 +33,9 @@ public class ItemController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(ItemController.class);
 
+	/**
+	 * menu
+	 */
 	@Resource
 	private SidebarService sidebarService;
 

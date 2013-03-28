@@ -21,14 +21,17 @@
 		<div class="clearBoth"></div>
 	</div><!-- counterLeft end-->
 	<div class="counterRight"><!-- counterRight start-->
-		<div class="clearBoth">&nbsp;</div>
+		
 		<div class="mainRightTop">
 			<h1>Bidding History</h1>
-			<span>Lot #: 3307149</span>&nbsp;&nbsp;&nbsp;<span id="returnToItem">return to item</span>
+			<span>Lot #: ${item.id}</span>&nbsp;&nbsp;&nbsp;
+			<span id="returnToItem">
+				<a href='<c:url value="/item/${item.id}/index.do" />'>return to item</a>
+			</span>
 			<p>
-			55th GRAMMY® Awards Bronze Ticket Experience for Two on February 10 in Los Angeles
+				<a href='<c:url value="/item/${item.id}/index.do" />'><h3>${item.title}</h3></a>
 			<p>
-			In support of The Actors Fund
+			In support of <a href='<c:url value="/auctions/${auc.id}/index.do" />'>${auc.title}</a>
 	
 		</div>
 		<div class="mainRightDown">
@@ -36,34 +39,37 @@
 				<thead>
 					<tr>
 						<th>High Bidder</th>
-						<th></th>
 						<th>Amount</th>
 						<th>Time</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>courtney.manlove</td>
-						<td>WINNING</td>
-						<td>$4,750</td>
-						<td>Mon, 21 Jan 2013 11:30:14 PM EST</td>
+						<td>${winner.screenName} <i class="icon-star"></i>WINNING</td>
+						<c:forEach items="${bidlogs}" var="bidlog" begin="0" end="1">
+							<td>${bidlog.price}</td>
+							<td>${bidlog.bidTime}</td>
+						</c:forEach>
 					</tr>
 				</tbody>
-			</table>
-			<table border="1">
-				<thead>
+				<tbody>
+					<tr>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+						<th>&nbsp;</th>
+					</tr>
+				</tbody>
+				<tbody>
 					<tr>
 						<th>Bidder</th>
-						<th></th>
 						<th>Amount</th>
 						<th>Time</th>
 					</tr>
-				</thead>
+				</tbody>
 				<tbody>
 					<c:forEach items="${bidlogs}" var="bidlog">
 						<tr>
 							<td>${bidlog.bidderId}</td>
-							<td></td>
 							<td>${bidlog.price}</td>
 							<td>${bidlog.bidTime}</td>
 						</tr>

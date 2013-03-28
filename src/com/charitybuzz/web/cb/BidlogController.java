@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.charitybuzz.cache.SidebarService;
+import com.charitybuzz.dto.Auction;
+import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.dto.Bidlog;
 import com.charitybuzz.dto.Category;
+import com.charitybuzz.dto.Item;
+import com.charitybuzz.service.AuctionService;
+import com.charitybuzz.service.BidderService;
 import com.charitybuzz.service.BidlogService;
+import com.charitybuzz.service.ItemService;
 
 @Controller
 @RequestMapping("/item")
@@ -25,14 +31,36 @@ public class BidlogController {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	
-
+	/**
+	 * menu
+	 */
 	@Resource
 	private SidebarService sidebarService;
+	
+	/**
+	 * 全部商品
+	 */
+	@Resource
+	private ItemService itemService;
+	
 	/**
 	 * 商品log
 	 */
 	@Resource
 	private BidlogService bidlogService;
+	
+	/**
+	 * 拍賣會
+	 */
+	@Resource
+	private AuctionService auctionService;
+	
+	/**
+	 * 投標者
+	 */
+	@Resource
+	private BidderService bidderService;
+	
 	/**
 	 * 歷史紀錄
 	 * @param bidder
@@ -52,7 +80,17 @@ public class BidlogController {
 		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 		
+		log.debug("[itemId]=" + itemId);
+		Item item = itemService.findById(itemId);
+		mav.addObject("item", item);
 		
+		
+		Auction auc = auctionService.findById(item.getAuctionId());
+		mav.addObject("auc", auc);
+		
+		
+		Bidder winner = bidderService.findById(item.getWinningBidderId());
+		mav.addObject("winner", winner);
 		
 		List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
 		System.out.println("[LOG]" + bidlogs);

@@ -19,16 +19,32 @@
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content">
 		<div id="crumbs">
-			<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
-			<b> » </b>
-			<a href='<c:url value="/manager/auction/list.do" />'>auction list</a>
-			<b> » </b>
+			<c:choose>
+				<c:when test="${!empty auctionId}">
+					<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+					<b> » </b>
+					<a href='<c:url value="/manager/auction/list.do" />'>auction list</a>
+					<b> » </b>
+				</c:when>
+				<c:otherwise>
+					<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+					<b> » </b>
+				</c:otherwise>
+			</c:choose>
 			item
 		</div>
 		<div>
-			<a href='<c:url value="/manager/auctionId/${auctionId}/item/add.do" />'>
-				<input type="button" value="add" />
-			</a>
+			<c:choose>
+				<c:when test="${!empty auctionId}">
+					<a href='<c:url value="/manager/auctionId/${auctionId}/item/add.do" />'>
+						<input type="button" value="add" />
+					</a>
+				</c:when>
+				<c:otherwise>
+					<div class="clearBoth">&nbsp;</div>
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 		<table>
 			<thead>
@@ -44,8 +60,16 @@
 				<tr>
 					<td>${item.id}</td>
 					<td class="formatShortHtml" >${item.title}</td>
-					<td><a href='<c:url value="/manager/auctionId/${auctionId}/item/${item.id}/update.do" />'>update</a></td>
-					<td><a href='<c:url value="/manager/auctionId/${auctionId}/item/${item.id}/delete.do" />'>delete</a></td>
+					<c:choose>
+						<c:when test="${!empty auctionId}">
+							<td><a href='<c:url value="/manager/auctionId/${auctionId}/item/${item.id}/update.do" />'>update</a></td>
+							<td><a href='<c:url value="/manager/auctionId/${auctionId}/item/${item.id}/delete.do" />'>delete</a></td>
+						</c:when>
+						<c:otherwise>
+							<td><a href='<c:url value="/manager/item/${item.id}/update.do" />'>update</a></td>
+							<td><a href='<c:url value="/manager/item/${item.id}/delete.do" />'>delete</a></td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 				</c:forEach>
 			</tbody>

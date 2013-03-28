@@ -203,6 +203,13 @@ public class ItemManager {
 		return mav;
 	}
 
+	/**
+	 * delete
+	 * 
+	 * @param auctionId
+	 * @param itemId
+	 * @return
+	 */
 	@RequestMapping(value = "/auctionId/{auctionId}/item/{itemId}/delete", method = RequestMethod.GET)
 	public ModelAndView itemDelete(@PathVariable Long auctionId,
 			@PathVariable Long itemId) {
@@ -224,7 +231,6 @@ public class ItemManager {
 		List<Picture> updatePictures = new ArrayList<Picture>();
 		List<Long> deletePictures = new ArrayList<Long>();
 
-
 		for (int i = 0; i < cruds.size(); i++) {
 			CommonsMultipartFile multipartFile = files.get(i);
 			Integer priority = priorities.get(i);
@@ -235,7 +241,8 @@ public class ItemManager {
 			if ("c".equals(crud)) {
 				String fileName = multipartFile.getOriginalFilename();
 				if (StringUtils.isNotBlank(fileName)) {
-					fileName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
+					fileName = System.currentTimeMillis()
+							+ fileName.substring(fileName.lastIndexOf("."));
 					insertPictures.add(new Picture(itemId, priority, fileName));
 					FileUtils.copyInputStreamToFile(multipartFile
 							.getInputStream(), new File(
@@ -246,7 +253,8 @@ public class ItemManager {
 				/**
 				 * 刪除舊圖片
 				 */
-				FileUtils.deleteQuietly(new File(Constant.UPLOAD_FOLDER_ITEM + oldPhotoPath));
+				FileUtils.deleteQuietly(new File(Constant.UPLOAD_FOLDER_ITEM
+						+ oldPhotoPath));
 				deletePictures.add(picId);
 			}
 			if ("u".equals(crud) && StringUtils.isNotBlank(oldPhotoPath)) {
@@ -255,8 +263,10 @@ public class ItemManager {
 					/**
 					 * 刪除舊圖片
 					 */
-					FileUtils.deleteQuietly(new File(Constant.UPLOAD_FOLDER_ITEM + oldPhotoPath));
-					fileName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
+					FileUtils.deleteQuietly(new File(
+							Constant.UPLOAD_FOLDER_ITEM + oldPhotoPath));
+					fileName = System.currentTimeMillis()
+							+ fileName.substring(fileName.lastIndexOf("."));
 					FileUtils.copyInputStreamToFile(multipartFile
 							.getInputStream(), new File(
 							Constant.UPLOAD_FOLDER_ITEM + fileName));
@@ -279,4 +289,72 @@ public class ItemManager {
 		return pictures;
 	}
 
+	// ===================================================
+	// ===================================================
+	// ===================================================
+	// ===================================================
+	// ===================================================
+	// ===================================================
+	@RequestMapping(value = "/item/list")
+	public ModelAndView itemList1() {
+		ModelAndView mav = new ModelAndView("manager/item/list");
+		Pager<Item> items = itemService.findPager();
+		mav.addObject("items", items);
+		return mav;
+	}
+
+	/**
+	 * 拿到update page
+	 * 
+	 * @param sessionObject
+	 * @param itemId
+	 * @return
+	 */
+	@RequestMapping(value = "/item/{itemId}/update", method = RequestMethod.GET)
+	public ModelAndView itemUpdatePage1(@PathVariable Long itemId) {
+		ModelAndView mav = new ModelAndView("manager/item/update");
+
+		List<SubCategory> subCategories = subCategoryService.findAll();
+		mav.addObject("subCategories", subCategories);
+		Item item = itemService.findById(itemId);
+		mav.addObject("item", item);
+
+		List<SubCategory> subCas = subCategoryService.findByItemd(itemId);
+		for (SubCategory subCategory : subCategories) {
+
+			for (SubCategory subCa : subCas) {
+				if (subCategory.getId() == subCa.getId()) {
+					subCategory.setItemCheckedMark("checked");
+				}
+			}
+		}
+
+		List<Picture> pictures = pictureService.findByItemId(itemId);
+		item.setPictures(pictures);
+
+		return mav;
+	}
+
+	/**
+	 * update
+	 * 
+	 * @param sessionObject
+	 * @param itemId
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/item/{itemId}/update", method = RequestMethod.POST)
+	public ModelAndView itemUpdate1(@PathVariable Long itemId,
+			@ModelAttribute("itemForm") ItemForm form) throws IOException {
+		ModelAndView mav = new ModelAndView("redirect:/manager/item/list.do");
+
+		log.debug("[LOG]ItemForm=" + form);
+		Item item = new Item();
+		BeanUtils.copyProperties(form, item);
+		itemService.update(item);
+		subcategoryItemService.update(form.getId(), form.getSubCategoryIds());
+		this.pictures(itemId, form);
+
+		return mav;
+	}
 }

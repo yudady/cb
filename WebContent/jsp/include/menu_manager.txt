@@ -4,6 +4,7 @@
 		<li><a href='<c:url value="/manager/category/list.do" />'>Category</a><span>&nbsp;|&nbsp;</span></li>
 		<li><a href='<c:url value="/manager/subcategory/list.do" />'>SubCategory</a><span>&nbsp;|&nbsp;</span></li>
 		<li><a href='<c:url value="/manager/auction/list.do" />'>Auction</a><span>&nbsp;|&nbsp;</span></li>
-		<li><a href='<c:url value="/manager/operator/list.do" />'>Operator</a></li>
+		<li><a href='<c:url value="/manager/operator/list.do" />'>Operator</a><span>&nbsp;|&nbsp;</span></li>
+		<li><a href='<c:url value="/manager/item/list.do" />'>Item</a></li>
 	</ul>
 </div>

@@ -79,7 +79,7 @@ $(function() {
 		img.attr('src','');
 	});
 	$("#addPicBtn").on('click',function(){
-	    var target = $(this).parent();
+	    var target = $("#pics");
 	    target.append(addHtml({
 	    	photoPath : ''
 	    }));
@@ -101,12 +101,22 @@ $(function() {
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content">
 		<div id="crumbs">
-			<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
-			<b> » </b>
-			<a href='<c:url value="/manager/auction/list.do" />'>auction list</a>
-			<b> » </b>
-			<a href='<c:url value="/manager/auctionId/${auctionId}/item/list.do" />'>item list</a>
-			<b> » </b>
+			<c:choose>
+				<c:when test="${!empty auctionId}">
+					<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+					<b> » </b>
+					<a href='<c:url value="/manager/auction/list.do" />'>auction list</a>
+					<b> » </b>
+					<a href='<c:url value="/manager/auctionId/${auctionId}/item/list.do" />'>item list</a>
+					<b> » </b>
+				</c:when>
+				<c:otherwise>
+					<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+					<b> » </b>
+					<a href='<c:url value="/manager/item/list.do" />'>item list</a>
+					<b> » </b>
+				</c:otherwise>
+			</c:choose>
 			add
 		</div>
 		<div>

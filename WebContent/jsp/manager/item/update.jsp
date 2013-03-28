@@ -25,10 +25,12 @@
 	width: 200px;
 }
 
-
-#content p {
-clear: both;
+.itemInput {
+	margin-left: 10px;
 }
+#pics img {
+	width: 100px;
+} 
 </style>
 <script type="text/javascript">
 $(function() {
@@ -63,7 +65,7 @@ $(function() {
 		dataType: "json",
 		success : function(data) {
 			$.each(data,function(){
-				$("#addPicBtn").parent().append(addHtml(this));
+				$("#pics").append(addHtml(this));
 			});
 		}
 	});
@@ -81,7 +83,7 @@ $(function() {
 		}
 		li.hide();
 	});
-	$('#itemForm').on('click','.uploadPicsFile',function(){
+	$('#pics').on('click','.uploadPicsFile',function(){
 		var li = $(this).parent();
 		var crudInput = li.find('.crud') ;
 		var val = crudInput.val();
@@ -92,7 +94,7 @@ $(function() {
 		img.attr('src','');
 	});
 	$("#addPicBtn").on('click',function(){
-	    var target = $(this).parent();
+	    var target = $("#pics");
 	    target.append(addHtml({
 	    	photoPath : ''
 	    }));
@@ -108,12 +110,22 @@ $(function() {
 	<%@ include file="/jsp/include/menu_manager.txt"%>
 	<div id="content">
 		<div id="crumbs">
-			<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
-			<b> » </b>
-			<a href='<c:url value="/manager/auction/list.do" />'>auction list</a>
-			<b> » </b>
-			<a href='<c:url value="/manager/auctionId/${auctionId}/item/list.do" />'>item list</a>
-			<b> » </b>
+			<c:choose>
+				<c:when test="${!empty auctionId}">
+					<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+					<b> » </b>
+					<a href='<c:url value="/manager/auction/list.do" />'>auction list</a>
+					<b> » </b>
+					<a href='<c:url value="/manager/auctionId/${auctionId}/item/list.do" />'>item list</a>
+					<b> » </b>
+				</c:when>
+				<c:otherwise>
+					<a href='<c:url value="/manager/index.do" />'><i class="icon-home"></i></a>
+					<b> » </b>
+					<a href='<c:url value="/manager/item/list.do" />'>item list</a>
+					<b> » </b>
+				</c:otherwise>
+			</c:choose>
 			update
 		</div>
 		<div>
@@ -131,13 +143,27 @@ $(function() {
 					</c:forEach>
 				</dl>
  			</fieldset>
- 			商品訊息<input type="text" name="title" value="${item.title}"/><br/>
- 			當前標價<input type="text" name="currentBid" value="${item.currentBid}"/><br/>
-			商品 開始日期<input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.startDate}" />' /> <br/>
-			商品結束日期<input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${auction.closeDate}" />' /> <br/>
-			估計價值<input type="text" name="estimatedValue" value="${item.estimatedValue}"/><br/>
-			下次最小標價<input type="text" name="incrementPrice" value="${item.incrementPrice}"/><br/>
-			0.結標 1.拍賣中<input type="text" name="status" value="${item.status}"/><br/>
+ 			<div class="itemInput"><span>商品訊息</span><input type="text" name="title" value="${item.title}" size="100" /></div>
+ 			<div class="itemInput"><span>當前標價</span><input type="text" name="currentBid" value="${item.currentBid}" /></div>
+ 			<div class="itemInput"><span>商品 開始日期</span><input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.startDate}" />' /></div>
+ 			<div class="itemInput"><span>商品結束日期</span><input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.closeDate}" />' /></div>
+ 			<div class="itemInput"><span>估計價值</span><input type="text" name="estimatedValue" value="${item.estimatedValue}" /></div>
+ 			<div class="itemInput"><span>下次最小標價</span><input type="text" name="incrementPrice" value="${item.incrementPrice}" /></div>
+			<c:choose>
+				<c:when test="${item.status == 0}">
+					<div class="itemInput">
+						<span>結標</span><input type="radio" name="status" value="0" checked="checked" />
+						<span>拍賣中</span><input type="radio" name="status" value="1" />
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="itemInput">
+						<span>結標</span><input type="radio" name="status" value="0"/>
+						<span>拍賣中</span><input type="radio" name="status" value="1" checked="checked "/>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<br/>
 			<fieldset>
 				<legend>LOTDETAILS訊息</legend>
 				<textarea class="cleditor" name="lotDetails" id="lotDetails">${item.lotDetails}</textarea>
@@ -152,10 +178,10 @@ $(function() {
 				<legend>SHIPPING訊息</legend>
 				<textarea class="cleditor" name="shipping" id="shipping">${item.shipping}</textarea>
 			</fieldset>
-			當前贏家id<input type="text" name="winningBidderId" value="${item.winningBidderId}"/><br/>
+			<div class="itemInput"><span>當前贏家id</span><input type="text" name="winningBidderId" value="${item.winningBidderId}" /></div>
 			<input type="button" id="addPicBtn" value="add pic"/><br/>
 			<hr/>
-			
+			<ul id="pics"></ul>
 			<input type="reset" name="reset" />
 			<input type="submit" id="submit" value="update"/>
 		</form>

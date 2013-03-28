@@ -80,7 +80,7 @@ public class DisplayClosedController {
 		
 		
 		
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 
 		/**
 		 * 目錄
@@ -120,7 +120,7 @@ public class DisplayClosedController {
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
 		log.debug("[LOG][displayClosed]" + displayClosed);
 
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 		/**
 		 * 目錄
 		 */
@@ -156,7 +156,7 @@ public class DisplayClosedController {
 		log.debug("[LOG][auctionId]" + auctionId);
 		log.debug("[LOG][displayClosed]" + displayClosed);
 
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 
 		/**
 		 * 目錄
@@ -197,7 +197,7 @@ public class DisplayClosedController {
 	public ModelAndView tabsList(@PathVariable int tabIndex) {
 
 		log.debug("[LOG][tabIndex]");
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 		mav.addObject("tabIndex", tabIndex);
 
 		List<Category> categories = sidebarService.getCategories();

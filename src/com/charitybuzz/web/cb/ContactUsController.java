@@ -17,13 +17,13 @@ public class ContactUsController {
 
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
-		ModelAndView mav = new ModelAndView("contact_us");
+		ModelAndView mav = new ModelAndView("cb/contact_us");
 		log.debug("[LOG][contact_us]");
 		return mav;
 	}
 	@RequestMapping(value = "/item/{itemId}/index",method = RequestMethod.GET)
 	public ModelAndView itemPage(@PathVariable Long itemId) {
-		ModelAndView mav = new ModelAndView("contact_us");
+		ModelAndView mav = new ModelAndView("cb/contact_us");
 
 		return mav;
 	}

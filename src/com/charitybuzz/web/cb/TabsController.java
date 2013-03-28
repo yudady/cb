@@ -142,7 +142,7 @@ public class TabsController {
 	public ModelAndView index(@PathVariable int tabIndex) {
 		
 		log.debug("[LOG][tabIndex]");
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 		mav.addObject("tabIndex", tabIndex);
 		
 		

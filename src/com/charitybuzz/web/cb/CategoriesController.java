@@ -65,7 +65,7 @@ public class CategoriesController {
 	@RequestMapping(value = "/categories/{categoryId}/{categoryName}/index", method = RequestMethod.GET)
 	public ModelAndView category(@PathVariable Long categoryId,
 			@PathVariable String categoryName) {
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 
 		/**
 		 * 目錄
@@ -110,7 +110,7 @@ public class CategoriesController {
 
 		log.debug("[LOG][subcategoryId]" + subcategoryId);
 
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 		/**
 		 * 目錄
 		 */
@@ -139,7 +139,7 @@ public class CategoriesController {
 	@RequestMapping(value = "/categories/viewall", method = RequestMethod.GET)
 	public ModelAndView viewAll() {
 
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 		/**
 		 * 目錄
 		 */
@@ -171,7 +171,7 @@ public class CategoriesController {
 
 		log.debug("[LOG][searchItems]");
 		String keyWord = request.getParameter("search");
-		ModelAndView mav = new ModelAndView("itemsPager");
+		ModelAndView mav = new ModelAndView("cb/itemsPager");
 		/**
 		 * 目錄
 		 */

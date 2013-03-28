@@ -49,7 +49,7 @@ public class IndexController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView index(HttpSession session, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("index");
+		ModelAndView mav = new ModelAndView("cb/index");
 
 		/**
 		 * 目錄

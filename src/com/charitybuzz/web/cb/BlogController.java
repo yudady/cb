@@ -16,7 +16,7 @@ public class BlogController {
 	
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
-		ModelAndView mav = new ModelAndView("blog");
+		ModelAndView mav = new ModelAndView("cb/blog");
 		log.debug("[LOG][blog]");
 		return mav;
 	}

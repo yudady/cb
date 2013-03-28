@@ -40,7 +40,7 @@ public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView page(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("login");
+		ModelAndView mav = new ModelAndView("cb/login");
 		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 

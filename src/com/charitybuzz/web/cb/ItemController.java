@@ -61,7 +61,7 @@ public class ItemController {
 	 */
 	@Resource
 	private BidderService bidderService;
-	
+
 	/**
 	 * 拍賣會
 	 */
@@ -94,7 +94,6 @@ public class ItemController {
 	public ModelAndView auctions(@PathVariable Long auctionId,
 			@PathVariable String auctionTitle, @PathVariable Long itemId,
 			HttpSession session) {
-
 		return getItem(itemId, session);
 	}
 
@@ -137,14 +136,13 @@ public class ItemController {
 	}
 
 	private ModelAndView getItem(Long itemId, HttpSession session) {
-		ModelAndView mav = new ModelAndView("item");
+
+		ModelAndView mav = new ModelAndView();
 		List<Category> categories = sidebarService.getCategories();
 		mav.addObject("categories", categories);
 
 		log.debug("[itemId]=" + itemId);
 		Item item = itemService.findById(itemId);
-
-
 
 		mav.setViewName("item");
 		if (item == null) {
@@ -152,16 +150,13 @@ public class ItemController {
 			return mav;
 		}
 		mav.addObject("item", item);
-		
-		
+
 		Auction auction = auctionService.findById(item.getAuctionId());
 		mav.addObject("auction", auction);
-		
-		
-		
+
 		List<Bidlog> bidlogs = bidlogService.findByItemId(itemId);
 		item.setBidlogs(bidlogs);
-		
+
 		Bidder winner = bidderService.findById(item.getWinningBidderId());
 		mav.addObject("winner", winner);
 
@@ -180,6 +175,9 @@ public class ItemController {
 			return mav;
 		}
 		item.setPictures(pictures);
+
+		mav.setViewName("cb/item");
+
 		return mav;
 	}
 }

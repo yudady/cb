@@ -44,7 +44,7 @@ public class BidlogController {
 	public ModelAndView bidderlog(@PathVariable Long itemId) {
 		log.debug("[LOG][itemId][bidlog]=" + itemId);
 
-		ModelAndView mav = new ModelAndView("bidlog");
+		ModelAndView mav = new ModelAndView("cb/bidlog");
 		
 		/**
 		 * 目錄

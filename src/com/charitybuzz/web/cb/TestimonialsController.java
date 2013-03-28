@@ -16,7 +16,7 @@ public class TestimonialsController {
 	
 	@RequestMapping(value = "/index",method = RequestMethod.GET)
 	public ModelAndView indexPage() {
-		ModelAndView mav = new ModelAndView("testimonials");
+		ModelAndView mav = new ModelAndView("cb/testimonials");
 		log.debug("[LOG][testimonials]");
 		return mav;
 	}

@@ -1,4 +1,4 @@
-package com.charitybuzz.web.manager.controller;
+package com.charitybuzz.web.manager;
 
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.charitybuzz.service;
 
+import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.BidderDao;
 import com.charitybuzz.dto.Bidder;
 
@@ -25,4 +26,34 @@ public class BidderService {
 		return bidderDao.findByEmail(email);
 	}
 
+	public Pager<Bidder> findPager() {
+		return bidderDao.findPager();
+	}
+
+	/**
+	 * 差入
+	 * 
+	 * @param bidder
+	 */
+	public void insert(Bidder bidder) {
+		bidderDao.insert(bidder);
+	}
+
+	/**
+	 * update
+	 * 
+	 * @param bidder
+	 */
+	public void update(Bidder bidder) {
+		bidderDao.update(bidder);
+	}
+
+	/**
+	 * delete
+	 * 
+	 * @param bidderId
+	 */
+	public void delete(Long bidderId) {
+		bidderDao.delete(bidderId);
+	}
 }

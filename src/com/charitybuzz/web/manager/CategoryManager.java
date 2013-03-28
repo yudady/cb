@@ -39,15 +39,12 @@ public class CategoryManager {
 	 * 拿到列表
 	 * 
 	 * @param form
-	 * @param sessionObject
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
-	public ModelAndView categoryList(CategoryForm form) {
+	public ModelAndView categoryList() {
 		ModelAndView mav = new ModelAndView("manager/category/list");
-		
-		
-		
+
 		Pager<Category> categories = categoryService.findPager();
 		mav.addObject("categories", categories);
 
@@ -65,7 +62,6 @@ public class CategoryManager {
 	/**
 	 * 拿到add page
 	 * 
-	 * @param sessionObject
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -77,7 +73,6 @@ public class CategoryManager {
 	/**
 	 * 新增
 	 * 
-	 * @param sessionObject
 	 * @param form
 	 * @param result
 	 * @return
@@ -98,7 +93,6 @@ public class CategoryManager {
 	/**
 	 * 拿到update page
 	 * 
-	 * @param sessionObject
 	 * @param categoryId
 	 * @return
 	 */
@@ -114,8 +108,9 @@ public class CategoryManager {
 	/**
 	 * update
 	 * 
-	 * @param sessionObject
 	 * @param categoryId
+	 * @param form
+	 * @param result
 	 * @return
 	 */
 	@RequestMapping(value = "{categoryId}/update", method = RequestMethod.POST)
@@ -131,6 +126,14 @@ public class CategoryManager {
 		return mav;
 	}
 
+	/**
+	 * delete
+	 * 
+	 * @param categoryId
+	 * @param form
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "{categoryId}/delete", method = RequestMethod.GET)
 	public ModelAndView categoryDelete(@PathVariable Long categoryId,
 			CategoryForm form, BindingResult result) {

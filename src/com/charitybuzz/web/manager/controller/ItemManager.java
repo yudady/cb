@@ -230,6 +230,9 @@ public class ItemManager {
 		List<Picture> insertPictures = new ArrayList<Picture>();
 		List<Picture> updatePictures = new ArrayList<Picture>();
 		List<Long> deletePictures = new ArrayList<Long>();
+		if(cruds == null){
+			return;
+		}
 
 		for (int i = 0; i < cruds.size(); i++) {
 			CommonsMultipartFile multipartFile = files.get(i);

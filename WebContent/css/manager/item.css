@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+#content dl {
+    color: green;
+    text-align: left;
+}
+
+#content dl dd {
+    display: inline;
+    overflow: auto;
+}
+
+#content dl dd span {
+    display: block;
+    float: left;
+    width: 200px;
+}
+
+#pics img {
+    width: 100px;
+}

@@ -6,7 +6,7 @@
         timeFormat: "HH:mm"
     });
     
-    $("#form").validate();
+    $("#form1").validate();
     
 });
 

@@ -47,7 +47,7 @@ clear: both;
 				<input type="button" value="subcategory list" />
 			</a>
 		</div>
-		<form method="post">
+		<form id="form1" method="post">
 			<input type="hidden" name="subCaId" value="${subCategory.id}"/>
 			<fieldset>
 				<legend>第一級目錄</legend>
@@ -57,10 +57,8 @@ clear: both;
 					</c:forEach>
 				</dl>
 			</fieldset>
-			
-			<p></p>
 			<div>
-				<label id="fname">第二級目錄<input type="text" id="fname" name="name" /></label>
+				<label id="fname">第二級目錄<input type="text" class="required" id="fname" name="name" /></label>
 			</div>
 			<input type="reset" name="reset" value="reset" />
 			<input type="submit" name="submit" value="submit" /><br/>

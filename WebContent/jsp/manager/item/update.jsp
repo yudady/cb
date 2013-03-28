@@ -8,102 +8,8 @@
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
 <title>manager|item</title>
-<style type="text/css">
-#content dl {
-	color: green;
-	text-align: left;
-}
-
-#content dl dd {
-	display: inline;
-	overflow: auto;
-}
-
-#content dl dd span {
-	display: block;
-	float: left;
-	width: 200px;
-}
-
-.formInput {
-	margin-left: 10px;
-}
-#pics img {
-	width: 100px;
-} 
-</style>
-<script type="text/javascript">
-$(function() {
-
-    function addHtml(obj){
-        var uploadPicsSize = $(".uploadPics").size() ;
-        var imgSrc = cb.getSafeUrl() + '/pic/upload/item/' + obj.photoPath;
-        var picId = obj.id || "";
-        var html = '<li class="uploadPics">' ;
-        html = html + '<span>Picture ' + uploadPicsSize + ' : </span>';
-        html = html + '<input class="deleteBtn" type="button" value="delete" />' ; 
-        html = html + '<input type="hidden" value="'+picId+'" name="picIds[' + uploadPicsSize + ']">' ; 
-        html = html + '<span>order<input class="indexPriorities" type="text" name="priorities[' + uploadPicsSize + ']" value="' + uploadPicsSize + '" size="3" /></span>' ; 
-        if(obj.photoPath != ''){
-        	html = html + '<input type="hidden" name="oldPhotoPath[' + uploadPicsSize + ']" value="'+obj.photoPath+'" />' ; 
-        	html = html + '<img src="'+imgSrc+'" />' ; 
-        	html = html + '<input class="crud" type="hidden" value="r" name="cruds[' + uploadPicsSize + ']" />' ; 
-        }else {
-        	html = html + '<input type="hidden" name="oldPhotoPath[' + uploadPicsSize + ']" value="" />' ; 
-        	html = html + '<img src="" />' ; 
-        	html = html + '<input class="crud" type="hidden" value="c" name="cruds[' + uploadPicsSize + ']" />' ; 
-        }
-        html = html + '<input class="uploadPicsFile" type="file" name="files['+uploadPicsSize+']" /> ' ; 
-        html = html + '</li>'; 
-
-        return html;
-    }
-	$.ajax({
-		type : "POST",
-		url : cb.getSafeUrl('manager/pictures.do'),
-		data : {itemId:'${itemId}'}, 
-		dataType: "json",
-		success : function(data) {
-			$.each(data,function(){
-				$("#pics").append(addHtml(this));
-			});
-		}
-	});
-	
-	
-	$('#itemForm').on('click','.deleteBtn',function(){
-		var li = $(this).parent();
-		var crudInput = li.find('.crud') ;
-		var val = crudInput.val();
-		if(val == 'r' || val == 'u'){
-			crudInput.val('d');
-		}
-		if(val == 'c'){
-			crudInput.val('');
-		}
-		li.hide();
-	});
-	$('#pics').on('click','.uploadPicsFile',function(){
-		var li = $(this).parent();
-		var crudInput = li.find('.crud') ;
-		var val = crudInput.val();
-		if(val == 'r'){
-			crudInput.val('u');
-		}
-		var img = li.find('img') ;
-		img.attr('src','');
-	});
-	$("#addPicBtn").on('click',function(){
-	    var target = $("#pics");
-	    target.append(addHtml({
-	    	photoPath : ''
-	    }));
-	    return false;
-	});
-	
-	$('.cleditor').cleditor();	
-});
-</script>
+<script type="text/javascript" src='<c:url value="/js/manager/item.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/manager/item.css"/>'/>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
@@ -133,8 +39,8 @@ $(function() {
 				<input type="button" value="item list" />
 			</a>
 		</div>
-		<form id="itemForm" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="id" value="${item.id}"/><br/>
+		<form id="form1" method="post" enctype="multipart/form-data">
+			<input type="hidden" id="itemId" name="id" value="${item.id}"/><br/>
 			<fieldset>
   				<legend>第二級目錄</legend>
 				<dl>
@@ -143,12 +49,12 @@ $(function() {
 					</c:forEach>
 				</dl>
  			</fieldset>
- 			<div class="formInput"><span>商品訊息</span><input type="text" name="title" value="${item.title}" size="100" /></div>
- 			<div class="formInput"><span>當前標價</span><input type="text" name="currentBid" value="${item.currentBid}" /></div>
- 			<div class="formInput"><span>商品 開始日期</span><input class="datepicker" type="text" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.startDate}" />' /></div>
- 			<div class="formInput"><span>商品結束日期</span><input class="datepicker" type="text" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.closeDate}" />' /></div>
- 			<div class="formInput"><span>估計價值</span><input type="text" name="estimatedValue" value="${item.estimatedValue}" /></div>
- 			<div class="formInput"><span>下次最小標價</span><input type="text" name="incrementPrice" value="${item.incrementPrice}" /></div>
+ 			<div><label id="ftitle">商品訊息<input type="text" class="required" id="ftitle" name="title" value="${item.title}" size="100" /></label></div>
+ 			<div><label id="fcurrentBid">當前標價<input type="text" class="required" id="fcurrentBid" name="currentBid" value="${item.currentBid}" /></label></div>
+ 			<div><label id="fstartDate">商品 開始日期<input type="text" class="datepicker required" id="fstartDate" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.startDate}" />' /></label></div>
+ 			<div><label id="fcloseDate">商品結束日期<input type="text" class="datepicker required" id="fcloseDate" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.closeDate}" />' /></label></div>
+ 			<div><label id="festimatedValue">估計價值<input type="text" class="required" id="festimatedValue" name="estimatedValue" value="${item.estimatedValue}" /></label></div>
+ 			<div><label id="fincrementPrice">下次最小標價<input type="text" class="required" id="fincrementPrice" name="incrementPrice" value="${item.incrementPrice}" /></label></div>
 			<c:choose>
 				<c:when test="${item.status == 0}">
 					<div class="formInput">
@@ -163,27 +69,26 @@ $(function() {
 					</div>
 				</c:otherwise>
 			</c:choose>
-			<br/>
 			<fieldset>
 				<legend>LOTDETAILS訊息</legend>
-				<textarea class="cleditor" name="lotDetails" id="lotDetails">${item.lotDetails}</textarea>
+				<textarea class="cleditor required" name="lotDetails" id="lotDetails">${item.lotDetails}</textarea>
 			</fieldset>
 			
 			<fieldset>
 				<legend>LOTDETAILS訊息</legend>
-				<textarea class="cleditor" name="legalTerms" id="legalTerms">${item.legalTerms}</textarea>
+				<textarea class="cleditor required" name="legalTerms" id="legalTerms">${item.legalTerms}</textarea>
 			</fieldset>
 			
 			<fieldset>
 				<legend>SHIPPING訊息</legend>
-				<textarea class="cleditor" name="shipping" id="shipping">${item.shipping}</textarea>
+				<textarea class="cleditor required" name="shipping" id="shipping">${item.shipping}</textarea>
 			</fieldset>
 			<div class="formInput"><span>當前贏家id</span><input type="text" name="winningBidderId" value="${item.winningBidderId}" /></div>
 			<input type="button" id="addPicBtn" value="add pic"/><br/>
 			<hr/>
 			<ul id="pics"></ul>
-			<input type="reset" name="reset" />
-			<input type="submit" id="submit" value="update"/>
+			<input type="reset" name="reset" value="reset" />
+			<input type="submit" name="submit" value="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

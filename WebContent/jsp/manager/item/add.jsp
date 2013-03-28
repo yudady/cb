@@ -8,93 +8,8 @@
 <head>
 <%@ include file="/jsp/include/header_manager.txt" %>
 <title>manager|item</title>
-<style type="text/css">
-#content dl {
-	color: green;
-	text-align: left;
-}
-
-#content dl dd {
-	display: inline;
-	overflow: auto;
-}
-
-#content dl dd span {
-	width: 200px;
-	display: block;
-	float: left;
-}
-#content p {
-clear: both;
-}
-</style>
-<script type="text/javascript">
-$(function() {
-
-    function addHtml(obj){
-        var uploadPicsSize = $(".uploadPics").size() ;
-        var imgSrc = cb.getSafeUrl() + '/pic/upload/item/' + obj.photoPath;
-        var picId = obj.id || "";
-        var html = '<li class="uploadPics">' ;
-        html = html + '<span>Picture ' + uploadPicsSize + ' : </span>';
-        html = html + '<input class="deleteBtn" type="button" value="delete" />' ; 
-        html = html + '<input type="hidden" value="'+picId+'" name="picIds[' + uploadPicsSize + ']">' ; 
-        html = html + '<span>order<input class="indexPriorities" type="text" name="priorities[' + uploadPicsSize + ']" value="' + uploadPicsSize + '" size="3" /></span>' ; 
-        if(obj.photoPath != ''){
-        	html = html + '<input type="hidden" name="oldPhotoPath[' + uploadPicsSize + ']" value="'+obj.photoPath+'" />' ; 
-        	html = html + '<img src="'+imgSrc+'" />' ; 
-        	html = html + '<input class="crud" type="hidden" value="r" name="cruds[' + uploadPicsSize + ']" />' ; 
-        }else {
-        	html = html + '<input type="hidden" name="oldPhotoPath[' + uploadPicsSize + ']" value="" />' ; 
-        	html = html + '<img src="" />' ; 
-        	html = html + '<input class="crud" type="hidden" value="c" name="cruds[' + uploadPicsSize + ']" />' ; 
-        }
-        html = html + '<input class="uploadPicsFile" type="file" name="files['+uploadPicsSize+']" /> ' ; 
-        html = html + '</li>'; 
-
-        return html;
-    }
-	
-	
-	$('#itemForm').on('click','.deleteBtn',function(){
-		var li = $(this).parent();
-		var crudInput = li.find('.crud') ;
-		var val = crudInput.val();
-		if(val == 'r' || val == 'u'){
-			crudInput.val('d');
-		}
-		if(val == 'c'){
-			crudInput.val('');
-		}
-		li.hide();
-	});
-	$('#itemForm').on('click','.uploadPicsFile',function(){
-		var li = $(this).parent();
-		var crudInput = li.find('.crud') ;
-		var val = crudInput.val();
-		if(val == 'r'){
-			crudInput.val('u');
-		}
-		var img = li.find('img') ;
-		img.attr('src','');
-	});
-	$("#addPicBtn").on('click',function(){
-	    var target = $("#pics");
-	    target.append(addHtml({
-	    	photoPath : ''
-	    }));
-	    return false;
-	});
-	
-	
-	
-	$('.cleditor').cleditor({
-		width:        780, // width not including margins, borders or padding
-		height:       250 // height not including margins, borders or padding});
-	});	
-	
-});
-</script>
+<script type="text/javascript" src='<c:url value="/js/manager/item.js"/>'></script>
+<link type="text/css" rel="stylesheet" href='<c:url value="/css/manager/item.css"/>'/>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
@@ -124,7 +39,7 @@ $(function() {
 				<input type="button" value="item list" />
 			</a>
 		</div>
-		<form id="itemForm" method="post" enctype="multipart/form-data">
+		<form id="form1" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="itemIdForm" value="${item.id}"/>
 			<fieldset>
   				<legend>第二級目錄</legend>
@@ -134,34 +49,29 @@ $(function() {
 					</c:forEach>
 				</dl>
  			</fieldset>
-			<p></p>
-			<ul>
-				<li>商品訊息<input type="text" name="title" /></li>
-				<li>當前標價<input type="text" name="currentBid" /></li>
-				<li>估計價值<input type="text" name="estimatedValue" /></li>
-				<li>下次最小標價<input type="text" name="incrementPrice" /></li>
-				<li>
-					<fieldset>
-  						<legend>LOTDETAILS訊息</legend>
-						<textarea class="cleditor" name="lotDetails" id="lotDetails"></textarea>
-					</fieldset>
-				</li>
-				<li>
-					<fieldset>
-  						<legend>LOTDETAILS訊息</legend>
-						<textarea class="cleditor" name="legalTerms" id="legalTerms"></textarea>
-					</fieldset>
-				</li>
-				<li>
-					<fieldset>
-  						<legend>SHIPPING訊息</legend>
-						<textarea class="cleditor" name="shipping" id="shipping"></textarea>
-					</fieldset>
-				</li>
-				<li><input type="button" id="addPicBtn" value="add pic"/></li>
-			</ul>
-			<input type="reset" name="reset" value="reset"/>
-			<input type="submit" name="submit" value="add"/>
+ 			<div><label id="ftitle">商品訊息<input type="text" class="required" id="ftitle" name="title" value="${item.title}" size="100" /></label></div>
+ 			<div><label id="fcurrentBid">當前標價<input type="text" class="required" id="fcurrentBid" name="currentBid" value="${item.currentBid}" /></label></div>
+ 			<div><label id="festimatedValue">估計價值<input type="text" class="required" id="festimatedValue" name="estimatedValue" value="${item.estimatedValue}" /></label></div>
+ 			<div><label id="fincrementPrice">下次最小標價<input type="text" class="required" id="fincrementPrice" name="incrementPrice" value="${item.incrementPrice}" /></label></div>
+			<input type="hidden" name="status" value="1" />
+			<fieldset>
+				<legend>LOTDETAILS訊息</legend>
+				<textarea class="cleditor required" name="lotDetails" id="lotDetails">${item.lotDetails}</textarea>
+			</fieldset>
+			
+			<fieldset>
+				<legend>LOTDETAILS訊息</legend>
+				<textarea class="cleditor required" name="legalTerms" id="legalTerms">${item.legalTerms}</textarea>
+			</fieldset>
+			
+			<fieldset>
+				<legend>SHIPPING訊息</legend>
+				<textarea class="cleditor required" name="shipping" id="shipping">${item.shipping}</textarea>
+			</fieldset>
+			<input type="button" id="addPicBtn" value="add pic"/>
+			<ul id="pics"></ul>
+			<input type="reset" name="reset" value="reset" />
+			<input type="submit" name="submit" value="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

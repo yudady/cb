@@ -25,7 +25,7 @@
 				<input type="button" value="category list" />
 			</a>
 		</div>
-		<form method="post">
+		<form id="form1" method="post">
 			<input type="hidden" name="id" value="${category.id}"/>
 			<div>
 				<label id="fname">name<input class="required" type="text" id="fname" name="name" value="${category.name}" /></label>

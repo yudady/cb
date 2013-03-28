@@ -28,7 +28,9 @@ legend {
     font-weight: bold;
     font-size: 18px;
 }
-
+label {
+    margin-left: 10px;
+}
 table {
     margin: 0 auto;
     width: 95%;

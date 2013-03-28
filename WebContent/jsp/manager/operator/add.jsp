@@ -25,11 +25,15 @@
 				<input type="button" value="operator list" />
 			</a>
 		</div>
-		<form method="post">
-			name<input type="text" name="name" /><br/>
-			passWord<input type="text" name="passWord" /><br/>
-			<input type="reset" name="reset" /><br/>
-			<input type="submit" name="submit" /><br/>
+		<form id="form1" method="post">
+			<div>
+				<label id="fname">name<input type="text" class="required" id="fname" name="name" /></label>
+			</div>
+			<div>
+				<label id="fpassWord">passWord<input type="password" class="required" id="fpassWord" name="passWord" /></label>
+			</div>
+			<input type="reset" name="reset" value="reset" />
+			<input type="submit" name="submit" value="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

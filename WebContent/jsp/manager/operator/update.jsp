@@ -25,12 +25,16 @@
 				<input type="button" value="operator list" />
 			</a>
 		</div>
-		<form method="post">
+		<form id="form1" method="post">
 			<input type="hidden" name="id" value="${operatorObj.id}" /><br/>
-			name<input type="text" name="name" value="${operatorObj.name}" /><br/>
-			passWord<input type="text" name="passWord" value="${operatorObj.passWord}" /><br/>
-			<input type="reset" name="reset" /><br/>
-			<input type="submit" name="submit" value="update"/><br/>
+			<div>
+				<label id="fname">name<input type="text" class="required" id="fname" name="name" value="${operatorObj.name}" /></label>
+			</div>
+			<div>
+				<label id="fpassWord">passWord<input type="text" class="required" id="fpassWord" name="passWord" value="${operatorObj.passWord}" /></label>
+			</div>
+			<input type="reset" name="reset" value="reset" />
+			<input type="submit" name="submit" value="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

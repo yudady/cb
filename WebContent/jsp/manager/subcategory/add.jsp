@@ -59,10 +59,11 @@ clear: both;
 			</fieldset>
 			
 			<p></p>
-			第二級目錄名稱<input type="text" name="name" value="${subCategory.name}" /><br/>
-			description<input type="text" name="descript" value="${subCategory.descript}" /><br/>
-			<input type="reset" name="reset" />
-			<input type="submit" name="submit" />
+			<div>
+				<label id="fname">第二級目錄<input type="text" id="fname" name="name" /></label>
+			</div>
+			<input type="reset" name="reset" value="reset" />
+			<input type="submit" name="submit" value="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

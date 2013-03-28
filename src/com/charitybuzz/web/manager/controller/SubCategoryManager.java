@@ -108,7 +108,7 @@ public class SubCategoryManager {
 			throw new RuntimeException("驗證錯誤");
 		}
 		subCategoryService.insert(new SubCategory(form.getSubCaId(), form
-				.getCategoryId(), form.getName(), form.getDescript()));
+				.getCategoryId(), form.getName()));
 
 		ModelAndView mav = new ModelAndView(
 				"redirect:/manager/subcategory/list.do");
@@ -146,7 +146,7 @@ public class SubCategoryManager {
 			throw new RuntimeException("驗證錯誤");
 		}
 		SubCategory sc = new SubCategory(form.getSubCaId(),
-				form.getCategoryId(), form.getName(), form.getDescript());
+				form.getCategoryId(), form.getName());
 		subCategoryService.update(sc);
 
 		ModelAndView mav = new ModelAndView(

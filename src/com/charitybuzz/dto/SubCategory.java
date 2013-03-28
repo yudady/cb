@@ -25,10 +25,6 @@ public class SubCategory {
 	 * 第二級目錄名稱
 	 */
 	private String name;
-	/**
-	 * 第二級目錄描述
-	 */
-	private String descript;
 
 	// =======關聯資料===以下內容沒有資料庫column==========
 	/**
@@ -48,11 +44,10 @@ public class SubCategory {
 	public SubCategory() {
 	}
 
-	public SubCategory(Long id, Long categoryId, String name, String descript) {
+	public SubCategory(Long id, Long categoryId, String name) {
 		this.id = id;
 		this.categoryId = categoryId;
 		this.name = name;
-		this.descript = descript;
 	}
 
 	// ==========================
@@ -80,15 +75,6 @@ public class SubCategory {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getDescript() {
-		return descript;
-	}
-
-	public void setDescript(String descript) {
-		this.descript = descript;
-	}
-
 	public List<Item> getItems() {
 		return items;
 	}

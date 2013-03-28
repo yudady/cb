@@ -91,37 +91,35 @@ commit;
 CREATE TABLE subcategory (
 id NUMBER(10) PRIMARY KEY NOT NULL,
 categoryId NUMBER(10) NULL ,
-name NVARCHAR2(2000) NOT NULL ,
-descript NVARCHAR2(2000) NULL 
+name NVARCHAR2(2000) NOT NULL
 )
 ;
 commit;
 COMMENT ON COLUMN subcategory.id IS '第二級目錄id';
 COMMENT ON COLUMN subcategory.categoryId IS '第一級目錄id';
 COMMENT ON COLUMN subcategory.name IS '第二級目錄名稱';
-COMMENT ON COLUMN subcategory.descript IS '第二級目錄描述';
 commit;
 drop sequence seq_subcategory;
 create sequence seq_subcategory;
 commit;
 --seq_subcategory.nextval
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'Meet '||'&'||' Gre', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'One-on-One', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'Set Visits', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'Awards Shows '||'&'||' Events ', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'Virtual Experiences ', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Set Visits', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Walk-Ons '||'&'||' Auditions', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'In the Audience', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Premieres '||'&'||' Screenings', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Broadway '||'&'||' Theatre', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Awards Shows '||'&'||' Events', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Children '||'&'||' Teens', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Memorabilia', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '3', 'Concerts '||'&'||' Events', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '3', 'Meet the Artist', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '3', 'Guitars '||'&'||' Instruments', null);
-INSERT INTO subcategory VALUES (seq_subcategory.nextval, '3', 'Memorabilia', null);
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'Meet '||'&'||' Gre');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'One-on-One');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'Set Visits');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'Awards Shows '||'&'||' Events ');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '1', 'Virtual Experiences ');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Set Visits');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Walk-Ons '||'&'||' Auditions');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'In the Audience');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Premieres '||'&'||' Screenings');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Broadway '||'&'||' Theatre');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Awards Shows '||'&'||' Events');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Children '||'&'||' Teens');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '2', 'Memorabilia');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '3', 'Concerts '||'&'||' Events');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '3', 'Meet the Artist');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '3', 'Guitars '||'&'||' Instruments');
+INSERT INTO subcategory VALUES (seq_subcategory.nextval, '3', 'Memorabilia');
 commit;
 
 

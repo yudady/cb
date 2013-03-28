@@ -13,8 +13,13 @@ import com.charitybuzz.common.dao.QueryPager;
 import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dto.SubCategory;
 
+/**
+ * 二級目錄
+ * 
+ * @author Administrator
+ * 
+ */
 public class SubCategoryDao extends BaseDao<SubCategory> {
-
 	/**
 	 * create Item by ResultSet
 	 * 
@@ -24,7 +29,7 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 	 */
 	private static SubCategory newSubCategory(ResultSet rs) throws SQLException {
 		return new SubCategory(rs.getLong("id"), rs.getLong("categoryId"),
-				rs.getString("name"), rs.getString("descript"));
+				rs.getString("name"));
 	}
 
 	/**
@@ -47,7 +52,7 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 	}
 
 	/**
-	 * find List<Auction>
+	 * find Pager<Auction>
 	 * 
 	 * @return
 	 */
@@ -92,6 +97,11 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 		return this.findList(sql);
 	}
 
+	/**
+	 * find Pager
+	 * 
+	 * @return
+	 */
 	public Pager<SubCategory> findPager() {
 		String sql = "select * from SubCategory ";
 		return this.findPager(sql);
@@ -132,8 +142,7 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 				SubCategory it = null;
 				if (rs.next()) {
 					it = new SubCategory(rs.getLong("id"), rs
-							.getLong("categoryId"), rs.getString("name"), rs
-							.getString("descript"));
+							.getLong("categoryId"), rs.getString("name"));
 				}
 				return it;
 			}
@@ -142,13 +151,12 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 	}
 
 	public void insert(final SubCategory subCategory) {
-		String sql = "insert into subCategory (id,categoryId,name,descript) values (seq_subcategory.nextval,?,?,?)";
+		String sql = "insert into subCategory (id,categoryId,name) values (seq_subcategory.nextval,?,?)";
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<SubCategory>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, subCategory.getCategoryId());
 				this.preparedStatement.setString(2, subCategory.getName());
-				this.preparedStatement.setString(3, subCategory.getDescript());
 			}
 
 		});
@@ -156,15 +164,14 @@ public class SubCategoryDao extends BaseDao<SubCategory> {
 	}
 
 	public void update(final SubCategory subCategory) {
-		String sql = "update subCategory set categoryId=? ,name=?,descript=? where id = ?";
+		String sql = "update subCategory set categoryId=? ,name=? where id = ?";
 
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<SubCategory>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setLong(1, subCategory.getCategoryId());
 				this.preparedStatement.setString(2, subCategory.getName());
-				this.preparedStatement.setString(3, subCategory.getDescript());
-				this.preparedStatement.setLong(4, subCategory.getId());
+				this.preparedStatement.setLong(3, subCategory.getId());
 			}
 
 		});

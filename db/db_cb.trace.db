@@ -3434,3 +3434,16 @@ update item set title = ? , currentBid = ?  , startdate = ? , closedate = ?  , e
 03-27 15:01:40 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Value too long for column "LOTDETAILS NVARCHAR2(2000) NOT NULL COMMENT STRINGDECODE('LOTDETAILS\u8a0a\u606f')": "'<p style=""margin: 0px 0px 1em; padding: 0px; border: 0px; outline: 0px; font-size: 13.63636302947998px; font-family: futura-pt,... (3230)"; SQL statement:
 update item set title = ? , currentBid = ?  , startdate = ? , closedate = ?  , estimatedValue = ? , incrementPrice = ? , status = ? , lotDetails = ? , legalTerms = ? ,  shipping = ? , winningBidderId = ? , updatedDate = sysdate where id = ? [22001-169]
+03-28 10:33:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                
+
+ALTER TABLE
+   SUBCATEGORY 
+DROP
+   ([*]DESCRIPT) "; expected "identifier"; SQL statement:
+--SELECT * FROM 
+
+alter table
+   SUBCATEGORY 
+drop
+   (DESCRIPT) [42001-169]

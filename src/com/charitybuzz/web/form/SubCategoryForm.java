@@ -20,10 +20,6 @@ public class SubCategoryForm {
 	 * 第二級目錄名稱
 	 */
 	private String name;
-	/**
-	 * 第二級目錄描述
-	 */
-	private String descript;
 
 	public Long getSubCaId() {
 		return subCaId;
@@ -48,13 +44,4 @@ public class SubCategoryForm {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getDescript() {
-		return descript;
-	}
-
-	public void setDescript(String descript) {
-		this.descript = descript;
-	}
-
 }

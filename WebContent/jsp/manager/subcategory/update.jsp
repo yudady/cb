@@ -65,7 +65,7 @@ clear: both;
 				</dl>
 			</fieldset>
 			<div>
-				<label id="fname">第二級目錄<input type="text" class="required" id="fname" name="name" value="${subCategory.name}" /></label>
+				<label id="fname">第二級目錄<input type="text" class="required" id="fname" name="name" value="${subCategory.name}" size="100" /></label>
 			</div>
 			<input type="reset" name="reset" value="reset" />
 			<input type="submit" name="submit" value="submit" /><br/>

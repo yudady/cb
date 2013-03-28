@@ -30,6 +30,12 @@
 clear: both;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	//預設第一個選中
+	$("input[name='categoryId']").first().prop('checked', true);
+});
+</script>
 </head>
 <body>
 	<%@ include file="/jsp/include/logo_manager.txt" %>
@@ -52,13 +58,13 @@ clear: both;
 			<fieldset>
 				<legend>第一級目錄</legend>
 				<dl>
-					<c:forEach	items="${categories}" var="category" >
+					<c:forEach	items="${categories}" var="category" varStatus="status">
 						<dd><span>${category.name}<input type="radio" name="categoryId" value="${category.id}" /></span></dd>
 					</c:forEach>
 				</dl>
 			</fieldset>
 			<div>
-				<label id="fname">第二級目錄<input type="text" class="required" id="fname" name="name" /></label>
+				<label id="fname">第二級目錄<input type="text" class="required" id="fname" name="name" size="100" /></label>
 			</div>
 			<input type="reset" name="reset" value="reset" />
 			<input type="submit" name="submit" value="submit" /><br/>

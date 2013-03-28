@@ -51,8 +51,8 @@
  			</fieldset>
  			<div><label id="ftitle">商品訊息<input type="text" class="required" id="ftitle" name="title" value="${item.title}" size="100" /></label></div>
  			<div><label id="fcurrentBid">當前標價<input type="text" class="required" id="fcurrentBid" name="currentBid" value="${item.currentBid}" /></label></div>
- 			<div><label id="fstartDate">商品 開始日期<input type="text" class="datepicker required" id="fstartDate" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.startDate}" />' /></label></div>
- 			<div><label id="fcloseDate">商品結束日期<input type="text" class="datepicker required" id="fcloseDate" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.closeDate}" />' /></label></div>
+ 			<div><span>商品 開始日期</span><input type="text" class="datepicker required" name="startDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.startDate}" />' /></div>
+ 			<div><span>商品結束日期</span><input type="text" class="datepicker required" name="closeDate" value='<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.closeDate}" />' /></div>
  			<div><label id="festimatedValue">估計價值<input type="text" class="required" id="festimatedValue" name="estimatedValue" value="${item.estimatedValue}" /></label></div>
  			<div><label id="fincrementPrice">下次最小標價<input type="text" class="required" id="fincrementPrice" name="incrementPrice" value="${item.incrementPrice}" /></label></div>
 			<c:choose>

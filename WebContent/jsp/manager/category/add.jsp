@@ -9,7 +9,7 @@
 <%@ include file="/jsp/include/header_manager.txt" %>
 <title>manager|category</title>
 <style type="text/css">
-.formInput {
+label {
 	margin-left: 10px;
 }
 </style>
@@ -31,7 +31,7 @@
 			</a>
 		</div>
 		<form method="post">
-			<div class="formInput">
+			<div>
 				<label id="fname">name<input class="required" type="text" id="fname" name="name" /></label>
 			</div>
 			<input type="reset" name="reset" value="reset" />

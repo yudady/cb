@@ -27,9 +27,11 @@
 		</div>
 		<form method="post">
 			<input type="hidden" name="id" value="${category.id}"/>
-			<input class="required" type="text" name="name" value="${category.name}"/>
-			<input type="reset" name="reset" />
-			<input type="submit" name="submit" />
+			<div>
+				<label id="fname">name<input class="required" type="text" id="fname" name="name" value="${category.name}" /></label>
+			</div>
+			<input type="reset" name="reset" value="reset" />
+			<input type="submit" name="submit" value="submit" /><br/>
 		</form>
 	</div>
 	<%@ include file="/jsp/include/footer_manager.txt" %>

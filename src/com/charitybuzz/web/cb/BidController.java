@@ -21,6 +21,12 @@ import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.web.form.BidForm;
 
+/**
+ * 競標
+ * 
+ * @author Administrator
+ * 
+ */
 @Controller
 @SessionAttributes({ "bidder" })
 public class BidController {
@@ -36,9 +42,6 @@ public class BidController {
 	@RequestMapping(value = "/bid/{itemId}/index", method = RequestMethod.GET)
 	public String bid(@ModelAttribute("bidder") Bidder bidder, BidForm form) {
 
-		
-		
-		
 		Long winningBidderId = bidder.getId();
 		Item item = itemService.findById(form.getItemId());
 		log.debug("[LOG][bid]" + winningBidderId);
@@ -58,8 +61,6 @@ public class BidController {
 
 		return "redirect:" + form.getBiddingBidUrl();
 	}
-
-	
 
 	@ExceptionHandler({ HttpSessionRequiredException.class })
 	public ModelAndView noSessionObject(Exception ex) {

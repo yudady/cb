@@ -3,10 +3,12 @@ package com.charitybuzz.service;
 import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.BidderDao;
 import com.charitybuzz.dto.Bidder;
+
 /**
  * 投標者
+ * 
  * @author Administrator
- *
+ * 
  */
 public class BidderService {
 
@@ -26,10 +28,21 @@ public class BidderService {
 		return bidderDao.findById(id);
 	}
 
+	/**
+	 * 用email找投標者
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public Bidder findByEmail(String email) {
 		return bidderDao.findByEmail(email);
 	}
 
+	/**
+	 * 分頁，投標者
+	 * 
+	 * @return
+	 */
 	public Pager<Bidder> findPager() {
 		return bidderDao.findPager();
 	}

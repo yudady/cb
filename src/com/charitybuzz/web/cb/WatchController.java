@@ -18,6 +18,12 @@ import com.charitybuzz.dto.Bidder;
 import com.charitybuzz.service.WatchingService;
 import com.charitybuzz.web.form.WatchForm;
 
+/**
+ * 關注
+ * 
+ * @author Administrator
+ * 
+ */
 @Controller
 @SessionAttributes({ "bidder" })
 @RequestMapping("/watch")

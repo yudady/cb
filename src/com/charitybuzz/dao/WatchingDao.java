@@ -33,6 +33,12 @@ public class WatchingDao extends BaseDao<Watching> {
 		});
 	}
 
+	/**
+	 * insert watching
+	 * 
+	 * @param bidderId
+	 * @param itemId
+	 */
 	public void insert(final Long bidderId, final Long itemId) {
 		System.out.println("[LOG]insert");
 		String sql = "insert into watching (id,bidderId,itemId) values (seq_watching.nextval,?,?)";
@@ -46,8 +52,13 @@ public class WatchingDao extends BaseDao<Watching> {
 		});
 	}
 
+	/**
+	 * delete watching
+	 * 
+	 * @param bidderId
+	 * @param itemId
+	 */
 	public void deleteByBidderIdItemId(final Long bidderId, final Long itemId) {
-		System.out.println("[LOG]delete");
 		String sql = "delete from watching where bidderId = ? and itemId = ? ";
 		this.insertUpdateDelete(sql, new InsertUpdateDelete<Watching>() {
 			@Override

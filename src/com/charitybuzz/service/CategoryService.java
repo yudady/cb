@@ -6,6 +6,12 @@ import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.CategoryDao;
 import com.charitybuzz.dto.Category;
 
+/**
+ * 一級目錄
+ * 
+ * @author Administrator
+ * 
+ */
 public class CategoryService {
 
 	private CategoryDao categoryDao;
@@ -22,13 +28,16 @@ public class CategoryService {
 	public List<Category> findAll() {
 		return categoryDao.findAll();
 	}
+
 	/**
 	 * 分頁
+	 * 
 	 * @return
 	 */
 	public Pager<Category> findPager() {
 		return categoryDao.findPager();
 	}
+
 	/**
 	 * 用id找object
 	 * 
@@ -49,14 +58,22 @@ public class CategoryService {
 		categoryDao.insert(category);
 	}
 
+	/**
+	 * update
+	 * 
+	 * @param category
+	 */
 	public void update(Category category) {
 		categoryDao.update(category);
 	}
 
+	/**
+	 * delete
+	 * 
+	 * @param categoryId
+	 */
 	public void delete(Long categoryId) {
 		categoryDao.delete(categoryId);
 	}
-
-
 
 }

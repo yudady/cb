@@ -11,6 +11,12 @@ import com.charitybuzz.dao.DualDao;
 import com.charitybuzz.dao.ItemDao;
 import com.charitybuzz.dto.Item;
 
+/**
+ * 商品
+ * 
+ * @author Administrator
+ * 
+ */
 public class ItemService {
 
 	/** logger. */
@@ -47,6 +53,7 @@ public class ItemService {
 	public Pager<Item> findPagerBySubCategoryId(Long subcategoryId) {
 		return itemDao.findPagerBySubCategoryId(subcategoryId);
 	}
+
 	/**
 	 * 分頁，2級目錄找結標商品
 	 * 
@@ -94,14 +101,17 @@ public class ItemService {
 	public Pager<Item> findPagerByCategoryId(Long categoryId) {
 		return itemDao.findPagerByCategoryId(categoryId);
 	}
+
 	/**
 	 * 分頁，1級目錄找結標商品
+	 * 
 	 * @param categoryId
 	 * @return
 	 */
 	public Pager<Item> findPagerCloseItemsByCategoryId(Long categoryId) {
 		return itemDao.findPagerCloseItemsByCategoryId(categoryId);
 	}
+
 	/**
 	 * pk find object
 	 * 
@@ -131,6 +141,12 @@ public class ItemService {
 		itemDao.updateClosingBidding(id);
 	}
 
+	/**
+	 * insert
+	 * 
+	 * @param item
+	 * @return
+	 */
 	public Long insert(Item item) {
 
 		Long itemId = dualDao.getNextPk("seq_item.nextval");
@@ -139,10 +155,20 @@ public class ItemService {
 		return itemId;
 	}
 
+	/**
+	 * update
+	 * 
+	 * @param item
+	 */
 	public void update(Item item) {
 		itemDao.update(item);
 	}
 
+	/**
+	 * delete
+	 * 
+	 * @param itemId
+	 */
 	public void delete(Long itemId) {
 		itemDao.delete(itemId);
 	}
@@ -256,26 +282,50 @@ public class ItemService {
 		return itemDao.findPagerCloseItemsByAuctionId(auctionId);
 	}
 
+	/**
+	 * 分頁
+	 * 
+	 * @param count
+	 * @return
+	 */
 	public List<Item> findSlideShow(int count) {
 		return itemDao.findPopular(0, count);
 	}
 
+	/**
+	 * 分頁 tabs
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerCloseItemsByClosingNext() {
 		return itemDao.findPagerCloseItemsByClosingNext();
 	}
 
+	/**
+	 * 分頁 tabs
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerCloseItemsByHotDeals() {
 		return itemDao.findPagerCloseItemsByHotDeals();
 	}
 
+	/**
+	 * 分頁 tabs
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerCloseItemsByPopular() {
 		return itemDao.findPagerCloseItemsByPopular();
 	}
 
+	/**
+	 * 分頁 tabs
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerCloseItemsByRecentAdd() {
 		return itemDao.findPagerCloseItemsByRecentAdd();
 	}
-
-
 
 }

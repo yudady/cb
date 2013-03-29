@@ -14,11 +14,19 @@ import com.charitybuzz.dto.Item;
 import com.charitybuzz.service.BidderService;
 import com.charitybuzz.service.ItemService;
 
+/**
+ * 結標，定時調度器
+ * 
+ * @author Administrator
+ * 
+ */
 public class SchedulerItem {
 
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
+	/**
+	 * 是否開啟，定時調度器
+	 */
 	private boolean openScheduler;
 
 	private ItemService itemService;

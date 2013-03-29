@@ -1,5 +1,9 @@
 package com.charitybuzz.common.web;
-
+/**
+ * ajax return bean
+ * @author Administrator
+ *
+ */
 public class ReturnBean {
 
 	private boolean success;

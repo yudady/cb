@@ -22,7 +22,11 @@ import com.charitybuzz.dto.SlideItem;
 import com.charitybuzz.service.AuctionService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
-
+/**
+ * index
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping(value = "/index")
 public class IndexController {

@@ -25,7 +25,11 @@ import com.charitybuzz.service.ItemService;
 
 @Controller
 @RequestMapping("/item")
-
+/**
+ * 歷史紀錄
+ * @author Administrator
+ *
+ */
 public class BidlogController {
 	/** logger. */
 	private Logger log = LoggerFactory.getLogger(this.getClass());

@@ -15,7 +15,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.charitybuzz.common.context.ConnectionContext;
-
+/**
+ * Connection close
+ * @author Administrator
+ *
+ */
 public class ConnectionContextFilter implements Filter {
 
 	/** logger. */

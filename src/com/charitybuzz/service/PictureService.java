@@ -4,7 +4,11 @@ import java.util.List;
 
 import com.charitybuzz.dao.PictureDao;
 import com.charitybuzz.dto.Picture;
-
+/**
+ * 圖片
+ * @author Administrator
+ *
+ */
 public class PictureService {
 
 	private PictureDao pictureDao;

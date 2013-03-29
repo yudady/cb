@@ -26,7 +26,11 @@ import com.charitybuzz.service.AuctionService;
 import com.charitybuzz.service.BidlogService;
 import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
-
+/**
+ * 拍賣會
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping("/auctions")
 public class AuctionsController {

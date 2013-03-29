@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.charitybuzz.dto.Operator;
 
+/**
+ * 後台登入
+ * 
+ * @author Administrator
+ * 
+ */
 public class ManagerFilter implements Filter {
 
 	@Override
@@ -36,7 +42,7 @@ public class ManagerFilter implements Filter {
 					+ "/manager/index.do");
 			return;
 		} else {
-			//have session 
+			// have session
 			chan.doFilter(req, res);
 		}
 

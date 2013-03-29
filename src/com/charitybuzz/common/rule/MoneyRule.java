@@ -3,6 +3,12 @@ package com.charitybuzz.common.rule;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 計算下一次bidder，要多少錢
+ * 
+ * @author Administrator
+ * 
+ */
 public class MoneyRule {
 	/**
 	 * @param currentBid

@@ -28,6 +28,12 @@ import com.charitybuzz.service.ItemService;
 import com.charitybuzz.service.PictureService;
 import com.charitybuzz.service.WatchingService;
 
+/**
+ * 商品
+ * 
+ * @author Administrator
+ * 
+ */
 @Controller
 public class ItemController {
 	/** logger. */

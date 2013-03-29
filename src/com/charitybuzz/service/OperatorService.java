@@ -6,6 +6,12 @@ import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.OperatorDao;
 import com.charitybuzz.dto.Operator;
 
+/**
+ * 後台登入者
+ * 
+ * @author Administrator
+ * 
+ */
 public class OperatorService {
 
 	private OperatorDao operatorDao;
@@ -46,14 +52,29 @@ public class OperatorService {
 		return operatorDao.findPager();
 	}
 
+	/**
+	 * insert
+	 * 
+	 * @param operator
+	 */
 	public void insert(Operator operator) {
 		operatorDao.insert(operator);
 	}
 
+	/**
+	 * update
+	 * 
+	 * @param operator
+	 */
 	public void update(Operator operator) {
 		operatorDao.update(operator);
 	}
 
+	/**
+	 * delete
+	 * 
+	 * @param operatorId
+	 */
 	public void delete(Long operatorId) {
 		operatorDao.delete(operatorId);
 	}

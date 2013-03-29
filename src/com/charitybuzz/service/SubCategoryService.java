@@ -6,6 +6,12 @@ import com.charitybuzz.common.model.Pager;
 import com.charitybuzz.dao.SubCategoryDao;
 import com.charitybuzz.dto.SubCategory;
 
+/**
+ * 二級目錄
+ * 
+ * @author Administrator
+ * 
+ */
 public class SubCategoryService {
 
 	private SubCategoryDao subCategoryDao;
@@ -41,20 +47,41 @@ public class SubCategoryService {
 		return subCategoryDao.findPager();
 	}
 
+	/**
+	 * insert
+	 * 
+	 * @param subCategory
+	 */
 	public void insert(SubCategory subCategory) {
 		subCategoryDao.insert(subCategory);
 
 	}
 
+	/**
+	 * findById
+	 * 
+	 * @param subCategoryId
+	 * @return
+	 */
 	public SubCategory findById(Long subCategoryId) {
 		return subCategoryDao.findById(subCategoryId);
 	}
 
+	/**
+	 * update
+	 * 
+	 * @param subCategory
+	 */
 	public void update(SubCategory subCategory) {
 		subCategoryDao.update(subCategory);
 
 	}
 
+	/**
+	 * delete
+	 * 
+	 * @param subCategoryId
+	 */
 	public void delete(Long subCategoryId) {
 		subCategoryDao.delete(subCategoryId);
 

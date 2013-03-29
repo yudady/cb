@@ -14,6 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.charitybuzz.common.Constant;
 import com.charitybuzz.common.context.PagerContext;
 
+/**
+ * Pager分頁
+ * 
+ * @author Administrator
+ * 
+ */
 public class PagerFilter implements Filter {
 
 	@Override
@@ -25,8 +31,13 @@ public class PagerFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
-
+		/**
+		 * 第一頁
+		 */
 		int pageOffset = 0;
+		/**
+		 * 每頁幾條記錄
+		 */
 		int pageSize = 10;
 		try {
 
@@ -40,11 +51,13 @@ public class PagerFilter implements Filter {
 			} catch (NumberFormatException e) {
 				pageSize = 10;
 			}
+			// add to ThreadLocal
 			PagerContext.setPageOffset(pageOffset);
 			PagerContext.setPageSize(pageSize);
 			// here chain
 			chain.doFilter(request, response);
 		} finally {
+			// remove from ThreadLocal
 			PagerContext.removePageOffset();
 			PagerContext.removePageSize();
 		}
@@ -54,7 +67,7 @@ public class PagerFilter implements Filter {
 	@Override
 	public void init(FilterConfig cf) throws ServletException {
 		/**
-		 * 初始化
+		 * 初始化 設定常量
 		 */
 		String path = cf.getServletContext().getRealPath("/");
 		String uploadFolder = path + "pic/upload/";

@@ -83,7 +83,7 @@
 }
 
 .downLeft {
-    width: 360px;
+    width: 300px;
     background-color: white;
     float: left;
 }
@@ -91,6 +91,7 @@
 .downRight {
     float: right;
 }
+
 dl.topItem {
 }
 

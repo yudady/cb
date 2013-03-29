@@ -108,6 +108,8 @@
 		<div class="clearBoth"></div>
 		<div class="down">
 			<div class="downLeft">
+				<h2>TOP ITEMS BY CATEGORY</h2>
+				<hr class="clearBoth">
 				<c:forEach items="${topItemsCategories}" var="topItem">
 		        	<dl class="topItem">
 		        		${topItem.category.name}
@@ -115,6 +117,7 @@
 							<dd><i class="icon-circle">&nbsp;</i>${item.title}</dd>
 						</c:forEach>
 		        	</dl>
+					<hr class="clearBoth">
 				</c:forEach>
 			</div>
 			<div class="downRight">

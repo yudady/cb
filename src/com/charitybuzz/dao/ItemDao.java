@@ -228,7 +228,7 @@ public class ItemDao extends BaseDao<Item> {
 	 * @return
 	 */
 	public Pager<Item> findPagerByCategoryId(final Long categoryId) {
-		String sql = "SELECT x.* FROM ITEM x WHERE x.id in(SELECT d.itemid FROM subcategory_item d WHERE d.subcategoryid IN (SELECT A.ID FROM subcategory A where a.categoryid = ? )) ";
+		String sql = "SELECT x.* FROM ITEM x WHERE status = '1' AND SYSDATE >= startdate and closedate >= SYSDATE and x.id in(SELECT d.itemid FROM subcategory_item d WHERE d.subcategoryid IN (SELECT A.ID FROM subcategory A where a.categoryid = ? )) ";
 		return this.queryPager(sql, new QueryPager<Item>() {
 			@Override
 			public void doPreparedStatement() throws SQLException {
@@ -571,18 +571,18 @@ public class ItemDao extends BaseDao<Item> {
 	}
 
 	public Pager<Item> findPagerCloseItemsByHotDeals() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = " Select * from ( SELECT ( SYSDATE  - closedate ) diff , it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by diff ) WHERE diff > 0  ";
+		return this.findPager(sql);
 	}
 
 	public Pager<Item> findPagerCloseItemsByPopular() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = " Select * from ( SELECT ( SYSDATE  - closedate ) diff , it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by diff ) WHERE diff > 0  ";
+		return this.findPager(sql);
 	}
 
 	public Pager<Item> findPagerCloseItemsByRecentAdd() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = " Select * from ( SELECT ( SYSDATE  - closedate ) diff , it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by diff ) WHERE diff > 0  ";
+		return this.findPager(sql);
 	}
 
 	public Pager<Item> findPagerCloseItemsByCategoryId(final Long categoryId) {

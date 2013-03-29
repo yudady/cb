@@ -166,7 +166,7 @@ public class CategoriesController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/searchItems", method = RequestMethod.POST)
+	@RequestMapping(value = "/categories/searchItems", method = RequestMethod.POST)
 	public ModelAndView searchItems(HttpServletRequest request) {
 
 		log.debug("[LOG][searchItems]");

@@ -16,6 +16,20 @@
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/assets/css/font-awesome.css"/>'/>
 <script type="text/javascript" src='<c:url value="/js/base.js"/>'></script>
 <link type="text/css" rel="stylesheet" href='<c:url value="/css/base.css"/>'/>
+<style type="text/css">
+
+.counter {
+	padding: 10px;
+	background-color: white;
+
+}
+.mainCounter {
+	padding:20px;
+	margin-left:210px;
+	background-color: white;
+}
+
+</style>
 </head>
 <body>
 <div id="header"><!-- header start -->
@@ -69,20 +83,7 @@
 		</ul>
 	</div>
 </div>
-<style type="text/css">
 
-.counter {
-	padding: 10px;
-	background-color: white;
-
-}
-.mainCounter {
-	margin-left:210px;
-	background-color: gray;
-}
-
-
-</style>
 <div class="counter"><!-- counter -->
 <%@ include file="/jsp/include/menu.txt" %>
 <div class="mainCounter">
@@ -102,8 +103,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="login" /></td>
-				<td><input name="reset" type="reset" /></td>
+				<td><input type="reset" name="reset" value="reset" /></td>
+				<td><input type="submit" name="submit" value="submit" /></td>
 			</tr>
 		</table>
 	</form>

@@ -48,34 +48,37 @@
     height: 10px;
     background-color: #CCCCCC;
 }
+.items{
+    background-color: #CCCCCC;
+}
 .item {
-    height: 200px;
-    padding: 30px;
+    padding: 20px;
+    float: left;
+    width: 690px;
     background-color: white;
 }
 
 .pic {
     float: left;
     width: 250px;
-    height: 200px;
 }
 
 .pic img {
     width: 250px;
-    height: 200px;
 }
 
 .detail {
-    float: right;
-    width: 360px;
-    height: 160px;
-    padding: 20px;
+    float: left;
+    width: 400px;
+    margin-left: 20px;
 }
 
 .detail a {
     font-size: 18px;
     color: red;
 }
+/*
+*/
 /**
  * bid now
  */

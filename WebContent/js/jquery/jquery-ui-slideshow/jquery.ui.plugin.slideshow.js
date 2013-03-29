@@ -5,7 +5,7 @@
         options : {
             className : "slideshow",
             opacity : 0.4,
-            moveLength : 70,
+            moveLength : 80,/* 80*8=640 */
             timer : 10000,
             showPicsNumber : 8
         },

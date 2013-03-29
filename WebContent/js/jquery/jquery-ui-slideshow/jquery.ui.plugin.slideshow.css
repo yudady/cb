@@ -122,11 +122,11 @@
 .ui-widget-slideshow-downDiv {
     position: absolute;
     top: 430px;
-    left: 60px;
+    left: 20px;
     /*
      background-color: red;
      */
-    width: 560px; /* 70*8=560 */
+    width: 640px; /* 80*8=640 */
 	overflow: hidden;
 }
 
@@ -142,8 +142,10 @@
  * 	小圖片
  */
 .ui-widget-slideshow-smallPics {
+    margin-left: 5px;
+    margin-right: 5px;
     cursor: pointer;
-	width: 70px;/* 70*8=560 */
+	width: 70px;/* (70 + 5 + 5)*8=640 */
 	height: 60px;
 }
 /**

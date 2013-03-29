@@ -375,8 +375,10 @@ public class ItemDao extends BaseDao<Item> {
 				this.preparedStatement.setLong(2, item.getAuctionId());
 				this.preparedStatement.setString(3, item.getTitle());
 				this.preparedStatement.setDouble(4, item.getCurrentBid());
-				this.preparedStatement.setTimestamp(5, new Timestamp(item.getStartDate().getTime()));
-				this.preparedStatement.setTimestamp(6, new Timestamp(item.getCloseDate().getTime()));
+				this.preparedStatement.setTimestamp(5, new Timestamp(item
+						.getStartDate().getTime()));
+				this.preparedStatement.setTimestamp(6, new Timestamp(item
+						.getCloseDate().getTime()));
 				this.preparedStatement.setDouble(7, item.getEstimatedValue());
 				this.preparedStatement.setDouble(8, item.getIncrementPrice());
 				this.preparedStatement.setInt(9, 1);
@@ -405,8 +407,10 @@ public class ItemDao extends BaseDao<Item> {
 			public void doPreparedStatement() throws SQLException {
 				this.preparedStatement.setString(1, item.getTitle());
 				this.preparedStatement.setDouble(2, item.getCurrentBid());
-				this.preparedStatement.setTimestamp(3, new Timestamp(item.getStartDate().getTime()));
-				this.preparedStatement.setTimestamp(4, new Timestamp(item.getCloseDate().getTime()));
+				this.preparedStatement.setTimestamp(3, new Timestamp(item
+						.getStartDate().getTime()));
+				this.preparedStatement.setTimestamp(4, new Timestamp(item
+						.getCloseDate().getTime()));
 				this.preparedStatement.setDouble(5, item.getEstimatedValue());
 				this.preparedStatement.setDouble(6, item.getIncrementPrice());
 				this.preparedStatement.setInt(7, item.getStatus());
@@ -490,12 +494,23 @@ public class ItemDao extends BaseDao<Item> {
 
 	}
 
+	/**
+	 * 分頁 最進增加
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerByRecentAdd() {
 		String sql = " SELECT * FROM item WHERE status = '1' AND STARTDATE <= SYSDATE and closedate >= sysdate order by (STARTDATE - sysdate) desc ";
 		return this.findPager(sql);
 
 	}
 
+	/**
+	 * search
+	 * 
+	 * @param keyWord
+	 * @return
+	 */
 	public Pager<Item> findByKeyWord(final String keyWord) {
 		log.debug("[LOG][findByKeyWord]");
 
@@ -565,23 +580,43 @@ public class ItemDao extends BaseDao<Item> {
 		return this.findPager(sql);
 	}
 
+	/**
+	 * tabs4 close
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerCloseItemsByClosingNext() {
 		String sql = " Select * from ( SELECT ( SYSDATE  - closedate ) diff , it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by diff ) WHERE diff > 0  ";
 		return this.findPager(sql);
 	}
 
+	/**
+	 * tabs4 close
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerCloseItemsByHotDeals() {
-		String sql = " Select * from ( SELECT ( SYSDATE  - closedate ) diff , it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by diff ) WHERE diff > 0  ";
+		String sql = " SELECT it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by (ESTIMATEDVALUE - CURRENTBID) desc ";
 		return this.findPager(sql);
 	}
 
+	/**
+	 * tabs4 close
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerCloseItemsByPopular() {
-		String sql = " Select * from ( SELECT ( SYSDATE  - closedate ) diff , it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by diff ) WHERE diff > 0  ";
+		String sql = " SELECT count(lo.id) cc ,it.* FROM item it left join bidlog lo on lo.ITEMID = it.id WHERE it.status = 0 AND it.closedate < SYSDATE GROUP BY it.ID, it.title, it.CURRENTBID, it.STARTDATE, it.CLOSEDATE, it.ESTIMATEDVALUE, it.INCREMENTPRICE, it.STATUS, it.LOTDETAILS, it.LEGALTERMS, it.SHIPPING, it.WINNINGBIDDERID, it.CREATEDDATE, it.UPDATEDDATE order by cc desc ";
 		return this.findPager(sql);
 	}
 
+	/**
+	 * tabs4 close
+	 * 
+	 * @return
+	 */
 	public Pager<Item> findPagerCloseItemsByRecentAdd() {
-		String sql = " Select * from ( SELECT ( SYSDATE  - closedate ) diff , it.* FROM item it WHERE it.status = 0 AND it.closedate < SYSDATE order by diff ) WHERE diff > 0  ";
+		String sql = " SELECT * FROM item WHERE it.status = 0 AND it.closedate < SYSDATE order by (STARTDATE - sysdate) desc ";
 		return this.findPager(sql);
 	}
 
